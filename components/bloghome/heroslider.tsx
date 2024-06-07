@@ -1,48 +1,51 @@
-"use client";
+'use client'
 
-import React from "react";
-// Import Swiper React components
-import { Swiper, SwiperSlide } from "swiper/react";
+import React, { useEffect, useState } from 'react';
+import { fetchPosts } from '@/services/wordpress';
 
-// Import Swiper styles
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import { Autoplay, Navigation } from "swiper/modules";
 
-// import required modules
-import { Navigation, Pagination, Mousewheel, Keyboard } from "swiper/modules";
+// Define the shape of the data you expect to receive from the API
+interface Post {
+  id: number;
+  title: {
+    rendered: string;
+  };
+  featured_image_url?: string; // Make image property optional
+  author?: string; // Make author property optional
+  date?: string; // Make date property optional
+}
 
-export default function () {
-  const latestPosts = [
-    {
-      title: "New Porsche Taycan Cross Turismo Prototype R",
-      author: "Matt Posske",
-      date: "14 May 20214",
-      image: "https://via.placeholder.com/600x400",
-      alt: "Auto",
-    },
-    {
-      title: "New Porsche Taycan Cross Turismo Prototype R",
-      author: "Matt Posske",
-      date: "14 May 20214",
-      image: "https://via.placeholder.com/600x400",
-      alt: "Auto",
-    },
-    {
-      title: "New Porsche Taycan Cross Turismo Prototype R",
-      author: "Matt Posske",
-      date: "14 May 20214",
-      image: "https://via.placeholder.com/600x400",
-      alt: "Auto",
-    },
-    {
-      title: "New Porsche Taycan Cross Turismo Prototype R",
-      author: "Matt Posske",
-      date: "14 May 20214",
-      image: "https://via.placeholder.com/600x400",
-      alt: "Auto",
-    },
-  ];
+const HeroSlider: React.FC = () => {
+  const [posts, setPosts] = useState<Post[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const getPosts = async () => {
+      try {
+        const postsData = await fetchPosts();
+        setPosts(postsData);
+      } catch (err: unknown) {
+        if (err instanceof Error) {
+          setError(err.message);
+        } else {
+          setError(String(err));
+        }
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    getPosts();
+  }, []);
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error}</p>;
 
   return (
     <div className="heroAreaMain">
@@ -51,53 +54,48 @@ export default function () {
           <Swiper
             spaceBetween={0}
             slidesPerView={1}
-            navigation
-            pagination={{ clickable: true }}
+            navigation={true}
+            // pagination={{ clickable: false }}
             scrollbar={{ draggable: true }}
-            // onSwiper={(swiper) => console.log(swiper)}
-            // onSlideChange={() => console.log("slide change")}
-            className={"heroSlider"}
+            modules={[Autoplay, Navigation]}
+            // modules={[Navigation, Pagination, Mousewheel, Keyboard]}
+            className={'heroSlider'}
           >
-            <SwiperSlide>
-              <img src="https://via.placeholder.com/600x400" alt="Slide 1" />
-              <h2>The 2024 Subaru WRX Is Now $2,230 More Expensive</h2>
-            </SwiperSlide>
-            <SwiperSlide>
-              <img src="https://via.placeholder.com/600x400" alt="Slide 2" />
-              <h2>The 2024 Subaru WRX Is Now $2,230 More Expensive</h2>
-            </SwiperSlide>
-            <SwiperSlide>
-              <img src="https://via.placeholder.com/600x400" alt="Slide 3" />
-              <h2>The 2024 Subaru WRX Is Now $2,230 More Expensive</h2>
-            </SwiperSlide>
-            <SwiperSlide>
-              <img src="https://via.placeholder.com/600x400" alt="Slide 4" />
-              <h2>The 2024 Subaru WRX Is Now $2,230 More Expensive</h2>
-            </SwiperSlide>
+            {posts.map((post, index) => (
+              <SwiperSlide key={post.id}>
+                <img src={post.featured_image_url || 'https://via.placeholder.com/600x400'} alt={`Slide ${index + 1}`} />
+                <h2>{post.title.rendered}</h2>
+              </SwiperSlide>
+            ))}
           </Swiper>
         </div>
         <div className="col-md-4 col-sm-12 col-lg-4 col-xl-4 col-xxl-4">
-          <div className="latest-stories">
-            {latestPosts.map((post) => (
-              <div className="d-flex align-items-center bordered px-2 py-2 mb-2">
-                <div className="img-holder me-1">
-                  <img
-                    src={post.image}
-                    alt={post.title}
-                    className="img-fluid"
-                  />
-                </div>
-                <div className="content-holder">
-                  <h6 className="mb-0 fw-600 fz-14">{post.title}</h6>
-                  <span className="text-muted fz-12">
-                    by {post.author} / {post.date}
-                  </span>
-                </div>
-              </div>
-            ))}
-          </div>
+        <div className="latest-stories">
+  {posts.map(post => (
+    <div key={post.id} className="d-flex align-items-center bordered px-2 py-2 mb-2">
+      <div className="img-holder me-1 col-auto">
+        <img
+          src={post.featured_image_url || 'https://via.placeholder.com/150x150'}
+          alt={post.title.rendered}
+          className="img-fluid" // This class makes the image responsive
+        />
+      </div>
+      <div className="content-holder">
+        <h6 className="mb-0 fw-600 fz-14">{post.title.rendered}</h6>
+        {post.author && post.date && (
+          <span className="text-muted fz-12">
+            by {post.author} / {post.date}
+          </span>
+        )}
+      </div>
+    </div>
+  ))}
+</div>
+
         </div>
       </div>
     </div>
   );
-}
+};
+
+export default HeroSlider;
