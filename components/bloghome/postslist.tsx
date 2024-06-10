@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useEffect, useState } from "react"
-import { fetchPostsbycategory } from "@/services/wordpress"
+import { fetchPostsByCategory } from "@/services/wordpress"
 import LoadingSkeleton from "../skeletons/loadingskeleton"
 import Image from "next/image"
 import Link from "next/link"
@@ -39,7 +39,7 @@ const PostsList: React.FC<PostbyCategoryProps> = ({
   useEffect(() => {
     const getPosts = async () => {
       try {
-        const postsData = await fetchPostsbycategory(category, numberOfPosts);
+        const postsData = await fetchPostsByCategory(category, numberOfPosts);
         setPosts(postsData);
       } catch (err: unknown) {
         if (err instanceof Error) {

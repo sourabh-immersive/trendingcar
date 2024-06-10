@@ -5,7 +5,6 @@ import styles from './page.module.css'
 import WideAd from '@/components/advertisements/widead'
 import SquareAd from '@/components/advertisements/squaread'
 import LongAd from '@/components/advertisements/longad'
-import Loading from './loading'
 import HeroSlider from '@/components/bloghome/heroslider'
 import WebStories from '@/components/bloghome/webstories'
 import PostbyCategory from '@/components/bloghome/postbycategory'
@@ -40,9 +39,7 @@ export default function Home() {
             <section className="left-container">
               <div className="row">
                 <div className="col-md-12 col-sm-12 col-lg-12 col-xl-12 col-xxl-12">
-                  <Suspense fallback={<Loading />}>
                     <HeroSlider />
-                  </Suspense>
                 </div>
               </div>
               <div className="row">
