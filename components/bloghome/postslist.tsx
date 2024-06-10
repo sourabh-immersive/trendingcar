@@ -82,7 +82,7 @@ const PostsList: React.FC<PostbyCategoryProps> = ({
       <div className="row">
       <div className="latest-stories">
             {posts.map((post, index) => (
-                <Link href={`/blogs/${post.slug}`} >
+                <Link href={`/blogs/${post.slug}`} key={index}>
               <div
                 data-index={index}
                 className="d-flex align-items-center bordered px-2 py-2 mb-2"

@@ -81,7 +81,7 @@ const PostbyCategory: React.FC<PostbyCategoryProps> = ({
       </div>
       <div className="row">
         {posts.map((post, index) => (
-          <div className="col-md-4" data-index={index}>
+          <div className="col-md-4" data-index={index} key={index}>
             <div className="card mb-4 box-shadow">
               <Link href={`/blogs/${post.slug}`}>
                 <img
