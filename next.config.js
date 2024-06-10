@@ -10,6 +10,13 @@ module.exports = {
         ssr: true,
       },
     },
+    images: { 
+      unoptimized: true,
+      formats: ['image/webp'],
+    }
+    // images: {
+    //   domains: ['wp.trendingcar.com'],
+    // },
     // images: { 
     //   unoptimized: true,
     //   formats: ['image/webp'],
