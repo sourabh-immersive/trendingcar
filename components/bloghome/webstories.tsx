@@ -15,7 +15,7 @@ interface Post {
   author?: string;
   date?: string;
 }
-const webstories: React.FC = () => {
+const WebStories: React.FC = () => {
   const [posts, setPosts] = useState<Post[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -115,4 +115,4 @@ const webstories: React.FC = () => {
   );
 };
 
-export default webstories;
+export default WebStories;

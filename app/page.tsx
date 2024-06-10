@@ -7,7 +7,7 @@ import SquareAd from '@/components/advertisements/squaread'
 import LongAd from '@/components/advertisements/longad'
 import Loading from './loading'
 import HeroSlider from '@/components/bloghome/heroslider'
-import Webstories from '@/components/bloghome/webstories'
+import WebStories from '@/components/bloghome/webstories'
 import PostbyCategory from '@/components/bloghome/postbycategory'
 import PostsList from '@/components/bloghome/postslist'
 
@@ -47,7 +47,7 @@ export default function Home() {
               </div>
               <div className="row">
                 <div className="col-md-12 col-sm-12 col-lg-12 col-xl-12 col-xxl-12">
-                  <Webstories />
+                  <WebStories />
                 </div>
               </div>
               <div className="row">

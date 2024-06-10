@@ -65,7 +65,7 @@ const HeroSlider: React.FC = () => {
             className={"heroSlider"}
           >
             {posts.map((post, index) => (
-              <SwiperSlide key={post.id}>
+              <SwiperSlide data-index={index}>
                 <Link href={`/blogs/${post.slug}`} >
                 <img
                   src={
@@ -82,10 +82,10 @@ const HeroSlider: React.FC = () => {
         </div>
         <div className="col-md-4 col-sm-12 col-lg-4 col-xl-4 col-xxl-4">
           <div className="latest-stories">
-            {posts.map((post) => (
+            {posts.map((post, index) => (
               <Link href={`/blogs/${post.slug}`} >
               <div
-                key={post.id}
+                data-index={index}
                 className="d-flex align-items-center bordered px-2 py-2 mb-2"
               >
                 <div className="img-holder me-1 col-auto">
