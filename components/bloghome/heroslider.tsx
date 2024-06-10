@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { fetchPosts } from "@/services/wordpress";
 import Link from "next/link";
-
+import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -67,12 +67,14 @@ const HeroSlider: React.FC = () => {
             {posts.map((post, index) => (
               <SwiperSlide data-index={index} key={index}>
                 <Link href={`/blogs/${post.slug}`} >
-                <img
+                <Image
                   src={
                     post.featured_image_url ||
                     "https://via.placeholder.com/600x400"
                   }
                   alt={`Slide ${index + 1}`}
+                  width="600"
+                  height="400"
                 />
                 <h2>{post.title.rendered}</h2>
                 </Link>
@@ -89,13 +91,15 @@ const HeroSlider: React.FC = () => {
                 className="d-flex align-items-center bordered px-2 py-2 mb-2"
               >
                 <div className="img-holder me-1 col-auto">
-                  <img
+                  <Image
                     src={
                       post.featured_image_url ||
                       "https://via.placeholder.com/150x150"
                     }
                     alt={post.title.rendered}
                     className="img-fluid"
+                    width="600"
+                    height="400"
                   />
                 </div>
                 <div className="content-holder">

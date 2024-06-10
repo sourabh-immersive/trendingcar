@@ -84,13 +84,15 @@ const PostbyCategory: React.FC<PostbyCategoryProps> = ({
           <div className="col-md-4" data-index={index} key={index}>
             <div className="card mb-4 box-shadow">
               <Link href={`/blogs/${post.slug}`}>
-                <img
+                <Image
                   className="card-img-top"
                   src={
                     post.featured_image_url ||
                     "https://via.placeholder.com/600x400"
                   }
                   alt="Card image cap"
+                  width="600"
+                  height="400"
                 />
                 <div className="card-body">
                   <h5
