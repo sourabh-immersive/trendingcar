@@ -4,7 +4,7 @@ import "../styles/global.scss"
 import Header from "../components/header"
 import Footer from "../components/footer"
 
-export const fetchCache = 'force-no-store';
+// export const fetchCache = 'force-no-store';
 
 const lato = Lato({
   weight: ['400', '700'],

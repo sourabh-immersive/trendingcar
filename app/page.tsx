@@ -9,10 +9,12 @@ import HeroSlider from '@/components/bloghome/heroslider'
 import WebStories from '@/components/bloghome/webstories'
 import PostbyCategory from '@/components/bloghome/postbycategory'
 import PostsList from '@/components/bloghome/postslist'
+import NewAd from '@/components/advertisements/newad'
 
 export default function Home() {
   return (
     <main>
+      <NewAd />
       <div className="container">
         <div className="row">
           <div className="col-md-12 col-sm-12 col-lg-12 col-xl-12 col-xxl-12">
