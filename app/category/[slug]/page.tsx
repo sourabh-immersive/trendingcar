@@ -18,8 +18,38 @@ interface Post {
   };
 }
 
-export default function Category({ params }: { params: { slug: string } }) {
+interface Category {
+  id: number;
+  count: number;
+  description: string;
+  link: string;
+  name: string;
+  // Add any other fields as necessary
+}
 
+export default function Category({ params }: { params: { slug: string } }) {
+  const [category, setCategoryName] = useState<Category | null>(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const postData = await fetchCategoryNameBySlug(params.slug);
+      
+      if (postData !== null) {
+        setCategoryName(postData);
+        console.log('final dataff' + postData);
+      }
+    };
+
+    fetchData();
+  }, [params.slug]);
+
+  function convertSlugToHeading(slug: string): string {
+    return slug
+      .split('-')
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ');
+  }
+  
   return (
     <main>
       <div className="container">
@@ -28,7 +58,7 @@ export default function Category({ params }: { params: { slug: string } }) {
             <nav aria-label="breadcrumb" className="mt-30 mb-4">
               <ol className="breadcrumb">
                 <li className="breadcrumb-item">
-                  <a href="#" className="text-muted">
+                  <a href="/" className="text-muted">
                     Home
                   </a>
                 </li>
@@ -36,7 +66,7 @@ export default function Category({ params }: { params: { slug: string } }) {
                   className="breadcrumb-item active text-primary"
                   aria-current="page"
                 >
-                  sdfsdfds
+                  {category ? category.name : convertSlugToHeading(params.slug)}
                 </li>
               </ol>
             </nav>
@@ -49,10 +79,10 @@ export default function Category({ params }: { params: { slug: string } }) {
               <div className="row">
                 <div className="col-md-12 col-sm-12 col-lg-12 col-xl-12 col-xxl-12">
                   <PostbyCategory
-                    title={"Category"}
+                    title={category ? category.name : convertSlugToHeading(params.slug)}
                     linkText=""
                     link=""
-                    numberOfPosts={6}
+                    numberOfPosts={2}
                     category={params.slug}
                   />
                 </div>

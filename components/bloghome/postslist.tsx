@@ -71,6 +71,7 @@ const PostsList: React.FC<PostbyCategoryProps> = ({
           <a href={link} className="">
             {linkText}{" "}
             <Image
+              className="iconInLink"
               src="/icons/right-arrow.png"
               alt="web stories"
               width="25"

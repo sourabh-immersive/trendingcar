@@ -9,7 +9,8 @@ export interface Post {
   content: {
     rendered: string;
   };
-  // Add more properties as needed
+  primary_category: string;
+  primary_cat_slug: string;
 }
 
 export const fetchPosts = async (): Promise<Post[]> => {
@@ -59,13 +60,21 @@ export const fetchPostBySlug = async (slug: string): Promise<Post | null> => {
 
 export interface Category {
   slug: string;
-  title: {
-    rendered: string;
-  };
+  title: string;
   content: {
     rendered: string;
   };
 }
+
+interface Category2 {
+  id: number;
+  count: number;
+  description: string;
+  link: string;
+  name: string;
+  // Add any other fields as necessary
+}
+
 
 export const fetchCategories = async (): Promise<Category[]> => {
   try {
@@ -119,20 +128,20 @@ export const fetchPostsByCategory = async (
 
 export const fetchCategoryNameBySlug = async (
   slug: string
-): Promise<Category | null> => {
+): Promise<Category2 | null> => {
   try {
     const response = await fetch(`${API_BASE_URL}/categories?slug=${slug}`);
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
-    // const data: Category[] = await response.json();
-    // return data.length > 0 ? data[0] : null;
-
-    const data: Category = await response.json();
-    return data;
-
+    const data: Category2[] = await response.json();
+    if (data.length === 0) {
+      throw new Error("Post not found");
+    }
+    return data[0];
   } catch (error) {
     console.error(`Failed to fetch category with slug ${slug}:`, error);
     return null;
   }
 };
+

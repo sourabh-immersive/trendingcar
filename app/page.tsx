@@ -9,12 +9,11 @@ import HeroSlider from '@/components/bloghome/heroslider'
 import WebStories from '@/components/bloghome/webstories'
 import PostbyCategory from '@/components/bloghome/postbycategory'
 import PostsList from '@/components/bloghome/postslist'
-import NewAd from '@/components/advertisements/newad'
 
 export default function Home() {
+
   return (
     <main>
-      <NewAd />
       <div className="container">
         <div className="row">
           <div className="col-md-12 col-sm-12 col-lg-12 col-xl-12 col-xxl-12">
@@ -56,7 +55,7 @@ export default function Home() {
               </div>
               <div className="row">
                 <div className="col-md-12 col-sm-12 col-lg-12 col-xl-12 col-xxl-12">
-                  <PostbyCategory title="Luxurious Cars" linkText='View more posts' link="/" numberOfPosts={6} category="luxurious-cars" />
+                  <PostbyCategory title="Luxurious Cars" linkText='View more posts' link="/category/luxurious-cars" numberOfPosts={6} category="luxurious-cars" loadMoreEnabled={false} />
                 </div>
               </div>
               <div className="row">
@@ -66,12 +65,12 @@ export default function Home() {
               </div>
               <div className="row">
                 <div className="col-md-12 col-sm-12 col-lg-12 col-xl-12 col-xxl-12">
-                <PostbyCategory title="Luxurious Cars" linkText='View more posts' link="/" numberOfPosts={3} category="luxurious-cars" />
+                <PostbyCategory title="Luxurious Cars" linkText='View more posts' link="/category/luxurious-cars" numberOfPosts={3} category="luxurious-cars" loadMoreEnabled={false} />
                 </div>
               </div>
               <div className="row">
                 <div className="col-md-12 col-sm-12 col-lg-12 col-xl-12 col-xxl-12">
-                <PostbyCategory title="Videos" linkText='View more posts' link="/" numberOfPosts={3} category="luxurious-cars" />
+                <PostbyCategory title="Videos" linkText='View more posts' link="/category/luxurious-cars" numberOfPosts={3} category="luxurious-cars" loadMoreEnabled={false} />
                 </div>
               </div>
               <div className="row">
@@ -81,7 +80,7 @@ export default function Home() {
               </div>
               <div className="row">
                 <div className="col-md-12 col-sm-12 col-lg-12 col-xl-12 col-xxl-12">
-                <PostbyCategory title="Car Collections	" linkText='View all collections' link="/" numberOfPosts={3} category="car-collections" /> 
+                <PostbyCategory title="Car Collections	" linkText='View all collections' link="/category/car-collections" numberOfPosts={3} category="car-collections" loadMoreEnabled={false} /> 
                 </div>
               </div>
             </section>

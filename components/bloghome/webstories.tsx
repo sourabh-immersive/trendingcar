@@ -53,7 +53,7 @@ const WebStories: React.FC = () => {
           </a>
 
           <a href="#" className="">
-            View all stories <Image src="/icons/right-arrow.png" alt="web stories" width="25" height="25" />
+            View all stories <Image className="iconInLink" src="/icons/right-arrow.png" alt="web stories" width="25" height="25" />
           </a>
         </header>
       </div>

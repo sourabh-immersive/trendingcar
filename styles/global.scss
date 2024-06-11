@@ -14,7 +14,7 @@ $primary-color: #3498db;
 body {
   font-family: Lato, sans-serif;
   background-color: #f4f4f4;
-  color: $primary-color;
+  color: #000000;
 }
 
 /* width */
@@ -50,6 +50,16 @@ h6 {
 
 a {
   text-decoration: none;
+  color: $primary-color;
+}
+
+.single-content-area img {
+  width: 100%;
+  height: auto;
+}
+
+img.iconInLink {
+  width: 25px;
 }
 
 // Blog Page CSS
