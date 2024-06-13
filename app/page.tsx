@@ -1,7 +1,5 @@
 import React, { Suspense } from 'react'
-import dynamic from 'next/dynamic'
 import Image from 'next/image'
-import styles from './page.module.css'
 import WideAd from '@/components/advertisements/widead'
 import SquareAd from '@/components/advertisements/squaread'
 import LongAd from '@/components/advertisements/longad'

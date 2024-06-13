@@ -1,5 +1,89 @@
 const API_BASE_URL = "https://wp.trendingcar.com/wp-json/wp/v2";
 
+interface Robots {
+  index: boolean;
+  follow: boolean;
+  maxSnippet: string;
+  maxImagePreview: string;
+  maxVideoPreview: string;
+}
+
+interface OpenGraph {
+  locale: string;
+  type: "website" | "article" | "book" | "profile" | "music.song" | "music.album" | "music.playlist" | "music.radio_station" | "video.movie" | "video.episode" | "video.tv_show" | "video.other";
+  title: string;
+  description: string;
+  url: string;
+  siteName: string;
+  images: {
+    url: string;
+    width?: number;
+    height?: number;
+    type?: string;
+  }[];
+}
+
+interface YoastHeadJson {
+  title: string;
+  robots: {
+    index: string;
+    follow: string;
+    'max-snippet': number;
+    'max-image-preview': "none" | "standard" | "large" | undefined;
+    'max-video-preview': string;
+  };
+  og_locale: string;
+  og_type: "website" | "article" | "book" | "profile" | "music.song" | "music.album" | "music.playlist" | "music.radio_station" | "video.movie" | "video.episode" | "video.tv_show" | "video.other";
+  og_title: string;
+  og_description: string;
+  og_url: string;
+  og_site_name: string;
+  article_modified_time: string;
+  og_image: {
+    width: number;
+    height: number;
+    url: string;
+    type: string;
+  }[];
+  twitter_card: "summary" | "summary_large_image" | "player" | "app";
+  twitter_misc: {
+    [key: string]: string;
+  };
+  schema: {
+    '@context': string;
+    '@graph': {
+      '@type': string;
+      '@id': string;
+      url?: string;
+      name?: string;
+      isPartOf?: {
+        '@id': string;
+      };
+      primaryImageOfPage?: {
+        '@id': string;
+      };
+      image?: {
+        '@id': string;
+      };
+      thumbnailUrl?: string;
+      datePublished?: string;
+      dateModified?: string;
+      breadcrumb?: {
+        '@id': string;
+      };
+      inLanguage?: string;
+      potentialAction?: {
+        '@type': string;
+        target?: string | {
+          '@type': string;
+          urlTemplate: string;
+        }[];
+        'query-input'?: string;
+      }[];
+    }[];
+  };
+}
+
 export interface Post {
   id: number;
   slug: string;
@@ -11,7 +95,9 @@ export interface Post {
   };
   primary_category: string;
   primary_cat_slug: string;
+  yoast_head_json: YoastHeadJson;
 }
+
 
 export const fetchPosts = async (): Promise<Post[]> => {
   try {

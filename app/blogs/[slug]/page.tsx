@@ -1,119 +1,68 @@
-"use client";
-
-import { useEffect, useState } from "react";
+import { Metadata, ResolvingMetadata } from 'next';
 import { fetchPostBySlug } from "@/services/wordpress";
-import WideAd from "@/components/advertisements/widead";
-import SquareAd from "@/components/advertisements/squaread";
-import LongAd from "@/components/advertisements/longad";
-import PostsList from "@/components/bloghome/postslist";
-import Link from "next/link";
+import PostContent from "@/components/PostContent";
 
-export default function Page({ params }: { params: { slug: string } }) {
-  interface Post {
-    id: number;
-    title: {
-      rendered: string;
+type Props = {
+  params: { slug: string }
+  searchParams: { [key: string]: string | string[] | undefined }
+}
+
+export async function generateMetadata(
+  { params, searchParams }: Props,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const slug = params.slug;
+  const blog = await fetchPostBySlug(slug);
+
+  // Base URL for your site (use environment variable or hardcode)
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://your-website.com';
+
+  if (!blog || !blog.yoast_head_json) {
+    return {
+      title: 'Blog Post',
     };
-    content: {
-      rendered: string;
-    };
-    primary_category: string;
-    primary_cat_slug: string;
   }
 
-  const [post, setPost] = useState<Post | null>(null);
+  const yoast = blog.yoast_head_json;
+  const previousImages = (await parent).openGraph?.images || [];
+  const ogImage = yoast.og_image?.[0]?.url || '/some-specific-page-image.jpg';
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const postData = await fetchPostBySlug(params.slug);
-      if (postData !== null) {
-        setPost(postData);
-      }
-    };
+  return {
+    metadataBase: new URL(baseUrl),
+    title: yoast.title,
+    robots: {
+      index: yoast.robots.index === 'index',
+      follow: yoast.robots.follow === 'follow',
+      'max-snippet': yoast.robots['max-snippet'],
+      'max-image-preview': yoast.robots['max-image-preview'],
+      'max-video-preview': yoast.robots['max-video-preview'],
+    },
+    openGraph: {
+      locale: yoast.og_locale,
+      type: yoast.og_type,
+      title: yoast.og_title,
+      description: yoast.og_description,
+      url: yoast.og_url,
+      siteName: yoast.og_site_name,
+      images: [
+        {
+          url: ogImage,
+          width: yoast.og_image?.[0]?.width,
+          height: yoast.og_image?.[0]?.height,
+          type: yoast.og_image?.[0]?.type,
+        },
+        ...previousImages,
+      ],
+    },
+    twitter: {
+      card: yoast.twitter_card,
+      title: yoast.og_title,
+      description: yoast.og_description,
+      images: ogImage,
+    },
+  };
+}
 
-    fetchData();
-  }, [params.slug]);
-
-  return (
-    <div>
-      <div className="container">
-        <div className="row">
-          <div className="col-md-12 col-sm-12 col-lg-12 col-xl-12 col-xxl-12">
-            <nav aria-label="breadcrumb" className="mt-30 mb-4">
-              <ol className="breadcrumb">
-                <li className="breadcrumb-item">
-                  <Link href="/" className="text-muted">
-                    Home
-                  </Link>
-                </li>
-                <li
-                  className="breadcrumb-item"
-                  aria-current="page"
-                ><Link href={`/category/${post?.primary_cat_slug}`} >
-                  {post?.primary_category}
-                  </Link>
-                </li>
-                <li
-                  className="breadcrumb-item active text-primary"
-                  aria-current="page"
-                >
-                  {post?.title.rendered}
-                </li>
-              </ol>
-            </nav>
-          </div>
-        </div>
-        <WideAd img_url="/image-9.png" />
-        <div className="row mt-4">
-          <div className="col-md-9 col-sm-12 col-lg-9 col-xl-9 col-xxl-9">
-            <section className="left-container">
-              <div className="row single-content-area">
-                <div className="col-md-12 col-sm-12 col-lg-12 col-xl-12 col-xxl-12">
-                  {post ? (
-                    <div>
-                      <h1>{post.title.rendered}</h1>
-                      <div
-                        dangerouslySetInnerHTML={{
-                          __html: post.content.rendered,
-                        }}
-                      />
-                    </div>
-                  ) : (
-                    <div>Loading...</div>
-                  )}
-                </div>
-              </div>
-            </section>
-          </div>
-          <div className="col-md-3 col-sm-12 col-lg-3 col-xl-3 col-xxl-3">
-            <section className="right-container">
-              <SquareAd />
-              <div className="row mt-4">
-                <div className="col-md-12 col-sm-12 col-lg-12 col-xl-12 col-xxl-12">
-                  <PostsList
-                    title="Reviews"
-                    linkText="View All"
-                    link="/"
-                    numberOfPosts={5}
-                    category="car"
-                  />
-                </div>
-              </div>
-              <div className="row mt-4">
-                <div className="col-md-12 col-sm-12 col-lg-12 col-xl-12 col-xxl-12">
-                  EventsSection...
-                </div>
-              </div>
-              <LongAd />
-              <div className="row mt-4">
-                <div className="col-md-12 col-sm-12 col-lg-12 col-xl-12 col-xxl-12">
-                  CommercialVehicles...
-                </div>
-              </div>
-            </section>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+export default function Page({ params }: { params: { slug: string } }) {
+  return <PostContent slug={params.slug} />;
 }
