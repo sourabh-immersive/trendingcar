@@ -8,7 +8,7 @@ export default function LoadingSkeleton() {
       <div className="row">
         <div className="col-md-8 col-sm-12 col-lg-8 col-xl-8 col-xxl-8">
           <img src="https://via.placeholder.com/600x400" alt="" />
-          <h2>ff</h2>
+          <h2></h2>
         </div>
         <div className="col-md-4 col-sm-12 col-lg-4 col-xl-4 col-xxl-4">
           <div className="latest-stories">

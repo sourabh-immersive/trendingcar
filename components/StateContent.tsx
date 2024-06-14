@@ -1,39 +1,36 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { fetchPostBySlug } from "@/services/wordpress";
+import { fetchStatePostBySlug } from "@/services/wordpress";
 import Link from "next/link";
 import WideAd from "@/components/advertisements/widead";
 import SquareAd from "@/components/advertisements/squaread";
 import LongAd from "@/components/advertisements/longad";
 import PostsList from "@/components/bloghome/postslist";
+import { StatePost } from "@/services/wordpress";
 import Content from "./skeletons/content";
+import ListStates from "./ListStates";
+import ListCities from "./listcities";
 
-interface Post {
-  id: number;
-  title: {
-    rendered: string;
-  };
-  content: {
-    rendered: string;
-  };
-  primary_category: string;
-  primary_cat_slug: string;
-}
-
-export default function PostContent({ slug }: { slug: string }) {
-  const [post, setPost] = useState<Post | null>(null);
-
+export default function StateContent({ slug }: { slug: string }) {
+  const [post, setStatePost] = useState<StatePost | null>(null);
   useEffect(() => {
     const fetchData = async () => {
-      const postData = await fetchPostBySlug(slug);
-      if (postData !== null) {
-        setPost(postData);
+      const cityPostData = await fetchStatePostBySlug(slug);
+      if (cityPostData !== null) {
+        setStatePost(cityPostData);
       }
     };
 
     fetchData();
   }, [slug]);
+
+  function convertSlugToHeading(slug: string): string {
+    return slug
+      .split("-")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ");
+  }
 
   return (
     <div>
@@ -47,16 +44,16 @@ export default function PostContent({ slug }: { slug: string }) {
                     Home
                   </Link>
                 </li>
-                <li className="breadcrumb-item" aria-current="page">
-                  <Link href={`/category/${post?.primary_cat_slug}`}>
-                    {post?.primary_category}
+                <li className="breadcrumb-item">
+                  <Link href="/rto" className="text-muted">
+                    RTO
                   </Link>
                 </li>
                 <li
                   className="breadcrumb-item active text-primary"
                   aria-current="page"
                 >
-                  {post?.title.rendered}
+                  {post? (convertSlugToHeading(post?.slug)) : ''}
                 </li>
               </ol>
             </nav>
@@ -89,18 +86,12 @@ export default function PostContent({ slug }: { slug: string }) {
               <SquareAd />
               <div className="row mt-4">
                 <div className="col-md-12 col-sm-12 col-lg-12 col-xl-12 col-xxl-12">
-                  <PostsList
-                    title="Reviews"
-                    linkText="View All"
-                    link="/"
-                    numberOfPosts={5}
-                    category="car"
-                  />
+                  <ListStates />
                 </div>
               </div>
               <div className="row mt-4">
                 <div className="col-md-12 col-sm-12 col-lg-12 col-xl-12 col-xxl-12">
-                  EventsSection...
+                  <ListCities slug={slug} />
                 </div>
               </div>
               <LongAd />

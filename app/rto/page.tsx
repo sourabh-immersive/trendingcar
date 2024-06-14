@@ -1,62 +1,70 @@
 "use client";
 
+import dynamic from "next/dynamic";
+import Image from "next/image";
 import { useEffect, useState } from "react";
-import { fetchPostBySlug } from "@/services/wordpress";
-import Link from "next/link";
+import styles from "./page.module.css";
 import WideAd from "@/components/advertisements/widead";
 import SquareAd from "@/components/advertisements/squaread";
 import LongAd from "@/components/advertisements/longad";
+import PostbyCategory from "@/components/bloghome/postbycategory";
 import PostsList from "@/components/bloghome/postslist";
-import Content from "./skeletons/content";
+import { fetchRTOPage } from "@/services/wordpress";
+import Content from "@/components/skeletons/content";
+import ListCities from "@/components/listcities";
+import ListStates from "@/components/ListStates";
 
-interface Post {
+interface Page {
   id: number;
+  slug: string;
   title: {
     rendered: string;
   };
   content: {
     rendered: string;
   };
-  primary_category: string;
-  primary_cat_slug: string;
+  featured_image_url: string;
 }
 
-export default function PostContent({ slug }: { slug: string }) {
-  const [post, setPost] = useState<Post | null>(null);
+export default function RTO() {
+  const [page, setPageData] = useState<Page | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
-      const postData = await fetchPostBySlug(slug);
-      if (postData !== null) {
-        setPost(postData);
+      const pageData = await fetchRTOPage();
+
+      if (pageData !== undefined) {
+        setPageData(pageData);
       }
     };
 
     fetchData();
-  }, [slug]);
+  }, []);
+
+  function convertSlugToHeading(slug: string): string {
+    return slug
+      .split("-")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ");
+  }
 
   return (
-    <div>
+    <main>
       <div className="container">
         <div className="row">
           <div className="col-md-12 col-sm-12 col-lg-12 col-xl-12 col-xxl-12">
             <nav aria-label="breadcrumb" className="mt-30 mb-4">
               <ol className="breadcrumb">
                 <li className="breadcrumb-item">
-                  <Link href="/" className="text-muted">
+                  <a href="/" className="text-muted">
                     Home
-                  </Link>
-                </li>
-                <li className="breadcrumb-item" aria-current="page">
-                  <Link href={`/category/${post?.primary_cat_slug}`}>
-                    {post?.primary_category}
-                  </Link>
+                  </a>
                 </li>
                 <li
                   className="breadcrumb-item active text-primary"
                   aria-current="page"
                 >
-                  {post?.title.rendered}
+                  RTO
                 </li>
               </ol>
             </nav>
@@ -68,12 +76,13 @@ export default function PostContent({ slug }: { slug: string }) {
             <section className="left-container">
               <div className="row single-content-area">
                 <div className="col-md-12 col-sm-12 col-lg-12 col-xl-12 col-xxl-12">
-                  {post ? (
+                  {page ? (
                     <div>
-                      <h1>{post.title.rendered}</h1>
+                      <h1>{page.title.rendered}</h1>
+                      <Image src={page.featured_image_url} alt={page.title.rendered} width="1024" height="423" />
                       <div
                         dangerouslySetInnerHTML={{
-                          __html: post.content.rendered,
+                          __html: page.content.rendered,
                         }}
                       />
                     </div>
@@ -89,18 +98,12 @@ export default function PostContent({ slug }: { slug: string }) {
               <SquareAd />
               <div className="row mt-4">
                 <div className="col-md-12 col-sm-12 col-lg-12 col-xl-12 col-xxl-12">
-                  <PostsList
-                    title="Reviews"
-                    linkText="View All"
-                    link="/"
-                    numberOfPosts={5}
-                    category="car"
-                  />
+                  <ListStates />
                 </div>
               </div>
               <div className="row mt-4">
                 <div className="col-md-12 col-sm-12 col-lg-12 col-xl-12 col-xxl-12">
-                  EventsSection...
+                  <ListCities slug="madhya-pradesh" />
                 </div>
               </div>
               <LongAd />
@@ -113,6 +116,6 @@ export default function PostContent({ slug }: { slug: string }) {
           </div>
         </div>
       </div>
-    </div>
+    </main>
   );
 }

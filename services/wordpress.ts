@@ -1,27 +1,7 @@
+import { stringify } from "querystring";
+
 const API_BASE_URL = "https://wp.trendingcar.com/wp-json/wp/v2";
-
-interface Robots {
-  index: boolean;
-  follow: boolean;
-  maxSnippet: string;
-  maxImagePreview: string;
-  maxVideoPreview: string;
-}
-
-interface OpenGraph {
-  locale: string;
-  type: "website" | "article" | "book" | "profile" | "music.song" | "music.album" | "music.playlist" | "music.radio_station" | "video.movie" | "video.episode" | "video.tv_show" | "video.other";
-  title: string;
-  description: string;
-  url: string;
-  siteName: string;
-  images: {
-    url: string;
-    width?: number;
-    height?: number;
-    type?: string;
-  }[];
-}
+const API_BASE_CUSTOM_URL = "https://wp.trendingcar.com/wp-json/custom/v2";
 
 interface YoastHeadJson {
   title: string;
@@ -98,6 +78,48 @@ export interface Post {
   yoast_head_json: YoastHeadJson;
 }
 
+export interface Page {
+  id: number;
+  slug: string;
+  title: {
+    rendered: string;
+  };
+  content: {
+    rendered: string;
+  };
+  featured_image_url: string;
+}
+
+export interface StatePost {
+  id: number;
+  title: {
+    rendered: string;
+  };
+  slug: string;
+  content: {
+    rendered: string;
+  };
+  primary_category: string;
+  primary_cat_slug: string;
+}
+
+export interface CityPost {
+  id: number;
+  title: {
+    rendered: string;
+  };
+  slug: string;
+  content: {
+    rendered: string;
+  };
+  primary_category: string;
+  primary_cat_slug: string;
+}
+
+export interface City {
+  title: string;
+  slug: string;
+}
 
 export const fetchPosts = async (): Promise<Post[]> => {
   try {
@@ -110,6 +132,83 @@ export const fetchPosts = async (): Promise<Post[]> => {
   } catch (error) {
     console.error("Failed to fetch posts:", error);
     return [];
+  }
+};
+
+export const ListCitiesByStateSlug = async (slug: string): Promise<City[]> => {
+  try {
+    const response = await fetch(`${API_BASE_CUSTOM_URL}/list-cities?states=${slug}`);
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    const data: City[] = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Failed to fetch posts:", error);
+    return [];
+  }
+};
+
+export const ListStatesData = async (): Promise<City[]> => {
+  try {
+    const response = await fetch(`${API_BASE_CUSTOM_URL}/list-states`);
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    const data: City[] = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Failed to fetch posts:", error);
+    return [];
+  }
+};
+
+export const fetchCityPostBySlug = async (slug: string): Promise<CityPost | null> => {
+  try {
+    const response = await fetch(`${API_BASE_URL}/cities?slug=${slug}`);
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    const data: CityPost[] = await response.json();
+    if (data.length === 0) {
+      throw new Error("Post not found");
+    }
+    return data[0];
+  } catch (error) {
+    console.error(`Failed to fetch post with slug ${slug}:`, error);
+    return null;
+  }
+};
+
+export const fetchStatePostBySlug = async (slug: string): Promise<StatePost | null> => {
+  try {
+    const response = await fetch(`${API_BASE_URL}/states?slug=${slug}`);
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    const data: StatePost[] = await response.json();
+    if (data.length === 0) {
+      throw new Error("Post not found");
+    }
+    return data[0];
+  } catch (error) {
+    console.error(`Failed to fetch post with slug ${slug}:`, error);
+    return null;
+  }
+};
+
+export const fetchRTOPage = async (): Promise<Page | undefined> => {
+  try {
+    const response = await fetch(`${API_BASE_URL}/pages/51`);
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    
+    const data: Page = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Failed to fetch posts:", error);
+    return undefined;
   }
 };
 

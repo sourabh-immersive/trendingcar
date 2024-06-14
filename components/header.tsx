@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 export default function Header() {
@@ -65,116 +66,53 @@ export default function Header() {
           </button>
           <div className="collapse navbar-collapse" id="navbarMenu">
             <ul className="navbar-nav me-auto">
-              <li className="nav-item dropdown">
-                <a
-                  className="nav-link dropdown-toggle"
-                  href="#"
-                  id="navbarDropdown"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  NEW CAR
-                </a>
-                <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      Action
-                    </a>
-                  </li>
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      Another action
-                    </a>
-                  </li>
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      Something else here
-                    </a>
-                  </li>
-                </ul>
-              </li>
               <li className="nav-item me-4">
-                <a
+                <Link
                   className="nav-link"
                   href="#"
                 >
-                  RTO
-                </a>
+                  NEW CAR
+                </Link>
               </li>
               <li className="nav-item me-4">
-                <a
+                <Link
+                  className="nav-link"
+                  href="/rto"
+                >
+                  RTO
+                </Link>
+              </li>
+              <li className="nav-item me-4">
+                <Link
                   className="nav-link"
                   href="#"
                 >
                   TOLL PLAZA
-                </a>
-              </li>
-              <li className="nav-item dropdown">
-                <a
-                  className="nav-link dropdown-toggle"
-                  href="#"
-                  id="navbarDropdown"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  REVIEWS & NEWS
-                </a>
-                <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      Action
-                    </a>
-                  </li>
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      Another action
-                    </a>
-                  </li>
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      Something else here
-                    </a>
-                  </li>
-                </ul>
-              </li>
-              <li className="nav-item dropdown">
-                <a
-                  className="nav-link dropdown-toggle"
-                  href="#"
-                  id="navbarDropdown"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  ELECTRIC VEHICLE
-                </a>
-                <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      Action
-                    </a>
-                  </li>
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      Another action
-                    </a>
-                  </li>
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      Something else here
-                    </a>
-                  </li>
-                </ul>
+                </Link>
               </li>
               <li className="nav-item me-4">
-                <a className="nav-link" href="#">
+                <Link
+                  className="nav-link"
+                  href="/blogs"
+                >
+                  Blogs & News
+                </Link>
+              </li>
+              <li className="nav-item me-4">
+                <Link
+                  className="nav-link"
+                  href="/blogs"
+                >
+                  ELECTRIC VEHICLE
+                </Link>
+              </li>
+              <li className="nav-item me-4">
+                <Link className="nav-link" href="#">
                   IMAGES
-                </a>
+                </Link>
               </li>
               <li className="nav-item dropdown">
-                <a
+                <Link
                   className="nav-link dropdown-toggle"
                   href="#"
                   id="navbarDropdown"
@@ -183,22 +121,22 @@ export default function Header() {
                   aria-expanded="false"
                 >
                   MORE
-                </a>
+                </Link>
                 <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                   <li>
-                    <a className="dropdown-item" href="#">
-                      Action
-                    </a>
+                    <Link className="dropdown-item" href="#">
+                      Privacy Policy
+                    </Link>
                   </li>
                   <li>
-                    <a className="dropdown-item" href="#">
-                      Another action
-                    </a>
+                    <Link className="dropdown-item" href="#">
+                      Terms of Use
+                    </Link>
                   </li>
                   <li>
-                    <a className="dropdown-item" href="#">
-                      Something else here
-                    </a>
+                    <Link className="dropdown-item" href="#">
+                      Latest Updates
+                    </Link>
                   </li>
                 </ul>
               </li>
