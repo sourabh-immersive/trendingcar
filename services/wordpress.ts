@@ -99,6 +99,7 @@ export interface StatePost {
   content: {
     rendered: string;
   };
+  featured_image_url: string;
   primary_category: string;
   primary_cat_slug: string;
 }
@@ -112,6 +113,7 @@ export interface CityPost {
   content: {
     rendered: string;
   };
+  featured_image_url: string;
   primary_category: string;
   primary_cat_slug: string;
 }

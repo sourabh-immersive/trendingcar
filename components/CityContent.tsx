@@ -11,6 +11,7 @@ import { CityPost } from "@/services/wordpress";
 import Content from "./skeletons/content";
 import ListStates from "./ListStates";
 import ListCities from "./listcities";
+import Image from "next/image";
 
 export default function CityContent({ slug, state_slug }: { slug: string, state_slug: string }) {
   const [post, setCityPost] = useState<CityPost | null>(null);
@@ -74,6 +75,7 @@ export default function CityContent({ slug, state_slug }: { slug: string, state_
                   {post ? (
                     <div>
                       <h1>{post.title.rendered}</h1>
+                      <Image src={post.featured_image_url} alt={post.title.rendered} width="1024" height="423" />
                       <div
                         dangerouslySetInnerHTML={{
                           __html: post.content.rendered,
