@@ -64,6 +64,10 @@ ul.myList {
   }
 }
 
+.main-layout {
+  padding-bottom: 40px;
+}
+
 ol.breadcrumb {
   margin-bottom: 0;
   padding: 15px 0;
@@ -102,6 +106,7 @@ th {
 .single-content-area img {
   width: 100%;
   height: auto;
+  margin-bottom: 20px;
 }
 
 img.iconInLink {

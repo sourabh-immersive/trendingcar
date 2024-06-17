@@ -28,6 +28,7 @@ export default function ListCities({ slug }: { slug: string }) {
 
   return (
     <div className="citiesList">
+      <h5>RTO in City</h5>
       <ul className="myList">
         {cities ? (
           cities.sort((a, b) => (a.slug > b.slug) ? 1 : -1).map((city, index) => (

@@ -38,7 +38,9 @@ export default function RootLayout({
           capitalizeLinks
         />
         <WideAd img_url="/image-9.png" />
+        <div className="main-layout">
         {children}
+        </div>
         <Footer />
         </body>
     </html>

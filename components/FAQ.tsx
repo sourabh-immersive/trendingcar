@@ -11,6 +11,8 @@ interface FAQProps {
 
 const FAQ: React.FC<FAQProps> = ({ faqs }) => {
   return (
+    <div>
+    <h2 style={{marginBottom: '20px'}}>Frequently Asked Questions (FAQs)</h2>
     <div className="accordion" id="accordionExample">
       {faqs.map((faq, index) => (
         <div className="accordion-item" key={index}>
@@ -38,6 +40,7 @@ const FAQ: React.FC<FAQProps> = ({ faqs }) => {
           </div>
         </div>
       ))}
+    </div>
     </div>
   );
 };
