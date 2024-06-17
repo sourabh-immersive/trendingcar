@@ -13,6 +13,12 @@ import { fetchRTOPage } from "@/services/wordpress";
 import Content from "@/components/skeletons/content";
 import ListCities from "@/components/listcities";
 import ListStates from "@/components/ListStates";
+import FAQ from "@/components/FAQ";
+
+interface FAQ {
+  title: string;
+  description: string;
+}
 
 interface Page {
   id: number;
@@ -24,6 +30,7 @@ interface Page {
     rendered: string;
   };
   featured_image_url: string;
+  faqs: FAQ[];
 }
 
 export default function RTO() {
@@ -85,6 +92,7 @@ export default function RTO() {
                           __html: page.content.rendered,
                         }}
                       />
+                      <FAQ faqs={page.faqs} />
                     </div>
                   ) : (
                     <Content />

@@ -14,9 +14,7 @@ export async function generateMetadata(
 ): Promise<Metadata> {
   const slug = params.slug;
   const blog = await fetchPostBySlug(slug);
-
-  // Base URL for your site (use environment variable or hardcode)
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://your-website.com';
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://trendingcar.com';
 
   if (!blog || !blog.yoast_head_json) {
     return {

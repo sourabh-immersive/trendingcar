@@ -12,6 +12,7 @@ import Content from "./skeletons/content";
 import ListStates from "./ListStates";
 import ListCities from "./listcities";
 import Image from "next/image";
+import FAQ from "./FAQ";
 
 export default function CityContent({ slug, state_slug }: { slug: string, state_slug: string }) {
   const [post, setCityPost] = useState<CityPost | null>(null);
@@ -81,6 +82,7 @@ export default function CityContent({ slug, state_slug }: { slug: string, state_
                           __html: post.content.rendered,
                         }}
                       />
+                      <FAQ faqs={post.faqs} />
                     </div>
                   ) : (
                     <Content />

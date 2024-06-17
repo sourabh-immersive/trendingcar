@@ -88,6 +88,12 @@ export interface Page {
     rendered: string;
   };
   featured_image_url: string;
+  faqs: FAQ[];
+}
+
+interface FAQ {
+  title: string;
+  description: string;
 }
 
 export interface StatePost {
@@ -102,6 +108,7 @@ export interface StatePost {
   featured_image_url: string;
   primary_category: string;
   primary_cat_slug: string;
+  faqs: FAQ[];
 }
 
 export interface CityPost {
@@ -116,6 +123,7 @@ export interface CityPost {
   featured_image_url: string;
   primary_category: string;
   primary_cat_slug: string;
+  faqs: FAQ[];
 }
 
 export interface City {

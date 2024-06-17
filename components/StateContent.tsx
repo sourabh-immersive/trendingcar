@@ -12,6 +12,7 @@ import Content from "./skeletons/content";
 import ListStates from "./ListStates";
 import ListCities from "./listcities";
 import Image from "next/image";
+import FAQ from "./FAQ";
 
 export default function StateContent({ slug }: { slug: string }) {
   const [post, setStatePost] = useState<StatePost | null>(null);
@@ -75,11 +76,13 @@ export default function StateContent({ slug }: { slug: string }) {
                           __html: post.content.rendered,
                         }}
                       />
+                      <FAQ faqs={post.faqs} />
                     </div>
                   ) : (
                     <Content />
                   )}
                 </div>
+
               </div>
             </section>
           </div>
