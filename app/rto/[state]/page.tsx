@@ -1,10 +1,10 @@
 import { Metadata, ResolvingMetadata } from 'next';
-import { fetchPostBySlug } from "@/services/wordpress";
+import { fetchStatePostBySlug } from "@/services/wordpress";
 import CityContent from '@/components/CityContent';
 import StateContent from '@/components/StateContent';
 
 type Props = {
-  params: { slug: string }
+  params: { state: string }
   searchParams: { [key: string]: string | string[] | undefined }
 }
 
@@ -12,8 +12,10 @@ export async function generateMetadata(
   { params, searchParams }: Props,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  const slug = params.slug;
-  const blog = await fetchPostBySlug(slug);
+  // const slug = params.slug;
+  const { state } = params;
+  // console.log('stateparams', state);
+  const blog = await fetchStatePostBySlug(state);
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://trendingcar.com';
 
   if (!blog || !blog.yoast_head_json) {
@@ -62,8 +64,8 @@ export async function generateMetadata(
   };
 }
 
-export default function StatePage({ params }: { params: { state: string, city: string } }) {
-  console.log('params', params);
+export default function StatePage({ params }: { params: { state: string } }) {
+  // console.log('params', params);
   const { state } = params;
   return <StateContent slug={state} />;
 }

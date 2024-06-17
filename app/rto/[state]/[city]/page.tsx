@@ -1,9 +1,9 @@
 import { Metadata, ResolvingMetadata } from 'next';
-import { fetchPostBySlug } from "@/services/wordpress";
+import { fetchCityPostBySlug } from "@/services/wordpress";
 import CityContent from '@/components/CityContent';
 
 type Props = {
-  params: { slug: string }
+  params: { city: string }
   searchParams: { [key: string]: string | string[] | undefined }
 }
 
@@ -11,11 +11,12 @@ export async function generateMetadata(
   { params, searchParams }: Props,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  const slug = params.slug;
-  const blog = await fetchPostBySlug(slug);
+  // const slug = params.slug;
+  const { city } = params;
+  const blog = await fetchCityPostBySlug(city);
 
   // Base URL for your site (use environment variable or hardcode)
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://your-website.com';
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://trendingcar.com';
 
   if (!blog || !blog.yoast_head_json) {
     return {

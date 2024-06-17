@@ -64,16 +64,37 @@ ul.myList {
   }
 }
 
+ol.breadcrumb {
+  margin-bottom: 0;
+  padding: 15px 0;
+  a {
+    padding: 0 5px;
+  }
+
+  li.breadcrumb-item a {
+    color: #000000;
+  }
+  li.breadcrumb-item.active.text-primary a {
+    color: $primary-color;
+  }
+}
+
 table {
   width: 100%;
   margin-bottom: 25px;
 
-  td, th {
+  td,
+  th {
     padding: 10px 15px;
-}
+  }
 }
 
-thead, tbody, tfoot, tr, td, th {
+thead,
+tbody,
+tfoot,
+tr,
+td,
+th {
   border-width: 1px;
   border-color: #cdcdcd;
 }

@@ -109,6 +109,7 @@ export interface StatePost {
   primary_category: string;
   primary_cat_slug: string;
   faqs: FAQ[];
+  yoast_head_json: YoastHeadJson;
 }
 
 export interface CityPost {
@@ -124,6 +125,7 @@ export interface CityPost {
   primary_category: string;
   primary_cat_slug: string;
   faqs: FAQ[];
+  yoast_head_json: YoastHeadJson;
 }
 
 export interface City {

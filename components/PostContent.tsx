@@ -2,8 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { fetchPostBySlug } from "@/services/wordpress";
-import Link from "next/link";
-import WideAd from "@/components/advertisements/widead";
 import SquareAd from "@/components/advertisements/squaread";
 import LongAd from "@/components/advertisements/longad";
 import PostsList from "@/components/bloghome/postslist";
@@ -38,31 +36,6 @@ export default function PostContent({ slug }: { slug: string }) {
   return (
     <div>
       <div className="container">
-        <div className="row">
-          <div className="col-md-12 col-sm-12 col-lg-12 col-xl-12 col-xxl-12">
-            <nav aria-label="breadcrumb" className="mt-30 mb-4">
-              <ol className="breadcrumb">
-                <li className="breadcrumb-item">
-                  <Link href="/" className="text-muted">
-                    Home
-                  </Link>
-                </li>
-                <li className="breadcrumb-item" aria-current="page">
-                  <Link href={`/category/${post?.primary_cat_slug}`}>
-                    {post?.primary_category}
-                  </Link>
-                </li>
-                <li
-                  className="breadcrumb-item active text-primary"
-                  aria-current="page"
-                >
-                  {post?.title.rendered}
-                </li>
-              </ol>
-            </nav>
-          </div>
-        </div>
-        <WideAd img_url="/image-9.png" />
         <div className="row mt-4">
           <div className="col-md-9 col-sm-12 col-lg-9 col-xl-9 col-xxl-9">
             <section className="left-container">
