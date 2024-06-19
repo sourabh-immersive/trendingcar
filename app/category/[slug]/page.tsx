@@ -53,26 +53,6 @@ export default function Category({ params }: { params: { slug: string } }) {
   return (
     <main>
       <div className="container">
-        <div className="row">
-          <div className="col-md-12 col-sm-12 col-lg-12 col-xl-12 col-xxl-12">
-            <nav aria-label="breadcrumb" className="mt-30 mb-4">
-              <ol className="breadcrumb">
-                <li className="breadcrumb-item">
-                  <a href="/" className="text-muted">
-                    Home
-                  </a>
-                </li>
-                <li
-                  className="breadcrumb-item active text-primary"
-                  aria-current="page"
-                >
-                  {category ? category.name : convertSlugToHeading(params.slug)}
-                </li>
-              </ol>
-            </nav>
-          </div>
-        </div>
-        <WideAd img_url="/image-9.png" />
         <div className="row mt-4">
           <div className="col-md-9 col-sm-12 col-lg-9 col-xl-9 col-xxl-9">
             <section className="left-container">
