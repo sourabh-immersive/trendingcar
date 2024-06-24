@@ -2,10 +2,15 @@ import { Metadata, ResolvingMetadata } from 'next';
 import { fetchPostBySlug } from "@/services/wordpress";
 import PostContent from "@/components/PostContent";
 
+const API_BASE_URL = "https://wp.trendingcar.com/wp-json/wp/v2";
+const API_BASE_CUSTOM_URL = "https://wp.trendingcar.com/wp-json/custom/v2";
+
 type Props = {
   params: { slug: string }
   searchParams: { [key: string]: string | string[] | undefined }
 }
+
+
 
 export async function generateMetadata(
   { params, searchParams }: Props,
@@ -63,6 +68,10 @@ export async function generateMetadata(
   };
 }
 
-export default function Page({ params }: { params: { slug: string } }) {
-  return <PostContent slug={params.slug} />;
+export default async function Page({ params }: { params: { slug: string } }) {
+  const res = await fetch(`${API_BASE_URL}/posts?slug=${params.slug}`);
+  const data = await res.json();
+  // console.log(params);
+  // console.log(data);
+  return <PostContent initialData={data} />;
 }
