@@ -19,19 +19,24 @@ interface Post {
   primary_cat_slug: string;
 }
 
-export default function PostContent({ slug }: { slug: string }) {
-  const [post, setPost] = useState<Post | null>(null);
+interface ClientComponentProps {
+  initialData: any;
+}
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const postData = await fetchPostBySlug(slug);
-      if (postData !== null) {
-        setPost(postData);
-      }
-    };
+const PostContent: React.FC<ClientComponentProps> = ({ initialData }) => {
+// export default function PostContent({ slug }: { slug: string }) {
+  const [post, setPost] = useState(initialData);
+  const { title, content } = post[0];
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     const postData = await fetchPostBySlug(slug);
+  //     if (postData !== null) {
+  //       setPost(postData);
+  //     }
+  //   };
 
-    fetchData();
-  }, [slug]);
+  //   fetchData();
+  // }, [slug]);
 
   return (
     <div>
@@ -43,10 +48,10 @@ export default function PostContent({ slug }: { slug: string }) {
                 <div className="col-md-12 col-sm-12 col-lg-12 col-xl-12 col-xxl-12">
                   {post ? (
                     <div>
-                      <h1>{post.title.rendered}</h1>
+                      <h1>{title?.rendered}</h1>
                       <div
                         dangerouslySetInnerHTML={{
-                          __html: post.content.rendered,
+                          __html: content?.rendered || 'No Content'
                         }}
                       />
                     </div>
@@ -89,3 +94,5 @@ export default function PostContent({ slug }: { slug: string }) {
     </div>
   );
 }
+
+export default PostContent;
