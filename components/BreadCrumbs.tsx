@@ -1,55 +1,66 @@
-'use client'
+"use client";
 
-import React, { ReactNode } from 'react'
+import React, { ReactNode } from "react";
 
-import { usePathname } from 'next/navigation'
-import Link from 'next/link'
+import { usePathname } from "next/navigation";
+import Link from "next/link";
 
 type TBreadCrumbProps = {
-    homeElement: ReactNode,
-    separator: ReactNode,
-    containerClasses?: string,
-    listClasses?: string,
-    activeClasses?: string,
-    capitalizeLinks?: boolean
-}
+  homeElement: ReactNode;
+  separator: ReactNode;
+  containerClasses?: string;
+  listClasses?: string;
+  activeClasses?: string;
+  capitalizeLinks?: boolean;
+};
 
-const NextBreadcrumb = ({homeElement, separator, containerClasses, listClasses, activeClasses, capitalizeLinks}: TBreadCrumbProps) => {
+const NextBreadcrumb = ({
+  homeElement,
+  separator,
+  containerClasses,
+  listClasses,
+  activeClasses,
+  capitalizeLinks,
+}: TBreadCrumbProps) => {
+  const paths = usePathname();
+  const pathNames = paths.split("/").filter((path) => path);
 
-    const paths = usePathname()
-    const pathNames = paths.split('/').filter( path => path )
-
-    return (
-        <div>
-            <div className="container">
+  return (
+    <div className="breadcrumb__row">
+      <div className="container">
         <div className="row">
           <div className="col-md-12 col-sm-12 col-lg-12 col-xl-12 col-xxl-12">
             <nav aria-label="breadcrumb" className="mt-30 mb-4">
-            <ol className={containerClasses}>
-                <li className={listClasses}><Link href={'/'}>{homeElement}</Link></li>
+              <ol className={containerClasses}>
+                <li className={listClasses}>
+                  <Link href={"/"}>{homeElement}</Link>
+                </li>
                 {pathNames.length > 0 && separator}
-            {
-                pathNames.map( (link, index) => {
-                    let href = `/${pathNames.slice(0, index + 1).join('/')}`
-                    let itemClasses = paths === href ? `${listClasses} ${activeClasses}` : listClasses
-                    let itemLink = capitalizeLinks ? link[0].toUpperCase() + link.slice(1, link.length) : link
-                    return (
-                        <React.Fragment key={index}>
-                            <li className={itemClasses} >
-                                <Link href={href}>{itemLink}</Link>
-                            </li>
-                            {pathNames.length !== index + 1 && separator}
-                        </React.Fragment>
-                    )
-                })
-            }
-            </ol>
+                {pathNames.map((link, index) => {
+                  let href = `/${pathNames.slice(0, index + 1).join("/")}`;
+                  let itemClasses =
+                    paths === href
+                      ? `${listClasses} ${activeClasses}`
+                      : listClasses;
+                  let itemLink = capitalizeLinks
+                    ? link[0].toUpperCase() + link.slice(1, link.length)
+                    : link;
+                  return (
+                    <React.Fragment key={index}>
+                      <li className={itemClasses}>
+                        <Link href={href}>{itemLink}</Link>
+                      </li>
+                      {pathNames.length !== index + 1 && separator}
+                    </React.Fragment>
+                  );
+                })}
+              </ol>
             </nav>
-            </div>
-            </div>
-            </div>
+          </div>
         </div>
-    )
-}
+      </div>
+    </div>
+  );
+};
 
-export default NextBreadcrumb
+export default NextBreadcrumb;

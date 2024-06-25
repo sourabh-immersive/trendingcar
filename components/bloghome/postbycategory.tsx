@@ -125,10 +125,10 @@ const PostbyCategory: React.FC<PostbyCategoryProps> = ({
           </div>
         ))}
       </div>
-      {loading && <p>Loading...</p>}
+      {loading && <p className="loadingText">Loading...</p>}
       {loadMoreEnabled && hasMore && !loading && (
         <div className="row">
-          <button onClick={loadMore} className="btn btn-primary">Load More</button>
+          <button onClick={loadMore} className="btn btn-primary load_more_btn">Load More</button>
         </div>
       )}
     </div>
