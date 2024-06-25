@@ -45,9 +45,9 @@ const WebStoriesClient: React.FC<ClientComponentProps> = ({ initialData }) => {
           </header>
         </div>
         <div className="row">
-          {post.map((post, index) => (
-            <div className="col-md-3">
-              <div className="card mb-4 box-shadow" data-index={index} key={index}>
+          {post.map((post, key) => (
+            <div className="col-md-3" key={key}>
+              <div className="card mb-4 box-shadow" data-index={key} >
                 <Link href={`/web-stories/${post.slug}`} target="_blank">
                   <Image
                     className="card-img-top"
