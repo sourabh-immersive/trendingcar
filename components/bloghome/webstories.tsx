@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { fetchPosts } from "@/services/wordpress";
-import LoadingSkeleton from "../skeletons/loadingskeleton";
+import WebstorySkeleton from "../skeletons/webstoryskeleton";
 import Image from "next/image";
 
 interface Post {
@@ -39,7 +39,7 @@ const WebStories: React.FC = () => {
     getPosts();
   }, []);
 
-  if (loading) return <LoadingSkeleton />;
+  if (loading) return <WebstorySkeleton />;
   if (error) return <p>Error: {error}</p>;
   return (
     <div className="webstories-section">
@@ -71,6 +71,7 @@ const WebStories: React.FC = () => {
             </div>
           </div>
         </div>
+        
         <div className="col-md-3">
           <div className="card mb-4 box-shadow">
             <img className="card-img-top" src="https://via.placeholder.com/225x300" alt="Card image cap" />

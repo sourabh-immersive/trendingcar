@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { fetchPostsByCategory } from "@/services/wordpress";
-import LoadingSkeleton from "../skeletons/loadingskeleton";
+import LuxuriousSkeleton from "../skeletons/luxuriousskeleton";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -74,7 +74,7 @@ const PostbyCategory: React.FC<PostbyCategoryProps> = ({
     setPage(prevPage => prevPage + 1);
   };
 
-  if (loading && initialLoad) return <LoadingSkeleton />;
+  if (loading && initialLoad) return <LuxuriousSkeleton />;
   if (error) return <p>Error: {error}</p>;
 
   return (
