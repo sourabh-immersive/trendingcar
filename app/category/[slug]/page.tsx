@@ -62,7 +62,7 @@ export default function Category({ params }: { params: { slug: string } }) {
                     title={category ? category.name : convertSlugToHeading(params.slug)}
                     linkText=""
                     link=""
-                    numberOfPosts={3}
+                    numberOfPosts={12}
                     category={params.slug}
                   />
                 </div>

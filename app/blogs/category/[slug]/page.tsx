@@ -54,7 +54,7 @@ export default function Category({ params }: { params: { slug: string } }) {
                 }
                 linkText=""
                 link=""
-                numberOfPosts={3}
+                numberOfPosts={12}
                 category={params.slug}
               />
             </div>

@@ -154,7 +154,7 @@ const PostbyCategoryClient: React.FC<PostbyCategoryProps> = ({
       </div>
       {loading && <p className="loadingText">Loading...</p>}
       {loadMoreEnabled && hasMore && !loading && (
-        <div className="row">
+        <div className="row" style={{display: 'none'}}>
           <button onClick={loadMore} className="btn btn-primary load_more_btn">Load More</button>
         </div>
       )}
