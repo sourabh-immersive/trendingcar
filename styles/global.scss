@@ -116,6 +116,28 @@ img.iconInLink {
   width: 25px;
 }
 
+.container.adrow {
+  padding: 0;
+}
+button.btn.btn-primary.load_more_btn {
+  background: transparent;
+  color: #000000;
+  border: 1px solid #dedede;
+  display: inline-block;
+  width: fit-content;
+  margin: 0 auto;
+  border-radius: 30px;
+  padding: 10px 35px;
+}button.btn.btn-primary.load_more_btn:hover {
+  color: #0d6efd;
+  border-color: #0d6efd;
+}
+
+.loadingText {
+  margin: 0 auto;
+  display: inline-block;
+  width: fit-content;
+}
 // Blog Page CSS
 
 .heroAreaMain {
@@ -178,6 +200,13 @@ img.iconInLink {
   .card-body {
     position: absolute;
     bottom: 0;
+
+    h5.card-title {
+      color: #ffffff;
+    }
+    p.card-text {
+      color: #ffffff;
+    }
   }
 }
 
