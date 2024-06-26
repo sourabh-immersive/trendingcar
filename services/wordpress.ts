@@ -5,6 +5,7 @@ const API_BASE_CUSTOM_URL = "https://wp.trendingcar.com/wp-json/custom/v2";
 
 interface YoastHeadJson {
   title: string;
+  description: string;
   robots: {
     index: string;
     follow: string;
