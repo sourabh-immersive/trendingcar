@@ -16,7 +16,10 @@ interface Post {
   date?: string;
 }
 export default async function WebStories() {
-  const res = await fetch(`${API_BASE_URL}/webstories`);
+  const res = await fetch(`${API_BASE_URL}/webstories`, {
+    method: 'GET',
+    cache: 'no-store'
+  });
   const data = await res.json();
 
   // useEffect(() => {

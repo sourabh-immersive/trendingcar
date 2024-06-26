@@ -15,7 +15,10 @@ interface Post {
 
 export default async function HeroSlider() {
 
-  const res = await fetch(`${API_BASE_URL}/posts`);
+  const res = await fetch(`${API_BASE_URL}/posts`, {
+    method: 'GET',
+    cache: 'no-store'
+  });
   const data = await res.json();
 
   return (

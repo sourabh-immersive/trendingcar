@@ -26,7 +26,10 @@ interface PostbyCategoryProps {
 }
 
 const fetchPostsByCategory2 = async (category: string, numberOfPosts: number, page?: number): Promise<Post[]> => {
-  const response = await fetch(`${API_BASE_URL}/posts?category_slug=${category}&per_page=${numberOfPosts}&page=${page}`);
+  const response = await fetch(`${API_BASE_URL}/posts?category_slug=${category}&per_page=${numberOfPosts}&page=${page}`, {
+    method: 'GET',
+    cache: 'no-store'
+  });
   if (!response.ok) {
     throw new Error("Failed to fetch posts");
   }
