@@ -323,6 +323,14 @@ export const fetchPostsByCategory = async (
   }
 };
 
+// export const fetchPostsByCategory = async (category: string, numberOfPosts: number, page: number) => {
+//   const response = await fetch(`${API_BASE_URL}/posts?category_slug=${category}&per_page=${numberOfPosts}&page=${page}`);
+//   if (!response.ok) {
+//     throw new Error("Failed to fetch posts");
+//   }
+//   return response.json();
+// };
+
 export const fetchCategoryNameBySlug = async (
   slug: string
 ): Promise<Category2 | null> => {
