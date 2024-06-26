@@ -412,6 +412,7 @@ img.iconInLink {
   }
   .w-60{width:60%;}
   
+ 
 
   .h8 {
     height: 8px !important;
@@ -680,4 +681,23 @@ $background-size: 906px 100px;
 }
 .cursor-pointer{
   cursor:pointer;
+}
+.petrol-pump-wrapper{
+  border:1px solid #71717A;
+  padding:20px;
+  p{
+    color:#707070;
+    margin-top:10px;
+    min-height: 72px;
+  }
+  ul{ 
+    list-style:none;
+    margin-left:-32px;
+    li{
+      line-height: 28px;
+    }
+  }
+}
+.modal.show {
+  display: block;
 }
