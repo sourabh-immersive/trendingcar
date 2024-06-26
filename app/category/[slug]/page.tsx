@@ -33,7 +33,7 @@ export default function Category({ params }: { params: { slug: string } }) {
   // useEffect(() => {
   //   const fetchData = async () => {
   //     const postData = await fetchCategoryNameBySlug(params.slug);
-      
+
   //     if (postData !== null) {
   //       setCategoryName(postData);
   //       console.log('final dataff', postData);
@@ -45,59 +45,28 @@ export default function Category({ params }: { params: { slug: string } }) {
 
   function convertSlugToHeading(slug: string): string {
     return slug
-      .split('-')
-      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-      .join(' ');
+      .split("-")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ");
   }
-  
+
   return (
     <main>
-      <div className="container">
-        <div className="row mt-4">
-          <div className="col-md-9 col-sm-12 col-lg-9 col-xl-9 col-xxl-9">
-            <section className="left-container">
-              <div className="row">
-                <div className="col-md-12 col-sm-12 col-lg-12 col-xl-12 col-xxl-12">
-                  <PostbyCategory
-                    title={category ? category.name : convertSlugToHeading(params.slug)}
-                    linkText=""
-                    link=""
-                    numberOfPosts={12}
-                    category={params.slug}
-                  />
-                </div>
-              </div>
-            </section>
-          </div>
-          <div className="col-md-3 col-sm-12 col-lg-3 col-xl-3 col-xxl-3">
-            <section className="right-container">
-              <SquareAd />
-              <div className="row mt-4">
-                <div className="col-md-12 col-sm-12 col-lg-12 col-xl-12 col-xxl-12">
-                  <PostsList
-                    title="Reviews"
-                    linkText="View All"
-                    link="/"
-                    numberOfPosts={5}
-                    category="car"
-                  />
-                </div>
-              </div>
-              <div className="row mt-4">
-                <div className="col-md-12 col-sm-12 col-lg-12 col-xl-12 col-xxl-12">
-                  EventsSection...
-                </div>
-              </div>
-              <LongAd />
-              <div className="row mt-4">
-                <div className="col-md-12 col-sm-12 col-lg-12 col-xl-12 col-xxl-12">
-                  CommercialVehicles...
-                </div>
-              </div>
-            </section>
+      <section className="left-container">
+        <div className="row">
+          <div className="col-md-12 col-sm-12 col-lg-12 col-xl-12 col-xxl-12">
+            <PostbyCategory
+              title={
+                category ? category.name : convertSlugToHeading(params.slug)
+              }
+              linkText=""
+              link=""
+              numberOfPosts={12}
+              category={params.slug}
+            />
           </div>
         </div>
-      </div>
+      </section>
     </main>
   );
 }
