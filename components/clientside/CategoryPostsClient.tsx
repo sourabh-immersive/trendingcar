@@ -105,7 +105,7 @@ const CategoryPostsClient: React.FC<AllCategoryProps> = ({
         {posts.map((post, index) => (
           <div className="col-md-4" data-index={index} key={post.id}>
             <div className="card mb-4 box-shadow">
-              <Link href={`/blogs/categories/${post.slug}`}>
+              <Link href={`/blogs/${post.slug}`}>
                 <Image
                   className="card-img-top"
                   src={
