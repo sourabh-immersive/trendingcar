@@ -20,9 +20,9 @@ export default function BlogLayout({
               <div className="row mt-4">
                 <div className="col-md-12 col-sm-12 col-lg-12 col-xl-12 col-xxl-12">
                 <PostsList
-                    title="Reviews"
+                    title="Car Collections"
                     linkText="View All"
-                    link="/"
+                    link="/blogs/categories/car-collections"
                     numberOfPosts={5}
                     category="car"
                   />

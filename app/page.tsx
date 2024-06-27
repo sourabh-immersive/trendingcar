@@ -1,15 +1,14 @@
-import React, { Suspense } from 'react'
-import Image from 'next/image'
-import WideAd from '@/components/advertisements/widead'
-import SquareAd from '@/components/advertisements/squaread'
-import LongAd from '@/components/advertisements/longad'
-import HeroSlider from '@/components/bloghome/heroslider'
-import WebStories from '@/components/bloghome/webstories'
-import PostbyCategory from '@/components/bloghome/postbycategory'
-import PostsList from '@/components/bloghome/postslist'
+import React, { Suspense } from "react";
+import Image from "next/image";
+import WideAd from "@/components/advertisements/widead";
+import SquareAd from "@/components/advertisements/squaread";
+import LongAd from "@/components/advertisements/longad";
+import HeroSlider from "@/components/bloghome/heroslider";
+import WebStories from "@/components/bloghome/webstories";
+import PostbyCategory from "@/components/bloghome/postbycategory";
+import PostsList from "@/components/bloghome/postslist";
 
 export default function Home() {
-
   return (
     <main>
       <div className="container">
@@ -18,7 +17,7 @@ export default function Home() {
             <section className="left-container">
               <div className="row">
                 <div className="col-md-12 col-sm-12 col-lg-12 col-xl-12 col-xxl-12">
-                    <HeroSlider />
+                  <HeroSlider />
                 </div>
               </div>
               <div className="row">
@@ -33,7 +32,14 @@ export default function Home() {
               </div>
               <div className="row">
                 <div className="col-md-12 col-sm-12 col-lg-12 col-xl-12 col-xxl-12">
-                  <PostbyCategory title="Luxurious Cars" linkText='View more posts' link="/category/luxurious-cars" numberOfPosts={6} category="luxurious-cars" loadMoreEnabled={false} />
+                  <PostbyCategory
+                    title="Luxurious Cars"
+                    linkText="View more posts"
+                    link="/blogs/categories/luxurious-cars"
+                    numberOfPosts={6}
+                    category="luxurious-cars"
+                    loadMoreEnabled={false}
+                  />
                 </div>
               </div>
               <div className="row">
@@ -43,12 +49,26 @@ export default function Home() {
               </div>
               <div className="row">
                 <div className="col-md-12 col-sm-12 col-lg-12 col-xl-12 col-xxl-12">
-                <PostbyCategory title="Luxurious Cars" linkText='View more posts' link="/category/luxurious-cars" numberOfPosts={3} category="luxurious-cars" loadMoreEnabled={false} />
+                  <PostbyCategory
+                    title="Luxurious Cars"
+                    linkText="View more posts"
+                    link="/blogs/categories/luxurious-cars"
+                    numberOfPosts={3}
+                    category="luxurious-cars"
+                    loadMoreEnabled={false}
+                  />
                 </div>
               </div>
               <div className="row">
                 <div className="col-md-12 col-sm-12 col-lg-12 col-xl-12 col-xxl-12">
-                <PostbyCategory title="Videos" linkText='View more posts' link="/category/luxurious-cars" numberOfPosts={3} category="luxurious-cars" loadMoreEnabled={false} />
+                  <PostbyCategory
+                    title="Videos"
+                    linkText="View more posts"
+                    link="/blogs/categories/luxurious-cars"
+                    numberOfPosts={3}
+                    category="luxurious-cars"
+                    loadMoreEnabled={false}
+                  />
                 </div>
               </div>
               <div className="row">
@@ -58,7 +78,14 @@ export default function Home() {
               </div>
               <div className="row">
                 <div className="col-md-12 col-sm-12 col-lg-12 col-xl-12 col-xxl-12">
-                <PostbyCategory title="Car Collections	" linkText='View all collections' link="/category/car-collections" numberOfPosts={3} category="car-collections" loadMoreEnabled={false} /> 
+                  <PostbyCategory
+                    title="Car Collections"
+                    linkText="View all collections"
+                    link="/blogs/categories/car-collections"
+                    numberOfPosts={3}
+                    category="car-collections"
+                    loadMoreEnabled={false}
+                  />
                 </div>
               </div>
             </section>
@@ -68,7 +95,13 @@ export default function Home() {
               <SquareAd />
               <div className="row mt-4">
                 <div className="col-md-12 col-sm-12 col-lg-12 col-xl-12 col-xxl-12">
-                <PostsList title="Reviews" linkText='View All' link="/" numberOfPosts={5} category="car" /> 
+                  <PostsList
+                    title="Car Collections"
+                    linkText="View All"
+                    link="/blogs/categories/car-collections"
+                    numberOfPosts={5}
+                    category="car"
+                  />
                 </div>
               </div>
               <div className="row mt-4">
