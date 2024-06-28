@@ -1,11 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { fetchPostBySlug } from "@/services/wordpress";
-import SquareAd from "@/components/advertisements/squaread";
-import LongAd from "@/components/advertisements/longad";
-import PostsList from "@/components/bloghome/postslist";
 import Content from "./skeletons/content";
+import Image from "next/image";
 
 interface Post {
   id: number;
@@ -17,6 +14,7 @@ interface Post {
   };
   primary_category: string;
   primary_cat_slug: string;
+  featured_image_url: string;
 }
 
 interface ClientComponentProps {
@@ -24,28 +22,19 @@ interface ClientComponentProps {
 }
 
 const PostContent: React.FC<ClientComponentProps> = ({ initialData }) => {
-  // export default function PostContent({ slug }: { slug: string }) {
   const [post, setPost] = useState(initialData);
-  const { title, content } = post[0];
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     const postData = await fetchPostBySlug(slug);
-  //     if (postData !== null) {
-  //       setPost(postData);
-  //     }
-  //   };
-
-  //   fetchData();
-  // }, [slug]);
+  const { title, content, tag_names, featured_image_url } = post[0];
 
   return (
     <>
-      <div className="row mt-4">
+      <div className="row">
         <section className="left-container">
           <div className="row single-content-area">
             <div className="col-md-12 col-sm-12 col-lg-12 col-xl-12 col-xxl-12">
               {post ? (
                 <div>
+                  
+                  <Image src={featured_image_url} alt={title} width={0} height={0} style={{width: '100%', height: 'auto'}} />
                   <h1>{title?.rendered}</h1>
                   <div
                     dangerouslySetInnerHTML={{
@@ -55,6 +44,15 @@ const PostContent: React.FC<ClientComponentProps> = ({ initialData }) => {
                 </div>
               ) : (
                 <Content />
+              )}
+
+              {(tag_names != 0) && (
+                <div className="post_tags">
+                  Tags:{" "}
+                  {tag_names.map((tag: string, index: number) => (
+                    <span key={index}>{tag}</span>
+                  ))}
+                </div>
               )}
             </div>
           </div>

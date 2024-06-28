@@ -138,6 +138,17 @@ button.btn.btn-primary.load_more_btn:hover {
 }
 // Blog Page CSS
 
+.post_tags span {
+  background: #f5f5f5;
+  padding: 8px 17px;
+  border-radius: 30px;
+  margin-left: 10px;
+}
+
+.container.adrow {
+  margin-bottom: 40px;
+}
+
 .heroAreaMain {
   .latest-stories {
     max-height: 350px;
@@ -195,6 +206,10 @@ button.btn.btn-primary.load_more_btn:hover {
 // Webstories CSS
 
 .webstories-section {
+  .card.mb-4.box-shadow {
+    cursor: pointer;
+  }
+
   .card-body {
     position: absolute;
     bottom: 0;
@@ -281,7 +296,7 @@ button.btn.btn-primary.load_more_btn:hover {
   }
   .skeleton:first-child {
     padding-top: 0;
-}
+  }
 
   .skeleton {
     padding: 15px 0;
@@ -397,9 +412,9 @@ button.btn.btn-primary.load_more_btn:hover {
     width: 80px;
   }
 
-  .box-image{
-    width:100%;
-    height:405px;
+  .box-image {
+    width: 100%;
+    height: 405px;
     border-radius: 5px;
     background: rgba(130, 130, 130, 0.2);
     background: -webkit-gradient(
@@ -419,11 +434,11 @@ button.btn.btn-primary.load_more_btn:hover {
     background-size: 800px 100px;
     animation: wave-squares 2s infinite ease-out;
     padding: 20px;
-    padding-top:350px;
-    .h-25{
-      height:25px;
+    padding-top: 350px;
+    .h-25 {
+      height: 25px;
     }
-    .line{
+    .line {
       margin-bottom: 6px;
       border-radius: 2px;
       background: rgba(130, 130, 130, 0.2);
@@ -464,11 +479,11 @@ button.btn.btn-primary.load_more_btn:hover {
   }
 }
 
-.home_layout_skeleton{
-  .right-container{
-    .box-image{
-      width:100%;
-      height:250px;
+.home_layout_skeleton {
+  .right-container {
+    .box-image {
+      width: 100%;
+      height: 250px;
       border-radius: 5px;
       background: rgba(130, 130, 130, 0.2);
       background: -webkit-gradient(
@@ -488,10 +503,10 @@ button.btn.btn-primary.load_more_btn:hover {
       background-size: 800px 100px;
       animation: wave-squares 2s infinite ease-out;
       padding: 20px;
-      .h-25{
-        height:25px;
+      .h-25 {
+        height: 25px;
       }
-      .line{
+      .line {
         margin-bottom: 6px;
         border-radius: 2px;
         background: rgba(130, 130, 130, 0.2);
@@ -675,3 +690,65 @@ $background-size: 906px 100px;
     background-position: 906px 0;
   }
 }
+
+// Webstories Popup SCSS
+
+.webstories__section {
+  padding-top: 50px;
+}
+
+.webstory-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 0;
+  box-sizing: border-box;
+
+  button.webstory-popupClose {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 18px;
+    border: 0;
+    border-radius: 100%;
+    width: 40px;
+    font-weight: 600;
+    height: 40px;
+  }
+
+  .close-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+
+  p {
+    margin-bottom: 20px;
+  }
+
+  a {
+    color: #4caf50;
+    text-decoration: none;
+    font-size: 1.2rem;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+}
+
+// Webstories Popup SCSS End

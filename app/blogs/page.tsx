@@ -11,7 +11,7 @@ import PostsList from "@/components/bloghome/postslist";
 export default function Blogs() {
   return (
     <main>
-      <div className="row mt-4">
+      <div className="row">
         <section className="left-container">
           <div className="row">
             <div className="col-md-12 col-sm-12 col-lg-12 col-xl-12 col-xxl-12">

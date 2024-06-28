@@ -10,7 +10,7 @@ export default function BlogLayout({
     return (
       <section className="rto-layout">
         <div className="container">
-        <div className="row mt-4">
+        <div className="row">
           <div className="col-md-9 col-sm-12 col-lg-9 col-xl-9 col-xxl-9">
             {children}
           </div>

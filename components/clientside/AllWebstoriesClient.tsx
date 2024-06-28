@@ -4,25 +4,26 @@ import React, { useEffect, useRef, useState } from "react";
 import { fetchPostsByCategory } from "@/services/wordpress";
 import LoadingSkeleton from "../skeletons/loadingskeleton";
 import Image from "next/image";
+import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 
-const API_BASE_URL = "https://wp.trendingcar.com/wp-json/wp/v2";
+const API_BASE_URL = "https://wp.trendingcar.com/wp-json/custom/v2";
 
 interface Post {
   id: number;
   slug: string;
-  name: string;
-  featured_img: string;
-  author?: string;
+  title: string;
+  featuredImage: string;
+  content: string;
   date?: string;
 }
 
-interface AllCategoryProps {
+interface AllWebstoriesProps {
   initialPosts: Post[];
   numberOfPosts: number;
 }
 
-const ArchiveClient: React.FC<AllCategoryProps> = ({
+const AllWebstoriesClient: React.FC<AllWebstoriesProps> = ({
   initialPosts,
   numberOfPosts,
 }) => {
@@ -38,13 +39,10 @@ const ArchiveClient: React.FC<AllCategoryProps> = ({
     numberOfPosts: number,
     page: number
   ): Promise<Post[]> => {
-    const response = await fetch(
-      `${API_BASE_URL}/categories?page=${page}&per_page=${numberOfPosts}`,
-      {
-        method: "GET",
-        cache: "no-store",
-      }
-    );
+    const response = await fetch(`${API_BASE_URL}/webstories`, {
+      method: "GET",
+      cache: "no-store",
+    });
     if (!response.ok) {
       throw new Error("Failed to fetch posts");
     }
@@ -94,37 +92,79 @@ const ArchiveClient: React.FC<AllCategoryProps> = ({
   // if (loading && initialLoad) return <LoadingSkeleton />;
   if (error) return <p>Error: {error}</p>;
 
+  const [isOpen, setIsOpen] = useState(false);
+  const [currentLink, setCurrentLink] = useState("");
+
+  const openPopup = (link: string) => {
+    setCurrentLink(link);
+    setIsOpen(true);
+  };
+
+  const closePopup = () => setIsOpen(false);
+
   return (
-    <div className="PostbyCategory-section">
-      <div className="row"></div>
-      <div className="row">
-        {posts.map((post, index) => (
-          <div className="col-md-4" data-index={index} key={post.id}>
-            <div className="card mb-4 box-shadow">
-              <Link href={`/blogs/categories/${post.slug}`}>
+    <div className="webstories__section">
+      <div className="webstories-section container">
+        <div className="row">
+          {posts.map((post, key) => (
+            <div className="col-md-3" key={key}>
+              <div
+                onClick={() => openPopup(post.content)}
+                className="card mb-4 box-shadow"
+                data-index={key}
+              >
+                {/* <Link href={`/web-stories/${post.slug}`} target="_blank"> */}
                 <Image
                   className="card-img-top"
-                  src={
-                    post.featured_img || "https://via.placeholder.com/600x400"
-                  }
-                  alt="Card image cap"
-                  width="600"
-                  height="400"
+                  src={post.featuredImage || "ff"}
+                  alt={post.title}
+                  width={225}
+                  height={300}
                 />
                 <div className="card-body">
-                  <h5
-                    className="card-title"
-                    dangerouslySetInnerHTML={{ __html: post.name }}
-                  />
+                  <h5 className="card-title">{post.title}</h5>
+                  <p className="card-text">
+                    <Image
+                      src="/icons/clock-icon.png"
+                      alt="web stories"
+                      width="18"
+                      height="18"
+                    />{" "}
+                    {post.date}
+                  </p>
                 </div>
-              </Link>
+                {/* </Link> */}
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
+      </div>
+      <div>
+        <div>
+          <AnimatePresence>
+            {isOpen && (
+              <motion.div
+                className="webstory-popup"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+              >
+                <button className="webstory-popupClose" onClick={closePopup}>
+                  ⛌
+                </button>
+                <iframe
+                  src={currentLink}
+                  style={{ height: "100vh", width: "100%" }}
+                  title="Webstory - Trending Car"
+                ></iframe>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
       </div>
       {loading && <p className="loadingText">Loading...</p>}
       {!loading && hasMore && (
-        <div className="row" style={{ display: "block" }}>
+        <div className="row" style={{ display: "none" }}>
           <button onClick={loadMore} className="btn btn-primary load_more_btn">
             Load More
           </button>
@@ -135,4 +175,4 @@ const ArchiveClient: React.FC<AllCategoryProps> = ({
   );
 };
 
-export default ArchiveClient;
+export default AllWebstoriesClient;
