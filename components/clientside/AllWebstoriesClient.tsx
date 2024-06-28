@@ -34,6 +34,8 @@ const AllWebstoriesClient: React.FC<AllWebstoriesProps> = ({
   const [hasMore, setHasMore] = useState<boolean>(true);
   const [initialLoad, setInitialLoad] = useState<boolean>(true);
   const initialRender = useRef(true);
+  const [isOpen, setIsOpen] = useState(false);
+  const [currentLink, setCurrentLink] = useState("");
 
   const getListCategories = async (
     numberOfPosts: number,
@@ -92,8 +94,7 @@ const AllWebstoriesClient: React.FC<AllWebstoriesProps> = ({
   // if (loading && initialLoad) return <LoadingSkeleton />;
   if (error) return <p>Error: {error}</p>;
 
-  const [isOpen, setIsOpen] = useState(false);
-  const [currentLink, setCurrentLink] = useState("");
+  
 
   const openPopup = (link: string) => {
     setCurrentLink(link);
@@ -103,7 +104,7 @@ const AllWebstoriesClient: React.FC<AllWebstoriesProps> = ({
   const closePopup = () => setIsOpen(false);
 
   return (
-    <div className="webstories__section">
+    <div className="section">
       <div className="webstories-section container">
         <div className="row">
           {posts.map((post, key) => (
