@@ -22,7 +22,7 @@ interface Post {
 }
 
 const fetchallpostsByCategory = async (slug: string): Promise<Post[]> => {
-  const response = await fetch(`${API_BASE_URL}/posts?category_slug=${'car'}&per_page=${12}&page=${1}`, {
+  const response = await fetch(`${API_BASE_URL}/posts?category_slug=${slug}&per_page=${12}&page=${1}`, {
     method: 'GET',
     cache: 'no-store'
   });
