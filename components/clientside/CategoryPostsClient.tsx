@@ -23,12 +23,14 @@ interface AllCategoryProps {
   initialPosts: Post[];
   numberOfPosts: number;
   category: string;
+  totalPages:number;
 }
 
 const CategoryPostsClient: React.FC<AllCategoryProps> = ({
   initialPosts,
   category,
   numberOfPosts,
+  totalPages
 }) => {
   const [posts, setPosts] = useState<Post[]>(initialPosts);
   const [loading, setLoading] = useState<boolean>(false);
@@ -37,6 +39,8 @@ const CategoryPostsClient: React.FC<AllCategoryProps> = ({
   const [hasMore, setHasMore] = useState<boolean>(true);
   const [initialLoad, setInitialLoad] = useState<boolean>(true);
   const initialRender = useRef(true);
+
+  
 
   const getCategoryPosts = async (
     numberOfPosts: number,
@@ -90,8 +94,12 @@ const CategoryPostsClient: React.FC<AllCategoryProps> = ({
   }, [page]);
 
   const loadMore = () => {
-    setPage((prevPage) => prevPage + 1);
-    // console.log('loadmore', page);
+    if( page < totalPages ) {
+      setPage((prevPage) => prevPage + 1);
+    } else {
+      setHasMore(false);
+    }
+    console.log('loadmore', page);
   };
 
   //   console.log('initial page', page);
@@ -127,7 +135,7 @@ const CategoryPostsClient: React.FC<AllCategoryProps> = ({
         ))}
       </div>
       {loading && <p className="loadingText">Loading...</p>}
-      {!loading && (
+      {!loading && hasMore && (totalPages > page) && (
         <div className="row" style={{ display: "block" }}>
           <button onClick={loadMore} className="btn btn-primary load_more_btn">
             Load More

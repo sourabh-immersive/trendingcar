@@ -26,6 +26,8 @@ const fetchallpostsByCategory = async (slug: string): Promise<Post[]> => {
     method: 'GET',
     cache: 'no-store'
   });
+
+  // console.log('responseHeader', response.headers.get('x-wp-totalpages'));
   if (!response.ok) {
     throw new Error("Failed to fetch posts");
   }
@@ -35,12 +37,19 @@ const fetchallpostsByCategory = async (slug: string): Promise<Post[]> => {
 export default async function Page({ params }: { params: { slug: string } }) {
   
   const { slug } = params;
-  console.log('params data', params);
   const initialPosts = await fetchallpostsByCategory(slug);
+
+  const response = await fetch(`${API_BASE_URL}/posts?category_slug=${slug}&per_page=${12}&page=${1}`, {
+    method: 'GET',
+    cache: 'no-store'
+  });
+
+  const totalPages = parseInt(response.headers.get('x-wp-totalpages') || '0', 10);
+  console.log('responseHeadern', response.headers.get('x-wp-totalpages'));
 
   return (
     <>
-      <CategoryPostsClient initialPosts={initialPosts} category={slug} numberOfPosts={12} />
+      <CategoryPostsClient initialPosts={initialPosts} category={slug} numberOfPosts={12} totalPages={totalPages} />
     </>
   );
 };
