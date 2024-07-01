@@ -141,6 +141,17 @@ button.btn.btn-primary.load_more_btn:hover {
 }
 // Blog Page CSS
 
+.post_tags span {
+  background: #f5f5f5;
+  padding: 8px 17px;
+  border-radius: 30px;
+  margin-left: 10px;
+}
+
+.container.adrow {
+  margin-bottom: 40px;
+}
+
 .heroAreaMain {
   .latest-stories {
     max-height: 350px;
@@ -198,6 +209,10 @@ button.btn.btn-primary.load_more_btn:hover {
 // Webstories CSS
 
 .webstories-section {
+  .card.mb-4.box-shadow {
+    cursor: pointer;
+  }
+
   .card-body {
     position: absolute;
     bottom: 0;
@@ -329,14 +344,18 @@ button.btn.btn-primary.load_more_btn:hover {
   .box {
     max-width: 300px;
     width: 100%;
-    padding: 0px;
+    // padding: 0 15px;
   }
+  .skeleton:first-child {
+    padding-top: 0;
+  }
+
   .skeleton {
-    padding: 10px;
+    padding: 15px 0;
     max-width: 300px;
     width: 100%;
     background: #fff;
-    margin-bottom: 5px;
+    // margin-bottom: 20px;
     border-radius: 5px;
     display: flex;
     justify-content: center;
@@ -539,6 +558,56 @@ button.btn.btn-primary.load_more_btn:hover {
     height: 80px !important;
     width: 80px;
   }
+
+  .box-image {
+    width: 100%;
+    height: 405px;
+    border-radius: 5px;
+    background: rgba(130, 130, 130, 0.2);
+    background: -webkit-gradient(
+      linear,
+      left top,
+      right top,
+      color-stop(8%, rgba(130, 130, 130, 0.2)),
+      color-stop(18%, rgba(130, 130, 130, 0.3)),
+      color-stop(33%, rgba(130, 130, 130, 0.2))
+    );
+    background: linear-gradient(
+      to right,
+      rgba(130, 130, 130, 0.2) 8%,
+      rgba(130, 130, 130, 0.3) 18%,
+      rgba(130, 130, 130, 0.2) 33%
+    );
+    background-size: 800px 100px;
+    animation: wave-squares 2s infinite ease-out;
+    padding: 20px;
+    padding-top: 350px;
+    .h-25 {
+      height: 25px;
+    }
+    .line {
+      margin-bottom: 6px;
+      border-radius: 2px;
+      background: rgba(130, 130, 130, 0.2);
+      background: -webkit-gradient(
+        linear,
+        left top,
+        right top,
+        color-stop(8%, rgba(130, 130, 130, 0.2)),
+        color-stop(18%, rgba(130, 130, 130, 0.3)),
+        color-stop(33%, rgba(130, 130, 130, 0.2))
+      );
+      background: linear-gradient(
+        to right,
+        rgba(130, 130, 130, 0.2) 8%,
+        rgba(130, 130, 130, 0.3) 18%,
+        rgba(130, 130, 130, 0.2) 33%
+      );
+      background-size: 800px 100px;
+      animation: wave-lines 2s infinite ease-out;
+    }
+  }
+
   @keyframes wave-lines {
     0% {
       background-position: -468px 0;
@@ -553,6 +622,58 @@ button.btn.btn-primary.load_more_btn:hover {
     }
     100% {
       background-position: 468px 0;
+    }
+  }
+}
+
+.home_layout_skeleton {
+  .right-container {
+    .box-image {
+      width: 100%;
+      height: 250px;
+      border-radius: 5px;
+      background: rgba(130, 130, 130, 0.2);
+      background: -webkit-gradient(
+        linear,
+        left top,
+        right top,
+        color-stop(8%, rgba(130, 130, 130, 0.2)),
+        color-stop(18%, rgba(130, 130, 130, 0.3)),
+        color-stop(33%, rgba(130, 130, 130, 0.2))
+      );
+      background: linear-gradient(
+        to right,
+        rgba(130, 130, 130, 0.2) 8%,
+        rgba(130, 130, 130, 0.3) 18%,
+        rgba(130, 130, 130, 0.2) 33%
+      );
+      background-size: 800px 100px;
+      animation: wave-squares 2s infinite ease-out;
+      padding: 20px;
+      .h-25 {
+        height: 25px;
+      }
+      .line {
+        margin-bottom: 6px;
+        border-radius: 2px;
+        background: rgba(130, 130, 130, 0.2);
+        background: -webkit-gradient(
+          linear,
+          left top,
+          right top,
+          color-stop(8%, rgba(130, 130, 130, 0.2)),
+          color-stop(18%, rgba(130, 130, 130, 0.3)),
+          color-stop(33%, rgba(130, 130, 130, 0.2))
+        );
+        background: linear-gradient(
+          to right,
+          rgba(130, 130, 130, 0.2) 8%,
+          rgba(130, 130, 130, 0.3) 18%,
+          rgba(130, 130, 130, 0.2) 33%
+        );
+        background-size: 800px 100px;
+        animation: wave-lines 2s infinite ease-out;
+      }
     }
   }
 }
@@ -922,3 +1043,64 @@ ul li {
 .t-10{
   top:10px;
 }
+// Webstories Popup SCSS
+
+.webstories__section {
+  padding-top: 50px;
+}
+
+.webstory-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 0;
+  box-sizing: border-box;
+
+  button.webstory-popupClose {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 18px;
+    border: 0;
+    border-radius: 100%;
+    width: 40px;
+    font-weight: 600;
+    height: 40px;
+  }
+
+  .close-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+
+  p {
+    margin-bottom: 20px;
+  }
+
+  a {
+    color: #4caf50;
+    text-decoration: none;
+    font-size: 1.2rem;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+}
+
+// Webstories Popup SCSS End

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface Post {
   title: string;
@@ -19,7 +20,15 @@ interface ClientComponentProps {
 const WebStoriesClient: React.FC<ClientComponentProps> = ({ initialData }) => {
   const [post, setPost] = useState<Post[]>(initialData);
 
-  //   console.log(post);
+  const [isOpen, setIsOpen] = useState(false);
+  const [currentLink, setCurrentLink] = useState("");
+
+  const openPopup = (link: string) => {
+    setCurrentLink(link);
+    setIsOpen(true);
+  };
+
+  const closePopup = () => setIsOpen(false);
   return (
     <div>
       <div className="webstories-section">
@@ -32,7 +41,7 @@ const WebStoriesClient: React.FC<ClientComponentProps> = ({ initialData }) => {
               <h2 className="fs-4">Web Stories</h2>
             </a>
 
-            <a href="#" className="">
+            <Link href="/web-stories" className="">
               View all stories{" "}
               <Image
                 className="iconInLink"
@@ -41,37 +50,64 @@ const WebStoriesClient: React.FC<ClientComponentProps> = ({ initialData }) => {
                 width="25"
                 height="25"
               />
-            </a>
+            </Link>
           </header>
         </div>
         <div className="row">
           {post.map((post, key) => (
             <div className="col-md-3" key={key}>
-              <div className="card mb-4 box-shadow" data-index={key} >
-                <Link href={`/web-stories/${post.slug}`} target="_blank">
-                  <Image
-                    className="card-img-top"
-                    src={post.featuredImage || "ff"}
-                    alt={post.title}
-                    width={225}
-                    height={300}
-                  />
-                  <div className="card-body">
-                    <h5 className="card-title">{post.title}</h5>
-                    <p className="card-text" >
-                      <Image
-                        src="/icons/clock-icon.png"
-                        alt="web stories"
-                        width="18"
-                        height="18"
-                      />{" "}
-                      {post.date}
-                    </p>
-                  </div>
-                </Link>
+              <div
+                onClick={() => openPopup(post.content)}
+                className="card mb-4 box-shadow"
+                data-index={key}
+              >
+                {/* <Link href={`/web-stories/${post.slug}`} target="_blank"> */}
+                <Image
+                  className="card-img-top"
+                  src={post.featuredImage || "ff"}
+                  alt={post.title}
+                  width={225}
+                  height={300}
+                />
+                <div className="card-body">
+                  <h5 className="card-title">{post.title}</h5>
+                  <p className="card-text">
+                    <Image
+                      src="/icons/clock-icon.png"
+                      alt="web stories"
+                      width="18"
+                      height="18"
+                    />{" "}
+                    {post.date}
+                  </p>
+                </div>
+                {/* </Link> */}
               </div>
             </div>
           ))}
+        </div>
+      </div>
+      <div>
+        <div>
+          <AnimatePresence>
+            {isOpen && (
+              <motion.div
+                className="webstory-popup"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+              >
+                <button className="webstory-popupClose" onClick={closePopup}>
+                  ⛌
+                </button>
+                <iframe
+                  src={currentLink}
+                  style={{ height: "100vh", width: "100%" }}
+                  title="Webstory - Trending Car"
+                ></iframe>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </div>
     </div>

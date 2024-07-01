@@ -11,7 +11,7 @@ import PostsList from "@/components/bloghome/postslist";
 export default function Blogs() {
   return (
     <main>
-      <div className="row mt-4">
+      <div className="row">
         <section className="left-container">
           <div className="row">
             <div className="col-md-12 col-sm-12 col-lg-12 col-xl-12 col-xxl-12">
@@ -33,7 +33,7 @@ export default function Blogs() {
               <PostbyCategory
                 title="Luxurious Cars"
                 linkText="View more posts"
-                link="/category/luxurious-cars"
+                link="/blogs/categories/luxurious-cars"
                 numberOfPosts={6}
                 category="luxurious-cars"
                 loadMoreEnabled={false}
@@ -50,7 +50,7 @@ export default function Blogs() {
               <PostbyCategory
                 title="Luxurious Cars"
                 linkText="View more posts"
-                link="/category/luxurious-cars"
+                link="/blogs/categories/luxurious-cars"
                 numberOfPosts={3}
                 category="luxurious-cars"
                 loadMoreEnabled={false}
@@ -62,7 +62,7 @@ export default function Blogs() {
               <PostbyCategory
                 title="Videos"
                 linkText="View more posts"
-                link="/category/luxurious-cars"
+                link="/blogs/categories/luxurious-cars"
                 numberOfPosts={3}
                 category="luxurious-cars"
                 loadMoreEnabled={false}
@@ -79,7 +79,7 @@ export default function Blogs() {
               <PostbyCategory
                 title="Car Collections	"
                 linkText="View all collections"
-                link="/category/car-collections"
+                link="/blogs/categories/car-collections"
                 numberOfPosts={3}
                 category="car-collections"
                 loadMoreEnabled={false}

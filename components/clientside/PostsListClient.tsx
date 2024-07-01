@@ -64,13 +64,13 @@ const PostsListClient: React.FC<PostbyCategoryProps> = ({
     <div className="PostbyCategory-sidebar">
       <div className="row">
         <header className="d-flex flex-wrap justify-content-between align-items-center pt-4 mb-2">
-          <a
-            href={link}
+          <div
+            
             className="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none"
           >
             <h2 className="fs-4">{title}</h2>
-          </a>
-          <a href={link} className="">
+          </div>
+          <Link href={link} className="">
             {linkText}{" "}
             <Image
               className="iconInLink"
@@ -79,7 +79,7 @@ const PostsListClient: React.FC<PostbyCategoryProps> = ({
               width="25"
               height="25"
             />
-          </a>
+          </Link>
         </header>
       </div>
       <div className="row">

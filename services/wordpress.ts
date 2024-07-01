@@ -136,7 +136,10 @@ export interface City {
 
 export const fetchPosts = async (): Promise<Post[]> => {
   try {
-    const response = await fetch(`${API_BASE_URL}/posts`);
+    const response = await fetch(`${API_BASE_URL}/posts`, {
+      method: 'GET',
+      cache: 'no-store'
+    });
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
@@ -227,7 +230,10 @@ export const fetchRTOPage = async (): Promise<Page | undefined> => {
 
 export const fetchPostById = async (id: number): Promise<Post | null> => {
   try {
-    const response = await fetch(`${API_BASE_URL}/posts/${id}`);
+    const response = await fetch(`${API_BASE_URL}/posts/${id}`, {
+      method: 'GET',
+      cache: 'no-store'
+    });
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
@@ -241,7 +247,10 @@ export const fetchPostById = async (id: number): Promise<Post | null> => {
 
 export const fetchPostBySlug = async (slug: string): Promise<Post | null> => {
   try {
-    const response = await fetch(`${API_BASE_URL}/posts?slug=${slug}`);
+    const response = await fetch(`${API_BASE_URL}/posts?slug=${slug}`, {
+      method: 'GET',
+      cache: 'no-store'
+    });
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
@@ -276,7 +285,10 @@ interface Category2 {
 
 export const fetchCategories = async (): Promise<Category[]> => {
   try {
-    const response = await fetch(`${API_BASE_URL}/categories`);
+    const response = await fetch(`${API_BASE_URL}/categories`, {
+      method: 'GET',
+      cache: 'no-store'
+    });
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
@@ -292,7 +304,10 @@ export const fetchCategoryBySlug = async (
   slug: string
 ): Promise<Category | null> => {
   try {
-    const response = await fetch(`${API_BASE_URL}/category_slug/${slug}`);
+    const response = await fetch(`${API_BASE_URL}/category_slug/${slug}`, {
+      method: 'GET',
+      cache: 'no-store'
+    });
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
@@ -311,7 +326,10 @@ export const fetchPostsByCategory = async (
 ): Promise<Post[]> => {
   try {
     const response = await fetch(
-      `${API_BASE_URL}/posts?category_slug=${category}&per_page=${numberOfPosts}&page=${page}`
+      `${API_BASE_URL}/posts?category_slug=${category}&per_page=${numberOfPosts}&page=${page}`, {
+        method: 'GET',
+        cache: 'no-store'
+      }
     );
     if (!response.ok) {
       throw new Error("Network response was not ok");
@@ -336,7 +354,10 @@ export const fetchCategoryNameBySlug = async (
   slug: string
 ): Promise<Category2 | null> => {
   try {
-    const response = await fetch(`${API_BASE_URL}/categories?slug=${slug}`);
+    const response = await fetch(`${API_BASE_URL}/categories?slug=${slug}`, {
+      method: 'GET',
+      cache: 'no-store'
+    });
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
