@@ -1,10 +1,9 @@
-'use client'
 
-import React, { useEffect, useState } from "react";
-import { fetchPostsByCategory } from "@/services/wordpress";
-import LuxuriousSkeleton from "../skeletons/luxuriousskeleton";
+// import { fetchPostsByCategory } from "@/services/wordpress";
 import Image from "next/image";
-import Link from "next/link";
+import PostbyCategoryClient from "../clientside/PostByCategoryClient";
+
+const API_BASE_URL = "https://wp.trendingcar.com/wp-json/wp/v2";
 
 interface Post {
   id: number;
@@ -26,7 +25,15 @@ interface PostbyCategoryProps {
   loadMoreEnabled?: boolean;
 }
 
-const PostbyCategory: React.FC<PostbyCategoryProps> = ({
+const fetchPostsByCategory2 = async (category: string, numberOfPosts: number, page?: number): Promise<Post[]> => {
+  const response = await fetch(`${API_BASE_URL}/posts?category_slug=${category}&per_page=${numberOfPosts}&page=${page}`);
+  if (!response.ok) {
+    throw new Error("Failed to fetch posts");
+  }
+  return response.json();
+};
+
+const PostbyCategory: React.FC<PostbyCategoryProps> = async ({
   title,
   linkText,
   link,
@@ -34,52 +41,55 @@ const PostbyCategory: React.FC<PostbyCategoryProps> = ({
   category,
   loadMoreEnabled = true,
 }) => {
-  const [posts, setPosts] = useState<Post[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
-  const [page, setPage] = useState<number>(1);
-  const [hasMore, setHasMore] = useState<boolean>(true);
-  const [initialLoad, setInitialLoad] = useState<boolean>(true);
 
-  const fetchData = async (page: number) => {
-    setLoading(true);
-    try {
-      const postsData = await fetchPostsByCategory(category, numberOfPosts, page);
-      if (postsData.length === 0) {
-        setHasMore(false);
-      } else {
-        if (initialLoad) {
-          setPosts(postsData);
-        } else {
-          setPosts(prevPosts => [...prevPosts, ...postsData]);
-        }
-      }
-    } catch (err: unknown) {
-      if (err instanceof Error) {
-        setError(err.message);
-      } else {
-        setError(String(err));
-      }
-    } finally {
-      setLoading(false);
-      setInitialLoad(false);
-    }
-  };
+  const initialPosts = await fetchPostsByCategory2(category, numberOfPosts, 1);
+  
+  // const [posts, setPosts] = useState<Post[]>([]);
+  // const [loading, setLoading] = useState<boolean>(true);
+  // const [error, setError] = useState<string | null>(null);
+  // const [page, setPage] = useState<number>(1);
+  // const [hasMore, setHasMore] = useState<boolean>(true);
+  // const [initialLoad, setInitialLoad] = useState<boolean>(true);
 
-  useEffect(() => {
-    fetchData(page);
-  }, [category, numberOfPosts, page]);
+  // const fetchData = async (page: number) => {
+  //   setLoading(true);
+  //   try {
+  //     const postsData = await fetchPostsByCategory(category, numberOfPosts, page);
+  //     if (postsData.length === 0) {
+  //       setHasMore(false);
+  //     } else {
+  //       if (initialLoad) {
+  //         setPosts(postsData);
+  //       } else {
+  //         setPosts(prevPosts => [...prevPosts, ...postsData]);
+  //       }
+  //     }
+  //   } catch (err: unknown) {
+  //     if (err instanceof Error) {
+  //       setError(err.message);
+  //     } else {
+  //       setError(String(err));
+  //     }
+  //   } finally {
+  //     setLoading(false);
+  //     setInitialLoad(false);
+  //   }
+  // };
 
-  const loadMore = () => {
-    setPage(prevPage => prevPage + 1);
-  };
+  // useEffect(() => {
+  //   fetchData(page);
+  // }, [category, numberOfPosts, page]);
 
-  if (loading && initialLoad) return <LuxuriousSkeleton />;
-  if (error) return <p>Error: {error}</p>;
+  // const loadMore = () => {
+  //   setPage(prevPage => prevPage + 1);
+  // };
+
+  // if (loading && initialLoad) return <LoadingSkeleton />;
+  // if (error) return <p>Error: {error}</p>;
 
   return (
-    <div className="PostbyCategory-section">
-      <div className="row">
+    <>
+      {/* <div className="row">
         <header className="d-flex flex-wrap justify-content-between align-items-center pt-4 mb-2">
           <a
             href={link}
@@ -98,8 +108,17 @@ const PostbyCategory: React.FC<PostbyCategoryProps> = ({
             />
           </a> )}
         </header>
-      </div>
-      <div className="row">
+      </div> */}
+      <PostbyCategoryClient 
+        initialPosts={initialPosts}
+        title={title}
+        linkText={linkText}
+        link={link}
+        numberOfPosts={numberOfPosts}
+        category={category}
+        loadMoreEnabled={loadMoreEnabled} 
+        />
+      {/* <div className="row">
         {posts.map((post, index) => (
           <div className="col-md-4" data-index={index} key={post.id}>
             <div className="card mb-4 box-shadow">
@@ -124,14 +143,14 @@ const PostbyCategory: React.FC<PostbyCategoryProps> = ({
             </div>
           </div>
         ))}
-      </div>
-      {loading && <p className="loadingText">Loading...</p>}
+      </div> */}
+      {/* {loading && <p className="loadingText">Loading...</p>}
       {loadMoreEnabled && hasMore && !loading && (
         <div className="row">
           <button onClick={loadMore} className="btn btn-primary load_more_btn">Load More</button>
         </div>
-      )}
-    </div>
+      )} */}
+    </>
   );
 };
 

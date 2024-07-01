@@ -5,6 +5,7 @@ const API_BASE_CUSTOM_URL = "https://wp.trendingcar.com/wp-json/custom/v2";
 
 interface YoastHeadJson {
   title: string;
+  description: string;
   robots: {
     index: string;
     follow: string;
@@ -322,6 +323,14 @@ export const fetchPostsByCategory = async (
     return [];
   }
 };
+
+// export const fetchPostsByCategory = async (category: string, numberOfPosts: number, page: number) => {
+//   const response = await fetch(`${API_BASE_URL}/posts?category_slug=${category}&per_page=${numberOfPosts}&page=${page}`);
+//   if (!response.ok) {
+//     throw new Error("Failed to fetch posts");
+//   }
+//   return response.json();
+// };
 
 export const fetchCategoryNameBySlug = async (
   slug: string

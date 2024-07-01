@@ -19,7 +19,7 @@ export default function PetrolPump() {
             </div>
             <div className="row">
                 <div className="col-md-12 col-sm-12 col-lg-12 col-xl-12 col-xxl-12">
-                    <WideAd img_url="/ads2.png" />
+                    <WideAd img_url="/ads2.png" />  
                 </div>
             </div>
             <div className="row mt-4">
@@ -36,7 +36,11 @@ export default function PetrolPump() {
             <div className="row">
                 <div className="col-md-12 col-sm-12 col-lg-12 col-xl-12 col-xxl-12">
                     <div className="container">
-                        <PetrolCities  slug="Indore"/>
+                        <section className="list-by-cities-section mt-4">
+                            <h5 className="section-title text-white">Fuel stations in nearby cities</h5>
+                            <small className="text-white">Top cities in Madhya Pradesh</small>
+                            <PetrolCities  slug="Indore"/>
+                        </section>
                     </div>
                 </div>
             </div>

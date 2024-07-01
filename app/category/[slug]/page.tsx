@@ -30,18 +30,18 @@ interface Category {
 export default function Category({ params }: { params: { slug: string } }) {
   const [category, setCategoryName] = useState<Category | null>(null);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const postData = await fetchCategoryNameBySlug(params.slug);
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     const postData = await fetchCategoryNameBySlug(params.slug);
       
-      if (postData !== null) {
-        setCategoryName(postData);
-        console.log('final dataff' + postData);
-      }
-    };
+  //     if (postData !== null) {
+  //       setCategoryName(postData);
+  //       console.log('final dataff', postData);
+  //     }
+  //   };
 
-    fetchData();
-  }, [params.slug]);
+  //   fetchData();
+  // }, [params.slug]);
 
   function convertSlugToHeading(slug: string): string {
     return slug
