@@ -14,7 +14,7 @@ const Wide: React.FC<WideProps> = ({ img_url }) => {
       <div className="ads_wrapper">
         <section className="auto-ad-container text-center">
           <Image
-            className="img-fluid"
+            className="img-fluid w-100"
             src={imageUrl}
             width={968}
             height={91}

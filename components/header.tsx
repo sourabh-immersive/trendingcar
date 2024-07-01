@@ -22,7 +22,7 @@ export default function Header() {
                   className="form-control"
                   placeholder="Search..."
                 />
-                <button className="btn btn-outline-secondary" type="button">
+                <button className="btn btn-secondary" type="button">
                   <img
                     src="/search-icon.png"
                     className="img-fluid"
@@ -85,7 +85,7 @@ export default function Header() {
               <li className="nav-item me-4">
                 <Link
                   className="nav-link"
-                  href="#"
+                  href="toll-plaza"
                 >
                   TOLL PLAZA
                 </Link>
@@ -93,9 +93,17 @@ export default function Header() {
               <li className="nav-item me-4">
                 <Link
                   className="nav-link"
+                  href="/petrol-pump"
+                >
+                  FUEL STATIONS
+                </Link>
+              </li>
+              <li className="nav-item me-4">
+                <Link
+                  className="nav-link"
                   href="/blogs"
                 >
-                  Blogs & News
+                  BLOGS & NEWS
                 </Link>
               </li>
               <li className="nav-item me-4">
