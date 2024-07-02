@@ -1,10 +1,9 @@
 "use client";
 
-import React, { useState } from 'react';
-import WideAd from '@/components/advertisements/widead';
-import PetrolCities from "@/components/petrolpump/petrolcities";
-import PetrolPumpCity from "@/components/petrolpump/petrolpumpcity";
-import SearchSection from "@/components/searchsection";
+import React, { useState } from 'react'
+import WideAd from '@/components/advertisements/widead'
+
+
 
 type City = {
     name: string;
@@ -12,7 +11,7 @@ type City = {
     section: string;
 };
 
-const Page = ({ params }: { params: { slug: string } }) => {
+const StateContent = ({ params }: { params: { slug: string } }) => {
     console.log(params);
     const { slug } = params;
     const [isModalOpen, setModalOpen] = useState<boolean>(false);
@@ -123,4 +122,4 @@ const Page = ({ params }: { params: { slug: string } }) => {
     );
 };
 
-export default Page;
+export default StateContent;

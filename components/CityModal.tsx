@@ -21,9 +21,11 @@ const CityModal: React.FC<CityModalProps> = ({ isOpen, onClose, onSearch }) => {
     <div className={`modal fade ${isOpen ? 'show' : ''}`} tabIndex={-1} aria-labelledby="CityModalLabel" aria-hidden={!isOpen} style={{ display: isOpen ? 'block' : 'none' }}>
       <div className="modal-dialog modal-dialog-centered">
         <div className="modal-content">
-          <div className="modal-header bg-primary">
+          <div className="modal-header bg-primary d-block">
             <h5 className="modal-title text-white fz-18" id="changecityModalLabel">We need your city to customize your <br /> experience</h5>
-            <button type="button" className="btn-close" aria-label="Close" onClick={onClose}></button>
+            <div className="ms-auto">
+              <button type="button" className="btn-close" aria-label="Close" onClick={onClose}></button>
+            </div>
           </div>
           <div className="modal-body text-center">
             <input
