@@ -1,6 +1,4 @@
-import PostsListClient from "../clientside/PostsListClient"
-
-const API_BASE_URL = "https://wp.trendingcar.com/wp-json/wp/v2";
+import PostsListClient from "../clientside/PostsListClient";
 
 interface Post {
   id: number;
@@ -21,11 +19,16 @@ interface PostbyCategoryProps {
   category: string;
 }
 
-const fetchPostsListByCategory = async (category: string, numberOfPosts: number, page?: number): Promise<Post[]> => {
-  const response = await fetch(`${API_BASE_URL}/posts?category_slug=${category}&per_page=${numberOfPosts}&page=${page}`, {
-    method: 'GET',
-    cache: 'no-store'
-  });
+const fetchPostsListByCategory = async (
+  category: string,
+  numberOfPosts: number,
+  page?: number
+): Promise<Post[]> => {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_BASE_URL}/posts?category_slug=${category}&per_page=${numberOfPosts}&page=${page}`,
+    { next: { revalidate: 3600 } }
+  );
+
   if (!response.ok) {
     throw new Error("Failed to fetch posts");
   }
@@ -39,12 +42,15 @@ const PostsList: React.FC<PostbyCategoryProps> = async ({
   numberOfPosts,
   category,
 }) => {
-  
-  const initialPosts = await fetchPostsListByCategory(category, numberOfPosts, 1);
+  const initialPosts = await fetchPostsListByCategory(
+    category,
+    numberOfPosts,
+    1
+  );
 
   return (
     <>
-      <PostsListClient 
+      <PostsListClient
         initialPosts={initialPosts}
         title={title}
         linkText={linkText}

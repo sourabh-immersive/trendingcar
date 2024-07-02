@@ -3,8 +3,6 @@ import LoadingSkeleton from "../skeletons/loadingskeleton";
 import Image from "next/image";
 import WebStoriesClient from "../clientside/WebStoriesClient";
 
-const API_BASE_URL = "https://wp.trendingcar.com/wp-json/custom/v2";
-
 interface Post {
   id: number;
   slug: string;
@@ -16,10 +14,10 @@ interface Post {
   date?: string;
 }
 export default async function WebStories() {
-  const res = await fetch(`${API_BASE_URL}/webstories`, {
-    method: 'GET',
-    cache: 'no-store'
-  });
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_BASE_CUSTOM_URL}/webstories/?per_page=4`,
+    { next: { revalidate: 3600 } }
+  );
   const data = await res.json();
 
   // useEffect(() => {
@@ -43,7 +41,7 @@ export default async function WebStories() {
 
   return (
     <>
-    <WebStoriesClient initialData={data} />
+      <WebStoriesClient initialData={data} />
     </>
   );
-};
+}

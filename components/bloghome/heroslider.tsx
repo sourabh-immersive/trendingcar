@@ -1,7 +1,5 @@
 import HeroSliderClient from "../clientside/HeroSliderClient";
 
-const API_BASE_URL = "https://wp.trendingcar.com/wp-json/wp/v2";
-
 interface Post {
   id: number;
   slug: string;
@@ -15,10 +13,7 @@ interface Post {
 
 export default async function HeroSlider() {
 
-  const res = await fetch(`${API_BASE_URL}/posts`, {
-    method: 'GET',
-    cache: 'no-store'
-  });
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/posts`, { next: { revalidate: 3600 } });
   const data = await res.json();
 
   return (

@@ -31,7 +31,7 @@ export default function BlogLayout({
               <LongAd />
               <div className="row mt-4">
                 <div className="col-md-12 col-sm-12 col-lg-12 col-xl-12 col-xxl-12">
-                  CommercialVehicles...
+                  
                 </div>
               </div>
             </section>

@@ -113,6 +113,15 @@ img.iconInLink {
   width: 25px;
 }
 
+.swiper-slide {
+  flex-shrink: 0;
+  width: 100% !important;
+  height: 100%;
+  position: relative;
+  transition-property: transform;
+  display: block;
+}
+
 .container.adrow {
   padding: 0;
 }
@@ -713,6 +722,27 @@ $background-size: 906px 100px;
   padding: 0;
   box-sizing: border-box;
 
+  .swiper.swiper-initialized {
+    width: 100%;
+  }
+
+  .swiper-wrapper {
+    display: flex;
+}
+
+  .swiper-button-prev,
+  .swiper-button-next {
+    color: #ffffff;
+    background: #1655b1;
+    width: 45px;
+    border-radius: 70px;
+  }
+
+  .swiper-button-prev::after,
+  .swiper-button-next::after {
+    font-size: 15px;
+  }
+
   button.webstory-popupClose {
     position: absolute;
     top: 20px;
@@ -723,6 +753,7 @@ $background-size: 906px 100px;
     width: 40px;
     font-weight: 600;
     height: 40px;
+    z-index: 9;
   }
 
   .close-button {

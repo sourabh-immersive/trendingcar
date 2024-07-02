@@ -13,7 +13,7 @@ interface Post {
 }
 
 const fetchallCategories = async (): Promise<Post[]> => {
-  const response = await fetch(`${API_BASE_URL}/categories?page=${1}&per_page=${18}`, {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/categories?page=${1}&per_page=${18}`, {
     method: "GET",
     cache: "no-store",
   });

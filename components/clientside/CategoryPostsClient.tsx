@@ -47,11 +47,8 @@ const CategoryPostsClient: React.FC<AllCategoryProps> = ({
     page: number,
     category: string
   ): Promise<Post[]> => {
-    const response = await fetch(`${API_BASE_URL}/posts?category_slug=${category}&per_page=${numberOfPosts}&page=${page}`,
-      {
-        method: "GET",
-        cache: "no-store",
-      }
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/posts?category_slug=${category}&per_page=${numberOfPosts}&page=${page}`,
+    { next: { revalidate: 3600 } }
     );
     if (!response.ok) {
       throw new Error("Failed to fetch posts");
