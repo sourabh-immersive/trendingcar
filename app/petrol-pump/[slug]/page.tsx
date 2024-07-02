@@ -7,7 +7,7 @@ import WideAd from '@/components/advertisements/widead'
 import PetrolCities from "@/components/petrolpump/petrolcities";
 import PetrolPumpCity from "@/components/petrolpump/petrolpumpcity";
 import SearchSection from "@/components/searchsection";
-import CityModal from '@/components/CityModal';
+import ChangecityModal from '@/components/modal/ChangecityModal';
 
 type Props = {
   params: { slug: string }
@@ -74,16 +74,13 @@ type Props = {
 export default function Page({ params }: { params: { slug: string } }) {
   console.log(params);
   const { slug } = params;
-  const [isModalOpen, setModalOpen] = useState<boolean>(false);
   const handleSearch = (searchText: string) => {
     console.log('Searching for:', searchText);
     // Add your search logic here
   };
-  const handleModalSearch = (city: string) => {
-    console.log('Searching for petrol pumps in:', city);
-    setModalOpen(false);
-    // Add your modal search logic here
-  };
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const handleModalClose = () => setModalOpen(false);
   const petrolPumpsData = [
     {
       imageSrc: "/BPCL.png",
@@ -131,9 +128,12 @@ export default function Page({ params }: { params: { slug: string } }) {
                     href="#" 
                     className="text-decoration-none text-primary fz-14" 
                     onClick={() => setModalOpen(true)}
+                    data-toggle="modal"
                   >
                     <i className="fa fa-pencil"></i> Change City
                   </a>
+
+                  <ChangecityModal show={modalOpen} handleClose={handleModalClose} />
                 </div>
                 <p className="page-content">
                   Explore 76 fuel stations and pumps in Indore. Check the address, location, phone number, and timing of nearby petrol and CNG pumps to fill the vehicle tank easily, as per your convenience. Most fuel pumps are open 24*7 to provide the services. Indian Oil, Bharat Petroleum, Hindustan Petroleum (HP), and Reliance are the popular fuel companies that have their petrol and CNG pumps in many areas of Indore.
