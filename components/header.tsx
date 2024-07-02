@@ -93,7 +93,7 @@ export default function Header() {
               <li className="nav-item me-4">
                 <Link
                   className="nav-link"
-                  href="/petrol-pump"
+                  href="/fuel-stations"
                 >
                   FUEL STATIONS
                 </Link>
