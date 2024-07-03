@@ -1,14 +1,9 @@
 "use client";
 
-import dynamic from "next/dynamic";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import SquareAd from "@/components/advertisements/squaread";
-import LongAd from "@/components/advertisements/longad";
 import { fetchRTOPage } from "@/services/wordpress";
 import Content from "@/components/skeletons/content";
-import ListCities from "@/components/listcities";
-import ListStates from "@/components/ListStates";
 import FAQ from "@/components/FAQ";
 
 interface FAQ {
