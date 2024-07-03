@@ -1,8 +1,6 @@
 import WebStoryClient from "@/components/clientside/WebStoryClient";
 import PostContent from "@/components/PostContent";
 
-const API_BASE_URL = "https://wp.trendingcar.com/wp-json/custom/v2";
-
 type Props = {
   params: { slug: string }
   searchParams: { [key: string]: string | string[] | undefined }
@@ -10,7 +8,7 @@ type Props = {
 
 
 export default async function Page({ params }: { params: { slug: string } }) {
-  const res = await fetch(`${API_BASE_URL}/webstory/${params.slug}`);
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_CUSTOM_URL}/webstory/${params.slug}`);
   const data = await res.json();
   // console.log(params);
   // console.log(data);

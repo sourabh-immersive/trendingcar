@@ -5,9 +5,12 @@ import { fetchPostsByCategory } from "@/services/wordpress";
 import LoadingSkeleton from "../skeletons/loadingskeleton";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import Link from "next/link";
-
-const API_BASE_URL = "https://wp.trendingcar.com/wp-json/custom/v2";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay, Navigation, Pagination } from "swiper/modules";
+// import 'swiper/swiper-bundle.min.css';
+// import 'swiper/swiper.min.css';
+import "swiper/scss/navigation";
+import "swiper/scss/pagination";
 
 interface Post {
   id: number;
@@ -34,17 +37,25 @@ const AllWebstoriesClient: React.FC<AllWebstoriesProps> = ({
   const [hasMore, setHasMore] = useState<boolean>(true);
   const [initialLoad, setInitialLoad] = useState<boolean>(true);
   const initialRender = useRef(true);
+
+  const [activeSlide, setActiveSlide] = useState(0);
+
   const [isOpen, setIsOpen] = useState(false);
   const [currentLink, setCurrentLink] = useState("");
+
+  const openPopup = (link: string, key: number) => {
+    setCurrentLink(link);
+    setActiveSlide(key);
+    setIsOpen(true);
+  };
+
+  const closePopup = () => setIsOpen(false);
 
   const getListCategories = async (
     numberOfPosts: number,
     page: number
   ): Promise<Post[]> => {
-    const response = await fetch(`${API_BASE_URL}/webstories`, {
-      method: "GET",
-      cache: "no-store",
-    });
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_CUSTOM_URL}/webstories/?per_page=12`, { next: { revalidate: 3600 } });
     if (!response.ok) {
       throw new Error("Failed to fetch posts");
     }
@@ -94,15 +105,6 @@ const AllWebstoriesClient: React.FC<AllWebstoriesProps> = ({
   // if (loading && initialLoad) return <LoadingSkeleton />;
   if (error) return <p>Error: {error}</p>;
 
-  
-
-  const openPopup = (link: string) => {
-    setCurrentLink(link);
-    setIsOpen(true);
-  };
-
-  const closePopup = () => setIsOpen(false);
-
   return (
     <div className="section">
       <div className="webstories-section container">
@@ -110,7 +112,7 @@ const AllWebstoriesClient: React.FC<AllWebstoriesProps> = ({
           {posts.map((post, key) => (
             <div className="col-md-3" key={key}>
               <div
-                onClick={() => openPopup(post.content)}
+                onClick={() => openPopup(post.content, key)}
                 className="card mb-4 box-shadow"
                 data-index={key}
               >
@@ -141,8 +143,8 @@ const AllWebstoriesClient: React.FC<AllWebstoriesProps> = ({
         </div>
       </div>
       <div>
-        <div>
-          <AnimatePresence>
+      <div>
+          {/* <AnimatePresence>
             {isOpen && (
               <motion.div
                 className="webstory-popup"
@@ -159,8 +161,66 @@ const AllWebstoriesClient: React.FC<AllWebstoriesProps> = ({
                   title="Webstory - Trending Car"
                 ></iframe>
               </motion.div>
+              
+            )}
+          </AnimatePresence> */}
+          <AnimatePresence>
+            {isOpen && (
+              <motion.div
+                className="webstory-popup"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+              >
+                <button className="webstory-popupClose" onClick={closePopup}>
+                  ⛌
+                </button>
+                
+                <Swiper initialSlide={activeSlide}
+                pagination={{
+                  type: 'fraction',
+                }}
+                navigation={true}
+                modules={[Pagination, Navigation]}
+                className="mySwiper"
+                breakpoints={{
+                  // When window width is >= 320px
+                  320: {
+                    slidesPerView: 1,
+                  },
+                  // When window width is >= 480px
+                  480: {
+                    slidesPerView: 1,
+                  },
+                  // When window width is >= 768px
+                  768: {
+                    slidesPerView: 1,
+                  },
+                  // When window width is >= 992px
+                  992: {
+                    slidesPerView: 1,
+                  },
+                  // When window width is >= 1200px
+                  1200: {
+                    slidesPerView: 1,
+                  },
+                }}
+                >
+              {posts.map((spost, index) => (
+                <SwiperSlide key={index} className="swiper-slide-active11">
+                  <iframe
+                  src={spost.content}
+                  style={{ height: "100vh", width: "100%" }}
+                  title="Webstory - Trending Car"
+                ></iframe>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+              </motion.div>
+              
             )}
           </AnimatePresence>
+          
         </div>
       </div>
       {loading && <p className="loadingText">Loading...</p>}

@@ -69,10 +69,7 @@ export async function generateMetadata(
 }
 
 export default async function Page({ params }: { params: { slug: string } }) {
-  const res = await fetch(`${API_BASE_URL}/posts?slug=${params.slug}`, {
-    method: 'GET',
-    cache: 'no-store'
-  });
+  const res = await fetch(`${API_BASE_URL}/posts?slug=${params.slug}`, { next: { revalidate: 3600 } });
   const data = await res.json();
   // console.log(params);
   // console.log(data);
