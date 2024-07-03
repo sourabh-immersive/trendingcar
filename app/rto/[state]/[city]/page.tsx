@@ -1,6 +1,8 @@
 import { Metadata, ResolvingMetadata } from 'next';
 import { fetchCityPostBySlug } from "@/services/wordpress";
-import CityContent from '@/components/CityContent';
+import Image from 'next/image';
+import FAQ from '@/components/FAQ';
+import Content from '@/components/skeletons/content';
 
 type Props = {
   params: { city: string }
@@ -64,7 +66,40 @@ export async function generateMetadata(
   };
 }
 
-export default function CityPage({ params }: { params: { state: string, city: string } }) {
+export default async function CityPage({ params }: { params: { state: string, city: string } }) {
   const { state, city } = params;
-  return <CityContent slug={city} state_slug={state} />;
+
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/cities?slug=${city}`, { next: { revalidate: 3600 } });
+  let data = await res.json();
+  data = data[0];
+  // console.log(data);
+  return (
+    <>
+    <section className="left-container">
+        <div className="row single-content-area">
+          <div className="col-md-12 col-sm-12 col-lg-12 col-xl-12 col-xxl-12">
+            {data ? (
+              <div>
+                <h1>{data.title.rendered}</h1>
+                <Image
+                  src={data.featured_image_url}
+                  alt={data.title.rendered}
+                  width="1024"
+                  height="423"
+                />
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: data.content.rendered,
+                  }}
+                />
+                <FAQ faqs={data.faqs} />
+              </div>
+            ) : (
+              <Content />
+            )}
+          </div>
+        </div>
+      </section>
+    </>
+  )
 }
