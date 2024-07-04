@@ -2,6 +2,8 @@ import LongAd from "@/components/advertisements/longad"
 import SquareAd from "@/components/advertisements/squaread"
 import PostsList from "@/components/bloghome/postslist"
 
+export const revalidate = 3600 // revalidate at most every hour
+
 export default function BlogLayout({
     children, // will be a page or nested layout
   }: {
@@ -31,7 +33,7 @@ export default function BlogLayout({
               <LongAd />
               <div className="row mt-4">
                 <div className="col-md-12 col-sm-12 col-lg-12 col-xl-12 col-xxl-12">
-                  CommercialVehicles...
+                  
                 </div>
               </div>
             </section>

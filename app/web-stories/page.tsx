@@ -1,7 +1,5 @@
 import AllWebstoriesClient from "@/components/clientside/AllWebstoriesClient";
 
-const API_BASE_URL = "https://wp.trendingcar.com/wp-json/custom/v2";
-
 interface Post {
   id: number;
   slug: string;
@@ -12,10 +10,7 @@ interface Post {
 }
 
 const fetchallWebstories = async (): Promise<Post[]> => {
-  const response = await fetch(`${API_BASE_URL}/webstories`, {
-    method: "GET",
-    cache: "no-store",
-  });
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_CUSTOM_URL}/webstories`, { next: { revalidate: 3600 } });
   console.log(response);
   if (!response.ok) {
     throw new Error("Failed to fetch posts");

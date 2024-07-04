@@ -7,6 +7,7 @@ import NextBreadcrumb from "@/components/BreadCrumbs"
 import WideAd from "@/components/advertisements/widead"
 
 // export const fetchCache = 'force-no-store';
+export const revalidate = 3600 // revalidate at most every hour
 
 const lato = Lato({
   weight: ['400', '700'],

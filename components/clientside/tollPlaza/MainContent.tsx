@@ -3,7 +3,7 @@
 import React, { useState } from 'react'
 import Page from '../blogs/[slug]/page'
 import WideAd from '@/components/advertisements/widead'
-import PetrolCities from "@/components/petrolpump/petrolcities";
+import PetrolCities from "@/components/fuelstations/petrolcities";
 import TollplazaList from '@/components/tollplaza/TollplazaList';
 
 interface State {

@@ -5,9 +5,12 @@ import { fetchPostsByCategory } from "@/services/wordpress";
 import LoadingSkeleton from "../skeletons/loadingskeleton";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import Link from "next/link";
-
-const API_BASE_URL = "https://wp.trendingcar.com/wp-json/custom/v2";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay, Navigation, Pagination } from "swiper/modules";
+// import 'swiper/swiper-bundle.min.css';
+// import 'swiper/swiper.min.css';
+import "swiper/scss/navigation";
+import "swiper/scss/pagination";
 
 interface Post {
   id: number;
@@ -34,17 +37,39 @@ const AllWebstoriesClient: React.FC<AllWebstoriesProps> = ({
   const [hasMore, setHasMore] = useState<boolean>(true);
   const [initialLoad, setInitialLoad] = useState<boolean>(true);
   const initialRender = useRef(true);
+
+  const [activeSlide, setActiveSlide] = useState(0);
+
   const [isOpen, setIsOpen] = useState(false);
   const [currentLink, setCurrentLink] = useState("");
+
+  useEffect(() => {
+    const handleEsc = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        closePopup();
+      }
+    };
+
+    document.addEventListener('keydown', handleEsc);
+
+    return () => {
+      document.removeEventListener('keydown', handleEsc);
+    };
+  }, []);
+
+  const openPopup = (link: string, key: number) => {
+    setCurrentLink(link);
+    setActiveSlide(key);
+    setIsOpen(true);
+  };
+
+  const closePopup = () => setIsOpen(false);
 
   const getListCategories = async (
     numberOfPosts: number,
     page: number
   ): Promise<Post[]> => {
-    const response = await fetch(`${API_BASE_URL}/webstories`, {
-      method: "GET",
-      cache: "no-store",
-    });
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_CUSTOM_URL}/webstories/?per_page=12`, { next: { revalidate: 3600 } });
     if (!response.ok) {
       throw new Error("Failed to fetch posts");
     }
@@ -53,11 +78,8 @@ const AllWebstoriesClient: React.FC<AllWebstoriesProps> = ({
 
   const updatePosts = async (page: number) => {
     setLoading(true);
-    // console.log("insideupdate", page);
     try {
       const postsData = await getListCategories(numberOfPosts, page);
-    //   console.log("prev posts", posts);
-    //   console.log(postsData);
       if (postsData.length === 0) {
         setHasMore(false);
       } else {
@@ -82,26 +104,13 @@ const AllWebstoriesClient: React.FC<AllWebstoriesProps> = ({
     }
 
     updatePosts(page);
-    console.log("effect called");
   }, [page]);
 
   const loadMore = () => {
     setPage((prevPage) => prevPage + 1);
-    // console.log('loadmore', page);
   };
 
-  //   console.log('initial page', page);
-  // if (loading && initialLoad) return <LoadingSkeleton />;
   if (error) return <p>Error: {error}</p>;
-
-  
-
-  const openPopup = (link: string) => {
-    setCurrentLink(link);
-    setIsOpen(true);
-  };
-
-  const closePopup = () => setIsOpen(false);
 
   return (
     <div className="section">
@@ -110,11 +119,10 @@ const AllWebstoriesClient: React.FC<AllWebstoriesProps> = ({
           {posts.map((post, key) => (
             <div className="col-md-3" key={key}>
               <div
-                onClick={() => openPopup(post.content)}
+                onClick={() => openPopup(post.content, key)}
                 className="card mb-4 box-shadow"
                 data-index={key}
               >
-                {/* <Link href={`/web-stories/${post.slug}`} target="_blank"> */}
                 <Image
                   className="card-img-top"
                   src={post.featuredImage || "ff"}
@@ -134,34 +142,62 @@ const AllWebstoriesClient: React.FC<AllWebstoriesProps> = ({
                     {post.date}
                   </p>
                 </div>
-                {/* </Link> */}
               </div>
             </div>
           ))}
         </div>
       </div>
       <div>
-        <div>
-          <AnimatePresence>
-            {isOpen && (
-              <motion.div
-                className="webstory-popup"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div
+              className="webstory-popup"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
+              <button className="webstory-popupClose" onClick={closePopup}>
+                ⛌
+              </button>
+              <Swiper
+                initialSlide={activeSlide}
+                pagination={{
+                  type: 'fraction',
+                }}
+                navigation={true}
+                modules={[Pagination, Navigation]}
+                className="mySwiper"
+                breakpoints={{
+                  320: {
+                    slidesPerView: 1,
+                  },
+                  480: {
+                    slidesPerView: 1,
+                  },
+                  768: {
+                    slidesPerView: 1,
+                  },
+                  992: {
+                    slidesPerView: 1,
+                  },
+                  1200: {
+                    slidesPerView: 1,
+                  },
+                }}
               >
-                <button className="webstory-popupClose" onClick={closePopup}>
-                  ⛌
-                </button>
-                <iframe
-                  src={currentLink}
-                  style={{ height: "100vh", width: "100%" }}
-                  title="Webstory - Trending Car"
-                ></iframe>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
+                {posts.map((spost, index) => (
+                  <SwiperSlide key={index} className="swiper-slide-active11">
+                    <iframe
+                      src={spost.content}
+                      style={{ height: "100vh", width: "100%" }}
+                      title="Webstory - Trending Car"
+                    ></iframe>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
       {loading && <p className="loadingText">Loading...</p>}
       {!loading && hasMore && (
