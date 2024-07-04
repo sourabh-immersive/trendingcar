@@ -1,11 +1,10 @@
 "use client";
 import React, { useState, useEffect } from 'react';
 import WideAd from '@/components/advertisements/widead';
-import PetrolCities from "@/components/petrolpump/petrolcities";
-import PetrolPump from "@/components/petrolpump/petrolpumpcity";
+import PetrolCities from "@/components/fuelstations/petrolcities";
+import PetrolPump from "@/components/fuelstations/petrolpumpcity";
 import SearchSection from "@/components/searchsection";
-import CityModal from '@/components/CityModal';
-
+import ChangecityModal from '@/components/modal/ChangecityModal';
 const API_BASE_URL = "https://trendingcar.com/admin/api/fuelStationCities";
 
 interface Location {
@@ -44,12 +43,12 @@ type Props = {
 };
 
 export default function Page({ params }: { params: { slug: string } }) {
-  const [isModalOpen, setModalOpen] = useState<boolean>(false);
   const [petrolPumpsData, setPetrolPumpsData] = useState<PetrolPumpData[]>([]);
   const [nearByStationData, setNearByStationData] = useState<NearByStationData[]>([]);
   const [page, setPage] = useState<number>(1);
   const [pageSize, setPageSize] = useState<number>(10); // Adjust page size as needed
-
+  const [modalOpen, setModalOpen] = useState(false);
+  
   const handleSearch = (searchText: string) => {
     console.log('Searching for:', searchText);
     // Add your search logic here
@@ -83,9 +82,10 @@ export default function Page({ params }: { params: { slug: string } }) {
   }, [params.slug, page, pageSize]);
 
   const handleLoadMore = () => {
-     
     setPage(prevPage => prevPage + 1);
   };
+  
+  const handleModalClose = () => setModalOpen(false);
 
   return (
     <div>
@@ -102,6 +102,9 @@ export default function Page({ params }: { params: { slug: string } }) {
                 >
                   <i className="fa fa-pencil"></i> Change City
                 </a>
+                <ChangecityModal show={modalOpen} handleClose={handleModalClose} onSearch={function (city: string): void {
+                  throw new Error('Function not implemented.');
+                } } />
               </div>
               <p className="page-content">
                 TETS
@@ -160,10 +163,6 @@ export default function Page({ params }: { params: { slug: string } }) {
           </div>
         </div>
       </div>
-
-      {isModalOpen && (
-        <CityModal onSearch={handleModalSearch} onClose={() => setModalOpen(false)} isOpen={false} />
-      )}
     </div>
   );
 }

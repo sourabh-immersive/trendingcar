@@ -1,7 +1,7 @@
 import React from 'react'
 import Page from '../blogs/[slug]/page'
 import WideAd from '@/components/advertisements/widead'
-import PetrolCities from "@/components/petrolpump/petrolcities";
+import PetrolCities from "@/components/fuelstations/petrolcities";
 
 export default function PetrolPump() {
     
