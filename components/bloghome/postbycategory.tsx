@@ -3,8 +3,6 @@
 import Image from "next/image";
 import PostbyCategoryClient from "../clientside/PostByCategoryClient";
 
-const API_BASE_URL = "https://wp.trendingcar.com/wp-json/wp/v2";
-
 interface Post {
   id: number;
   slug: string;
@@ -26,10 +24,8 @@ interface PostbyCategoryProps {
 }
 
 const fetchPostsByCategory2 = async (category: string, numberOfPosts: number, page?: number): Promise<Post[]> => {
-  const response = await fetch(`${API_BASE_URL}/posts?category_slug=${category}&per_page=${numberOfPosts}&page=${page}`, {
-    method: 'GET',
-    cache: 'no-store'
-  });
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/posts?category_slug=${category}&per_page=${numberOfPosts}&page=${page}`, { next: { revalidate: 3600 } });
+
   if (!response.ok) {
     throw new Error("Failed to fetch posts");
   }

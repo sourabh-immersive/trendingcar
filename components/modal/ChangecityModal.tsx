@@ -11,6 +11,7 @@ const ChangecityModal: React.FC<ChangecityModalProps> = ({ show, handleClose, on
     const [city, setCity] = React.useState<string>('');
 
     const handleInputChange = (event: ChangeEvent<HTMLInputElement>, { newValue }: { newValue: string }) => {
+        console.log('newValue',newValue);
         setCity(newValue);
     };
 

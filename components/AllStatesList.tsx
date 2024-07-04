@@ -1,8 +1,6 @@
 import { Metadata, ResolvingMetadata } from 'next';
 import { fetchStatePostBySlug } from "@/services/wordpress";
-import Image from 'next/image';
-import FAQ from '@/components/FAQ';
-import Content from '@/components/skeletons/content';
+import ListStates from './clientside/rto/ListStates';
 
 type Props = {
   params: { state: string }
@@ -65,42 +63,12 @@ export async function generateMetadata(
   };
 }
 
-export default async function StatePage({ params }: { params: { state: string } }) {
-  const { state } = params;
+export default async function AllStatesList() {
+  // console.log('params', params);
+  // const { state } = params;
 
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/states?slug=${state}`, { next: { revalidate: 3600 } });
-  let data = await res.json();
-  data = data[0];
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_CUSTOM_URL}/list-states`, { next: { revalidate: 3600 } });
+  const data = await res.json();
 
-  return (
-    <>
-      <section className="left-container">
-        <div className="row single-content-area">
-          <div className="col-md-12 col-sm-12 col-lg-12 col-xl-12 col-xxl-12">
-            {data ? (
-              <div>
-                <h1>{data.title.rendered}</h1>
-                { data.featured_image_url && (
-                  <Image
-                    src={data.featured_image_url}
-                    alt={data.title.rendered}
-                    width="1024"
-                    height="423"
-                  />
-                )}
-                <div
-                  dangerouslySetInnerHTML={{
-                    __html: data.content.rendered,
-                  }}
-                />
-                <FAQ faqs={data.faqs} />
-              </div>
-            ) : (
-              <Content />
-            )}
-          </div>
-        </div>
-      </section>
-    </>
-  )
+  return <ListStates initialData={ data } />;
 }

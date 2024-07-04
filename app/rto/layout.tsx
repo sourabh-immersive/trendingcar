@@ -1,7 +1,9 @@
 import LongAd from "@/components/advertisements/longad"
 import SquareAd from "@/components/advertisements/squaread"
-import ListCities from "@/components/listcities"
-import ListStates from "@/components/ListStates"
+import ListCities from "@/components/AllCitiesList"
+import ListStates from "@/components/AllStatesList"
+
+export const revalidate = 3600 // revalidate at most every hour
 
 export default function RTOLayout({
     children, // will be a page or nested layout

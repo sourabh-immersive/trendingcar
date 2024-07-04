@@ -1,12 +1,8 @@
 import React, { Suspense } from "react";
-import Image from "next/image";
 import WideAd from "@/components/advertisements/widead";
-import SquareAd from "@/components/advertisements/squaread";
-import LongAd from "@/components/advertisements/longad";
 import HeroSlider from "@/components/bloghome/heroslider";
 import WebStories from "@/components/bloghome/webstories";
 import PostbyCategory from "@/components/bloghome/postbycategory";
-import PostsList from "@/components/bloghome/postslist";
 
 export default function Blogs() {
   return (

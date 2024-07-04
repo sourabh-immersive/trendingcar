@@ -39,11 +39,8 @@ const ArchiveClient: React.FC<AllCategoryProps> = ({
     page: number
   ): Promise<Post[]> => {
     const response = await fetch(
-      `${API_BASE_URL}/categories?page=${page}&per_page=${numberOfPosts}`,
-      {
-        method: "GET",
-        cache: "no-store",
-      }
+      `${process.env.NEXT_PUBLIC_API_BASE_URL}/categories?page=${page}&per_page=${numberOfPosts}`,
+      { next: { revalidate: 3600 } }
     );
     if (!response.ok) {
       throw new Error("Failed to fetch posts");

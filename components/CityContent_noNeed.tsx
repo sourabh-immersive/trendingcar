@@ -6,12 +6,12 @@ import SquareAd from "@/components/advertisements/squaread";
 import LongAd from "@/components/advertisements/longad";
 import { CityPost } from "@/services/wordpress";
 import Content from "./skeletons/content";
-import ListStates from "./ListStates";
-import ListCities from "./listcities";
+import ListStates from "./AllStatesList";
+import ListCities from "./AllCitiesList";
 import Image from "next/image";
 import FAQ from "./FAQ";
 
-export default function CityContent({
+export default async function CityContent2({
   slug,
   state_slug,
 }: {
@@ -20,16 +20,16 @@ export default function CityContent({
 }) {
   const [post, setCityPost] = useState<CityPost | null>(null);
 
-  useEffect(() => {
-    const fetchData = async () => {
+  // useEffect(() => {
+  //   const fetchData = async () => {
       const cityPostData = await fetchCityPostBySlug(slug);
       if (cityPostData !== null) {
         setCityPost(cityPostData);
       }
-    };
+    // };
 
-    fetchData();
-  }, [slug]);
+  //   fetchData();
+  // }, [slug]);
 
   function convertSlugToHeading(slug: string): string {
     return slug
