@@ -1,15 +1,12 @@
-import { Metadata, ResolvingMetadata } from 'next';
+import { Metadata, ResolvingMetadata } from "next";
 import { fetchPostBySlug } from "@/services/wordpress";
-import PostContent from "@/components/PostContent";
-
-const API_BASE_URL = "https://wp.trendingcar.com/wp-json/wp/v2";
+import Image from "next/image";
+import Content from "@/components/skeletons/content";
 
 type Props = {
-  params: { slug: string }
-  searchParams: { [key: string]: string | string[] | undefined }
-}
-
-
+  params: { slug: string };
+  searchParams: { [key: string]: string | string[] | undefined };
+};
 
 export async function generateMetadata(
   { params, searchParams }: Props,
@@ -19,28 +16,30 @@ export async function generateMetadata(
   const blog = await fetchPostBySlug(slug);
 
   // Base URL for your site (use environment variable or hardcode)
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://wp.trendingcar.com/wp-json/wp/v2';
+  const baseUrl =
+    process.env.NEXT_PUBLIC_BASE_URL ||
+    "https://wp.trendingcar.com/wp-json/wp/v2";
 
   if (!blog || !blog.yoast_head_json) {
     return {
-      title: 'Trending Car Blog Post',
+      title: "Trending Car Blog Post",
     };
   }
 
   const yoast = blog.yoast_head_json;
   const previousImages = (await parent).openGraph?.images || [];
-  const ogImage = yoast.og_image?.[0]?.url || '/some-specific-page-image.jpg';
+  const ogImage = yoast.og_image?.[0]?.url || "/some-specific-page-image.jpg";
 
   return {
     metadataBase: new URL(baseUrl),
     title: yoast.title,
     description: yoast.description,
     robots: {
-      index: yoast.robots.index === 'index',
-      follow: yoast.robots.follow === 'follow',
-      'max-snippet': yoast.robots['max-snippet'],
-      'max-image-preview': yoast.robots['max-image-preview'],
-      'max-video-preview': yoast.robots['max-video-preview'],
+      index: yoast.robots.index === "index",
+      follow: yoast.robots.follow === "follow",
+      "max-snippet": yoast.robots["max-snippet"],
+      "max-image-preview": yoast.robots["max-image-preview"],
+      "max-video-preview": yoast.robots["max-video-preview"],
     },
     openGraph: {
       locale: yoast.og_locale,
@@ -69,9 +68,52 @@ export async function generateMetadata(
 }
 
 export default async function Page({ params }: { params: { slug: string } }) {
-  const res = await fetch(`${API_BASE_URL}/posts?slug=${params.slug}`, { next: { revalidate: 3600 } });
-  const data = await res.json();
-  // console.log(params);
-  // console.log(data);
-  return <PostContent initialData={data} />;
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_BASE_URL}/posts?slug=${params.slug}`,
+    { next: { revalidate: 3600 } }
+  );
+  let data = await res.json();
+  data = data[0];
+
+  return (
+    <>
+      <div className="row">
+        <section className="left-container">
+          <div className="row single-content-area">
+            <div className="col-md-12 col-sm-12 col-lg-12 col-xl-12 col-xxl-12">
+              {data ? (
+                <div>
+                  { data.featured_image_url && 
+                  <Image
+                    src={data.featured_image_url}
+                    alt={data.title}
+                    width={0}
+                    height={0}
+                    style={{ width: "100%", height: "auto" }}
+                  /> }
+                  <h1>{data.title?.rendered}</h1>
+                  <div
+                    dangerouslySetInnerHTML={{
+                      __html: data.content?.rendered || "No Content",
+                    }}
+                  />
+                </div>
+              ) : (
+                <Content />
+              )}
+
+              {data.tag_names != 0 && (
+                <div className="post_tags">
+                  Tags:{" "}
+                  {data.tag_names.map((tag: string, index: number) => (
+                    <span key={index}>{tag}</span>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+        </section>
+      </div>
+    </>
+  );
 }

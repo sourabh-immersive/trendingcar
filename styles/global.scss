@@ -67,6 +67,11 @@ ul.myList {
   }
 }
 
+.statesList .myList, .citiesList .myList {
+  max-height: 406px;
+  overflow-y: scroll;
+}
+
 .main-layout {
   padding-bottom: 40px;
 }

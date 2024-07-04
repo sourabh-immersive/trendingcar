@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
@@ -26,9 +26,22 @@ interface ClientComponentProps {
 const WebStoriesClient: React.FC<ClientComponentProps> = ({ initialData }) => {
   const [post, setPost] = useState<Post[]>(initialData);
   const [activeSlide, setActiveSlide] = useState(0);
-
   const [isOpen, setIsOpen] = useState(false);
   const [currentLink, setCurrentLink] = useState("");
+
+  useEffect(() => {
+    const handleEsc = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        closePopup();
+      }
+    };
+
+    document.addEventListener('keydown', handleEsc);
+
+    return () => {
+      document.removeEventListener('keydown', handleEsc);
+    };
+  }, []);
 
   const openPopup = (link: string, key: number) => {
     setCurrentLink(link);
@@ -37,6 +50,7 @@ const WebStoriesClient: React.FC<ClientComponentProps> = ({ initialData }) => {
   };
 
   const closePopup = () => setIsOpen(false);
+
   return (
     <div>
       <div className="webstories-section">
@@ -96,40 +110,19 @@ const WebStoriesClient: React.FC<ClientComponentProps> = ({ initialData }) => {
         </div>
       </div>
       <div>
-        <div>
-          {/* <AnimatePresence>
-            {isOpen && (
-              <motion.div
-                className="webstory-popup"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-              >
-                <button className="webstory-popupClose" onClick={closePopup}>
-                  ⛌
-                </button>
-                <iframe
-                  src={currentLink}
-                  style={{ height: "100vh", width: "100%" }}
-                  title="Webstory - Trending Car"
-                ></iframe>
-              </motion.div>
-              
-            )}
-          </AnimatePresence> */}
-          <AnimatePresence>
-            {isOpen && (
-              <motion.div
-                className="webstory-popup"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-              >
-                <button className="webstory-popupClose" onClick={closePopup}>
-                  ⛌
-                </button>
-                
-                <Swiper initialSlide={activeSlide}
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div
+              className="webstory-popup"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
+              <button className="webstory-popupClose" onClick={closePopup}>
+                ⛌
+              </button>
+              <Swiper
+                initialSlide={activeSlide}
                 pagination={{
                   type: 'fraction',
                 }}
@@ -158,23 +151,20 @@ const WebStoriesClient: React.FC<ClientComponentProps> = ({ initialData }) => {
                     slidesPerView: 1,
                   },
                 }}
-                >
-              {post.map((spost, index) => (
-                <SwiperSlide key={index} className="swiper-slide-active11">
-                  <iframe
-                  src={spost.content}
-                  style={{ height: "100vh", width: "100%" }}
-                  title="Webstory - Trending Car"
-                ></iframe>
-                </SwiperSlide>
-              ))}
-            </Swiper>
-              </motion.div>
-              
-            )}
-          </AnimatePresence>
-          
-        </div>
+              >
+                {post.map((spost, index) => (
+                  <SwiperSlide key={index} className="swiper-slide-active11">
+                    <iframe
+                      src={spost.content}
+                      style={{ height: "100vh", width: "100%" }}
+                      title="Webstory - Trending Car"
+                    ></iframe>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </div>
   );

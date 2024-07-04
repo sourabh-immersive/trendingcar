@@ -1,71 +1,94 @@
-"use client";
+import { Metadata, ResolvingMetadata } from 'next';
+import { fetchStatePostBySlug } from "@/services/wordpress";
+import FAQ from '@/components/FAQ';
+import Image from 'next/image';
+import Content from '@/components/skeletons/content';
 
-import Image from "next/image";
-import { useEffect, useState } from "react";
-import { fetchRTOPage } from "@/services/wordpress";
-import Content from "@/components/skeletons/content";
-import FAQ from "@/components/FAQ";
-
-interface FAQ {
-  title: string;
-  description: string;
+type Props = {
+  params: { state: string }
+  searchParams: { [key: string]: string | string[] | undefined }
 }
 
-interface Page {
-  id: number;
-  slug: string;
-  title: {
-    rendered: string;
-  };
-  content: {
-    rendered: string;
-  };
-  featured_image_url: string;
-  faqs: FAQ[];
-}
+export async function generateMetadata(
+  { params, searchParams }: Props,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  // const slug = params.slug;
+  const { state } = params;
+  // console.log('stateparams', state);
+  const blog = await fetchStatePostBySlug(state);
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://trendingcar.com';
 
-export default function RTO() {
-  const [page, setPageData] = useState<Page | null>(null);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const pageData = await fetchRTOPage();
-
-      if (pageData !== undefined) {
-        setPageData(pageData);
-      }
+  if (!blog || !blog.yoast_head_json) {
+    return {
+      title: 'Blog Post',
     };
-
-    fetchData();
-  }, []);
-
-  function convertSlugToHeading(slug: string): string {
-    return slug
-      .split("-")
-      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-      .join(" ");
   }
 
+  const yoast = blog.yoast_head_json;
+  const previousImages = (await parent).openGraph?.images || [];
+  const ogImage = yoast.og_image?.[0]?.url || '/some-specific-page-image.jpg';
+
+  return {
+    metadataBase: new URL(baseUrl),
+    title: yoast.title,
+    robots: {
+      index: yoast.robots.index === 'index',
+      follow: yoast.robots.follow === 'follow',
+      'max-snippet': yoast.robots['max-snippet'],
+      'max-image-preview': yoast.robots['max-image-preview'],
+      'max-video-preview': yoast.robots['max-video-preview'],
+    },
+    openGraph: {
+      locale: yoast.og_locale,
+      type: yoast.og_type,
+      title: yoast.og_title,
+      description: yoast.og_description,
+      url: yoast.og_url,
+      siteName: yoast.og_site_name,
+      images: [
+        {
+          url: ogImage,
+          width: yoast.og_image?.[0]?.width,
+          height: yoast.og_image?.[0]?.height,
+          type: yoast.og_image?.[0]?.type,
+        },
+        ...previousImages,
+      ],
+    },
+    twitter: {
+      card: yoast.twitter_card,
+      title: yoast.og_title,
+      description: yoast.og_description,
+      images: ogImage,
+    },
+  };
+}
+
+export default async function RTO() {
+
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/pages/51`, { next: { revalidate: 3600 } });
+  const data = await res.json();
+
   return (
-    <>
-      <section className="left-container">
+    <section className="left-container">
         <div className="row single-content-area">
           <div className="col-md-12 col-sm-12 col-lg-12 col-xl-12 col-xxl-12">
-            {page ? (
+            {data ? (
               <div>
-                <h1>{page.title.rendered}</h1>
+                <h1>{data.title.rendered}</h1>
                 <Image
-                  src={page.featured_image_url}
-                  alt={page.title.rendered}
+                  src={data.featured_image_url}
+                  alt={data.title.rendered}
                   width="1024"
                   height="423"
                 />
                 <div
                   dangerouslySetInnerHTML={{
-                    __html: page.content.rendered,
+                    __html: data.content.rendered,
                   }}
                 />
-                <FAQ faqs={page.faqs} />
+                <FAQ faqs={data.faqs} />
               </div>
             ) : (
               <Content />
@@ -73,6 +96,5 @@ export default function RTO() {
           </div>
         </div>
       </section>
-    </>
-  );
+  )
 }
