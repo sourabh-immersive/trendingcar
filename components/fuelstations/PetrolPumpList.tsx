@@ -14,7 +14,8 @@ interface PetrolPumpData {
   tyreReplacement: string;
   openTime: string;
   closeTime: string;
-  location: { lat: string, lng: string };
+  location_lat: string;
+  location_lng: string;
   contact: string;
   distance: string;
 }

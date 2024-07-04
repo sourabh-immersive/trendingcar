@@ -1,28 +1,41 @@
 "use client";
+import Link from "next/link";
+export interface NearByStationData {
+    id: number;
+    name: string;
+    slug: string;
+    isPopular: number;
+    url: string;
+    title: string;
+    subCities: any[]; // Adjust this type based on your actual data structure
+    stateId: number;
+    translatedLabel: string;
+    CDN: string;
+    CID: number;
+    P: number;
+    regionId: number;
+}
 
-import { useEffect, useState } from "react";
+interface PetrolCitiesProps {
+    nearByStationData: NearByStationData[];
+}
 
-
-export default function PetrolCities({ slug }: { slug: string }) {
-    const cities: string[] = [
-        'Indore',
-        'Dewas',
-        'Mhow',
-        'Ujjain',
-        'Sanawad',
-        'Badnagar',
-        'Mhow'
-    ];
+export default function PetrolCities({ nearByStationData}: PetrolCitiesProps) {
     return (
         <>
-            <ul className="inline-block mt-2 cities-loader-container">
-                {cities.map((city, index) => (
-                    <li key={index} className="inline-block mb-2">
-                        {city}
-                    </li>
-                ))}
-            </ul>
-            <button className="btn btn-primary p-2">+4 more cities</button>
+            <div className="row">
+                <div className="col-md-12 col-sm-12 col-lg-12 col-xl-12 col-xxl-12">
+                    <div className="container">
+                        <ul className="inline-block mt-2 cities-loader-container">
+                            {nearByStationData.map((station, index) => (
+                                <li key={index} className="inline-block mb-2"> 
+                                    <Link href={`/fuel-stations/${station.slug}`}>   {station.name} </Link>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                </div>
+            </div>    
         </>
     );
 }

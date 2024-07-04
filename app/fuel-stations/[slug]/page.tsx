@@ -1,16 +1,13 @@
 "use client";
 import React, { useState, useEffect } from 'react';
 import WideAd from '@/components/advertisements/widead';
-import PetrolCities from "@/components/fuelstations/petrolcities";
+import PetrolCities, { NearByStationData } from "@/components/fuelstations/petrolcities";
 import PetrolPump from "@/components/fuelstations/petrolpumpcity";
 import SearchSection from "@/components/searchsection";
-import ChangecityModal from '@/components/modal/ChangecityModal';
-const API_BASE_URL = "https://trendingcar.com/admin/api/fuelStationCities";
+import ChangecityModal from '@/components/modal/ChangecityModal'; 
 
-interface Location {
-  lat: string;
-  lng: string;
-}
+const API_BASE_URL = "https://trendingcar.com/admin/api/fuelStationCities";
+ 
 
 interface PetrolPumpData {
   id: string;
@@ -23,20 +20,13 @@ interface PetrolPumpData {
   punctureCheck: string;
   tyreReplacement: string;
   openTime: string;
-  closeTime: string;
-  location: Location;
+  closeTime: string; 
+  location_lat: string;
+  location_lng: string;
   contact: string;
   distance: string;
 }
-interface NearByStationData {
-  id: string,
-  name:string,
-  slug:string,
-  url: string,
-  title: string
-}
-
-
+ 
 type Props = {
   params: { slug: string };
   searchParams: { [key: string]: string | string[] | undefined };
@@ -46,9 +36,10 @@ export default function Page({ params }: { params: { slug: string } }) {
   const [petrolPumpsData, setPetrolPumpsData] = useState<PetrolPumpData[]>([]);
   const [nearByStationData, setNearByStationData] = useState<NearByStationData[]>([]);
   const [page, setPage] = useState<number>(1);
+  const [pageDescription, setPageDescription] = useState<String>(''); 
+  const [pageTitle, setPageTitle] = useState<String>('');
   const [pageSize, setPageSize] = useState<number>(10); // Adjust page size as needed
-  const [modalOpen, setModalOpen] = useState(false);
-  
+  const [modalOpen, setModalOpen] = useState(false); 
   const handleSearch = (searchText: string) => {
     console.log('Searching for:', searchText);
     // Add your search logic here
@@ -68,8 +59,11 @@ export default function Page({ params }: { params: { slug: string } }) {
       });
       const data = await res.json();
       const newPetrolPumpsData = data.data[0].fuel_station;
-      const newNearByFuelStation = data.data[0].nearByFuelStation; 
+      const newNearByFuelStation = data.data[0].nearByFuelStation.items; 
       const pageDescription = data.data[0].pageDescription;
+      const subHeading = data.data[0].subHeading; 
+      setPageDescription(pageDescription);
+      setPageTitle(subHeading);
       setNearByStationData(newNearByFuelStation);
       setPetrolPumpsData(prevData => [...prevData, ...newPetrolPumpsData]);
     } catch (error) {
@@ -84,9 +78,7 @@ export default function Page({ params }: { params: { slug: string } }) {
   const handleLoadMore = () => {
     setPage(prevPage => prevPage + 1);
   };
-  
   const handleModalClose = () => setModalOpen(false);
-
   return (
     <div>
       <div className="row mt-4">
@@ -94,7 +86,7 @@ export default function Page({ params }: { params: { slug: string } }) {
           <section>
             <div className="container">
               <div className="d-flex align-items-center">
-                <h5 className="page-title me-2">76 Petrol Pumps in Indore</h5>
+                <h5 className="page-title me-2">{pageTitle}</h5>
                 <a 
                   href="#" 
                   className="text-decoration-none text-primary fz-14" 
@@ -107,23 +99,17 @@ export default function Page({ params }: { params: { slug: string } }) {
                 } } />
               </div>
               <p className="page-content">
-                TETS
+                {pageDescription}
               </p>
             </div>
           </section>
         </div>
       </div>
-      <div className="row">
-        <div className="col-md-12 col-sm-12 col-lg-12 col-xl-12 col-xxl-12">
-          <WideAd img_url="/ads2.png" />
-        </div>
-      </div>
-
+      <WideAd img_url="/ads2.png" />
       <div className="row mt-4">
         <div className="col-md-12 col-sm-12 col-lg-12 col-xl-12 col-xxl-12">
           <div className="container">
-            <div className="row">
-              {/* Render petrol pumps data here */}
+            <div className="row"> 
               {petrolPumpsData.map((pump) => (
                 <PetrolPump
                   key={pump.id}
@@ -140,12 +126,8 @@ export default function Page({ params }: { params: { slug: string } }) {
         </div>
       </div>
 
-      <div className="row">
-        <div className="col-md-12 col-sm-12 col-lg-12 col-xl-12 col-xxl-12">
-          <WideAd img_url="/ads2.png" />
-        </div>
-      </div>
-
+      <WideAd img_url="/ads2.png" />
+        
       <div className="row mt-4">
         <div className="col-md-12 col-sm-12 col-lg-12 col-xl-12 col-xxl-12">
           <SearchSection
@@ -156,13 +138,9 @@ export default function Page({ params }: { params: { slug: string } }) {
           />
         </div>
       </div>
-      <div className="row">
-        <div className="col-md-12 col-sm-12 col-lg-12 col-xl-12 col-xxl-12">
-          <div className="container">
-            <PetrolCities slug="Indore" />
-          </div>
-        </div>
-      </div>
+       
+      <PetrolCities nearByStationData={nearByStationData} />
+          
     </div>
   );
 }

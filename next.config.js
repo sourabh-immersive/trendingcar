@@ -14,12 +14,15 @@ module.exports = {
     images: { 
       unoptimized: true,
       formats: ['image/webp'],
-    }
-    // images: {
-    //   domains: ['wp.trendingcar.com'],
-    // },
-    // images: { 
-    //   unoptimized: true,
-    //   formats: ['image/webp'],
-    // }
+    },
+    async redirects() {
+      return [
+        {
+          source: '/fuel-stations',
+          destination: '/fuel-stations/new-delhi',
+          permanent: true,
+        },
+      ]
+    },
+     
   };

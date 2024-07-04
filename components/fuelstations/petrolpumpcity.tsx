@@ -1,10 +1,5 @@
 import React from 'react';
-
-interface Location {
-  lat: string;
-  lng: string;
-}
-
+  
 interface PetrolPumpData {
   id: string;
   image: string;
@@ -17,7 +12,8 @@ interface PetrolPumpData {
   tyreReplacement: string;
   openTime: string;
   closeTime: string;
-  location: Location;
+  location_lat: string;
+  location_lng: string;
   contact: string;
   distance: string;
 }
@@ -25,10 +21,10 @@ const capitalizeFirstLetter = (str: string) => {
   return str.toLowerCase().replace(/(?:^|\s)\S/g, function(a) { return a.toUpperCase(); });
 };
 
-const PetrolPump: React.FC<PetrolPumpData> = ({ image, title, address, openTime, closeTime, contact, services, location }) => {
+const PetrolPump: React.FC<PetrolPumpData> = ({ image, title, address, openTime, closeTime, contact, services, location_lat , location_lng}) => {
   const handleGetDirections = () => {
-    const lat = encodeURIComponent(location.lat);
-    const lng = encodeURIComponent(location.lng);
+    const lat = encodeURIComponent(location_lat);
+    const lng = encodeURIComponent(location_lng);
     const formattedLocation = `${lat},${lng}`;
     const url = `https://www.google.com/maps/place/${formattedLocation}`;
     window.open(url, '_blank');
