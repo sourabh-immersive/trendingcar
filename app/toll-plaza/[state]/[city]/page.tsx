@@ -5,8 +5,8 @@ export default function TollPlaza() {
     const params = { slug: 'example-slug' };
 
     return (
-       <>
-        <CityContent params={params} />
-       </>
+        <>
+            <CityContent params={params} />
+        </>
     )
 }

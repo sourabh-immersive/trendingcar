@@ -1187,6 +1187,10 @@ ul li {
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   }
   #react-autowhatever-1{
+    position:absolute;
+    background-color: #fff;
+    width: 94%;
+    border: 1px solid #eee;
     ul{
       list-style:none;
       margin-left:-19px;
@@ -1195,4 +1199,14 @@ ul li {
       }
     }
   }
+}
+.modal-backdrop.show {
+  opacity: 0.8; /* Adjust opacity as needed */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8); /* Adjust background color as needed */
+  z-index: 1040; /* Ensure it appears behind the modal but above other content */
 }
