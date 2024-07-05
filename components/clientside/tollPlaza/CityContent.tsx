@@ -330,12 +330,12 @@ const CityContent = ({ params }: { params: { slug: string } }) => {
                                     </ul>
                                 </div>
                                 <div className="col-md-4">
-                                    <ul className="list-unstyled" >
+                                    <ul className="list-unstyled">
                                         <li className="fz-14 mb-3 text-primary cursor-pointer"><span>Toll Plazas in</span></li>
                                     </ul>
                                 </div>
                                 <div className="col-md-4">
-                                    <ul className="list-unstyled" >
+                                    <ul className="list-unstyled">
                                         <li className="fz-14 mb-3 text-primary cursor-pointer"><span>Toll Plazas in</span></li>
                                     </ul>
                                 </div>
