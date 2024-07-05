@@ -1,11 +1,11 @@
 "use client";
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, ChangeEvent } from 'react';
 import WideAd from '@/components/advertisements/widead';
 import PetrolCities, { NearByStationData } from "@/components/fuelstations/petrolcities";
 import PetrolPump from "@/components/fuelstations/petrolpumpcity";
 import SearchSection from "@/components/searchsection";
-import ChangecityModal from '@/components/modal/ChangecityModal'; 
-
+import ChangecityModal from '@/components/modal/ChangecityModal';  
+import Autocomplete from '@/components/autocomplete/autocomplete';
 const API_BASE_URL = "https://trendingcar.com/admin/api/fuelStationCities";
  
 
@@ -43,6 +43,12 @@ export default function Page({ params }: { params: { slug: string } }) {
   const handleSearch = (searchText: string) => {
     console.log('Searching for:', searchText);
     // Add your search logic here
+  };
+  const [city, setCity] = useState<string>('');
+
+  const handleInputChange = (event: ChangeEvent<HTMLInputElement>, newValue: string) => {
+    console.log('newValue', newValue);
+    setCity(newValue);
   };
 
   const handleModalSearch = (city: string) => {
@@ -130,12 +136,13 @@ export default function Page({ params }: { params: { slug: string } }) {
         
       <div className="row mt-4">
         <div className="col-md-12 col-sm-12 col-lg-12 col-xl-12 col-xxl-12">
-          <SearchSection
+          <Autocomplete value={city} onChange={handleInputChange} />
+          {/* <SearchSection
             title="Search Fuel stations in nearby cities"
             placeholder="Enter Your City"
             searchIconSrc="/search-black.png"
             onSearch={handleSearch}
-          />
+          /> */}
         </div>
       </div>
        
