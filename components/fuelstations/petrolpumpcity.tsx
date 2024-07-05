@@ -34,7 +34,7 @@ const PetrolPump: React.FC<PetrolPumpData> = ({ image, title, address, openTime,
     <div className="col-md-4 col-sm-12 col-lg-4 col-xl-4 col-xxl-4">
       <div className="petrol-pump-wrapper mb-4">
         <div className="d-flex align-items-center">
-          <img src={image} className="img-fluid me-2" alt={`${title} logo`} />
+          <img src={`/${image}.png`} className="img-fluid me-2"  alt={`${title} logo`} />
           <h5 className="mb-0 fz-16 text-primary">{capitalizeFirstLetter(title)}</h5>
         </div>
         <p className="mb-0 fz-14 mb-2">{capitalizeFirstLetter(address)}</p>

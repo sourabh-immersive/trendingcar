@@ -1,27 +1,12 @@
-import React, { useState, ChangeEvent } from 'react';
+import React, { useState, ChangeEvent, useEffect } from 'react';
 import Autosuggest from 'react-autosuggest';
+import { useRouter } from 'next/navigation';
 
 interface City {
+  id: number;
   name: string;
+  slug: string;
 }
-
-const cities: City[] = [
-  { name: 'Indore' },
-  { name: 'Bhopal' },
-  { name: 'Mumbai' },
-  { name: 'Delhi' },
-  { name: 'Chennai' },
-  // Add more cities as needed
-];
-
-const getSuggestions = (value: string) => {
-  const inputValue = value.trim().toLowerCase();
-  const inputLength = inputValue.length;
-
-  return inputLength === 0 ? [] : cities.filter(
-    city => city.name.toLowerCase().slice(0, inputLength) === inputValue
-  );
-};
 
 const getSuggestionValue = (suggestion: City) => suggestion.name;
 
@@ -38,6 +23,34 @@ interface AutocompleteProps {
 
 const Autocomplete: React.FC<AutocompleteProps> = ({ value, onChange }) => {
   const [suggestions, setSuggestions] = useState<City[]>([]);
+  const [cities, setCities] = useState<City[]>([]);
+  const router = useRouter(); // Ensure this is within the component that is part of Next.js context
+
+  useEffect(() => {
+    // Fetch cities from the API
+    const fetchCities = async () => {
+      try {
+        const response = await fetch('https://trendingcar.com/admin/api/fuelStationCities'); // Replace with your API endpoint
+       
+        const dataCity = await response.json();
+        const data: City[] = dataCity.data;
+        setCities(data);
+      } catch (error) {
+        console.error('Error fetching cities:', error);
+      }
+    };
+
+    fetchCities();
+  }, []);
+
+  const getSuggestions = (value: string) => {
+    const inputValue = value.trim().toLowerCase();
+    const inputLength = inputValue.length;
+
+    return inputLength === 0 ? [] : cities.filter(
+      city => city.name.toLowerCase().slice(0, inputLength) === inputValue
+    );
+  };
 
   const onSuggestionsFetchRequested = ({ value }: { value: string }) => {
     setSuggestions(getSuggestions(value));
@@ -51,7 +64,9 @@ const Autocomplete: React.FC<AutocompleteProps> = ({ value, onChange }) => {
     event: React.FormEvent<HTMLInputElement>,
     { suggestion }: { suggestion: City }
   ) => {
-    onChange(event as ChangeEvent<HTMLInputElement>, { newValue: suggestion.name });
+    console.log('suggestion--', suggestion.slug);
+    onChange(event as ChangeEvent<HTMLInputElement>, suggestion.name);
+    router.push(`/fuel-stations/${suggestion.slug}`);
   };
 
   return (
@@ -65,7 +80,9 @@ const Autocomplete: React.FC<AutocompleteProps> = ({ value, onChange }) => {
       inputProps={{
         placeholder: "Search your city (e.g. Indore, Bhopal)",
         value,
-        onChange
+        onChange: (event, { newValue }) => {
+          onChange(event as ChangeEvent<HTMLInputElement>, newValue);
+        }
       }}
     />
   );

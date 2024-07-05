@@ -38,7 +38,7 @@ export default function Page({ params }: { params: { slug: string } }) {
   const [page, setPage] = useState<number>(1);
   const [pageDescription, setPageDescription] = useState<String>(''); 
   const [pageTitle, setPageTitle] = useState<String>('');
-  const [pageSize, setPageSize] = useState<number>(10); // Adjust page size as needed
+  const [pageSize, setPageSize] = useState<number>(9); // Adjust page size as needed
   const [modalOpen, setModalOpen] = useState(false); 
   const handleSearch = (searchText: string) => {
     console.log('Searching for:', searchText);
