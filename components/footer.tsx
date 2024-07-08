@@ -19,7 +19,7 @@ export default function Footer() {
           <div className="container">
             <div className="row" style={{display: 'none'}}>
               <div className="col-md-3">
-                <h5>India's #1</h5>
+                <h5>India #1</h5>
                 <p>Largest Auto portal</p>
               </div>
               <div className="col-md-3">
@@ -101,7 +101,7 @@ export default function Footer() {
               </div>
               <div className="col-md-3">
               {/* <Image src="/logo.png" alt="Trending Car Logo" height={39} width={156} /> */}
-                <h5>India's #1</h5>
+                <h5>India #1</h5>
                 <p>Largest Auto portal</p>
                 
               </div>
