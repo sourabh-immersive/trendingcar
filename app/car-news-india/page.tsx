@@ -5,13 +5,6 @@ import FilterableSelect from "@/components/FilterableSelect";
 export default async function News() {
   const category = { id: 1, name: "Car News", slug: "car-news-india" };
 
-  const childCat = await fetch(
-    `${process.env.NEXT_PUBLIC_API_BASE_URL}/categories?parent=${category.id}`,
-    { next: { revalidate: 3600 } }
-  );
-  let childCatData = await childCat.json();
-  console.log(childCatData);
-
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_API_BASE_URL}/posts?category_slug=${
       category.slug

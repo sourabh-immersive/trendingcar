@@ -950,3 +950,17 @@ div#filterableSelect {
     margin-right: 12px;
   }
 }
+
+// MEdia Query
+
+@media only screen and (max-width: 767px) {
+  .archive__posts .card-custom {
+    flex-direction: column;
+  }
+  .archive__posts .card-custom img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 0.5rem;
+  }
+}
