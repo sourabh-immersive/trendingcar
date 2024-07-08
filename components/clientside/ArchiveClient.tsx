@@ -53,8 +53,8 @@ const ArchiveClient: React.FC<AllCategoryProps> = ({
     // console.log("insideupdate", page);
     try {
       const postsData = await getListCategories(numberOfPosts, page);
-    //   console.log("prev posts", posts);
-    //   console.log(postsData);
+      //   console.log("prev posts", posts);
+      //   console.log(postsData);
       if (postsData.length === 0) {
         setHasMore(false);
       } else {
@@ -119,6 +119,11 @@ const ArchiveClient: React.FC<AllCategoryProps> = ({
           </div>
         ))}
       </div>
+      {posts.length === 0 && (
+        <p className="noPostsWrap shadow24" style={{ textAlign: "center" }}>
+          No posts found!
+        </p>
+      )}
       {loading && <p className="loadingText">Loading...</p>}
       {!loading && hasMore && (
         <div className="row" style={{ display: "block" }}>

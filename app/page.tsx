@@ -37,7 +37,7 @@ export default function Home() {
                     linkText="View more posts"
                     link="/blogs/categories/luxurious-cars"
                     numberOfPosts={6}
-                    category="luxurious-cars"
+                    category="car-news-india"
                     loadMoreEnabled={false}
                   />
                 </div>
@@ -54,7 +54,7 @@ export default function Home() {
                     linkText="View more posts"
                     link="/blogs/categories/luxurious-cars"
                     numberOfPosts={3}
-                    category="luxurious-cars"
+                    category="car-news-india"
                     loadMoreEnabled={false}
                   />
                 </div>
@@ -66,7 +66,7 @@ export default function Home() {
                     linkText="View more posts"
                     link="/blogs/categories/luxurious-cars"
                     numberOfPosts={3}
-                    category="luxurious-cars"
+                    category="car-news-india"
                     loadMoreEnabled={false}
                   />
                 </div>
@@ -83,7 +83,7 @@ export default function Home() {
                     linkText="View all collections"
                     link="/blogs/categories/car-collections"
                     numberOfPosts={3}
-                    category="car-collections"
+                    category="car-news-india"
                     loadMoreEnabled={false}
                   />
                 </div>

@@ -10,7 +10,7 @@ const Wide: React.FC<WideProps> = ({ img_url }) => {
   const imageUrl = img_url || fallbackImage;
 
   return (
-    <div className="container adrow">
+    <div className="container adrow mb-4">
       <div className="ads_wrapper">
         <section className="auto-ad-container text-center">
           <Image

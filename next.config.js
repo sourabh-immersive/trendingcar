@@ -14,7 +14,16 @@ module.exports = {
     images: { 
       unoptimized: true,
       formats: ['image/webp'],
-    }
+    },
+    async redirects() {
+      return [
+        {
+          source: '/car-brands',
+          destination: '/',
+          permanent: true,
+        }
+      ]
+    },
     // images: {
     //   domains: ['wp.trendingcar.com'],
     // },

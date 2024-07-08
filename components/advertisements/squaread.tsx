@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function SquareAd() {
   return (
-    <div className="ads_wrapper">
+    <div className="ads_wrapper mb-4">
       <section className="auto-ad-container text-center">
         <Image
           className="img-fluid"
