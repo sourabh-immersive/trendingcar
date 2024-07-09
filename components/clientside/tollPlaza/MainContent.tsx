@@ -1,34 +1,24 @@
 "use client";
 
-import React, { useState } from 'react'
-import Page from '../blogs/[slug]/page'
+import React, { useState ,useEffect } from 'react'
 import WideAd from '@/components/advertisements/widead'
-//import PetrolCities from "@/components/fuelstations/petrolcities";
 import TollplazaList from '@/components/tollplaza/TollplazaList';
+import Link from "next/link";
 
 interface State {
     name: string;
     imageUrl: string;
+    slug: string;
 }
 
 interface Props {
     states: State[];
 }
 
-export default function MainContent() {
-    const states = [
-        { name: 'Gujarat', imageUrl: 'state.png' },
-        { name: 'Maharashtra', imageUrl: 'state.png' },
-        { name: 'Rajasthan', imageUrl: 'state.png' },
-        { name: 'Kerala', imageUrl: 'state.png' },
-        { name: 'Tamil Nadu', imageUrl: 'state.png' },
-        { name: 'Punjab', imageUrl: 'state.png' },
-        { name: 'Karnataka', imageUrl: 'state.png' },
-        { name: 'West Bengal', imageUrl: 'state.png' },
-        { name: 'Bihar', imageUrl: 'state.png' },
-        { name: 'Uttar Pradesh', imageUrl: 'state.png' },
-        // Add more states as needed
-    ];
+export default function MainContent(states:Props) {
+
+     console.log(states);
+      
     const [itemsToShow, setItemsToShow] = useState(6); // Initial number of items to show
     const increment = 6; // Number of items to show on each "Show More"
 
@@ -61,13 +51,13 @@ export default function MainContent() {
                                     <h5>Toll Plaza List by States in India</h5>
                                     <small>Top states in India</small>
                                     <div className="row">
-                                        {states.slice(0, itemsToShow).map((state, index) => (
-                                            <TollplazaList key={index} stateName={state.name} imageUrl={state.imageUrl} />
+                                        {states.states.map((state:any, index) => (
+                                            <TollplazaList key={index} stateName={state.name} slug={state.slug} imageUrl='state.png' />
                                         ))}
                                     </div>
                                     <div className="row mt-4">
                                         <div className="col-12 text-center">
-                                            {itemsToShow < states.length && (
+                                            {itemsToShow < states.states.length && (
                                                 <a
                                                     href="javascript:void(0);"
                                                     className="text-primary text-decoration-none"
@@ -106,11 +96,7 @@ export default function MainContent() {
                 </div>
             </div>
 
-            <div className="row mt-4">
-                <div className="col-md-12 col-sm-12 col-lg-12 col-xl-12 col-xxl-12">
-                    <WideAd img_url="/ads2.png" />  
-                </div>
-            </div>
+            <WideAd img_url="/ads2.png" />  
 
             <div className="row mt-4">
                 <div className="col-md-12 col-sm-12 col-lg-12 col-xl-12 col-xxl-12">
@@ -118,9 +104,20 @@ export default function MainContent() {
                         <section className="list-by-cities-section mt-4">
                             <h5 className="section-title text-white">Toll Plaza List by Major Cities</h5>
                             <small className="text-white">Top cities in India</small><br />
-                            
-                            <small className="text-white d-block mt-2">All cities in India</small>
-                            
+                            <div className="row">
+                                <div className="col-md-12 col-sm-12 col-lg-12 col-xl-12 col-xxl-12">
+                                    <div className="container">
+                                        <ul className="inline-block mt-2 cities-loader-container">
+                                            
+                                                <li   className="inline-block mb-2"> 
+                                                    <Link href={`/Madhya-pradesh/indore`}> Indore </Link>
+                                                </li>
+                                            
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                             
                         </section>
                     </div>
                 </div>
@@ -162,13 +159,9 @@ export default function MainContent() {
                         </section>
                     </div>
                 </div>
-            </div>
+            </div> 
 
-            <div className="row mt-4">
-                <div className="col-md-12 col-sm-12 col-lg-12 col-xl-12 col-xxl-12">
-                    <WideAd img_url="/ads2.png" />  
-                </div>
-            </div>
+            <WideAd img_url="/ads2.png" />  
 
             <div className="row mt-4">
                 <div className="col-md-12 col-sm-12 col-lg-12 col-xl-12 col-xxl-12">
@@ -206,11 +199,8 @@ export default function MainContent() {
                 </div>
             </div>
 
-            <div className="row mt-4">
-                <div className="col-md-12 col-sm-12 col-lg-12 col-xl-12 col-xxl-12">
-                    <WideAd img_url="/ads2.png" />  
-                </div>
-            </div>
+             
+            <WideAd img_url="/ads2.png" /> 
 
             <div className="row mt-4">
                 <div className="col-md-12 col-sm-12 col-lg-12 col-xl-12 col-xxl-12">
@@ -218,7 +208,7 @@ export default function MainContent() {
                         <section className="toll-plaza-regulations-section mt-4">
                             <h5 className="section-title">Toll Plaza regulations in India</h5>
                             <p className="page-content">
-                                India's road infrastructure has undergone a significant transformation in recent years, with toll plazas playing an instrumental role in funding these improvements. Toll plazas are essential for generating income to maintain and develop the expansive network of highways and expressways across the nation. However, managing these toll plazas necessitates strict regulations to ensure seamless operations and transparency. 
+                                India{"'"}s road infrastructure has undergone a significant transformation in recent years, with toll plazas playing an instrumental role in funding these improvements. Toll plazas are essential for generating income to maintain and develop the expansive network of highways and expressways across the nation. However, managing these toll plazas necessitates strict regulations to ensure seamless operations and transparency. 
                             </p>
                             <p className="page-content">
                                 As we step into 2023, there have been several changes and updates in the rules governing toll plaza operations. These alterations are aimed at enhancing efficiency, ensuring accountability, promoting digitization, and improving user experience.One of the major shifts has been towards electronic toll collection (ETC) systems. The government introduced FASTag - a device that employs Radio Frequency Identification (RFID) technology for making direct toll payments while the vehicle is in motion.
@@ -230,7 +220,7 @@ export default function MainContent() {
                                 This includes setting up control rooms at national and state levels for real-time tracking of revenue from each toll plaza as well as monitoring any anomalies or discrepancies that might occur.In terms of transparency measures, stricter auditing protocols have been put in place. Regular audits are conducted by independent agencies to assess financial management at these facilities. In addition to this, efforts are being made to make information regarding toll rates more accessible to commuters through digital platforms like mobile applications or websites. 
                             </p>
                             <p className    ="page-content">
-                                Furthermore, customer service has become a focal point of reforms with grievance redressal mechanisms being strengthened at all levels - be it online or offline mode. For instance, dedicated helpline numbers have been launched where commuters can register their complaints related to overcharging or poor service quality among other issues.To sum up, India's approach towards administering its vast network of toll plazas is becoming increasingly comprehensive as we move forward into 2023 – focusing on technological advancements for operational efficiency; stringent regulatory checks for financial integrity; enhanced communication channels for improved customer satisfaction; and robust auditing procedures for maintaining transparency.
+                                Furthermore, customer service has become a focal point of reforms with grievance redressal mechanisms being strengthened at all levels - be it online or offline mode. For instance, dedicated helpline numbers have been launched where commuters can register their complaints related to overcharging or poor service quality among other issues.To sum up, India{"'"}s approach towards administering its vast network of toll plazas is becoming increasingly comprehensive as we move forward into 2023 – focusing on technological advancements for operational efficiency; stringent regulatory checks for financial integrity; enhanced communication channels for improved customer satisfaction; and robust auditing procedures for maintaining transparency.
                             </p>
                         </section>
                     </div>

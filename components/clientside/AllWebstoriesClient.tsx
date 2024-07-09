@@ -5,7 +5,7 @@ import { fetchPostsByCategory } from "@/services/wordpress";
 import LoadingSkeleton from "../skeletons/loadingskeleton";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { Swiper, SwiperSlide } from 'swiper/react';
+import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
 // import 'swiper/swiper-bundle.min.css';
 // import 'swiper/swiper.min.css';
@@ -45,15 +45,15 @@ const AllWebstoriesClient: React.FC<AllWebstoriesProps> = ({
 
   useEffect(() => {
     const handleEsc = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
+      if (event.key === "Escape") {
         closePopup();
       }
     };
 
-    document.addEventListener('keydown', handleEsc);
+    document.addEventListener("keydown", handleEsc);
 
     return () => {
-      document.removeEventListener('keydown', handleEsc);
+      document.removeEventListener("keydown", handleEsc);
     };
   }, []);
 
@@ -69,7 +69,10 @@ const AllWebstoriesClient: React.FC<AllWebstoriesProps> = ({
     numberOfPosts: number,
     page: number
   ): Promise<Post[]> => {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_CUSTOM_URL}/webstories/?per_page=12`, { next: { revalidate: 3600 } });
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_BASE_CUSTOM_URL}/webstories/?per_page=12`,
+      { next: { revalidate: 3600 } }
+    );
     if (!response.ok) {
       throw new Error("Failed to fetch posts");
     }
@@ -145,6 +148,11 @@ const AllWebstoriesClient: React.FC<AllWebstoriesProps> = ({
               </div>
             </div>
           ))}
+          {posts.length === 0 && (
+            <p className="noPostsWrap shadow24" style={{ textAlign: "center" }}>
+              No webstories found!
+            </p>
+          )}
         </div>
       </div>
       <div>
@@ -162,7 +170,7 @@ const AllWebstoriesClient: React.FC<AllWebstoriesProps> = ({
               <Swiper
                 initialSlide={activeSlide}
                 pagination={{
-                  type: 'fraction',
+                  type: "fraction",
                 }}
                 navigation={true}
                 modules={[Pagination, Navigation]}

@@ -4,16 +4,6 @@ export interface NearByStationData {
     id: number;
     name: string;
     slug: string;
-    isPopular: number;
-    url: string;
-    title: string;
-    subCities: any[]; // Adjust this type based on your actual data structure
-    stateId: number;
-    translatedLabel: string;
-    CDN: string;
-    CID: number;
-    P: number;
-    regionId: number;
 }
 
 interface PetrolCitiesProps {
