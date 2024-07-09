@@ -63,11 +63,9 @@ const CityContent = ({ params }: { params: { slug: string } }) => {
                 </div>
             </div>
 
-            <div className="row">
-                <div className="col-md-12 col-sm-12 col-lg-12 col-xl-12 col-xxl-12">
-                    <WideAd img_url="/ads2.png" />
-                </div>
-            </div>
+           
+            <WideAd img_url="/ads2.png" />
+                 
 
             <div className="row">
                 <div className="col-md-12 col-sm-12 col-lg-12 col-xl-12 col-xxl-12">
