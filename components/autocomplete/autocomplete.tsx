@@ -3,16 +3,14 @@
 import { ChangeEvent, useState, useRef, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 
-interface CatProps {
-  catId?: number;
-}
+interface CatProps {}
 
 interface Category {
   name: string;
   slug: string;
 }
 
-const Autocomplete: React.FC<CatProps> = ({ catId }) => {
+const Autocomplete: React.FC<CatProps> = () => {
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
   const [categories, setCategories] = useState<Category[]>([]);
@@ -31,7 +29,7 @@ const Autocomplete: React.FC<CatProps> = ({ catId }) => {
     };
 
     fetchData();
-  }, [catId]);
+  }, []);
 
   const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
