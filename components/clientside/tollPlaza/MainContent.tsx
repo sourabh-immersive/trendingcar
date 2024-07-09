@@ -105,18 +105,18 @@ export default function MainContent(states:Props) {
                             <h5 className="section-title text-white">Toll Plaza List by Major Cities</h5>
                             <small className="text-white">Top cities in India</small><br />
                             <div className="row">
-                            <div className="col-md-12 col-sm-12 col-lg-12 col-xl-12 col-xxl-12">
-                                <div className="container">
-                                    <ul className="inline-block mt-2 cities-loader-container">
-                                        
-                                            <li   className="inline-block mb-2"> 
-                                                <Link href={`/Madhya-pradesh/indore`}> Indore </Link>
-                                            </li>
-                                        
-                                    </ul>
+                                <div className="col-md-12 col-sm-12 col-lg-12 col-xl-12 col-xxl-12">
+                                    <div className="container">
+                                        <ul className="inline-block mt-2 cities-loader-container">
+                                            
+                                                <li   className="inline-block mb-2"> 
+                                                    <Link href={`/Madhya-pradesh/indore`}> Indore </Link>
+                                                </li>
+                                            
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
                              
                         </section>
                     </div>
