@@ -1,91 +1,111 @@
-import React, { useState, ChangeEvent, useEffect } from 'react';
-import Autosuggest from 'react-autosuggest';
+'use client';
+
+import { ChangeEvent, useState, useRef, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 
-interface City {
-  id: number;
+interface CatProps {
+  catId?: number;
+}
+
+interface Category {
   name: string;
   slug: string;
 }
 
-const getSuggestionValue = (suggestion: City) => suggestion.name;
-
-const renderSuggestion = (suggestion: City) => (
-  <div>
-    {suggestion.name}
-  </div>
-);
-
-interface AutocompleteProps {
-  value: string;
-  onChange: (event: ChangeEvent<HTMLInputElement>, newValue: string) => void;
-}
-
-const Autocomplete: React.FC<AutocompleteProps> = ({ value, onChange }) => {
-  const [suggestions, setSuggestions] = useState<City[]>([]);
-  const [cities, setCities] = useState<City[]>([]);
-  const router = useRouter(); // Ensure this is within the component that is part of Next.js context
+const Autocomplete: React.FC<CatProps> = ({ catId }) => {
+  const [searchTerm, setSearchTerm] = useState<string>('');
+  const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
+  const [categories, setCategories] = useState<Category[]>([]);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+  const router = useRouter();
 
   useEffect(() => {
-    // Fetch cities from the API
-    const fetchCities = async () => {
-      try {
-        const response = await fetch('https://trendingcar.com/admin/api/fuelStationCities'); // Replace with your API endpoint
-       
-        const dataCity = await response.json();
-        const data: City[] = dataCity.data;
-        setCities(data);
-      } catch (error) {
-        console.error('Error fetching cities:', error);
+    const fetchData = async () => {
+      const res = await fetch(
+        `https://trendingcar.com/admin/api/fuelStationCities`,
+        { next: { revalidate: 3600 } }
+      );
+      const data1 = await res.json();
+      const data = data1.data;
+      setCategories(data.map((category: any) => ({ name: category.name, slug: category.slug })));
+    };
+
+    fetchData();
+  }, [catId]);
+
+  const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(e.target.value);
+  };
+
+  const handleSelect = (category: Category) => {
+    setSearchTerm(category.name);
+    setIsDropdownOpen(false);
+    router.push(`/fuel-stations/${category.slug}`);
+  };
+
+  const handleInputClick = () => {
+    setIsDropdownOpen(true);
+  };
+ 
+  const filteredCategories = categories.filter((category) =>
+    category.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsDropdownOpen(false);
       }
     };
 
-    fetchCities();
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
   }, []);
 
-  const getSuggestions = (value: string) => {
-    const inputValue = value.trim().toLowerCase();
-    const inputLength = inputValue.length;
-
-    return inputLength === 0 ? [] : cities.filter(
-      city => city.name.toLowerCase().slice(0, inputLength) === inputValue
-    );
-  };
-
-  const onSuggestionsFetchRequested = ({ value }: { value: string }) => {
-    setSuggestions(getSuggestions(value));
-  };
-
-  const onSuggestionsClearRequested = () => {
-    setSuggestions([]);
-  };
-
-  const onSuggestionSelected = (
-    event: React.FormEvent<HTMLInputElement>,
-    { suggestion }: { suggestion: City }
-  ) => {
-    console.log('suggestion--', suggestion.slug);
-    onChange(event as ChangeEvent<HTMLInputElement>, suggestion.name);
-    router.push(`/fuel-stations/${suggestion.slug}`);
-  };
-
   return (
-    <Autosuggest
-      suggestions={suggestions}
-      onSuggestionsFetchRequested={onSuggestionsFetchRequested}
-      onSuggestionsClearRequested={onSuggestionsClearRequested}
-      getSuggestionValue={getSuggestionValue}
-      renderSuggestion={renderSuggestion}
-      onSuggestionSelected={onSuggestionSelected}
-      inputProps={{
-        placeholder: "Search your city (e.g. Indore, Bhopal)",
-        value,
-        onChange: (event, { newValue }) => {
-          onChange(event as ChangeEvent<HTMLInputElement>, newValue);
-        }
-      }}
-    />
+    <div id="Autocomplete" className="mt-3 mb-4">
+      <div className="row">
+        <div className="col-md-8">
+          <label htmlFor="categorySelect" className="form-label">
+            Select News Category
+          </label>
+          <div className="position-relative" ref={dropdownRef}>
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Search categories"
+              value={searchTerm}
+              onChange={handleSearchChange}
+              onClick={handleInputClick}
+            />
+            {isDropdownOpen && (
+              <div className="dropdown-menu show w-100">
+                {filteredCategories.length > 0 ? (
+                  filteredCategories.map((category) => (
+                    <button
+                      key={category.slug}
+                      className="dropdown-item"
+                      type="button"
+                      onClick={() => handleSelect(category)}
+                    >
+                      {category.name}
+                    </button>
+                  ))
+                ) : (
+                  <div className="dropdown-item">No results found</div>
+                )}
+              </div>
+            )}
+          </div>
+        </div>
+         
+      </div>
+    </div>
   );
 };
 
 export default Autocomplete;
+ 
