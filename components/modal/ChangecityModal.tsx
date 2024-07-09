@@ -8,17 +8,7 @@ interface ChangecityModalProps {
 }
 
 const ChangecityModal: React.FC<ChangecityModalProps> = ({ show, handleClose, onSearch }) => {
-  const [city, setCity] = useState<string>('');
-
-  const handleInputChange = (event: ChangeEvent<HTMLInputElement>, newValue: string) => {
-    console.log('newValue', newValue);
-    setCity(newValue);
-  };
-
-    const handleSearch = () => {
-        console.log('Search for:', city);
-        handleClose();
-    };
+   
     return (
         <>
             {show && <div className="modal-backdrop fade show"></div>}
@@ -38,7 +28,7 @@ const ChangecityModal: React.FC<ChangecityModalProps> = ({ show, handleClose, on
                             </div>
                         </div>
                         <div className="modal-body">
-                            <Autocomplete value={city} onChange={handleInputChange} />
+                            <Autocomplete />
                         </div>
                     </div>
                 </div>

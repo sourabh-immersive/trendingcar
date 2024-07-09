@@ -43,13 +43,9 @@ export default function Page({ params }: { params: { slug: string } }) {
   const handleSearch = (searchText: string) => {
     console.log('Searching for:', searchText);
     // Add your search logic here
-  };
-  const [city, setCity] = useState<string>('');
+  }; 
 
-  const handleInputChange = (event: ChangeEvent<HTMLInputElement>, newValue: string) => {
-    console.log('newValue', newValue);
-    setCity(newValue);
-  };
+ 
 
   const handleModalSearch = (city: string) => {
     console.log('Searching for petrol pumps in:', city);
@@ -136,13 +132,7 @@ export default function Page({ params }: { params: { slug: string } }) {
         
       <div className="row mt-4">
         <div className="col-md-12 col-sm-12 col-lg-12 col-xl-12 col-xxl-12">
-          <Autocomplete value={city} onChange={handleInputChange} />
-          {/* <SearchSection
-            title="Search Fuel stations in nearby cities"
-            placeholder="Enter Your City"
-            searchIconSrc="/search-black.png"
-            onSearch={handleSearch}
-          /> */}
+          <Autocomplete />
         </div>
       </div>
        
