@@ -2,6 +2,8 @@ import { Metadata, ResolvingMetadata } from "next";
 import { fetchPostBySlug } from "@/services/wordpress";
 import Image from "next/image";
 import Content from "@/components/skeletons/content";
+import formatDate from "@/utils/formatDate";
+import PostShare from "@/components/PostShare";
 
 type Props = {
   params: { slug: string };
@@ -75,44 +77,55 @@ export default async function Page({ params }: { params: { slug: string } }) {
   let data = await res.json();
   data = data[0];
 
+  function getFirstWord(str: string) {
+    return str.split(" ")[0];
+  }
   return (
     <>
-      <div className="row">
-        <section className="left-container">
-          <div className="row single-content-area">
-            <div className="col-md-12 col-sm-12 col-lg-12 col-xl-12 col-xxl-12">
-              {data ? (
-                <div>
-                  { data.featured_image_url && 
+      <div className="single-content-area shadow24">
+        <div className="row">
+          <div className="col-md-1">
+            <div className="socialShareDiv text-center">
+              <PostShare title={data.title?.rendered} shareUrl={data.link} />
+            </div>
+          </div>
+          <div className="col-md-11">
+            {data ? (
+              <div>
+                <h1>{data.title?.rendered}</h1>
+                <p className="publishText">
+                  Published On {formatDate(data.date)} By{" "}
+                  {getFirstWord(data.author_nicename)}
+                </p>
+                {data.featured_image_url && (
                   <Image
                     src={data.featured_image_url}
                     alt={data.title}
                     width={0}
                     height={0}
                     style={{ width: "100%", height: "auto" }}
-                  /> }
-                  <h1>{data.title?.rendered}</h1>
-                  <div
-                    dangerouslySetInnerHTML={{
-                      __html: data.content?.rendered || "No Content",
-                    }}
                   />
-                </div>
-              ) : (
-                <Content />
-              )}
+                )}
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: data.content?.rendered || "No Content",
+                  }}
+                />
+              </div>
+            ) : (
+              <Content />
+            )}
 
-              {data.tag_names != 0 && (
-                <div className="post_tags">
-                  Tags:{" "}
-                  {data.tag_names.map((tag: string, index: number) => (
-                    <span key={index}>{tag}</span>
-                  ))}
-                </div>
-              )}
-            </div>
+            {data.tag_names != 0 && (
+              <div className="post_tags">
+                Tags:{" "}
+                {data.tag_names.map((tag: string, index: number) => (
+                  <span key={index}>{tag}</span>
+                ))}
+              </div>
+            )}
           </div>
-        </section>
+        </div>
       </div>
     </>
   );

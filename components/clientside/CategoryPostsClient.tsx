@@ -9,28 +9,28 @@ import Link from "next/link";
 const API_BASE_URL = "https://wp.trendingcar.com/wp-json/wp/v2";
 
 interface Post {
-    id: number;
-    slug: string;
-    title: {
-      rendered: string;
-    };
-    featured_image_url?: string;
-    author?: string;
-    date?: string;
-  }
+  id: number;
+  slug: string;
+  title: {
+    rendered: string;
+  };
+  featured_image_url?: string;
+  author?: string;
+  date?: string;
+}
 
 interface AllCategoryProps {
   initialPosts: Post[];
   numberOfPosts: number;
   category: string;
-  totalPages:number;
+  totalPages: number;
 }
 
 const CategoryPostsClient: React.FC<AllCategoryProps> = ({
   initialPosts,
   category,
   numberOfPosts,
-  totalPages
+  totalPages,
 }) => {
   const [posts, setPosts] = useState<Post[]>(initialPosts);
   const [loading, setLoading] = useState<boolean>(false);
@@ -40,15 +40,14 @@ const CategoryPostsClient: React.FC<AllCategoryProps> = ({
   const [initialLoad, setInitialLoad] = useState<boolean>(true);
   const initialRender = useRef(true);
 
-  
-
   const getCategoryPosts = async (
     numberOfPosts: number,
     page: number,
     category: string
   ): Promise<Post[]> => {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/posts?category_slug=${category}&per_page=${numberOfPosts}&page=${page}`,
-    { next: { revalidate: 3600 } }
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_BASE_URL}/posts?category_slug=${category}&per_page=${numberOfPosts}&page=${page}`,
+      { next: { revalidate: 3600 } }
     );
     if (!response.ok) {
       throw new Error("Failed to fetch posts");
@@ -61,8 +60,8 @@ const CategoryPostsClient: React.FC<AllCategoryProps> = ({
     // console.log("insideupdate", page);
     try {
       const postsData = await getCategoryPosts(numberOfPosts, page, category);
-    //   console.log("prev posts", posts);
-    //   console.log(postsData);
+      //   console.log("prev posts", posts);
+      //   console.log(postsData);
       if (postsData.length === 0) {
         setHasMore(false);
       } else {
@@ -91,12 +90,12 @@ const CategoryPostsClient: React.FC<AllCategoryProps> = ({
   }, [page]);
 
   const loadMore = () => {
-    if( page < totalPages ) {
+    if (page < totalPages) {
       setPage((prevPage) => prevPage + 1);
     } else {
       setHasMore(false);
     }
-    console.log('loadmore', page);
+    console.log("loadmore", page);
   };
 
   //   console.log('initial page', page);
@@ -114,7 +113,8 @@ const CategoryPostsClient: React.FC<AllCategoryProps> = ({
                 <Image
                   className="card-img-top"
                   src={
-                    post.featured_image_url || "https://via.placeholder.com/600x400"
+                    post.featured_image_url ||
+                    "https://via.placeholder.com/600x400"
                   }
                   alt="Card image cap"
                   width="600"
@@ -131,8 +131,13 @@ const CategoryPostsClient: React.FC<AllCategoryProps> = ({
           </div>
         ))}
       </div>
+      {posts.length === 0 && (
+        <p className="noPostsWrap shadow24" style={{ textAlign: "center" }}>
+          No posts found!
+        </p>
+      )}
       {loading && <p className="loadingText">Loading...</p>}
-      {!loading && hasMore && (totalPages > page) && (
+      {!loading && hasMore && totalPages > page && (
         <div className="row" style={{ display: "block" }}>
           <button onClick={loadMore} className="btn btn-primary load_more_btn">
             Load More

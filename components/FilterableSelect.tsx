@@ -1,34 +1,43 @@
-'use client'
+'use client';
 
-import { ChangeEvent, useState, useRef } from 'react';
-import { useEffect } from 'react';
-import { useRouter } from 'next/navigation'
+import { ChangeEvent, useState, useRef, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 
-interface catProps {
-    catId?: number;
+interface CatProps {
+  catId?: number;
 }
 
-const FilterableSelect: React.FC<catProps> = async ( catId ) => {
+interface Category {
+  name: string;
+  slug: string;
+}
+
+const FilterableSelect: React.FC<CatProps> = ({ catId }) => {
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
+  const [categories, setCategories] = useState<Category[]>([]);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
 
-//   const res = await fetch(
-//     `${process.env.NEXT_PUBLIC_API_BASE_URL}/categories?parent=${catId}`,
-//     { next: { revalidate: 3600 } }
-//   );
-//   let data = await res.json();
-// //   console.log(data);
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/categories?parent=${catId}&per_page=100`,
+        { next: { revalidate: 3600 } }
+      );
+      const data = await res.json();
+      setCategories(data.map((category: any) => ({ name: category.name, slug: category.slug })));
+    };
 
-  const categories: string[] = ['Maruti', 'Hyundai', 'Tata', 'Mahindra'];
+    fetchData();
+  }, [catId]);
 
   const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
   };
 
-  const handleSelect = (category: string) => {
-    setSearchTerm(category);
+  const handleSelect = (category: Category) => {
+    setSearchTerm(category.name);
     setIsDropdownOpen(false);
   };
 
@@ -37,13 +46,17 @@ const FilterableSelect: React.FC<catProps> = async ( catId ) => {
   };
 
   const handleSubmit = () => {
-    if (searchTerm) {
-        router.push(`/car-brands/${searchTerm.toLowerCase()}`);
+    const selectedCategory = categories.find(category => category.name.toLowerCase() === searchTerm.toLowerCase());
+    if (selectedCategory) {
+      router.push(`/car-brands/${selectedCategory.slug}`);
+    } else {
+      // Optionally, you can handle the case where no matching category is found.
+      console.error('No matching category found');
     }
   };
 
   const filteredCategories = categories.filter((category) =>
-    category.toLowerCase().includes(searchTerm.toLowerCase())
+    category.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   useEffect(() => {
@@ -61,9 +74,9 @@ const FilterableSelect: React.FC<catProps> = async ( catId ) => {
   }, []);
 
   return (
-    <div className="container mt-5">
+    <div id="filterableSelect" className="mt-3 mb-4">
       <div className="row">
-        <div className="col-md-6">
+        <div className="col-md-8">
           <label htmlFor="categorySelect" className="form-label">
             Select News Category
           </label>
@@ -81,12 +94,12 @@ const FilterableSelect: React.FC<catProps> = async ( catId ) => {
                 {filteredCategories.length > 0 ? (
                   filteredCategories.map((category) => (
                     <button
-                      key={category}
+                      key={category.slug}
                       className="dropdown-item"
                       type="button"
                       onClick={() => handleSelect(category)}
                     >
-                      {category}
+                      {category.name}
                     </button>
                   ))
                 ) : (
@@ -96,8 +109,8 @@ const FilterableSelect: React.FC<catProps> = async ( catId ) => {
             )}
           </div>
         </div>
-        <div className="col-md-2 d-flex align-items-end">
-          <button className="btn btn-danger w-100" type="button" onClick={handleSubmit}>
+        <div className="col-md-4 d-flex align-items-end">
+          <button className="btn btn-primary w-100 submitBtn" type="button" onClick={handleSubmit}>
             Search
           </button>
         </div>

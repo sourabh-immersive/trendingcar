@@ -6,6 +6,7 @@ import LoadingSkeleton from "../skeletons/loadingskeleton";
 import Image from "next/image";
 import Link from "next/link";
 import FilterableSelect from "../FilterableSelect";
+import formatDate from "@/utils/formatDate";
 
 interface Post {
   id: number;
@@ -29,7 +30,7 @@ const ArchivePosts: React.FC<AllCategoryProps> = ({
   initialPosts,
   numberOfPosts,
   totalPage,
-  categorySlug
+  categorySlug,
 }) => {
   const [posts, setPosts] = useState<Post[]>(initialPosts);
   const [loading, setLoading] = useState<boolean>(false);
@@ -106,8 +107,7 @@ const ArchivePosts: React.FC<AllCategoryProps> = ({
           <Link href={`/car-news-india/${post.slug}`}>
             <Image
               src={
-                post.featured_image_url ||
-                "https://via.placeholder.com/315x210"
+                post.featured_image_url || "https://via.placeholder.com/315x210"
               }
               alt="Comparison Image"
               width={315}
@@ -115,26 +115,39 @@ const ArchivePosts: React.FC<AllCategoryProps> = ({
             />
           </Link>
           <div className="card-body-custom">
-          <Link href={`/car-news-india/${post.slug}`}>
-            <h5 className="card-title-custom" dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
-          </Link>
+            <Link href={`/car-news-india/${post.slug}`}>
+              <h5
+                className="card-title-custom"
+                dangerouslySetInnerHTML={{ __html: post.title.rendered }}
+              />
+            </Link>
             <p className="card-text-custom">
               The Venue N Line produces more power and torque than the Taisor.
               But which one is quicker? Let’s find out
             </p>
             <div className="card-author">
-              <div className="author-image">{ (post.author_nicename) ? post.author_nicename.substring(0, 1).toUpperCase() : 'T' }</div>
+              <div className="author-image">
+                {post.author_nicename
+                  ? post.author_nicename.substring(0, 1).toUpperCase()
+                  : "T"}
+              </div>
               <div className="author-details">
-                <div>{ post.author_nicename }</div>
-                <div>{ post.date }</div>
+                <div>{post.author_nicename}</div>
+                <div>{formatDate(post.date ? post.date : "")}</div>
               </div>
             </div>
           </div>
         </div>
       ))}
 
+      {posts.length === 0 && (
+        <p className="noPostsWrap shadow24" style={{ textAlign: "center" }}>
+          No posts found!
+        </p>
+      )}
+
       {loading && <p className="loadingText">Loading...</p>}
-      {!loading && hasMore && (
+      {!loading && hasMore && posts.length !== 0 && (
         <div className="row" style={{ display: "block" }}>
           <button onClick={loadMore} className="btn btn-primary load_more_btn">
             Load More

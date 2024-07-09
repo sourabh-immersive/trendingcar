@@ -8,6 +8,7 @@ type Props = {
 };
 
 export default async function Page({ params }: { params: { brands: string } }) {
+  const category = { id: 1, name: "Car News", slug: "car-news-india" };
 //   console.log(params.brands);
 const { brands } = params;
   const res = await fetch(
@@ -28,8 +29,8 @@ const { brands } = params;
   return (
     <main>
       <section className="left-container">
-      <h1>Cars news India - {convertSlugToHeading(brands)} news</h1>
-      <FilterableSelect />
+      {/* <h1>Cars news India - {convertSlugToHeading(brands)} news</h1> */}
+      <FilterableSelect catId={category.id} />
         <ArchivePosts
           initialPosts={initialPosts}
           numberOfPosts={9}

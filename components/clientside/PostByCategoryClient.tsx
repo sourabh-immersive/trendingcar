@@ -49,7 +49,10 @@ const PostbyCategoryClient: React.FC<PostbyCategoryProps> = ({
     numberOfPosts: number,
     page: number
   ): Promise<Post[]> => {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/posts?category_slug=${category}&per_page=${numberOfPosts}&page=${page}`, { next: { revalidate: 3600 } });
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_BASE_URL}/posts?category_slug=${category}&per_page=${numberOfPosts}&page=${page}`,
+      { next: { revalidate: 3600 } }
+    );
     console.log(response);
     if (!response.ok) {
       throw new Error("Failed to fetch posts");
@@ -59,13 +62,17 @@ const PostbyCategoryClient: React.FC<PostbyCategoryProps> = ({
 
   const updatePosts = async (page: number) => {
     setLoading(true);
-    console.log('insideupdate', page);
+    console.log("insideupdate", page);
     try {
-      const postsData = await getPostsListCategory(category, numberOfPosts, page);
+      const postsData = await getPostsListCategory(
+        category,
+        numberOfPosts,
+        page
+      );
       if (postsData.length === 0) {
         setHasMore(false);
       } else {
-          setPosts(prevPosts => [...prevPosts, ...postsData]);
+        setPosts((prevPosts) => [...prevPosts, ...postsData]);
       }
     } catch (err: unknown) {
       if (err instanceof Error) {
@@ -77,7 +84,7 @@ const PostbyCategoryClient: React.FC<PostbyCategoryProps> = ({
       setLoading(false);
       setInitialLoad(false);
     }
-  }
+  };
 
   useEffect(() => {
     if (initialRender.current) {
@@ -89,9 +96,8 @@ const PostbyCategoryClient: React.FC<PostbyCategoryProps> = ({
   }, [page]);
 
   const loadMore = () => {
-    setPage(prevPage => prevPage + 1);
+    setPage((prevPage) => prevPage + 1);
     // console.log('loadmore', page);
-    
   };
   // console.log('initial page', page);
   if (loading && initialLoad) return <LoadingSkeleton />;
@@ -101,21 +107,21 @@ const PostbyCategoryClient: React.FC<PostbyCategoryProps> = ({
     <div className="PostbyCategory-section">
       <div className="row">
         <header className="d-flex flex-wrap justify-content-between align-items-center pt-4 mb-2">
-          <div
-            className="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none"
-          >
+          <div className="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
             <h2 className="fs-4">{title}</h2>
           </div>
-          { linkText && (<Link href={link} className="">
-            {linkText}{" "}
-            <Image
-              className="iconInLink"
-              src="/icons/right-arrow.png"
-              alt="web stories"
-              width="25"
-              height="25"
-            />
-          </Link> )}
+          {linkText && (
+            <Link href={link} className="">
+              {linkText}{" "}
+              <Image
+                className="iconInLink"
+                src="/icons/right-arrow.png"
+                alt="web stories"
+                width="25"
+                height="25"
+              />
+            </Link>
+          )}
         </header>
       </div>
       <div className="row">
@@ -144,10 +150,17 @@ const PostbyCategoryClient: React.FC<PostbyCategoryProps> = ({
           </div>
         ))}
       </div>
+      {posts.length === 0 && (
+        <p className="noPostsWrap shadow24" style={{ textAlign: "center" }}>
+          No posts found!
+        </p>
+      )}
       {loading && <p className="loadingText">Loading...</p>}
       {loadMoreEnabled && hasMore && !loading && (
-        <div className="row" style={{display: 'block'}}>
-          <button onClick={loadMore} className="btn btn-primary load_more_btn">Load More</button>
+        <div className="row" style={{ display: "block" }}>
+          <button onClick={loadMore} className="btn btn-primary load_more_btn">
+            Load More
+          </button>
         </div>
       )}
     </div>

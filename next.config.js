@@ -15,14 +15,19 @@ module.exports = {
       unoptimized: true,
       formats: ['image/webp'],
     },
+    
     async redirects() {
       return [
         {
-          source: '/fuel-stations',
-          destination: '/fuel-stations/new-delhi',
+          source: '/car-brands',
+          destination: '/',
           permanent: true,
         },
+        {
+            source: '/fuel-stations',
+            destination: '/fuel-stations/new-delhi',
+            permanent: true,
+        }
       ]
     },
-     
   };
