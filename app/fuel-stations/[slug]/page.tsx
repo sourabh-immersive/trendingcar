@@ -134,20 +134,32 @@ export default function Page({ params }: { params: { slug: string } }) {
 
       <WideAd img_url="/ads2.png" />
         
-      <div className="row mt-4">
+      <div className="row mt-4 mb-4">
         <div className="col-md-12 col-sm-12 col-lg-12 col-xl-12 col-xxl-12">
-          <Autocomplete value={city} onChange={handleInputChange} />
-          {/* <SearchSection
-            title="Search Fuel stations in nearby cities"
-            placeholder="Enter Your City"
-            searchIconSrc="/search-black.png"
-            onSearch={handleSearch}
-          /> */}
+          <div className="container">
+            <div className="search-wraps">
+              <Autocomplete value={city} onChange={handleInputChange} />
+              {/* <SearchSection
+                title="Search Fuel stations in nearby cities"
+                placeholder="Enter Your City"
+                searchIconSrc="/search-black.png"
+                onSearch={handleSearch}
+              /> */}
+            </div>
+          </div>
         </div>
       </div>
        
-      <PetrolCities nearByStationData={nearByStationData} />
-          
+      <div className="row mt-4">
+        <div className="col-md-12 col-sm-12 col-lg-12 col-xl-12 col-xxl-12">
+          <div className="container">
+            <section className="list-by-cities-section">
+              <h5 className="section-title text-white">Fuel stations in nearby cities</h5>
+              <PetrolCities nearByStationData={nearByStationData} />
+            </section>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

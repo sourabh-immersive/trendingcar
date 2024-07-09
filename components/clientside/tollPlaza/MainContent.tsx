@@ -3,7 +3,7 @@
 import React, { useState } from 'react'
 import Page from '../blogs/[slug]/page'
 import WideAd from '@/components/advertisements/widead'
-import PetrolCities from "@/components/fuelstations/petrolcities";
+//import PetrolCities from "@/components/fuelstations/petrolcities";
 import TollplazaList from '@/components/tollplaza/TollplazaList';
 
 interface State {
@@ -118,9 +118,9 @@ export default function MainContent() {
                         <section className="list-by-cities-section mt-4">
                             <h5 className="section-title text-white">Toll Plaza List by Major Cities</h5>
                             <small className="text-white">Top cities in India</small><br />
-                            <PetrolCities  slug="Indore"/><br />
+                            
                             <small className="text-white d-block mt-2">All cities in India</small>
-                            <PetrolCities  slug="Indore"/>
+                            
                         </section>
                     </div>
                 </div>
