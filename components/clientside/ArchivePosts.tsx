@@ -5,26 +5,32 @@ import { fetchPostsByCategory } from "@/services/wordpress";
 import LoadingSkeleton from "../skeletons/loadingskeleton";
 import Image from "next/image";
 import Link from "next/link";
-
-const API_BASE_URL = "https://wp.trendingcar.com/wp-json/wp/v2";
+import FilterableSelect from "../FilterableSelect";
+import formatDate from "@/utils/formatDate";
 
 interface Post {
   id: number;
   slug: string;
-  name: string;
-  featured_img: string;
-  author?: string;
+  title: {
+    rendered: string;
+  };
+  featured_image_url?: string;
+  author_nicename?: string;
   date?: string;
 }
 
 interface AllCategoryProps {
   initialPosts: Post[];
   numberOfPosts: number;
+  totalPage: number;
+  categorySlug: string;
 }
 
-const ArchiveClient: React.FC<AllCategoryProps> = ({
+const ArchivePosts: React.FC<AllCategoryProps> = ({
   initialPosts,
   numberOfPosts,
+  totalPage,
+  categorySlug,
 }) => {
   const [posts, setPosts] = useState<Post[]>(initialPosts);
   const [loading, setLoading] = useState<boolean>(false);
@@ -39,7 +45,7 @@ const ArchiveClient: React.FC<AllCategoryProps> = ({
     page: number
   ): Promise<Post[]> => {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_BASE_URL}/categories?page=${page}&per_page=${numberOfPosts}`,
+      `${process.env.NEXT_PUBLIC_API_BASE_URL}/posts?category_slug=${categorySlug}&page=${page}&per_page=${numberOfPosts}`,
       { next: { revalidate: 3600 } }
     );
     if (!response.ok) {
@@ -83,8 +89,11 @@ const ArchiveClient: React.FC<AllCategoryProps> = ({
   }, [page]);
 
   const loadMore = () => {
-    setPage((prevPage) => prevPage + 1);
-    // console.log('loadmore', page);
+    if (page < totalPage) {
+      setPage((prevPage) => prevPage + 1);
+    } else {
+      setHasMore(false);
+    }
   };
 
   //   console.log('initial page', page);
@@ -92,40 +101,53 @@ const ArchiveClient: React.FC<AllCategoryProps> = ({
   if (error) return <p>Error: {error}</p>;
 
   return (
-    <div className="PostbyCategory-section">
-      <div className="row"></div>
-      <div className="row">
-        {posts.map((post, index) => (
-          <div className="col-md-4" data-index={index} key={post.id}>
-            <div className="card mb-4 box-shadow">
-              <Link href={`/blogs/categories/${post.slug}`}>
-                <Image
-                  className="card-img-top"
-                  src={
-                    post.featured_img || "https://via.placeholder.com/600x400"
-                  }
-                  alt="Card image cap"
-                  width="600"
-                  height="400"
-                />
-                <div className="card-body">
-                  <h5
-                    className="card-title"
-                    dangerouslySetInnerHTML={{ __html: post.name }}
-                  />
-                </div>
-              </Link>
+    <div className="PostbyCategory-section archive__posts">
+      {posts.map((post, index) => (
+        <div className="card-custom" data-index={index} key={post.id}>
+          <Link href={`/car-news-india/${post.slug}`}>
+            <Image
+              src={
+                post.featured_image_url || "https://via.placeholder.com/315x210"
+              }
+              alt="Comparison Image"
+              width={315}
+              height={210}
+            />
+          </Link>
+          <div className="card-body-custom">
+            <Link href={`/car-news-india/${post.slug}`}>
+              <h5
+                className="card-title-custom"
+                dangerouslySetInnerHTML={{ __html: post.title.rendered }}
+              />
+            </Link>
+            <p className="card-text-custom">
+              The Venue N Line produces more power and torque than the Taisor.
+              But which one is quicker? Let’s find out
+            </p>
+            <div className="card-author">
+              <div className="author-image">
+                {post.author_nicename
+                  ? post.author_nicename.substring(0, 1).toUpperCase()
+                  : "T"}
+              </div>
+              <div className="author-details">
+                <div>{post.author_nicename}</div>
+                <div>{formatDate(post.date ? post.date : "")}</div>
+              </div>
             </div>
           </div>
-        ))}
-      </div>
+        </div>
+      ))}
+
       {posts.length === 0 && (
         <p className="noPostsWrap shadow24" style={{ textAlign: "center" }}>
           No posts found!
         </p>
       )}
+
       {loading && <p className="loadingText">Loading...</p>}
-      {!loading && hasMore && (
+      {!loading && hasMore && posts.length !== 0 && (
         <div className="row" style={{ display: "block" }}>
           <button onClick={loadMore} className="btn btn-primary load_more_btn">
             Load More
@@ -137,4 +159,4 @@ const ArchiveClient: React.FC<AllCategoryProps> = ({
   );
 };
 
-export default ArchiveClient;
+export default ArchivePosts;
