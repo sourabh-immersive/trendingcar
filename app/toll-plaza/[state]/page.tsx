@@ -1,12 +1,24 @@
 import StateContent from "../../../components/clientside/tollPlaza/StateContent"
-
-export default function TollPlaza() {
-    // API Call Server Side 
-    const params = { slug: 'example-slug' };
-
+type Props = {
+    params: { state: string }; 
+};
+export default async function TollPlazaState( { params }: Props) {
+    const response = await fetch('https://trendingcar.com/admin/api/tollList', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            state_slug: params.state
+        })
+      });
+    if (!response.ok) {
+        throw new Error('Network response was not ok');
+    }
+    const data = await response.json();
     return (
        <>
-        <StateContent params={params} />
+        <StateContent tolls={data.data} slug={params.state} />
        </>
     )
 }
