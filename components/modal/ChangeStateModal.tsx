@@ -1,13 +1,13 @@
 import React, { useState, ChangeEvent } from 'react';
 import Autocomplete from '@/components/autocomplete/autocomplete';
 
-interface ChangecityModalProps {
+interface ChangeStateModalProps {
   show: boolean;
   handleClose: () => void;
   onSearch: (city: string) => void;
 }
 
-const ChangecityModal: React.FC<ChangecityModalProps> = ({ show, handleClose, onSearch }) => {
+const ChangeStateModal: React.FC<ChangeStateModalProps> = ({ show, handleClose, onSearch }) => {
    
     return (
         <>
@@ -28,7 +28,7 @@ const ChangecityModal: React.FC<ChangecityModalProps> = ({ show, handleClose, on
                             </div>
                         </div>
                         <div className="modal-body">
-                          <Autocomplete  api={'fuelStationCities'} type={'city'} redirect={'fuel-stations'}/>
+                        <Autocomplete  api={'stateList'} type={'State'} redirect={'toll-plaza'}/>
                         </div>
                     </div>
                 </div>
@@ -37,4 +37,4 @@ const ChangecityModal: React.FC<ChangecityModalProps> = ({ show, handleClose, on
     );
 };
 
-export default ChangecityModal;
+export default ChangeStateModal;

@@ -39,19 +39,7 @@ export default function Page({ params }: { params: { slug: string } }) {
   const [pageDescription, setPageDescription] = useState<String>(''); 
   const [pageTitle, setPageTitle] = useState<String>('');
   const [pageSize, setPageSize] = useState<number>(9); // Adjust page size as needed
-  const [modalOpen, setModalOpen] = useState(false); 
-  const handleSearch = (searchText: string) => {
-    console.log('Searching for:', searchText);
-    // Add your search logic here
-  }; 
-
- 
-
-  const handleModalSearch = (city: string) => {
-    console.log('Searching for petrol pumps in:', city);
-    setModalOpen(false);
-    // Add your modal search logic here
-  };
+  const [modalOpen, setModalOpen] = useState(false);
 
   const fetchPetrolPumpsData = async (page: number, pageSize: number) => {
     try {
@@ -134,7 +122,7 @@ export default function Page({ params }: { params: { slug: string } }) {
         <div className="col-md-12 col-sm-12 col-lg-12 col-xl-12 col-xxl-12">
           <div className="container">
             <div className="search-wraps">
-              <Autocomplete />
+              <Autocomplete  api={'fuelStationCities'} type={'city'} redirect={'fuel-stations'}/>
             </div>
           </div>
         </div>

@@ -1,12 +1,26 @@
 import CityContent from "../../../../components/clientside/tollPlaza/CityContent"
-
-export default function TollPlaza() {
-    // API Call Server Side 
-    const params = { slug: 'example-slug' };
+type Props = {
+    params: { city: string }; 
+};
+export default async function TollPlazaState( { params }: Props) {
+    console.log('params',params);
+    const response = await fetch('https://trendingcar.com/admin/api/tollList', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            city_slug: params.city
+        })
+      });
+    if (!response.ok) {
+        throw new Error('Network response was not ok');
+    }
+    const data = await response.json();
 
     return (
         <>
-            <CityContent params={params} />
+            <CityContent tolldata={data.data[0]} />
         </>
     )
 }
