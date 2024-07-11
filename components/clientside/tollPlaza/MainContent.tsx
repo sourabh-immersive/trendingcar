@@ -15,19 +15,23 @@ interface Props {
     states: State[];
 }
 
+
+type States = {
+    name: string;
+    imageUrl: string;
+    slug: string;
+}    
 export default function MainContent(states:Props) {
-
-     console.log(states);
-      
-    const [itemsToShow, setItemsToShow] = useState(6); // Initial number of items to show
-    const increment = 6; // Number of items to show on each "Show More"
-
-    const showMoreItems = () => {
-        setItemsToShow(itemsToShow + increment);
-    };
-
-    const showLessItems = () => {
-        setItemsToShow(6);
+    const [statesData, setStatesData] = useState<States[]>(states.states);
+    const [visibleStates, setVisibleStates] = useState<number>(6);
+    const [showMore, setShowMore] = useState<boolean>(false);
+    const toggleStates = () => {
+        if (showMore) {
+            setVisibleStates(6);
+        } else {
+            setVisibleStates(statesData.length); // Show all cities
+        }
+        setShowMore(!showMore);
     };
     return (
         <div>
@@ -51,30 +55,15 @@ export default function MainContent(states:Props) {
                                     <h5>Toll Plaza List by States in India</h5>
                                     <small>Top states in India</small>
                                     <div className="row">
-                                        {states.states.map((state:any, index) => (
+                                        {statesData.slice(0, visibleStates).map((state, index) => (
                                             <TollplazaList key={index} stateName={state.name} slug={state.slug} imageUrl='state.png' />
                                         ))}
                                     </div>
                                     <div className="row mt-4">
                                         <div className="col-12 text-center">
-                                            {itemsToShow < states.states.length && (
-                                                <a
-                                                    href="javascript:void(0);"
-                                                    className="text-primary text-decoration-none"
-                                                    onClick={showMoreItems}
-                                                >
-                                                    Show More
-                                                </a>
-                                            )}
-                                            {itemsToShow > 6 && (
-                                                <a
-                                                    href="javascript:void(0);"
-                                                    className="text-primary text-decoration-none ml-2"
-                                                    onClick={showLessItems}
-                                                >
-                                                    Show Less
-                                                </a>
-                                            )}
+                                            <button className="text-primary text-decoration-none ml-2" onClick={toggleStates}>
+                                                {showMore ? 'Show Less States' : 'Load More States'}
+                                            </button>
                                         </div>
                                     </div>
                                 </section>
@@ -98,7 +87,7 @@ export default function MainContent(states:Props) {
 
             <WideAd img_url="/ads2.png" />  
 
-            <div className="row mt-4">
+            {/* <div className="row mt-4">
                 <div className="col-md-12 col-sm-12 col-lg-12 col-xl-12 col-xxl-12">
                     <div className="container">
                         <section className="list-by-cities-section mt-4">
@@ -121,7 +110,7 @@ export default function MainContent(states:Props) {
                         </section>
                     </div>
                 </div>
-            </div>
+            </div> */}
 
             <div className="row mt-4">
                 <div className="col-md-12 col-sm-12 col-lg-12 col-xl-12 col-xxl-12">

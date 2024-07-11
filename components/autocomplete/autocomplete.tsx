@@ -3,14 +3,18 @@
 import { ChangeEvent, useState, useRef, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 
-interface CatProps {}
+interface CatProps {
+  api?: string;
+  type?: string;
+  redirect?:string;
+}
 
 interface Category {
   name: string;
   slug: string;
 }
-
-const Autocomplete: React.FC<CatProps> = () => {
+const Autocomplete: React.FC<CatProps> = ({ api,type,redirect }) => {
+  console.log(type);
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
   const [categories, setCategories] = useState<Category[]>([]);
@@ -20,7 +24,7 @@ const Autocomplete: React.FC<CatProps> = () => {
   useEffect(() => {
     const fetchData = async () => {
       const res = await fetch(
-        `https://trendingcar.com/admin/api/fuelStationCities`,
+        `https://trendingcar.com/admin/api/${api}`,
         { next: { revalidate: 3600 } }
       );
       const data1 = await res.json();
@@ -38,7 +42,7 @@ const Autocomplete: React.FC<CatProps> = () => {
   const handleSelect = (category: Category) => {
     setSearchTerm(category.name);
     setIsDropdownOpen(false);
-    router.push(`/fuel-stations/${category.slug}`);
+    router.push(`/${redirect}/${category.slug}`);
   };
 
   const handleInputClick = () => {
@@ -68,13 +72,13 @@ const Autocomplete: React.FC<CatProps> = () => {
       <div className="row">
         <div className="col-md-8">
           <label htmlFor="categorySelect" className="form-label">
-            Select News Category
+            Select {type}
           </label>
           <div className="position-relative" ref={dropdownRef}>
             <input
               type="text"
               className="form-control"
-              placeholder="Search categories"
+              placeholder= {`Search ${type}`}
               value={searchTerm}
               onChange={handleSearchChange}
               onClick={handleInputClick}
@@ -84,7 +88,7 @@ const Autocomplete: React.FC<CatProps> = () => {
                 {filteredCategories.length > 0 ? (
                   filteredCategories.map((category) => (
                     <button
-                      key={category.slug}
+                      key={`cat-${category.slug}`}
                       className="dropdown-item"
                       type="button"
                       onClick={() => handleSelect(category)}
