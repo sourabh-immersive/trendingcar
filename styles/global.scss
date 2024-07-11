@@ -36,9 +36,14 @@ body {
   border-radius: 30px;
 }
 
+
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: $primary-color;
+}
+
+:root {
+  --swiper-navigation-size: 22px!important;
 }
 
 h1,
@@ -111,8 +116,21 @@ ul.myList {
   }
 }
 
+.no-gutter{
+  padding-left:0px!important;
+  padding-right:0px!important;
+}
+
+.br-0{
+  border-radius:0px!important;
+}
+
 hr {
   color: rgba(36, 39, 44, 0.5);
+}
+
+.bg-hover-grey:hover{
+  background-color: #f8f8f8;
 }
 
 .publishText {
@@ -1571,3 +1589,10 @@ div#filterableSelect {
     border-radius: 0.5rem;
   }
 }
+
+// Top Cars
+
+.top-cars{
+  background-color: #0056D2;
+}
+
