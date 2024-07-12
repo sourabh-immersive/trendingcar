@@ -13,6 +13,7 @@ interface Category {
 }
 
 const FilterableSelect: React.FC<CatProps> = ({ catId }) => {
+  console.log('catId',catId);
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
   const [categories, setCategories] = useState<Category[]>([]);

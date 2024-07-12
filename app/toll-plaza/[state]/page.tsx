@@ -3,7 +3,7 @@ type Props = {
     params: { state: string }; 
 };
 export default async function TollPlazaState( { params }: Props) {
-    const response = await fetch('https://trendingcar.com/admin/api/tollList', {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_LARAVEL_BASE_URL}/tollList`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

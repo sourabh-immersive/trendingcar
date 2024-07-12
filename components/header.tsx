@@ -1,6 +1,6 @@
 import Link from "next/link";
 import React from "react";
-
+import Autocomplete from '@/components/autocomplete/autocomplete';
 export default function Header() {
   return (
     <div className="main-header">
@@ -16,7 +16,9 @@ export default function Header() {
               <span className="site-text fw-bold">#chuno apni best car</span>
             </div>
             <div className="col-md-4 my-2 my-md-0 searchbar">
-              <div className="input-group">
+            <Autocomplete  api={'fuelStationCities'} type={''} redirect={'car-brands'}/>
+              {/* <div className="input-group">
+             
                 <input
                   type="text"
                   className="form-control"
@@ -28,7 +30,7 @@ export default function Header() {
                     className="img-fluid"
                   />
                 </button>
-              </div>
+              </div> */}
             </div>
             <div className="col-md-4 d-flex justify-content-end">
               <a href="#" className="wishlist text-primary me-4">
@@ -38,14 +40,14 @@ export default function Header() {
                   className="logo"
                 />
               </a>
-              <a href="#" className="login text-black text-decorat">
+              {/* <a href="#" className="login text-black text-decorat">
                 <img
                   src="/user.png"
                   alt="User"
                   className="logo me-1"
                 />
                 Login / Register
-              </a>
+              </a> */}
             </div>
           </div>
         </div>
