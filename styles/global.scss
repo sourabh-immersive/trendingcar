@@ -1596,3 +1596,229 @@ div#filterableSelect {
   background-color: #0056D2;
 }
 
+// Compare Cars
+
+.comparisonsWrapper {
+  border-radius: 8px;
+  margin-bottom: 3px;
+  overflow: hidden;
+  .carBoxs {
+    float: left;
+    padding-left: 0;
+    position: relative;
+    width: 50%;
+  }
+}
+.shadowWPadding {
+  background: #fff;
+  border: 1px solid rgba(36,39,44,.1);
+  border-radius: 16px;
+  box-shadow: 0 1px 2px rgba(36,39,44,.1);
+  padding: 0;
+}
+@media screen and (min-width: 768px){
+  .comparisonsWrapper{
+    .holder {
+      padding-left: 16px;
+    }
+    .carBoxs{ 
+      .brandTitle {
+        font-size: 14px;
+      }
+      .modelTitle {
+        font-size: 16px;
+      }
+      .paddingnone {
+        min-height: inherit!important;
+      }
+      .price {
+        margin: 0 0 15px;
+      }
+    }
+  }
+}
+.comparisonsWrapper{
+  height: 130px!important;
+  .carBoxs{ 
+    border-radius: 8px 0 0;
+    .brandTitle {
+      color: #6f6f6f;
+      display: block;
+      font-size: 12px;
+      margin: 7px 0 0;
+    }
+    
+    .paddingnone {
+      min-height: 88px!important;
+      img{
+        height:226px;
+      }
+    }
+    .modelTitle {
+      color: #24272c;
+      display: block;
+      font-size: 14px;
+      font-weight: 500;
+    }
+  }
+  .holder {
+    padding-left: 12px;
+    position: static;
+  }
+  .vsTag {
+    background: #24272c;
+    border: 1px solid rgba(36,39,44,.15);
+    border-radius: 50%;
+    color: #fff;
+    font-weight: 500;
+    height: 36px;
+    line-height: 36px;
+    margin-top: -18px;
+    position: absolute;
+    right: -18px;
+    text-align: center;
+    top: 50%;
+    width: 36px;
+    z-index: 1;
+  }
+}
+.comparisonsWrapper .holder {
+  padding-left: 16px;
+}
+
+.comparisonsWrapper 
+.paddingnone {
+  padding: 0;
+}
+
+/* custom css */
+
+.single-content-area p span{
+  font-size: 15px;
+  font-weight: 300!important;
+  color: #44475b;
+  font-family: "Poppins", sans-serif;
+  line-height: 28px;
+}
+.single-content-area img{
+  width:100%;
+}
+.single-content-area h2 strong{
+  font-size:24px;
+  color:#44475b;
+  font-family: "Poppins", sans-serif;
+  margin-bottom: 15px!important;
+  font-weight: 500!important;
+  line-height: 35px;
+  margin-top: 15px!important;
+}
+.single-content-area h2 span{
+  font-size:24px;
+  font-weight:500!important;
+  color:#44475b;
+  font-family: "Poppins", sans-serif;
+  line-height:20px;
+  margin-bottom: 15px!important;
+}
+.single-content-area h2 b{
+  font-size: 24px;
+  color: #44475b;
+  font-family: "Poppins", sans-serif;
+  margin-bottom: 15px!important;
+  font-weight: 500!important;
+  line-height: 35px;
+  margin-top: 15px!important;
+}
+.single-content-area h3 b{
+  font-size: 24px;
+  color: #44475b;
+  font-family: "Poppins", sans-serif;
+  margin-bottom: 15px!important;
+  font-weight: 500!important;
+  line-height: 35px;
+  margin-top: 15px!important;
+}
+.single-content-area h3 strong{
+  font-size:20px;
+  font-weight:500;
+  font-family: "Poppins", sans-serif;
+  line-height: 28px;
+  color: #44475b;
+}
+.single-content-area h4 strong, .single-content-area h4 b{
+  font-size:18px;
+  font-weight:500;
+  font-family: "Poppins", sans-serif;
+  line-height: 28px;
+  color: #44475b;
+}
+.single-content-area ul {
+  margin-left:20px!important;
+  margin-bottom: 15px!important;
+}
+.single-content-area ul li span{
+  font-size:14px;
+  font-weight:300!important;
+  font-family: "Poppins", sans-serif;
+  line-height: 30px;
+  color: #44475b;
+}
+.single-content-area ul li a {
+  text-decoration:none;
+}
+.single-content-area ul {
+  margin-left:-15px!important;
+}
+.single-content-area ul li  {
+  font-size:14px;
+  font-weight:300!important;
+  font-family: "Poppins", sans-serif;
+  line-height: 30px;
+  color: #44475b;
+}
+.single-content-area ul li a span {
+  font-size:14px;
+  font-weight:600!important;
+  font-family: "Poppins", sans-serif;
+  line-height: 30px;
+  color: #44475b;
+}
+.single-content-area ul li h3 {
+  font-size:16px;
+  font-weight:600!important;
+  font-family: "Poppins", sans-serif;
+  line-height: 30px;
+  color: #44475b;
+}
+.single-content-area ul li b {
+  font-weight:600!important;
+  color: #44475b;
+}
+.single-content-area ol li h3 span{
+  font-size: 20px;
+  font-weight: 500;
+  font-family: "Poppins", sans-serif;
+  line-height: 28px;
+  color: #44475b;
+}
+
+.main-footer .list-unstyled a{
+  color: #747474;
+  font-size: 14px;
+  font-weight: 200;
+}
+
+.r-0{right:0px;}
+.t-0{top:0px;}
+
+
+.Autocomplete {
+  display: block;
+  max-height: 282px;
+  overflow-y: scroll;
+}
+
+.main-footer{
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+}
