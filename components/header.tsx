@@ -1,5 +1,6 @@
 import Link from "next/link";
 import React from "react";
+import FilterableSelect from "./FilterableSelect";
 
 export default function Header() {
   return (
@@ -8,42 +9,29 @@ export default function Header() {
         <div className="container-fluid">
           <div className="row align-items-center">
             <div className="col-md-4 d-flex align-items-center">
+              <Link
+              href="/">
               <img
                 src="/logo.png"
                 alt="Logo"
                 className="img-fluid logo me-4 cursor-pointer"
               />
+              </Link>
               <span className="site-text fw-bold">#chuno apni best car</span>
             </div>
             <div className="col-md-4 my-2 my-md-0 searchbar">
-              <div className="input-group">
-                <input
-                  type="text"
-                  className="form-control"
-                  placeholder="Search..."
-                />
-                <button className="btn btn-outline-secondary" type="button">
-                  <img
-                    src="/search-icon.png"
-                    className="img-fluid"
-                  />
-                </button>
-              </div>
+              <FilterableSelect postsData={true} />
             </div>
             <div className="col-md-4 d-flex justify-content-end">
               <a href="#" className="wishlist text-primary me-4">
-                <img
-                  src="/wishlist.png"
-                  alt="Wishlist"
-                  className="logo"
-                />
+                <img src="/wishlist.png" alt="Wishlist" className="logo" />
               </a>
-              <a href="#" className="login text-black text-decorat">
-                <img
-                  src="/user.png"
-                  alt="User"
-                  className="logo me-1"
-                />
+              <a
+                href="#"
+                className="login text-black text-decorat"
+                style={{ display: "none" }}
+              >
+                <img src="/user.png" alt="User" className="logo me-1" />
                 Login / Register
               </a>
             </div>
@@ -67,78 +55,35 @@ export default function Header() {
           <div className="collapse navbar-collapse" id="navbarMenu">
             <ul className="navbar-nav me-auto">
               <li className="nav-item me-4">
-                <Link
-                  className="nav-link"
-                  href="#"
-                >
-                  NEW CAR
+                <Link className="nav-link" href="/car-news-india">
+                  Car News
                 </Link>
               </li>
               <li className="nav-item me-4">
-                <Link
-                  className="nav-link"
-                  href="/rto"
-                >
-                  RTO
+                <Link className="nav-link" href="/car-collection">
+                  Car Collection
                 </Link>
               </li>
               <li className="nav-item me-4">
-                <Link
-                  className="nav-link"
-                  href="#"
-                >
-                  TOLL PLAZA
+                <Link className="nav-link" href="/car-expert-reviews">
+                  Car Expert Reviews
                 </Link>
               </li>
               <li className="nav-item me-4">
-                <Link
-                  className="nav-link"
-                  href="/blogs"
-                >
-                  Blogs & News
+                <Link className="nav-link" href="/rto">
+                  RTO's
+                </Link>
+              </li>
+
+              <li className="nav-item me-4">
+                <Link className="nav-link" href="/toll-plaza">
+                  Toll Plaza
                 </Link>
               </li>
               <li className="nav-item me-4">
-                <Link
-                  className="nav-link"
-                  href="/blogs"
-                >
-                  ELECTRIC VEHICLE
+                <Link className="nav-link" href="/tips-and-advice">
+                  Tips & Advice
                 </Link>
-              </li>
-              <li className="nav-item me-4">
-                <Link className="nav-link" href="#">
-                  IMAGES
-                </Link>
-              </li>
-              <li className="nav-item dropdown">
-                <Link
-                  className="nav-link dropdown-toggle"
-                  href="#"
-                  id="navbarDropdown"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  MORE
-                </Link>
-                <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li>
-                    <Link className="dropdown-item" href="#">
-                      Privacy Policy
-                    </Link>
-                  </li>
-                  <li>
-                    <Link className="dropdown-item" href="#">
-                      Terms of Use
-                    </Link>
-                  </li>
-                  <li>
-                    <Link className="dropdown-item" href="#">
-                      Latest Updates
-                    </Link>
-                  </li>
-                </ul>
               </li>
             </ul>
           </div>
@@ -146,4 +91,4 @@ export default function Header() {
       </nav>
     </div>
   );
-};
+}

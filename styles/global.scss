@@ -1,8 +1,9 @@
+$primary-color: #022aaf;
+
 @import "./variables";
 @import "./mixins";
 @import "~bootstrap/scss/bootstrap";
-
-$primary-color: #3498db;
+@import "./header";
 
 /* Override Bootstrap container width */
 @media (min-width: 1200px) {
@@ -220,6 +221,9 @@ button.btn.btn-primary.load_more_btn:hover {
 
 // Archive Posts Card Css
 .archive__posts {
+  p.card-title-customP {
+    margin-bottom: 0;
+}
   .card-custom {
     display: flex;
     align-items: center;
@@ -231,7 +235,7 @@ button.btn.btn-primary.load_more_btn:hover {
     background: #ffffff;
   }
   .card-custom img {
-    width: 315px;
+    width: 380px;
     height: 210px;
     object-fit: cover;
     border-radius: 0.5rem;
