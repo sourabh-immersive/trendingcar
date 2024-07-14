@@ -1,10 +1,12 @@
-'use client';
+"use client";
 
-import { ChangeEvent, useState, useRef, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import { ChangeEvent, useState, useRef, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { FaSistrix } from "react-icons/fa6";
 
 interface CatProps {
   catId?: number;
+  postsData?: boolean;
 }
 
 interface Category {
@@ -12,9 +14,8 @@ interface Category {
   slug: string;
 }
 
-const FilterableSelect: React.FC<CatProps> = ({ catId }) => {
-  console.log('catId',catId);
-  const [searchTerm, setSearchTerm] = useState<string>('');
+const FilterableSelect: React.FC<CatProps> = ({ catId, postsData }) => {
+  const [searchTerm, setSearchTerm] = useState<string>("");
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
   const [categories, setCategories] = useState<Category[]>([]);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -22,14 +23,34 @@ const FilterableSelect: React.FC<CatProps> = ({ catId }) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_BASE_URL}/categories?parent=${catId}&per_page=100`,
-        { next: { revalidate: 3600 } }
-      );
-      const data = await res.json();
-      setCategories(data.map((category: any) => ({ name: category.name, slug: category.slug })));
-    };
+      if (catId) {
+        const res = await fetch(
+          `${process.env.NEXT_PUBLIC_API_BASE_URL}/categories?parent=${catId}&per_page=100`,
+          { next: { revalidate: 3600 } }
+        );
+        const data = await res.json();
+        setCategories(
+          data.map((category: any) => ({
+            name: category.name,
+            slug: category.slug,
+          }))
+        );
+      }
 
+      if (postsData) {
+        const res = await fetch(
+          `${process.env.NEXT_PUBLIC_API_BASE_URL}/categories?parent=${1}&per_page=100`,
+          { next: { revalidate: 3600 } }
+        );
+        const data = await res.json();
+        setCategories(
+          data.map((category: any) => ({
+            name: category.name,
+            slug: category.slug,
+          }))
+        );
+      }
+    };
     fetchData();
   }, [catId]);
 
@@ -39,6 +60,19 @@ const FilterableSelect: React.FC<CatProps> = ({ catId }) => {
 
   const handleSelect = (category: Category) => {
     setSearchTerm(category.name);
+    if (catId == 91) {
+      router.push(`/tips-and-advice/${category.slug}`);
+    } 
+    if(catId == 1) {
+      router.push(`/car-news-india/${category.slug}`);
+    }
+    if(catId == 144) {
+      router.push(`/car-collection/${category.slug}`);
+    }
+    if(catId == 88) {
+      router.push(`/car-expert-reviews/${category.slug}`);
+    }
+    
     setIsDropdownOpen(false);
   };
 
@@ -47,12 +81,14 @@ const FilterableSelect: React.FC<CatProps> = ({ catId }) => {
   };
 
   const handleSubmit = () => {
-    const selectedCategory = categories.find(category => category.name.toLowerCase() === searchTerm.toLowerCase());
+    const selectedCategory = categories.find(
+      (category) => category.name.toLowerCase() === searchTerm.toLowerCase()
+    );
     if (selectedCategory) {
       router.push(`/car-brands/${selectedCategory.slug}`);
     } else {
       // Optionally, you can handle the case where no matching category is found.
-      console.error('No matching category found');
+      console.error("No matching data found");
     }
   };
 
@@ -62,22 +98,25 @@ const FilterableSelect: React.FC<CatProps> = ({ catId }) => {
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
         setIsDropdownOpen(false);
       }
     };
 
-    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
 
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
 
   return (
-    <div id="filterableSelect" className="mt-3 mb-4">
+    <div id="filterableSelect" className={` ${(postsData) ? 'headerSearch' : 'mt-3 mb-4'}`}>
       <div className="row">
-        <div className="col-md-8">
+        <div className={`${ postsData ? 'col-md-10' : 'col-md-8'}`}>
           <label htmlFor="categorySelect" className="form-label">
             Select News Category
           </label>
@@ -85,7 +124,7 @@ const FilterableSelect: React.FC<CatProps> = ({ catId }) => {
             <input
               type="text"
               className="form-control"
-              placeholder="Search categories"
+              placeholder="Search..."
               value={searchTerm}
               onChange={handleSearchChange}
               onClick={handleInputClick}
@@ -110,10 +149,22 @@ const FilterableSelect: React.FC<CatProps> = ({ catId }) => {
             )}
           </div>
         </div>
-        <div className="col-md-4 d-flex align-items-end">
-          <button className="btn btn-primary w-100 submitBtn" type="button" onClick={handleSubmit}>
-            Search
-          </button>
+        <div className={`${ postsData ? 'col-md-2' : 'col-md-4'} d-flex align-items-end`}>
+          {postsData && (
+            <button className="btn btn-outline-secondary" type="button" onClick={handleSubmit}>
+              <FaSistrix />
+            </button>
+          )}
+
+          {catId && (
+            <button
+              className="btn btn-primary w-100 submitBtn"
+              type="button"
+              onClick={handleSubmit}
+            >
+              Search
+            </button>
+          )}
         </div>
       </div>
     </div>
