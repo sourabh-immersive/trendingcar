@@ -2,18 +2,18 @@ import React from 'react';
 
 
 const carData = [
-    { id: 1, imgSrc: 'brands.png', alt: 'brands' },
-    { id: 2, imgSrc: 'brands.png', alt: 'brands' },
-    { id: 3, imgSrc: 'brands.png', alt: 'brands' },
-    { id: 4, imgSrc: 'brands.png', alt: 'brands' },
-    { id: 5, imgSrc: 'brands.png', alt: 'brands' },
-    { id: 6, imgSrc: 'brands.png', alt: 'brands' },
-    { id: 7, imgSrc: 'brands.png', alt: 'brands' },
-    { id: 8, imgSrc: 'brands.png', alt: 'brands' },
-    { id: 9, imgSrc: 'brands.png', alt: 'brands' },
-    { id: 10, imgSrc: 'brands.png', alt: 'brands' },
-    { id: 11, imgSrc: 'brands.png', alt: 'brands' },
-    { id: 12, imgSrc: 'brands.png', alt: 'brands' },
+    { id: 1, imgSrc: 'brands/maruti.png', alt: 'brands' },
+    { id: 2, imgSrc: 'brands/tata.png', alt: 'brands' },
+    { id: 3, imgSrc: 'brands/mahindra.png', alt: 'brands' },
+    { id: 4, imgSrc: 'brands/toyota.png', alt: 'brands' },
+    { id: 5, imgSrc: 'brands/hyundei.png', alt: 'brands' },
+    { id: 6, imgSrc: 'brands/kia.png', alt: 'brands' },
+    { id: 7, imgSrc: 'brands/lexus.png', alt: 'brands' },
+    { id: 8, imgSrc: 'brands/audi.png', alt: 'brands' },
+    { id: 9, imgSrc: 'brands/land-rover.png', alt: 'brands' },
+    { id: 10, imgSrc: 'brands/bmw.png/', alt: 'brands' },
+    { id: 11, imgSrc: 'brands/mercedes.png', alt: 'brands' },
+    { id: 12, imgSrc: 'brands/porsche.png', alt: 'brands' },
   ];
   
 const PopularBrands = () => {
