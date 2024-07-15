@@ -1,9 +1,11 @@
+'use client';
 import Link from "next/link";
-import React from "react";
+import React from "react"; 
 import Autocomplete from '@/components/autocomplete/autocomplete'; 
-export default function Header() {
+export default function Header() { 
   return (
     <div className="main-header">
+       <link rel="icon" href="/favicon-16x16.png" sizes="any" />
       <header className="bg-white py-2 shadow-sm">
         <div className="container-fluid">
           <div className="row align-items-center">
@@ -47,18 +49,18 @@ export default function Header() {
             <ul className="navbar-nav me-auto">
               <li className="nav-item me-4">
                 <Link className="nav-link" href="/car-news-india">
-                  Car News
+                  CAR NEWS
                 </Link>
               </li>
               <li className="nav-item me-4">
                 <Link className="nav-link" href="/car-collection">
-                  Car Collection
+                  CAR COLLECTION
                 </Link>
               </li>
                 
               <li className="nav-item me-4">
                 <Link className="nav-link" href="/car-expert-reviews">
-                  Car Expert Reviews
+                  CAR EXPERT REVIEWS
                 </Link>
               </li>
               <li className="nav-item me-4">
@@ -73,12 +75,12 @@ export default function Header() {
               </li>
               <li className="nav-item me-4">
                 <Link className="nav-link" href="/toll-plaza">
-                  Toll Plaza
+                  TOLL PLAZA
                 </Link>
               </li>
               <li className="nav-item me-4">
                 <Link className="nav-link" href="/tips-and-advice">
-                  Tips & Advice
+                  TIPS & ADVICE
                 </Link>
               </li>
             </ul>
