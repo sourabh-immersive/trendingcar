@@ -2,8 +2,7 @@ import LongAd from "@/components/advertisements/longad";
 import SquareAd from "@/components/advertisements/squaread";
 import PostsList from "@/components/bloghome/postslist";
 
-// revalidate at most every hour
-// export const revalidate = 3600;
+export const revalidate = 3600; // revalidate at most every hour
 
 export default function CategoryLayout({
   children, // will be a page or nested layout
