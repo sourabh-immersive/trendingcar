@@ -69,6 +69,10 @@ a {
   color: $primary-color;
 }
 
+.fz-14{
+  font-size:14px!important;
+}
+
 .fz-18{
   font-size:18px!important;
 }
@@ -93,13 +97,17 @@ ul.myList {
 }
 
 .btn-theme{
-  background-color: #0b3bd1;
-  border: 1px solid #1242ce;
+  background-color: #13122b;
+  border: 1px solid #9998a4;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
 }
 
 .btn-theme:hover{
-  background-color: #2558f7;
-  border: 1px solid #1242ce;
+  background-color: #2b2863;
+  border: 1px solid #9998a4;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
 }
 
 .shadow24 {
@@ -1852,6 +1860,11 @@ div#filterableSelect {
 
 // Navbar Css //
 
+.main-header{
+  .logo{
+    width:187px;
+  }
+}
 .navbar{
   --bs-navbar-padding-y: 0.1rem;
   background-color: #eee!important;
@@ -1891,6 +1904,17 @@ div#filterableSelect {
 
 .footer-top{
   background-color: #eee;
+  .emailer{
+    position: relative;
+    .btn{
+      position:absolute;
+      top:0;
+      right:0;
+    }
+    input{
+      padding-right:50px;
+    }
+  }
 }
 
 .footer-bottom{
