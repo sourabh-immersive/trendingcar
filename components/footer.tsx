@@ -3,10 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect } from "react";
-import { FaFacebook } from "react-icons/fa6";
-import { FaInstagram } from "react-icons/fa6";
-import { FaXTwitter } from "react-icons/fa6";
-import { FaLinkedinIn } from "react-icons/fa6";
+import { FaFacebook,FaInstagram,FaPinterest,FaLinkedinIn,FaYoutube} from "react-icons/fa6";
 import { BsFillSendFill } from "react-icons/bs";
 
 
@@ -153,22 +150,27 @@ export default function Footer() {
                     </ul>*/}
                     <ul className="list-unstyled d-flex align-items-center">
                       <li>
-                        <Link href="#" target="_blank" className="me-4 fz-18">
+                        <Link href="https://www.facebook.com/TrendingCar" target="_blank" className="me-4 fz-18">
                           <FaFacebook />
                         </Link>
                       </li>
                       <li>
-                        <Link href="#" target="_blank" className="me-4 fz-18">
+                        <Link href="https://www.instagram.com/" target="_blank" className="me-4 fz-18">
                           <FaInstagram />
                         </Link>
                       </li>
                       <li>
-                        <Link href="#" target="_blank" className="me-4 fz-18">
-                          <FaXTwitter />
+                        <Link href="https://in.pinterest.com/#search" target="_blank" className="me-4 fz-18">
+                          <FaPinterest />
                         </Link>
                       </li>
                       <li>
-                        <Link href="#" target="_blank" className="me-4 fz-18">
+                        <Link href="https://www.youtube.com/@trendingcar3924" target="_blank" className="me-4 fz-18">
+                          <FaYoutube />
+                        </Link>
+                      </li>
+                      <li>
+                        <Link href="https://www.linkedin.com/company/trending-car" target="_blank" className="me-4 fz-18">
                           <FaLinkedinIn />
                         </Link>
                       </li>

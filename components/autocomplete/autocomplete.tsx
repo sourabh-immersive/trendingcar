@@ -6,14 +6,15 @@ import { useRouter } from 'next/navigation';
 interface CatProps {
   api?: string;
   type?: string;
-  redirect?:string;
+  redirect?: string;
 }
 
 interface Category {
   name: string;
   slug: string;
 }
-const Autocomplete: React.FC<CatProps> = ({ api,type,redirect }) => {
+
+const Autocomplete: React.FC<CatProps> = ({ api, type, redirect }) => {
   console.log(type);
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
@@ -21,28 +22,22 @@ const Autocomplete: React.FC<CatProps> = ({ api,type,redirect }) => {
   const dropdownRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
 
-  useEffect(() => {
-    const fetchData = async () => {
-      if(type!==''){
-        const res = await fetch(
-          `${process.env.NEXT_PUBLIC_API_LARAVEL_BASE_URL}/${api}`,
-          { next: { revalidate: 3600 } }
-        );
-        const data1 = await res.json();
-        const data = data1.data;
-        setCategories(data.map((category: any) => ({ name: category.name, slug: category.slug })));
-      }else{
-        const res = await fetch(
-          `${process.env.NEXT_PUBLIC_API_BASE_URL}/categories?parent=1&per_page=100`,
-          { next: { revalidate: 3600 } }
-        );
-        const data = await res.json();
-        setCategories(data.map((category: any) => ({ name: category.name, slug: category.slug })));
-      }
-    };
+  const fetchData = async () => {
+    const url = type !== '' 
+      ? `${process.env.NEXT_PUBLIC_API_LARAVEL_BASE_URL}/${api}` 
+      : `${process.env.NEXT_PUBLIC_API_BASE_URL}/categories?parent=1&per_page=100`;
 
-    fetchData();
-  }, []);
+    const res = await fetch(url, { next: { revalidate: 3600 } });
+    const data1 = await res.json();
+    const data = type !== '' ? data1.data : data1;
+    const categoriesData = data.map((category: any) => ({ name: category.name, slug: category.slug }));
+
+    // Save data and timestamp to localStorage
+    localStorage.setItem('categories', JSON.stringify(categoriesData));
+    localStorage.setItem('lastFetch', Date.now().toString());
+
+    setCategories(categoriesData);
+  };
 
   const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
@@ -55,9 +50,23 @@ const Autocomplete: React.FC<CatProps> = ({ api,type,redirect }) => {
   };
 
   const handleInputClick = () => {
+    const lastFetch = localStorage.getItem('lastFetch');
+    const now = Date.now();
+
+    if (!lastFetch || now - parseInt(lastFetch) > 24 * 60 * 60 * 1000) {
+      // Fetch new data if more than 24 hours have passed since the last fetch
+      fetchData();
+    } else {
+      // Use cached data
+      const cachedCategories = localStorage.getItem('categories');
+      if (cachedCategories) {
+        setCategories(JSON.parse(cachedCategories));
+      }
+    }
+
     setIsDropdownOpen(true);
   };
- 
+
   const filteredCategories = categories.filter((category) =>
     category.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
@@ -80,25 +89,22 @@ const Autocomplete: React.FC<CatProps> = ({ api,type,redirect }) => {
     <div id="Autocomplete" className="mt-3 mb-4">
       <div className="row">
         <div className="col-md-12">
-        {type !== '' && (
-          <label htmlFor="categorySelect" className="form-label">
-            Select {type}
-          </label>
+          {type !== '' && (
+            <label htmlFor="categorySelect" className="form-label">
+              Select {type}
+            </label>
           )}
           <div className="position-relative" ref={dropdownRef}>
             <input
               type="text"
               className="form-control"
-              placeholder= {`Search ${type}`}
+              placeholder={`Search ${type}`}
               value={searchTerm}
               onChange={handleSearchChange}
               onClick={handleInputClick}
             />
             <button className="btn btn-theme position-absolute r-0 t-0" type="button">
-              <img
-                src="/search-icon.png"
-                className="img-fluid"
-              />
+              <img src={`/fuel-type1/${type ? type.replace(/\s+/g, '') : ''}.png`} className="img-fluid" />
             </button>
             {isDropdownOpen && (
               <div className="dropdown-menu show w-100 Autocomplete">
@@ -120,11 +126,9 @@ const Autocomplete: React.FC<CatProps> = ({ api,type,redirect }) => {
             )}
           </div>
         </div>
-         
       </div>
     </div>
   );
 };
 
 export default Autocomplete;
- 
