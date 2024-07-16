@@ -1,9 +1,9 @@
 import React, { Suspense } from "react";
-import ArchivePosts from "@/components/clientside/ArchivePosts";
 import FilterableSelect from "@/components/FilterableSelect";
 import SquareAd from "@/components/advertisements/squaread";
 import PostsList from "@/components/bloghome/postslist";
 import LongAd from "@/components/advertisements/longad";
+import HomePosts from "@/components/clientside/HomePosts";
 
 export default async function Page() {
   const category = { id: 1, name: "Car News", slug: "car-news-india" };
@@ -31,7 +31,7 @@ export default async function Page() {
                   India
                 </h1>
                 <FilterableSelect catId={category.id} />
-                <ArchivePosts
+                <HomePosts
                   initialPosts={initialPosts}
                   numberOfPosts={9}
                   totalPage={totalPages}

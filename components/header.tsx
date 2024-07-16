@@ -4,7 +4,7 @@ import FilterableSelect from "./FilterableSelect";
 
 export default function Header() {
   return (
-    <div className="main-header">
+    <div className="main-header mb-4">
       <header className="bg-white py-2 shadow-sm">
         <div className="container-fluid">
           <div className="row align-items-center">

@@ -1,7 +1,6 @@
 "use client";
 
 import React, { ReactNode } from "react";
-
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 
@@ -25,6 +24,15 @@ const NextBreadcrumb = ({
   const paths = usePathname();
   const pathNames = paths.split("/").filter((path) => path);
 
+  // Hide the breadcrumb if on the home page
+  if (paths === "/") {
+    return null;
+  }
+
+  const capitalizeFirstLetter = (str: string) => {
+    return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+  };
+
   return (
     <div className="breadcrumb__row">
       <div className="container">
@@ -43,8 +51,8 @@ const NextBreadcrumb = ({
                       ? `${listClasses} ${activeClasses}`
                       : listClasses;
                   let itemLink = capitalizeLinks
-                    ? link[0].toUpperCase() + link.slice(1, link.length)
-                    : link;
+                    ? capitalizeFirstLetter(link.replace(/-/g, " "))
+                    : link.replace(/-/g, " ");
                   return (
                     <React.Fragment key={index}>
                       <li className={itemClasses}>
