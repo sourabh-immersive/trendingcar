@@ -7,6 +7,7 @@ import { FaFacebook } from "react-icons/fa6";
 import { FaInstagram } from "react-icons/fa6";
 import { FaXTwitter } from "react-icons/fa6";
 import { FaLinkedinIn } from "react-icons/fa6";
+import { BsFillSendFill } from "react-icons/bs";
 
 
 export default function Footer() {
@@ -18,7 +19,7 @@ export default function Footer() {
       <footer className="py-0">
         <div className="footerRows">
           <div className="row">
-            <div className="col-md-12 border-bottom">
+            {/*<div className="col-md-12 border-bottom">
               <div className="container">
                 <div className="row">
                   <div className="col-md-3">
@@ -71,19 +72,19 @@ export default function Footer() {
                   </div>
                 </div>
               </div>
-            </div>
+            </div>*/}
           
-            <div className="col-md-12 border-bottom">
+            <div className="col-md-12 border-bottom footer-top">
               <div className="container">
                 <div className="row py-4">
                   <div className="col-md-3">
-                    <h6>About CarDekho</h6>
+                    <h6>Overview</h6>
                     <ul className="list-unstyled">
                       <li>
-                        <Link href="#">About</Link>
+                        <Link href="#">About Trending Cars</Link>
                       </li>
                       <li>
-                        <Link href="#">Careers With Us</Link>
+                        <Link href="#">Team</Link>
                       </li>
                       <li>
                         <Link href="#">Terms & Conditions</Link>
@@ -95,27 +96,10 @@ export default function Footer() {
                         <Link href="#">Corporate Policies</Link>
                       </li>
                       <li>
-                        <Link href="#">Investors</Link>
-                      </li>
-                      <li>
                         <Link href="#">FAQs</Link>
                       </li>
-                    </ul>
-                  </div>
-                  <div className="col-md-3">
-                    <h6>Connect with Us</h6>
-                    <ul className="list-unstyled">
                       <li>
-                        <Link href="#">Feedback</Link>
-                      </li>
-                      <li>
-                        <Link href="#">Contact Us</Link>
-                      </li>
-                      <li>
-                        <Link href="#">Advertise with Us</Link>
-                      </li>
-                      <li>
-                        <Link href="#">Become Partner Dealer</Link>
+                        <Link href="#">Sitemap</Link>
                       </li>
                     </ul>
                   </div>
@@ -123,16 +107,36 @@ export default function Footer() {
                     <h6>Others</h6>
                     <ul className="list-unstyled">
                       <li>
-                        <Link href="#">Trending Car</Link>
+                        <Link href="#">Car News</Link>
                       </li>
                       <li>
-                        <Link href="#">Trending Car | Fuel Stations</Link>
+                        <Link href="#">Car Reviews</Link>
                       </li>
                       <li>
-                        <Link href="#">Trending Car | RTO</Link>
+                        <Link href="#">Compare Cars</Link>
                       </li>
                       <li>
-                        <Link href="#">Trending Car | Toll</Link>
+                        <Link href="#">New Cars</Link>
+                      </li>
+                      <li>
+                        <Link href="#">Upcoming Cars</Link>
+                      </li>
+                    </ul>
+                  </div>
+                  <div className="col-md-3">
+                    <h6>Connect With Us</h6>
+                    <ul className="list-unstyled">
+                      <li>
+                        <Link href="#">Contact Us</Link>
+                      </li>
+                      <li>
+                        <Link href="#">Advertise With Us</Link>
+                      </li>
+                      <li>
+                        <Link href="#">Blogs</Link>
+                      </li>
+                      <li>
+                        <Link href="#">Ask Anything</Link>
                       </li>
                       <li>
                         <Link href="#">Coming new ...</Link>
@@ -142,17 +146,44 @@ export default function Footer() {
                   <div className="col-md-3">
                   {/* <Image src="/logo.png" alt="Trending Car Logo" height={39} width={156} /> */}
                     <h6>Follow Us</h6>
-                    <ul className="list-unstyled">
+                    {/*<ul className="list-unstyled mb-0">
                       <li>
                         <Link href="#">Largest Auto portal</Link>
                       </li>
+                    </ul>*/}
+                    <ul className="list-unstyled d-flex align-items-center">
+                      <li>
+                        <Link href="#" target="_blank" className="me-4 fz-18">
+                          <FaFacebook />
+                        </Link>
+                      </li>
+                      <li>
+                        <Link href="#" target="_blank" className="me-4 fz-18">
+                          <FaInstagram />
+                        </Link>
+                      </li>
+                      <li>
+                        <Link href="#" target="_blank" className="me-4 fz-18">
+                          <FaXTwitter />
+                        </Link>
+                      </li>
+                      <li>
+                        <Link href="#" target="_blank" className="me-4 fz-18">
+                          <FaLinkedinIn />
+                        </Link>
+                      </li>
                     </ul>
+                    <h6>Sign up for our newsletter</h6>
+                    <div className="form-group pos-rel">
+                      <input name="txt_enter_email" id="txt_enter_email" className="form-control" type="email" placeholder="Email" />
+                      <button type="button" className="btn news-letter-2 btn-theme text-white" ><BsFillSendFill /></button>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
             
-            <div className="col-md-12 border-bottom">
+            <div className="col-md-12 border-bottom footer-bottom">
               <div className="container">
                 <div className="row py-4">
                   <div className="col-md-6">

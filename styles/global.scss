@@ -66,6 +66,18 @@ a {
   color: $primary-color;
 }
 
+.fz-18{
+  font-size:18px!important;
+}
+
+.fz-22{
+  font-size:22px;
+}
+
+.pos-rel{
+  position:relative;
+}
+
 ul.myList {
   border: 1px solid #cdcdcd;
   padding-left: 0;
@@ -75,6 +87,16 @@ ul.myList {
     padding: 10px 20px;
     border-bottom: 1px solid #cdcdcd;
   }
+}
+
+.btn-theme{
+  background-color: #0b3bd1;
+  border: 1px solid #1242ce;
+}
+
+.btn-theme:hover{
+  background-color: #2558f7;
+  border: 1px solid #1242ce;
 }
 
 .shadow24 {
@@ -1821,4 +1843,51 @@ div#filterableSelect {
 .main-footer{
   border-top-left-radius: 0px;
   border-top-right-radius: 0px;
+}
+
+// Navbar Css //
+
+.navbar{
+  --bs-navbar-padding-y: 0.1rem;
+  background-color: #eee!important;
+}
+.navbar-nav{
+  --bs-nav-link-padding-y: 0.1rem;
+}
+.navbar-nav .nav-link{
+  font-size:14px;
+}
+.header-sociocon{
+  color: #000!important;
+  background-color: #fff;
+  padding: 0px 5px;
+  border-radius: 5px;
+}
+.header-sociocon:hover{
+  color: #333!important;
+  background-color: #eee;
+  padding: 0px 5px;
+  border-radius: 5px;
+}
+.wishlist{
+  color: #000!important;
+  background-color: #fff;
+  padding: 0px 5px;
+  border-radius: 5px;
+}
+.wishlist:hover{
+  color: #333!important;
+  background-color: #eee;
+  padding: 0px 5px;
+  border-radius: 5px;
+}
+
+// Footer Css //
+
+.footer-top{
+  background-color: #eee;
+}
+
+.footer-bottom{
+  background-color: #e0e0e0;
 }
