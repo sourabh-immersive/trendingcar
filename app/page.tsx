@@ -12,7 +12,7 @@ export default async function Page() {
     `${process.env.NEXT_PUBLIC_API_BASE_URL}/posts?category_slug=${
       category.slug
     }&page=${1}&per_page=${20}`,
-    { next: { revalidate: 600 } }
+    // { next: { revalidate: 600 } }
   );
   const initialPosts = await res.json();
   const totalPagesHeader = res.headers.get("x-wp-totalpages");
