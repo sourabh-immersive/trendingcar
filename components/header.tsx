@@ -11,11 +11,11 @@ import { FaLinkedinIn } from "react-icons/fa6";
 export default function Header() {
   return (
     <div className="main-header">
-       <link rel="icon" href="/favicon-16x16.png" sizes="any" />
+       <link rel="icon" href="/fav-white.png" sizes="any" />
       <header className="bg-white py-2 shadow-sm">
         <div className="container">
           <div className="row align-items-center">
-            <div className="col-md-4 d-flex align-items-center">
+            <div className="col-md-5 d-flex align-items-center">
               <Link
               href="/">
               <img
@@ -29,12 +29,12 @@ export default function Header() {
             <div className="col-md-4 my-2 my-md-0 searchbar">
               <Autocomplete  api={'fuelStationCities'} type={''} redirect={'car-brands'}/>
             </div>
-            <div className="col-md-4 d-flex justify-content-end align-items-center">
+            <div className="col-md-3 d-flex justify-content-end align-items-center">
               <a href="#" className="wishlist text-primary me-2 fz-22">
                 <img
                   src="/wishlist.png"
                   alt="Wishlist"
-                  className="logo"
+                  className="wishlogo"
                 />
               </a>
               <Link href="#" target="_blank" className="text-black header-sociocon me-2 fz-22">

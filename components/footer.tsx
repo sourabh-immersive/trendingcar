@@ -174,7 +174,7 @@ export default function Footer() {
                       </li>
                     </ul>
                     <h6>Sign up for our newsletter</h6>
-                    <div className="form-group pos-rel">
+                    <div className="form-group emailer">
                       <input name="txt_enter_email" id="txt_enter_email" className="form-control" type="email" placeholder="Email" />
                       <button type="button" className="btn news-letter-2 btn-theme text-white" ><BsFillSendFill /></button>
                     </div>
@@ -186,10 +186,10 @@ export default function Footer() {
             <div className="col-md-12 border-bottom footer-bottom">
               <div className="container">
                 <div className="row py-4">
-                  <div className="col-md-6">
-                    <p className="mb-0">Copyright 2024 Trending Car. All Rights Reserved.</p>
+                  <div className="col-md-12 text-center">
+                    <p className="mb-0 fz-14">Copyright 2024 Trending Car. All Rights Reserved.</p>
                   </div>
-                  <div className="col-md-6 text-md-end social-icons">
+                  {/*<div className="col-md-6 text-md-end social-icons">
                     <Link href="#" target="_blank">
                       <FaFacebook />
                     </Link>
@@ -202,7 +202,7 @@ export default function Footer() {
                     <Link href="#" target="_blank">
                       <FaLinkedinIn />
                     </Link>
-                  </div>
+                  </div>*/}
                 </div>
               </div>
             </div>

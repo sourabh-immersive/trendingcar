@@ -94,7 +94,7 @@ const Autocomplete: React.FC<CatProps> = ({ api,type,redirect }) => {
               onChange={handleSearchChange}
               onClick={handleInputClick}
             />
-            <button className="btn btn-secondary position-absolute r-0 t-0" type="button">
+            <button className="btn btn-theme position-absolute r-0 t-0" type="button">
               <img
                 src="/search-icon.png"
                 className="img-fluid"
