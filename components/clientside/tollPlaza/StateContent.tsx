@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import WideAd from '@/components/advertisements/widead'
 import ChangeStateModal from '@/components/modal/ChangeStateModal'; 
 import Link from "next/link";
+import { FaPencil } from "react-icons/fa6";
 
 interface Props {
     tolls:[{
@@ -53,10 +54,10 @@ const StateContent = (tolls:Props) => {
                                 <h5 className="page-title me-2">{formatString(tolls.slug)} </h5>
                                 <a 
                                     href="#" 
-                                    className="text-decoration-none text-primary fz-14" 
+                                    className="text-decoration-none text-theme fz-14" 
                                     onClick={() => setModalOpen(true)}
                                 >
-                                    <i className="fa fa-pencil"></i> Change State
+                                    <FaPencil /> Change State
                                 </a>
                                 <ChangeStateModal show={modalOpen} handleClose={handleModalClose} onSearch={function (state: string): void {
                                     throw new Error('Function not implemented.');
@@ -136,7 +137,7 @@ const StateContent = (tolls:Props) => {
                                     </div>
                                     {filteredCities.length > 4 && (
                                         <div className="text-center">
-                                            <button className="btn btn-primary p-2" onClick={toggleCities}>
+                                            <button className="btn btn-theme text-white p-2" onClick={toggleCities}>
                                                 {showMore ? 'Show Less Cities' : 'Load More Cities'}
                                             </button>
                                         </div>

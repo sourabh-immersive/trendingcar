@@ -1,6 +1,7 @@
 'use client';
 import Link from "next/link";
 import React from "react";
+import { NavLink } from 'react-router-dom';
 import Autocomplete from '@/components/autocomplete/autocomplete'; 
 import { BsHouseDoor } from "react-icons/bs";
 import { FaFacebook } from "react-icons/fa6";
@@ -10,26 +11,26 @@ import { FaLinkedinIn } from "react-icons/fa6";
 
 export default function Header() {
   return (
-    <div className="main-header">
-       <link rel="icon" href="/fav-white.png" sizes="any" />
+    <div className="main-header fixed-top w-100">
+      <link rel="icon" href="/favicon/apple-touch-icon.png" sizes="any" />
       <header className="bg-white py-2 shadow-sm">
         <div className="container">
           <div className="row align-items-center">
-            <div className="col-md-5 d-flex align-items-center">
+            <div className="col-md-4 d-flex align-items-center">
               <Link
               href="/">
               <img
-                src="/logo.png"
+                src="/logo3.jpg"
                 alt="Logo"
                 className="img-fluid logo me-4 cursor-pointer"
               />
               </Link>
-              <span className="site-text fw-bold">#chuno apni best car</span>
+              <span className="site-text">#chuno apni best car</span>
             </div>
-            <div className="col-md-4 my-2 my-md-0 searchbar">
+            <div className="col-md-6 my-2 my-md-0 searchbar">
               <Autocomplete  api={'fuelStationCities'} type={''} redirect={'car-brands'}/>
             </div>
-            <div className="col-md-3 d-flex justify-content-end align-items-center">
+            <div className="col-md-2 d-flex justify-content-end align-items-center">
               <a href="#" className="wishlist text-primary me-2 fz-22">
                 <img
                   src="/wishlist.png"
