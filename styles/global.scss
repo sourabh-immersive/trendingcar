@@ -49,6 +49,14 @@ body {
   --swiper-navigation-size: 22px!important;
 }
 
+ol.breadcrumb li.breadcrumb-item.active.text-primary a {
+  color: #343958!important;
+}
+
+a{
+  color: #343958!important;
+}
+
 h1,
 h2,
 h3,
@@ -85,6 +93,15 @@ a {
   position:relative;
 }
 
+.bg-grey{
+  background-color: #eee!important;
+  color:#000!important;
+}
+
+.maxw-50{
+  max-width:50%!important;
+}
+
 ul.myList {
   border: 1px solid #cdcdcd;
   padding-left: 0;
@@ -96,18 +113,31 @@ ul.myList {
   }
 }
 
-.btn-theme{
-  background-color: #13122b;
-  border: 1px solid #9998a4;
+.btlr-0{
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+.bblr-0{
   border-top-left-radius: 0px;
   border-bottom-left-radius: 0px;
 }
 
-.btn-theme:hover{
-  background-color: #2b2863;
+.text-theme{
+  color: #343958;
+}
+
+.bg-theme{
+  background-color: #343958;
+}
+
+.btn-theme{
+  background-color: #343958;
   border: 1px solid #9998a4;
-  border-top-left-radius: 0px;
-  border-bottom-left-radius: 0px;
+}
+
+.btn-theme:hover{
+  background-color: #242246;
+  border: 1px solid #9998a4;
 }
 
 .shadow24 {
@@ -180,6 +210,7 @@ hr {
 
 .main-layout {
   padding-bottom: 40px;
+  padding-top:80px;
 }
 
 ol.breadcrumb {
@@ -1206,15 +1237,22 @@ ul li {
     .state-name {
       position: absolute;
       border-radius: 0 0 6px 6px;
-      background-color: #0056D2;
+      background-color: #343a57;
       bottom: 0;
       width: 100%;
       padding: 5px;
       font-size: 14px;
       color: #fff;
       font-weight: 300;
-      border: 1px solid #0056D2;
+      border: 1px solid #343a57;
       line-height: 20px;
+      span{
+        max-width:170px;
+        overflow:hidden;
+        text-overflow:ellipsis;
+        white-space:nowrap;
+        display:block;
+      }
     }
   }
 }
@@ -1325,7 +1363,7 @@ ul li {
 // Tollbooth Scss //
 .toll-booth-imformation{
   .left-part {
-    background-color: #0056D2;
+    background-color: #343958;
     color: #fff;
     flex: 1;
     padding: 1rem;
@@ -1339,6 +1377,10 @@ ul li {
     text-align: left;
     font-size: 14px;
     color: #2D2D2D;
+    max-width: 192px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
   .bordered {
     border: 1px solid #dfdfdf;
@@ -1348,7 +1390,7 @@ ul li {
 // facility wrapper scss //
 
 .facility-wrapper .img-container {
-  border: 1px solid #0056D2;
+  border: 1px solid #131229;
   border-radius: 4px;
   width: 100px;
   height: 100px;
@@ -1866,7 +1908,7 @@ div#filterableSelect {
   }
 }
 .navbar{
-  --bs-navbar-padding-y: 0.1rem;
+  --bs-navbar-padding-y: 0rem;
   background-color: #eee!important;
 }
 .navbar-nav{
@@ -1901,7 +1943,9 @@ div#filterableSelect {
 }
 
 // Footer Css //
-
+.main-footer .list-unstyled a:hover{
+  color: #13122a!important;
+}
 .footer-top{
   background-color: #eee;
   .emailer{
