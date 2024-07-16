@@ -23,16 +23,17 @@ type States = {
 }    
 export default function MainContent(states:Props) {
     const [statesData, setStatesData] = useState<States[]>(states.states);
-    const [visibleStates, setVisibleStates] = useState<number>(6);
+    const [visibleStates, setVisibleStates] = useState<number>(12);
     const [showMore, setShowMore] = useState<boolean>(false);
+    const [searchTerm, setSearchTerm] = useState<string>('');
     const toggleStates = () => {
-        if (showMore) {
-            setVisibleStates(6);
-        } else {
-            setVisibleStates(statesData.length); // Show all cities
-        }
+        setVisibleStates(showMore ? 12 :filteredStates.length);
         setShowMore(!showMore);
     };
+
+    const filteredStates = statesData.filter(state =>
+        state.name.toLowerCase().includes(searchTerm.toLowerCase())
+    ); 
     return (
         <div>
             <div className="row mt-4">
@@ -54,18 +55,35 @@ export default function MainContent(states:Props) {
                                 <section className="state-list-wrapper">
                                     <h5>Toll Plaza List by States in India</h5>
                                     <small>Top states in India</small>
+
+                                    <div className="ms-auto w-25">
+                                            <div className="form-group position-relative">
+                                            <input
+                                                    type="text"
+                                                    id="search"
+                                                    className="form-control"
+                                                    placeholder="Search State"
+                                                    value={searchTerm}
+                                                    onChange={e => setSearchTerm(e.target.value)}
+                                                    />
+                                                <img src="/search-black.png" className="img-fluid position-absolute r-3 t-10" alt="search icon" />
+                                                
+                                            </div>
+                                        </div>
                                     <div className="row">
-                                        {statesData.slice(0, visibleStates).map((state, index) => (
+                                        {filteredStates.slice(0, visibleStates).map((state, index) => (
                                             <TollplazaList key={index} stateName={state.name} slug={state.slug} imageUrl='state.png' />
                                         ))}
                                     </div>
-                                    <div className="row mt-4">
-                                        <div className="col-12 text-center">
-                                            <button className="text-primary text-decoration-none ml-2" onClick={toggleStates}>
-                                                {showMore ? 'Show Less States' : 'Load More States'}
-                                            </button>
+                                    {filteredStates.length > 6 && (
+                                        <div className="row mt-4">
+                                            <div className="col-12 text-center">
+                                                <button className="text-primary text-decoration-none ml-2" onClick={toggleStates}>
+                                                    {showMore ? 'Show Less States' : 'Load More States'}
+                                                </button>
+                                            </div>
                                         </div>
-                                    </div>
+                                    )}
                                 </section>
                             </div>
                         </div>

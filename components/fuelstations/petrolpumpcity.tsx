@@ -50,7 +50,7 @@ const PetrolPump: React.FC<PetrolPumpData> = ({ image, title, address, openTime,
         <ul className="list-style-none pt-2 d-flex align-items-center">
           {services.map((service, index) => (
             <li className="fz-14 me-4" key={index}>
-              <img src={`/${service}.png`} className="img-fluid me-1" alt={`${service} icon`} /> {service}
+              <img src={`/fuel-type1/${service}.png`} className="img-fluid me-1" alt={`${service} icon`} /> {service}
             </li>
           ))}
         </ul>

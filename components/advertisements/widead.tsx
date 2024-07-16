@@ -10,8 +10,8 @@ const Wide: React.FC<WideProps> = ({ img_url }) => {
   const imageUrl = img_url || fallbackImage;
 
   return (
-    <div className="container adrow mb-4">
-      <div className="ads_wrapper">
+    <div className="container adrow mb-4 " >
+      {/* <div className="ads_wrapper">
         <section className="auto-ad-container text-center">
           <Image
             className="img-fluid w-100"
@@ -22,7 +22,7 @@ const Wide: React.FC<WideProps> = ({ img_url }) => {
             priority
           />
         </section>
-      </div>
+      </div> */}
     </div>
   );
 };

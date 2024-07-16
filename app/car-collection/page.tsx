@@ -3,7 +3,7 @@ import ArchivePosts from "@/components/clientside/ArchivePosts";
 import FilterableSelect from "@/components/FilterableSelect";
 
 export default async function Tips() {
-  const category = { id: 1, name: "Car News", slug: "car-news-india" };
+  const category = { id: 144, name: "Car Collection", slug: "car-collection" };
 
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_API_BASE_URL}/posts?category_slug=${
@@ -19,7 +19,7 @@ export default async function Tips() {
   return (
     <main>
       <section className="left-container">
-      <h1>Car news India - all latest car information and auto news India</h1>
+        <h1>Car Collection - all latest car collections in India</h1>
         <FilterableSelect catId={category.id} />
         <ArchivePosts
           initialPosts={initialPosts}

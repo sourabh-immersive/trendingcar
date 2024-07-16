@@ -23,13 +23,22 @@ const Autocomplete: React.FC<CatProps> = ({ api,type,redirect }) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await fetch(
-        `https://trendingcar.com/admin/api/${api}`,
-        { next: { revalidate: 3600 } }
-      );
-      const data1 = await res.json();
-      const data = data1.data;
-      setCategories(data.map((category: any) => ({ name: category.name, slug: category.slug })));
+      if(type!==''){
+        const res = await fetch(
+          `${process.env.NEXT_PUBLIC_API_LARAVEL_BASE_URL}/${api}`,
+          { next: { revalidate: 3600 } }
+        );
+        const data1 = await res.json();
+        const data = data1.data;
+        setCategories(data.map((category: any) => ({ name: category.name, slug: category.slug })));
+      }else{
+        const res = await fetch(
+          `${process.env.NEXT_PUBLIC_API_BASE_URL}/categories?parent=1&per_page=100`,
+          { next: { revalidate: 3600 } }
+        );
+        const data = await res.json();
+        setCategories(data.map((category: any) => ({ name: category.name, slug: category.slug })));
+      }
     };
 
     fetchData();
@@ -70,10 +79,12 @@ const Autocomplete: React.FC<CatProps> = ({ api,type,redirect }) => {
   return (
     <div id="Autocomplete" className="mt-3 mb-4">
       <div className="row">
-        <div className="col-md-8">
+        <div className="col-md-12">
+        {type !== '' && (
           <label htmlFor="categorySelect" className="form-label">
             Select {type}
           </label>
+          )}
           <div className="position-relative" ref={dropdownRef}>
             <input
               type="text"
@@ -83,8 +94,14 @@ const Autocomplete: React.FC<CatProps> = ({ api,type,redirect }) => {
               onChange={handleSearchChange}
               onClick={handleInputClick}
             />
+            <button className="btn btn-secondary position-absolute r-0 t-0" type="button">
+              <img
+                src="/search-icon.png"
+                className="img-fluid"
+              />
+            </button>
             {isDropdownOpen && (
-              <div className="dropdown-menu show w-100">
+              <div className="dropdown-menu show w-100 Autocomplete">
                 {filteredCategories.length > 0 ? (
                   filteredCategories.map((category) => (
                     <button

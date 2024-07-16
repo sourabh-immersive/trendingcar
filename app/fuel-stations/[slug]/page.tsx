@@ -3,10 +3,9 @@ import React, { useState, useEffect, ChangeEvent } from 'react';
 import WideAd from '@/components/advertisements/widead';
 import PetrolCities, { NearByStationData } from "@/components/fuelstations/petrolcities";
 import PetrolPump from "@/components/fuelstations/petrolpumpcity";
-import SearchSection from "@/components/searchsection";
 import ChangecityModal from '@/components/modal/ChangecityModal';  
 import Autocomplete from '@/components/autocomplete/autocomplete';
-const API_BASE_URL = "https://trendingcar.com/admin/api/fuelStationCities";
+const API_BASE_URL = `${process.env.NEXT_PUBLIC_API_LARAVEL_BASE_URL}/fuelStationCities`;
  
 
 interface PetrolPumpData {
@@ -38,7 +37,7 @@ export default function Page({ params }: { params: { slug: string } }) {
   const [page, setPage] = useState<number>(1);
   const [pageDescription, setPageDescription] = useState<String>(''); 
   const [pageTitle, setPageTitle] = useState<String>('');
-  const [pageSize, setPageSize] = useState<number>(9); // Adjust page size as needed
+  const [pageSize, setPageSize] = useState<number>(9);
   const [modalOpen, setModalOpen] = useState(false);
 
   const fetchPetrolPumpsData = async (page: number, pageSize: number) => {
@@ -48,10 +47,10 @@ export default function Page({ params }: { params: { slug: string } }) {
         cache: 'no-store',
       });
       const data = await res.json();
-      const newPetrolPumpsData = data.data[0].fuel_station;
-      const newNearByFuelStation = data.data[0].nearByFuelStation.items; 
-      const pageDescription = data.data[0].pageDescription;
-      const subHeading = data.data[0].subHeading; 
+      const newPetrolPumpsData = data?.data?.[0]?.fuel_station;
+      const newNearByFuelStation = data?.data?.[0]?.nearByFuelStation?.items; 
+      const pageDescription = data?.data?.[0]?.pageDescription;
+      const subHeading = data?.data?.[0]?.subHeading; 
       setPageDescription(pageDescription);
       setPageTitle(subHeading);
       setNearByStationData(newNearByFuelStation);
@@ -114,10 +113,8 @@ export default function Page({ params }: { params: { slug: string } }) {
             </div>
           </div>
         </div>
-      </div>
-
+      </div> 
       <WideAd img_url="/ads2.png" />
-        
       <div className="row mt-4 mb-4">
         <div className="col-md-12 col-sm-12 col-lg-12 col-xl-12 col-xxl-12">
           <div className="container">
@@ -127,17 +124,7 @@ export default function Page({ params }: { params: { slug: string } }) {
           </div>
         </div>
       </div>
-       
-      <div className="row mt-4">
-        <div className="col-md-12 col-sm-12 col-lg-12 col-xl-12 col-xxl-12">
-          <div className="container">
-            <section className="list-by-cities-section">
-              <h5 className="section-title text-white">Fuel stations in nearby cities</h5>
-              <PetrolCities nearByStationData={nearByStationData} />
-            </section>
-          </div>
-        </div>
-      </div>
+      <PetrolCities nearByStationData={nearByStationData} /> 
     </div>
   );
 }

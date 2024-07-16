@@ -1,4 +1,4 @@
-"use client";
+'use client'
 
 import React, { useEffect, useRef, useState } from "react";
 import { fetchPostsByCategory } from "@/services/wordpress";
@@ -6,6 +6,7 @@ import LoadingSkeleton from "../skeletons/loadingskeleton";
 import Image from "next/image";
 import Link from "next/link";
 import FilterableSelect from "../FilterableSelect";
+import limitWords from "@/utils/limitWords";
 import formatDate from "@/utils/formatDate";
 
 interface Post {
@@ -14,8 +15,12 @@ interface Post {
   title: {
     rendered: string;
   };
+  excerpt: {
+    rendered: string;
+  }
   featured_image_url?: string;
   author_nicename?: string;
+  primary_cat_slug?: string;
   date?: string;
 }
 
@@ -23,6 +28,7 @@ interface AllCategoryProps {
   initialPosts: Post[];
   numberOfPosts: number;
   totalPage: number;
+  parentPage?: string;
   categorySlug: string;
 }
 
@@ -30,6 +36,7 @@ const ArchivePosts: React.FC<AllCategoryProps> = ({
   initialPosts,
   numberOfPosts,
   totalPage,
+  parentPage,
   categorySlug,
 }) => {
   const [posts, setPosts] = useState<Post[]>(initialPosts);
@@ -39,6 +46,8 @@ const ArchivePosts: React.FC<AllCategoryProps> = ({
   const [hasMore, setHasMore] = useState<boolean>(true);
   const [initialLoad, setInitialLoad] = useState<boolean>(true);
   const initialRender = useRef(true);
+
+  const parentPathSlug = parentPage ? `/${parentPage}` : '';
 
   const getListCategories = async (
     numberOfPosts: number,
@@ -99,12 +108,13 @@ const ArchivePosts: React.FC<AllCategoryProps> = ({
   //   console.log('initial page', page);
   // if (loading && initialLoad) return <LoadingSkeleton />;
   if (error) return <p>Error: {error}</p>;
-
+  
+  // console.log(posts);
   return (
     <div className="PostbyCategory-section archive__posts">
       {posts.map((post, index) => (
         <div className="card-custom" data-index={index} key={post.id}>
-          <Link href={`/car-news-india/${post.slug}`}>
+          <Link href={`${parentPathSlug}/${post.primary_cat_slug}/${post.slug}`}>
             <Image
               src={
                 post.featured_image_url || "https://via.placeholder.com/315x210"
@@ -115,21 +125,16 @@ const ArchivePosts: React.FC<AllCategoryProps> = ({
             />
           </Link>
           <div className="card-body-custom">
-            <Link href={`/car-news-india/${post.slug}`}>
+            <Link href={`${parentPathSlug}/${post.primary_cat_slug}/${post.slug}`}>
               <h5
                 className="card-title-custom"
                 dangerouslySetInnerHTML={{ __html: post.title.rendered }}
               />
             </Link>
-            <p className="card-text-custom">
-              The Venue N Line produces more power and torque than the Taisor.
-              But which one is quicker? Let’s find out
-            </p>
+            <p>{limitWords( post.excerpt.rendered, 30 ).replace(/<[^>]*>?/gm, '').replace('&#8217;', "'")}...</p>
             <div className="card-author">
               <div className="author-image">
-                {post.author_nicename
-                  ? post.author_nicename.substring(0, 1).toUpperCase()
-                  : "T"}
+                {"TC"}
               </div>
               <div className="author-details">
                 <div>{post.author_nicename}</div>

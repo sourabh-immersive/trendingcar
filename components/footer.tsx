@@ -86,10 +86,10 @@ export default function Footer() {
                         <Link href="#">Careers With Us</Link>
                       </li>
                       <li>
-                        <Link href="#">Terms & Conditions</Link>
+                        <Link href="/terms-and-conditions">Terms & Conditions</Link>
                       </li>
                       <li>
-                        <Link href="#">Privacy Policy</Link>
+                        <Link href="/privacy-policy">Privacy Policy</Link>
                       </li>
                       <li>
                         <Link href="#">Corporate Policies</Link>
@@ -123,16 +123,16 @@ export default function Footer() {
                     <h6>Others</h6>
                     <ul className="list-unstyled">
                       <li>
-                        <Link href="#">Trending Car</Link>
+                        <Link href="/car-news-india">Trending Car</Link>
                       </li>
                       <li>
-                        <Link href="#">Trending Car | Fuel Stations</Link>
+                        <Link href="/fuel-stations">Trending Car | Fuel Stations</Link>
                       </li>
                       <li>
-                        <Link href="#">Trending Car | RTO</Link>
+                        <Link href="/rto">Trending Car | RTO</Link>
                       </li>
                       <li>
-                        <Link href="#">Trending Car | Toll</Link>
+                        <Link href="/toll-plaza">Trending Car | Toll</Link>
                       </li>
                       <li>
                         <Link href="#">Coming new ...</Link>

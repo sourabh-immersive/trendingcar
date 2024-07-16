@@ -4,7 +4,7 @@ import { MdOutlineArrowRightAlt } from "react-icons/md";
 const CarTypes = ({ cars = [] }) => {
   const [activeTab, setActiveTab] = useState('Budget');
 
-  const renderCarBox = (car) => (
+  const renderCarBox = (car:any) => (
     <div className="col-md-2 col-lg-2 col-xl-2 col-sm-12 no-gutter" key={car.name}>
         <div className="car-box border p-3 text-center br-0 cursor-pointer bg-hover-grey">
             {activeTab !== 'Budget' && (
@@ -20,7 +20,7 @@ const CarTypes = ({ cars = [] }) => {
     </div>
   );
 
-  const renderTabContent = (tabId) => {
+  const renderTabContent = (tabId:any) => {
     const filteredCars = cars.filter(car => car.category === tabId);
     return (
       <div className={`tab-pane fade ${activeTab === tabId ? 'show active' : ''}`} id={`pills-${tabId}`} role="tabpanel">
