@@ -1,9 +1,9 @@
 import React, { Suspense } from "react";
-import ArchivePosts from "@/components/clientside/ArchivePosts";
 import FilterableSelect from "@/components/FilterableSelect";
 import SquareAd from "@/components/advertisements/squaread";
 import PostsList from "@/components/bloghome/postslist";
 import LongAd from "@/components/advertisements/longad";
+import HomePosts from "@/components/clientside/HomePosts";
 
 export default async function Page() {
   const category = { id: 1, name: "Car News", slug: "car-news-india" };
@@ -11,8 +11,8 @@ export default async function Page() {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_API_BASE_URL}/posts?category_slug=${
       category.slug
-    }&page=${1}&per_page=${9}`,
-    { next: { revalidate: 3600 } }
+    }&page=${1}&per_page=${20}`,
+    // { next: { revalidate: 600 } }
   );
   const initialPosts = await res.json();
   const totalPagesHeader = res.headers.get("x-wp-totalpages");
@@ -31,7 +31,7 @@ export default async function Page() {
                   India
                 </h1>
                 <FilterableSelect catId={category.id} />
-                <ArchivePosts
+                <HomePosts
                   initialPosts={initialPosts}
                   numberOfPosts={9}
                   totalPage={totalPages}

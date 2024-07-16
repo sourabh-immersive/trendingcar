@@ -13,7 +13,7 @@ export default async function Page({ params }: Props) {
 const { subcat } = params;
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_API_BASE_URL}/posts?category_slug=${subcat}&page=${1}&per_page=${9}`,
-    { next: { revalidate: 3600 } }
+    // { next: { revalidate: 3600 } }
   );
   const initialPosts = await res.json();
   const totalPagesHeader = res.headers.get("x-wp-totalpages");
