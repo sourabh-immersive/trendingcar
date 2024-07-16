@@ -107,10 +107,16 @@ export default function Header() {
                 </Link>
               </li>
               <li className="nav-item me-4">
+                <Link className="nav-link" href="/fuel-stations">
+                  FUEL STATIONS
+                </Link>
+              </li>
+              <li className="nav-item me-4">
                 <Link className="nav-link" href="/toll-plaza">
                   TOLL PLAZA
                 </Link>
               </li>
+              
               <li className="nav-item me-4">
                 <Link className="nav-link" href="/tips-and-advice">
                   TIPS & ADVICE

@@ -93,10 +93,10 @@ export default function Footer() {
                         <Link href="/privacy-policy">Privacy Policy</Link>
                       </li>
                       <li>
-                        <Link href="#">Corporate Policies</Link>
+                        <Link href="/corporate-policy">Corporate Policies</Link>
                       </li>
                       <li>
-                        <Link href="#">FAQs</Link>
+                        <Link href="/faq">FAQs</Link>
                       </li>
                       <li>
                         <Link href="#">Sitemap</Link>
@@ -107,7 +107,7 @@ export default function Footer() {
                     <h6>Others</h6>
                     <ul className="list-unstyled">
                       <li>
-                        <Link href="#">Car News</Link>
+                        <Link href="/car-news-india">Car News</Link>
                       </li>
                       <li>
                         <Link href="#">Car Reviews</Link>
