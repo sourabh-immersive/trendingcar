@@ -86,7 +86,7 @@ const Autocomplete: React.FC<CatProps> = ({ api, type, redirect }) => {
   }, []);
 
   return (
-    <div id="Autocomplete" className="mt-3 mb-4">
+    <div id="Autocomplete" className="mt-3 mb-3">
       <div className="row">
         <div className="col-md-12">
           {type !== '' && (

@@ -179,14 +179,14 @@ const CityContent = ({tolldata}:Props) => {
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td><a href="#" className="text-primary text-decoration-none">Car/Jeep/Van</a></td>
+                                            <td><a href="#" className="text-theme text-decoration-none">Car/Jeep/Van</a></td>
                                             <td>{carObject.car_single}</td>
                                             <td>{carObject.car_multi}</td>  
                                             <td>{carObject.car_monthly}</td>
                                             <td>{carObject.car_commercial}</td> 
                                         </tr>
                                         <tr>
-                                            <td><a href="#" className="text-primary text-decoration-none">LCV</a></td>
+                                            <td><a href="#" className="text-theme text-decoration-none">LCV</a></td>
                                             
                                             <td>{lcvObject.lcv_single}</td>
                                             <td>{lcvObject.lcv_multi}</td>  
@@ -194,7 +194,7 @@ const CityContent = ({tolldata}:Props) => {
                                             <td>{lcvObject.lcv_commercial}</td>  
                                         </tr>
                                         <tr>
-                                            <td><a href="#" className="text-primary text-decoration-none">Bus/Truck</a></td>
+                                            <td><a href="#" className="text-theme text-decoration-none">Bus/Truck</a></td>
                                             <td>{bustruckObject.bus_truck_single}</td>
                                             <td>{bustruckObject.bus_truck_multi}</td>  
                                             <td>{bustruckObject.bus_truck_monthly}</td>
@@ -202,14 +202,14 @@ const CityContent = ({tolldata}:Props) => {
                                         </tr>
                                         <tr>
                                         
-                                            <td><a href="#" className="text-primary text-decoration-none">Upto 3 Axle Vehicle</a></td>
+                                            <td><a href="#" className="text-theme text-decoration-none">Upto 3 Axle Vehicle</a></td>
                                             <td>{axlevehi3Object.axle_vehi3_single}</td>
                                             <td>{axlevehi3Object.axle_vehi3_multi}</td>  
                                             <td>{axlevehi3Object.axle_vehi3_monthly}</td>
                                             <td>{axlevehi3Object.axle_vehi3_commercial}</td>
                                         </tr>
                                         <tr>
-                                            <td><a href="#" className="text-primary text-decoration-none">4 to 6 Axie</a></td>
+                                            <td><a href="#" className="text-theme text-decoration-none">4 to 6 Axie</a></td>
                                             <td>{Axlevehi4to6Object.axle_vehi4to6_single}</td>
                                             <td>{Axlevehi4to6Object.axle_vehi4to6_multi}</td>  
                                             <td>{Axlevehi4to6Object.axle_vehi4to6_monthly}</td>
@@ -217,14 +217,14 @@ const CityContent = ({tolldata}:Props) => {
                                             
                                         </tr>
                                         <tr>
-                                            <td><a href="#" className="text-primary text-decoration-none">HCM/EME</a></td>
+                                            <td><a href="#" className="text-theme text-decoration-none">HCM/EME</a></td>
                                             <td>{hcmEmeObject.hcm_eme_single}</td>
                                             <td>{hcmEmeObject.hcm_eme_multi}</td>  
                                             <td>{hcmEmeObject.hcm_eme_monthly}</td>
                                             <td>{hcmEmeObject.hcm_eme_commercial}</td>
                                         </tr>
                                         <tr>
-                                            <td><a href="#" className="text-primary text-decoration-none">7 or more Axie</a></td>
+                                            <td><a href="#" className="text-theme text-decoration-none">7 or more Axie</a></td>
                                             <td>{Axlevehi7tomoreObject.axle_vehi7_to_more_single}</td>
                                             <td>{Axlevehi7tomoreObject.axle_vehi7_to_more_multi}</td>  
                                             <td>{Axlevehi7tomoreObject.axle_vehi7_to_more_monthly}</td>
@@ -315,40 +315,40 @@ const CityContent = ({tolldata}:Props) => {
                                 <div className="col-md-12">
                                     <ul className="list-unstyled bordered">
                                         <li className="d-flex justify-content-between align-items-center">
-                                            <span className="left-part">Date of fee notification:</span>
-                                            <span className="right-part">{tollDetail.date_fee_notification}</span>
+                                            <span className="left-part p-2 fw-normal w-50">Date of fee notification:</span>
+                                            <span className="right-part p-2 maxw-50">{tollDetail.date_fee_notification}</span>
                                         </li>
                                         <li className="d-flex justify-content-between align-items-center">
-                                            <span className="left-part">Commercial Operation date:</span>
-                                            <span className="right-part">{tollDetail.date_commercial_operation}</span>
+                                            <span className="left-part p-2 fw-normal w-50 bg-grey">Commercial Operation date:</span>
+                                            <span className="right-part p-2 maxw-50">{tollDetail.date_commercial_operation}</span>
                                         </li>
                                         <li className="d-flex justify-content-between align-items-center">
-                                            <span className="left-part">Fee Rule:</span>
-                                            <span className="right-part">{tollDetail.fee_rule}</span>
+                                            <span className="left-part p-2 fw-normal w-50">Fee Rule:</span>
+                                            <span className="right-part p-2 maxw-50">{tollDetail.fee_rule}</span>
                                         </li>
                                         <li className="d-flex justify-content-between align-items-center">
-                                            <span className="left-part">Capital Cost of Project (In.Rs CR.):</span>
-                                            <span className="right-part">{tollDetail.capital_cost}</span>
+                                            <span className="left-part p-2 fw-normal w-50 bg-grey">Capital Cost of Project (In.Rs CR.):</span>
+                                            <span className="right-part p-2 maxw-50">{tollDetail.capital_cost}</span>
                                         </li>
                                         <li className="d-flex justify-content-between align-items-center">
-                                            <span className="left-part">Concession Period:</span>
-                                            <span className="right-part">{tollDetail.concessions_period}</span>
+                                            <span className="left-part p-2 fw-normal w-50">Concession Period:</span>
+                                            <span className="right-part p-2 maxw-50">{tollDetail.concessions_period}</span>
                                         </li>
                                         <li className="d-flex justify-content-between align-items-center">
-                                            <span className="left-part">Design Capacity (PCU):</span>
-                                            <span className="right-part">{tollDetail.design_capacity}</span>
+                                            <span className="left-part p-2 fw-normal w-50 bg-grey">Design Capacity (PCU):</span>
+                                            <span className="right-part p-2 maxw-50">{tollDetail.design_capacity}</span>
                                         </li>
                                         <li className="d-flex justify-content-between align-items-center">
-                                            <span className="left-part">Traffic (PCU/Day):</span>
-                                            <span className="right-part">{tollDetail.target_traffic_per_day}</span>
+                                            <span className="left-part p-2 fw-normal w-50">Traffic (PCU/Day):</span>
+                                            <span className="right-part p-2 maxw-50">{tollDetail.target_traffic_per_day}</span>
                                         </li>
                                         <li className="d-flex justify-content-between align-items-center">
-                                            <span className="left-part">Name of concessionaire /OMT Contractor:</span>
-                                            <span className="right-part">{tollDetail.contractor_name}</span>
+                                            <span className="left-part p-2 fw-normal w-50 bg-grey">Name of concessionaire /OMT Contractor:</span>
+                                            <span className="right-part p-2 maxw-50">{tollDetail.contractor_name}</span>
                                         </li>
                                         <li className="d-flex justify-content-between align-items-center">
-                                            <span className="left-part">Name /Contact Detail of Incharge:</span>
-                                            <span className="right-part">{tollDetail.contact_details}</span>
+                                            <span className="left-part p-2 fw-normal w-50">Name /Contact Detail of Incharge:</span>
+                                            <span className="right-part p-2 maxw-50">{tollDetail.contact_details}</span>
                                         </li>
                                     </ul>
                                 </div>
@@ -371,40 +371,40 @@ const CityContent = ({tolldata}:Props) => {
                                 <div className="col-md-12">
                                     <ul className="list-unstyled bordered">
                                         <li className="d-flex justify-content-between align-items-center">
-                                            <span className="left-part">Helpline No:</span>
-                                            <span className="right-part">{tollDetail.helpline_no}</span>
+                                            <span className="left-part p-2 fw-normal w-50">Helpline No:</span>
+                                            <span className="right-part p-2 maxw-50">{tollDetail.helpline_no}</span>
                                         </li>
                                         <li className="d-flex justify-content-between align-items-center">
-                                            <span className="left-part">Emergency Services:</span>
-                                            <span className="right-part">{tollDetail.emergency_services}</span>
+                                            <span className="left-part p-2 fw-normal w-50 bg-grey">Emergency Services:</span>
+                                            <span className="right-part p-2 maxw-50">{tollDetail.emergency_services}</span>
                                         </li>
                                         <li className="d-flex justify-content-between align-items-center">
-                                            <span className="left-part">Nearest Police Station:</span>
-                                            <span className="right-part">{tollDetail.nearest_police_station}</span>
+                                            <span className="left-part p-2 fw-normal w-50">Nearest Police Station:</span>
+                                            <span className="right-part p-2 maxw-50">{tollDetail.nearest_police_station}</span>
                                         </li>
                                         <li className="d-flex justify-content-between align-items-center">
-                                            <span className="left-part">Project Implementation Unit (PIU):</span>
-                                            <span className="right-part">{tollDetail.project_implementation_unit}</span>
+                                            <span className="left-part p-2 fw-normal w-50 bg-grey">Project Implementation Unit (PIU):</span>
+                                            <span className="right-part p-2 maxw-50">{tollDetail.project_implementation_unit}</span>
                                         </li>
                                         <li className="d-flex justify-content-between align-items-center">
-                                            <span className="left-part">Highway Administrator ( Project Director):</span>
-                                            <span className="right-part">{tollDetail.highway_administrator}</span>
+                                            <span className="left-part p-2 fw-normal w-50">Highway Administrator ( Project Director):</span>
+                                            <span className="right-part p-2 maxw-50">{tollDetail.highway_administrator}</span>
                                         </li>
                                         <li className="d-flex justify-content-between align-items-center">
-                                            <span className="left-part">Regional Office (RO):</span>
-                                            <span className="right-part">{tollDetail.regional_office}</span>
+                                            <span className="left-part p-2 fw-normal w-50 bg-grey">Regional Office (RO):</span>
+                                            <span className="right-part p-2 maxw-50">{tollDetail.regional_office}</span>
                                         </li>
                                         <li className="d-flex justify-content-between align-items-center">
-                                            <span className="left-part">Representative of Consultant:</span>
-                                            <span className="right-part">{tollDetail.representative_of_consultant}</span>
+                                            <span className="left-part p-2 fw-normal w-50">Representative of Consultant:</span>
+                                            <span className="right-part p-2 maxw-50">{tollDetail.representative_of_consultant}</span>
                                         </li>
                                         <li className="d-flex justify-content-between align-items-center">
-                                            <span className="left-part">Representative of Concessionaire:</span>
-                                            <span className="right-part">{tollDetail.representative_of_concessionaire}</span>
+                                            <span className="left-part p-2 fw-normal w-50 bg-grey">Representative of Concessionaire:</span>
+                                            <span className="right-part p-2 maxw-50">{tollDetail.representative_of_concessionaire}</span>
                                         </li>
                                         <li className="d-flex justify-content-between align-items-center">
-                                            <span className="left-part">Nearest Hospital (s):</span>
-                                            <span className="right-part">{tollDetail.nearest_hospital}</span>
+                                            <span className="left-part p-2 fw-normal w-50">Nearest Hospital (s):</span>
+                                            <span className="right-part p-2 maxw-50">{tollDetail.nearest_hospital}</span>
                                         </li>
                                     </ul>
                                 </div>

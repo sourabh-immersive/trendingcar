@@ -16,7 +16,8 @@ const TollplazaList: React.FC<TollplazaListProps> = ({ stateName,slug, imageUrl}
       <div className="state-box-wrapper">
         <img src={imageUrl} alt={stateName} className="img-fluid" />
         <h5 className="state-name mb-0">
-          {stateName.toUpperCase()}</h5>
+          <span>{stateName.toUpperCase()}</span>
+        </h5>
       </div>
       </Link>
     </div>

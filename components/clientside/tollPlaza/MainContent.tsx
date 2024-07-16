@@ -53,23 +53,25 @@ export default function MainContent(states:Props) {
                         <div className="card">
                             <div className="card-body">
                                 <section className="state-list-wrapper">
-                                    <h5>Toll Plaza List by States in India</h5>
-                                    <small>Top states in India</small>
-
-                                    <div className="ms-auto w-25">
+                                    <div className="d-flex align-items-center">
+                                        <div>
+                                            <h5>Toll Plaza List by States in India</h5>
+                                            <small>Top states in India</small>
+                                        </div>
+                                        <div className="ms-auto w-25">
                                             <div className="form-group position-relative">
-                                            <input
-                                                    type="text"
-                                                    id="search"
-                                                    className="form-control"
-                                                    placeholder="Search State"
-                                                    value={searchTerm}
-                                                    onChange={e => setSearchTerm(e.target.value)}
-                                                    />
+                                                <input
+                                                type="text"
+                                                id="search"
+                                                className="form-control"
+                                                placeholder="Search State"
+                                                value={searchTerm}
+                                                onChange={e => setSearchTerm(e.target.value)}
+                                                />
                                                 <img src="/search-black.png" className="img-fluid position-absolute r-3 t-10" alt="search icon" />
-                                                
                                             </div>
                                         </div>
+                                    </div>
                                     <div className="row">
                                         {filteredStates.slice(0, visibleStates).map((state, index) => (
                                             <TollplazaList key={index} stateName={state.name} slug={state.slug} imageUrl='state.png' />
@@ -78,7 +80,7 @@ export default function MainContent(states:Props) {
                                     {filteredStates.length > 6 && (
                                         <div className="row mt-4">
                                             <div className="col-12 text-center">
-                                                <button className="text-primary text-decoration-none ml-2" onClick={toggleStates}>
+                                                <button className="btn btn-theme text-decoration-none ml-2 text-white" onClick={toggleStates}>
                                                     {showMore ? 'Show Less States' : 'Load More States'}
                                                 </button>
                                             </div>

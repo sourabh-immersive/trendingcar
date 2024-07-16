@@ -15,7 +15,7 @@ const ChangeStateModal: React.FC<ChangeStateModalProps> = ({ show, handleClose, 
             <div className={`modal fade ${show ? 'show d-block' : ''}`} tabIndex={-1} role="dialog">
                 <div className="modal-dialog modal-dialog-centered city-modal" role="document">
                     <div className="modal-content">
-                        <div className="modal-header bg-primary d-block">
+                        <div className="modal-header bg-theme d-block">
                             <div className="d-flex align-items-center">
                                 <h5 className="modal-title text-white fz-18" id="changecityModalLabel">
                                     We need your city to customize your <br /> experience
