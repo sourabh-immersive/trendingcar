@@ -65,12 +65,7 @@ export default function Header() {
               </li>
               <li className="nav-item me-4">
                 <Link className="nav-link" href="/rto">
-                  RTO{"'"}s 
-                </Link>
-              </li>
-              <li className="nav-item me-4">
-                <Link className="nav-link" href="/fuel-stations" >
-                  FUEL STATIONS
+                  RTO{"'"}s
                 </Link>
               </li>
               <li className="nav-item me-4">
