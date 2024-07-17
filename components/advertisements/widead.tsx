@@ -5,11 +5,17 @@ interface WideProps {
   img_url?: string;
 }
 
-const Wide: React.FC<WideProps> = ({ img_url }) => {
+const Wide: React.FC<WideProps> = async ({ img_url }) => {
+
+  const res = await fetch(
+    `https://trendingcar.com/admin/api/advertise`,
+    // { next: { revalidate: 3600 } }
+  );
+
   const fallbackImage = "/image-9.png";
   const imageUrl = img_url || fallbackImage;
 
-  return (
+  return ( !res.status &&
     <div className="container adrow mb-4">
       <div className="ads_wrapper">
         <section className="auto-ad-container text-center">
