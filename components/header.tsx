@@ -3,7 +3,6 @@ import Link from "next/link";
 import React from "react"; 
 import Autocomplete from '@/components/autocomplete/autocomplete';
 import { FaFacebook,FaInstagram,FaPinterest,FaLinkedinIn,FaYoutube,FaHouse} from "react-icons/fa6"; 
-import { NavLink } from 'react-router-dom';
 
 export default function Header() {
   return (
