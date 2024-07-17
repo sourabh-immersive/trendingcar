@@ -17,7 +17,6 @@ export async function generateMetadata(
   const slug = params.slug;
   const blog = await fetchPostBySlug(slug);
 
-  // Base URL for your site (use environment variable or hardcode)
   const baseUrl =
     process.env.NEXT_PUBLIC_BASE_URL ||
     "https://wp.trendingcar.com/wp-json/wp/v2";
