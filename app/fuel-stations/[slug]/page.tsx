@@ -1,6 +1,5 @@
 "use client";
-import React, { useState, useEffect, ChangeEvent } from 'react';
-import WideAd from '@/components/advertisements/widead';
+import React, { useState, useEffect, ChangeEvent } from 'react'; 
 import PetrolCities, { NearByStationData } from "@/components/fuelstations/petrolcities";
 import PetrolPump from "@/components/fuelstations/petrolpumpcity";
 import ChangecityModal from '@/components/modal/ChangecityModal';  
@@ -94,8 +93,7 @@ export default function Page({ params }: { params: { slug: string } }) {
             </div>
           </section>
         </div>
-      </div>
-      <WideAd img_url="/ads2.png" />
+      </div> 
       <div className="row mt-4">
         <div className="col-md-12 col-sm-12 col-lg-12 col-xl-12 col-xxl-12">
           <div className="container">
@@ -114,8 +112,7 @@ export default function Page({ params }: { params: { slug: string } }) {
             </div>
           </div>
         </div>
-      </div> 
-      <WideAd img_url="/ads2.png" />
+      </div>  
       <div className="row mt-4 mb-4">
         <div className="col-md-12 col-sm-12 col-lg-12 col-xl-12 col-xxl-12">
           <div className="container">

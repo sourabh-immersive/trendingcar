@@ -4,6 +4,7 @@ import Image from "next/image";
 import Content from "@/components/skeletons/content";
 import formatDate from "@/utils/formatDate";
 import PostShare from "@/components/PostShare";
+import RelatedPostsC from "@/components/clientside/RelatedPosts";
 
 type Props = {
   params: { slug: string };
@@ -77,6 +78,11 @@ export default async function Page({ params }: { params: { slug: string } }) {
   let data = await res.json();
   data = data[0];
 
+  const res1 = await fetch(
+    `${process.env.NEXT_PUBLIC_API_BASE_URL}/posts?category_slug=car-collection&exclude=${data.id}&per_page=${3}`
+  );
+  const RelatedPosts = await res1.json();
+
   function getFirstWord(str: string) {
     return str.split(" ")[0];
   }
@@ -127,6 +133,13 @@ export default async function Page({ params }: { params: { slug: string } }) {
           </div>
         </div>
       </div>
+      <br />
+      <RelatedPostsC
+        initialPosts={RelatedPosts}
+        numberOfPosts={3}
+        totalPage={1}
+        parentPage={'car-news-india'}
+      />
     </>
   );
 }
