@@ -73,7 +73,7 @@ const PetrolPump: React.FC<PetrolPumpData> = ({ image, title, address, openTime,
             </li>
           ))}
         </ul>
-        <button type="button" className="btn btn-theme mt-2 text-white" onClick={handleGetDirections}>
+        <button type="button" className="btn btn-outline-theme mt-2 text-white" onClick={handleGetDirections}>
           Get Direction
         </button>
       </div>
