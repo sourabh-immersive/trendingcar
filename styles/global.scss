@@ -170,6 +170,7 @@ ul.myList {
       margin-left: 10px;
       margin-right: 10px;
     }
+
     svg {
       color: #000;
       font-size: 24px;
@@ -217,6 +218,7 @@ hr {
 
 ol.breadcrumb {
   margin-bottom: 0;
+
   // padding: 15px 0;
   a {
     padding: 0 5px;
@@ -225,6 +227,7 @@ ol.breadcrumb {
   li.breadcrumb-item a {
     color: #000000;
   }
+
   li.breadcrumb-item.active.text-primary a {
     color: $primary-color;
   }
@@ -272,6 +275,7 @@ img.iconInLink {
 .container.adrow {
   padding: 0;
 }
+
 button.btn.btn-primary.load_more_btn {
   background: transparent;
   color: #000000;
@@ -282,6 +286,7 @@ button.btn.btn-primary.load_more_btn {
   border-radius: 30px;
   padding: 10px 35px;
 }
+
 button.btn.btn-primary.load_more_btn:hover {
   color: #0d6efd;
   border-color: #0d6efd;
@@ -292,6 +297,7 @@ button.btn.btn-primary.load_more_btn:hover {
   display: inline-block;
   width: fit-content;
 }
+
 // Blog Page CSS
 
 .post_tags span {
@@ -309,7 +315,8 @@ button.btn.btn-primary.load_more_btn:hover {
 .archive__posts {
   p.card-title-customP {
     margin-bottom: 0;
-}
+  }
+
   .card-custom {
     display: flex;
     align-items: center;
@@ -320,12 +327,14 @@ button.btn.btn-primary.load_more_btn:hover {
     margin-bottom: 20px;
     background: #ffffff;
   }
+
   .card-custom img {
     width: 380px;
     height: 210px;
     object-fit: cover;
     border-radius: 0.5rem;
   }
+
   .card-body-custom {
     display: flex;
     flex-direction: column;
@@ -333,19 +342,23 @@ button.btn.btn-primary.load_more_btn:hover {
     // margin-left: 1rem;
     padding: 16px;
   }
+
   .card-title-custom {
     font-size: 1.25rem;
     font-weight: bold;
   }
+
   .card-text-custom {
     font-size: 0.9rem;
     color: #6c757d;
   }
+
   .card-author {
     display: flex;
     align-items: center;
     margin-top: 1rem;
   }
+
   .author-image {
     width: 40px;
     height: 40px;
@@ -359,11 +372,13 @@ button.btn.btn-primary.load_more_btn:hover {
     color: #6c757d;
     margin-right: 0.5rem;
   }
+
   .author-details {
     font-size: 0.8rem;
     color: #6c757d;
   }
 }
+
 // Archive Posts Card Css End
 
 .heroAreaMain {
@@ -385,6 +400,7 @@ button.btn.btn-primary.load_more_btn:hover {
       height: 64px;
       object-fit: cover;
     }
+
     h6 {
       font-size: 14px;
       line-height: 1.4;
@@ -394,6 +410,7 @@ button.btn.btn-primary.load_more_btn:hover {
       font-size: 10px;
     }
   }
+
   .heroSlider {
     .swiper-slide img {
       width: 100%;
@@ -434,10 +451,12 @@ button.btn.btn-primary.load_more_btn:hover {
     h5.card-title {
       color: #ffffff;
     }
+
     p.card-text {
       color: #ffffff;
     }
   }
+
   img.card-img-top {
     width: 100%;
     height: 300px;
@@ -493,6 +512,7 @@ button.btn.btn-primary.load_more_btn:hover {
       height: 64px;
       object-fit: cover;
     }
+
     h6 {
       font-size: 14px;
       line-height: 1.4;
@@ -503,6 +523,7 @@ button.btn.btn-primary.load_more_btn:hover {
     }
   }
 }
+
 // Skeleton CSS
 
 .skeleton-bloghero {
@@ -560,6 +581,7 @@ button.btn.btn-primary.load_more_btn:hover {
     width: 100%;
     // padding: 0 15px;
   }
+
   .skeleton:first-child {
     padding-top: 0;
   }
@@ -577,66 +599,65 @@ button.btn.btn-primary.load_more_btn:hover {
     // box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.14),
     //   0 3px 3px -2px rgba(0, 0, 0, 0.2), 0 1px 8px 0 rgba(0, 0, 0, 0.12);
   }
+
   .skeleton .square {
     height: 80px;
     border-radius: 5px;
     background: rgba(130, 130, 130, 0.2);
-    background: -webkit-gradient(
-      linear,
-      left top,
-      right top,
-      color-stop(8%, rgba(130, 130, 130, 0.2)),
-      color-stop(18%, rgba(130, 130, 130, 0.3)),
-      color-stop(33%, rgba(130, 130, 130, 0.2))
-    );
-    background: linear-gradient(
-      to right,
-      rgba(130, 130, 130, 0.2) 8%,
-      rgba(130, 130, 130, 0.3) 18%,
-      rgba(130, 130, 130, 0.2) 33%
-    );
+    background: -webkit-gradient(linear,
+        left top,
+        right top,
+        color-stop(8%, rgba(130, 130, 130, 0.2)),
+        color-stop(18%, rgba(130, 130, 130, 0.3)),
+        color-stop(33%, rgba(130, 130, 130, 0.2)));
+    background: linear-gradient(to right,
+        rgba(130, 130, 130, 0.2) 8%,
+        rgba(130, 130, 130, 0.3) 18%,
+        rgba(130, 130, 130, 0.2) 33%);
     background-size: 800px 100px;
     animation: wave-squares 2s infinite ease-out;
   }
+
   .skeleton .line {
     height: 12px;
     margin-bottom: 6px;
     border-radius: 2px;
     background: rgba(130, 130, 130, 0.2);
-    background: -webkit-gradient(
-      linear,
-      left top,
-      right top,
-      color-stop(8%, rgba(130, 130, 130, 0.2)),
-      color-stop(18%, rgba(130, 130, 130, 0.3)),
-      color-stop(33%, rgba(130, 130, 130, 0.2))
-    );
-    background: linear-gradient(
-      to right,
-      rgba(130, 130, 130, 0.2) 8%,
-      rgba(130, 130, 130, 0.3) 18%,
-      rgba(130, 130, 130, 0.2) 33%
-    );
+    background: -webkit-gradient(linear,
+        left top,
+        right top,
+        color-stop(8%, rgba(130, 130, 130, 0.2)),
+        color-stop(18%, rgba(130, 130, 130, 0.3)),
+        color-stop(33%, rgba(130, 130, 130, 0.2)));
+    background: linear-gradient(to right,
+        rgba(130, 130, 130, 0.2) 8%,
+        rgba(130, 130, 130, 0.3) 18%,
+        rgba(130, 130, 130, 0.2) 33%);
     background-size: 800px 100px;
     animation: wave-lines 2s infinite ease-out;
   }
+
   .skeleton-right {
     flex: 1;
   }
+
   .skeleton-left {
     flex: 2;
     padding-right: 15px;
   }
+
   .flex1 {
     flex: 1;
   }
+
   .flex2 {
     flex: 2;
   }
+
   .skeleton .line:last-child {
     margin-bottom: 0;
   }
-
+ 
   .box-square{
     height: 290px;
     border-radius: 5px;
@@ -728,45 +749,55 @@ button.btn.btn-primary.load_more_btn:hover {
     animation: wave-squares 2s infinite ease-out;
   }
   .w-60{width:60%;}
-  
- 
-
+   
   .h8 {
     height: 8px !important;
   }
+
   .h10 {
     height: 10px !important;
   }
+
   .h12 {
     height: 12px !important;
   }
+
   .h15 {
     height: 15px !important;
   }
+
   .h17 {
     height: 17px !important;
   }
+
   .h20 {
     height: 20px !important;
   }
+
   .h25 {
     height: 25px !important;
   }
+
   .w25 {
     width: 25% !important;
   }
+
   .w40 {
     width: 40% !important;
   }
+
   .w50 {
     width: 50% !important;
   }
+
   .w75 {
     width: 75% !important;
   }
+
   .m10 {
     margin-bottom: 10px !important;
   }
+
   .circle {
     border-radius: 50% !important;
     height: 80px !important;
@@ -778,45 +809,39 @@ button.btn.btn-primary.load_more_btn:hover {
     height: 405px;
     border-radius: 5px;
     background: rgba(130, 130, 130, 0.2);
-    background: -webkit-gradient(
-      linear,
-      left top,
-      right top,
-      color-stop(8%, rgba(130, 130, 130, 0.2)),
-      color-stop(18%, rgba(130, 130, 130, 0.3)),
-      color-stop(33%, rgba(130, 130, 130, 0.2))
-    );
-    background: linear-gradient(
-      to right,
-      rgba(130, 130, 130, 0.2) 8%,
-      rgba(130, 130, 130, 0.3) 18%,
-      rgba(130, 130, 130, 0.2) 33%
-    );
-    background-size: 800px 100px;
-    animation: wave-squares 2s infinite ease-out;
-    padding: 20px;
-    padding-top: 350px;
-    .h-25 {
-      height: 25px;
-    }
-    .line {
-      margin-bottom: 6px;
-      border-radius: 2px;
-      background: rgba(130, 130, 130, 0.2);
-      background: -webkit-gradient(
-        linear,
+    background: -webkit-gradient(linear,
         left top,
         right top,
         color-stop(8%, rgba(130, 130, 130, 0.2)),
         color-stop(18%, rgba(130, 130, 130, 0.3)),
-        color-stop(33%, rgba(130, 130, 130, 0.2))
-      );
-      background: linear-gradient(
-        to right,
+        color-stop(33%, rgba(130, 130, 130, 0.2)));
+    background: linear-gradient(to right,
         rgba(130, 130, 130, 0.2) 8%,
         rgba(130, 130, 130, 0.3) 18%,
-        rgba(130, 130, 130, 0.2) 33%
-      );
+        rgba(130, 130, 130, 0.2) 33%);
+    background-size: 800px 100px;
+    animation: wave-squares 2s infinite ease-out;
+    padding: 20px;
+    padding-top: 350px;
+
+    .h-25 {
+      height: 25px;
+    }
+
+    .line {
+      margin-bottom: 6px;
+      border-radius: 2px;
+      background: rgba(130, 130, 130, 0.2);
+      background: -webkit-gradient(linear,
+          left top,
+          right top,
+          color-stop(8%, rgba(130, 130, 130, 0.2)),
+          color-stop(18%, rgba(130, 130, 130, 0.3)),
+          color-stop(33%, rgba(130, 130, 130, 0.2)));
+      background: linear-gradient(to right,
+          rgba(130, 130, 130, 0.2) 8%,
+          rgba(130, 130, 130, 0.3) 18%,
+          rgba(130, 130, 130, 0.2) 33%);
       background-size: 800px 100px;
       animation: wave-lines 2s infinite ease-out;
     }
@@ -826,14 +851,17 @@ button.btn.btn-primary.load_more_btn:hover {
     0% {
       background-position: -468px 0;
     }
+
     100% {
       background-position: 468px 0;
     }
   }
+
   @keyframes wave-squares {
     0% {
       background-position: -468px 0;
     }
+
     100% {
       background-position: 468px 0;
     }
@@ -847,44 +875,38 @@ button.btn.btn-primary.load_more_btn:hover {
       height: 250px;
       border-radius: 5px;
       background: rgba(130, 130, 130, 0.2);
-      background: -webkit-gradient(
-        linear,
-        left top,
-        right top,
-        color-stop(8%, rgba(130, 130, 130, 0.2)),
-        color-stop(18%, rgba(130, 130, 130, 0.3)),
-        color-stop(33%, rgba(130, 130, 130, 0.2))
-      );
-      background: linear-gradient(
-        to right,
-        rgba(130, 130, 130, 0.2) 8%,
-        rgba(130, 130, 130, 0.3) 18%,
-        rgba(130, 130, 130, 0.2) 33%
-      );
-      background-size: 800px 100px;
-      animation: wave-squares 2s infinite ease-out;
-      padding: 20px;
-      .h-25 {
-        height: 25px;
-      }
-      .line {
-        margin-bottom: 6px;
-        border-radius: 2px;
-        background: rgba(130, 130, 130, 0.2);
-        background: -webkit-gradient(
-          linear,
+      background: -webkit-gradient(linear,
           left top,
           right top,
           color-stop(8%, rgba(130, 130, 130, 0.2)),
           color-stop(18%, rgba(130, 130, 130, 0.3)),
-          color-stop(33%, rgba(130, 130, 130, 0.2))
-        );
-        background: linear-gradient(
-          to right,
+          color-stop(33%, rgba(130, 130, 130, 0.2)));
+      background: linear-gradient(to right,
           rgba(130, 130, 130, 0.2) 8%,
           rgba(130, 130, 130, 0.3) 18%,
-          rgba(130, 130, 130, 0.2) 33%
-        );
+          rgba(130, 130, 130, 0.2) 33%);
+      background-size: 800px 100px;
+      animation: wave-squares 2s infinite ease-out;
+      padding: 20px;
+
+      .h-25 {
+        height: 25px;
+      }
+
+      .line {
+        margin-bottom: 6px;
+        border-radius: 2px;
+        background: rgba(130, 130, 130, 0.2);
+        background: -webkit-gradient(linear,
+            left top,
+            right top,
+            color-stop(8%, rgba(130, 130, 130, 0.2)),
+            color-stop(18%, rgba(130, 130, 130, 0.3)),
+            color-stop(33%, rgba(130, 130, 130, 0.2)));
+        background: linear-gradient(to right,
+            rgba(130, 130, 130, 0.2) 8%,
+            rgba(130, 130, 130, 0.3) 18%,
+            rgba(130, 130, 130, 0.2) 33%);
         background-size: 800px 100px;
         animation: wave-lines 2s infinite ease-out;
       }
@@ -895,12 +917,10 @@ button.btn.btn-primary.load_more_btn:hover {
 // New Skeleton Hero CSS
 
 // Define variables for reusable values
-$wave-gradient: linear-gradient(
-  to right,
-  rgba(130, 130, 130, 0.2) 8%,
-  rgba(130, 130, 130, 0.3) 18%,
-  rgba(130, 130, 130, 0.2) 33%
-);
+$wave-gradient: linear-gradient(to right,
+    rgba(130, 130, 130, 0.2) 8%,
+    rgba(130, 130, 130, 0.3) 18%,
+    rgba(130, 130, 130, 0.2) 33%);
 $background-size: 906px 100px;
 
 // SCSS structure
@@ -1038,6 +1058,7 @@ $background-size: 906px 100px;
   0% {
     background-position: -906px 0;
   }
+
   100% {
     background-position: 906px 0;
   }
@@ -1047,6 +1068,7 @@ $background-size: 906px 100px;
   0% {
     background-position: -906px 0;
   }
+
   100% {
     background-position: 906px 0;
   }
@@ -1656,6 +1678,7 @@ div#filterableSelect {
     max-height: 282px;
     overflow-y: scroll;
   }
+
   input.form-control,
   button.submitBtn {
     padding: 15px 25px !important;
@@ -1692,6 +1715,7 @@ div#filterableSelect {
   .archive__posts .card-custom {
     flex-direction: column;
   }
+
   .archive__posts .card-custom img {
     width: 100%;
     height: auto;
@@ -2001,62 +2025,85 @@ div#filterableSelect {
     width: 100%;
     height: 100%;
   }
-  
+
   .swiper-slide {
     text-align: center;
     font-size: 18px;
     background: #fff;
-  
+
     /* Center slide text vertically */
     display: flex;
     justify-content: center;
     align-items: center;
   }
-  
+
   .swiper-slide img {
     display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
   }
-  
+
   .swiper {
     width: 100%;
     height: 300px;
     margin-left: auto;
     margin-right: auto;
   }
-  
+
   .swiper-slide {
     background-size: cover;
     background-position: center;
   }
-  
+
   .mySwiper2 {
     height: 450px;
     width: 100%;
   }
-  
+
   .mySwiper {
     height: 20%;
     box-sizing: border-box;
     padding: 10px 0;
   }
-  
+
   .mySwiper .swiper-slide {
     width: 25%;
     height: 100px;
     opacity: 0.4;
   }
-  
+
   .mySwiper .swiper-slide-thumb-active {
     opacity: 1;
   }
-  
+
   .swiper-slide img {
     display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
+  }
+}
+
+.gallery-Cotentwrap {
+  background: #fff;
+  border: 1px solid rgba(36, 39, 44, 0.1);
+  border-radius: 16px;
+  padding: 17px 15px;
+
+  h4 {
+    margin-bottom: 15px;
+  }
+
+  .gallery_card {
+    margin-bottom: 30px;
+    img {
+      border-radius: 17px;
+      margin-bottom: 15px;
+    }
+
+    h5.card-title-custom {
+      font-size: 18px;
+  }
   }
 }

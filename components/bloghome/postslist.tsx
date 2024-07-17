@@ -9,6 +9,7 @@ interface Post {
   featured_image_url?: string;
   author?: string;
   date?: string;
+  primary_cat_slug: string;
 }
 
 interface PostbyCategoryProps {
@@ -25,8 +26,7 @@ const fetchPostsListByCategory = async (
   page?: number
 ): Promise<Post[]> => {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_BASE_URL}/posts?category_slug=${category}&per_page=${numberOfPosts}&page=${page}`,
-    { next: { revalidate: 3600 } }
+    `${process.env.NEXT_PUBLIC_API_BASE_URL}/posts?category_slug=${category}&per_page=${numberOfPosts}&page=${page}`
   );
 
   if (!response.ok) {
@@ -47,7 +47,7 @@ const PostsList: React.FC<PostbyCategoryProps> = async ({
     numberOfPosts,
     1
   );
-
+  // console.log(initialPosts);
   return (
     <>
       <PostsListClient
