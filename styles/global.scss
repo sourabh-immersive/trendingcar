@@ -53,9 +53,7 @@ ol.breadcrumb li.breadcrumb-item.active.text-primary a {
   color: #343958!important;
 }
 
-a{
-  color: #343958!important;
-}
+
 
 h1,
 h2,
@@ -79,6 +77,10 @@ a {
 
 .fz-14{
   font-size:14px!important;
+}
+
+.fz-16{
+  font-size:16px!important;
 }
 
 .fz-18{
@@ -1114,13 +1116,43 @@ $background-size: 906px 100px;
 .petrol-pump-wrapper{
   border:1px solid #eee;
   padding:20px;
+  background-color: #eeeeee30;
+  border-radius: 10px;
+  .initials-wrap{
+    width: 70px;
+    height: 70px;
+    border: 1px solid #eee;
+    border-radius: 50%;
+    background-color: #eee;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+  }
   hr{
     margin: 0.1rem 0;
   }
   p{
     color:#707070;
     margin-top:10px;
-    min-height: 72px;
+    max-width:300px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+    @supports (-webkit-line-clamp: 2) {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: initial;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
+  }
+  h5{
+    max-width:300px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
   }
   ul{ 
     list-style:none;

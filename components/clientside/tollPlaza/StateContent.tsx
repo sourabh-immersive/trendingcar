@@ -54,7 +54,7 @@ const StateContent = (tolls:Props) => {
                                 <h5 className="page-title me-2">{formatString(tolls.slug)} </h5>
                                 <a 
                                     href="#" 
-                                    className="text-decoration-none text-theme fz-14" 
+                                    className="text-decoration-none fz-14" 
                                     onClick={() => setModalOpen(true)}
                                 >
                                     <FaPencil /> Change State
