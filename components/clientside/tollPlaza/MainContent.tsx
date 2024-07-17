@@ -80,7 +80,7 @@ export default function MainContent(states:Props) {
                                     {filteredStates.length > 6 && (
                                         <div className="row mt-4">
                                             <div className="col-12 text-center">
-                                                <button className="btn btn-theme text-decoration-none ml-2 text-white" onClick={toggleStates}>
+                                                <button className="btn btn-outline-theme text-decoration-none ml-2" onClick={toggleStates}>
                                                     {showMore ? 'Show Less States' : 'Load More States'}
                                                 </button>
                                             </div>

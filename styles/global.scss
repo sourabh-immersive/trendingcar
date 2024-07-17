@@ -142,6 +142,18 @@ ul.myList {
   border: 1px solid #9998a4;
 }
 
+.btn-outline-theme{
+  background-color: #ffffff;
+  border: 1px solid #343958;
+  color: #343958!important;
+}
+
+.btn-outline-theme:hover{
+  background-color: #343958;
+  border: 1px solid #343958;
+  color: #ffffff!important;
+}
+
 .shadow24 {
   background: #fff;
   border: 1px solid rgba(36, 39, 44, 0.1);

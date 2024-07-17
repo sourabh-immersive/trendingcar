@@ -137,7 +137,7 @@ const StateContent = (tolls:Props) => {
                                     </div>
                                     {filteredCities.length > 4 && (
                                         <div className="text-center">
-                                            <button className="btn btn-theme text-white p-2" onClick={toggleCities}>
+                                            <button className="btn btn-outline-theme p-2" onClick={toggleCities}>
                                                 {showMore ? 'Show Less Cities' : 'Load More Cities'}
                                             </button>
                                         </div>
