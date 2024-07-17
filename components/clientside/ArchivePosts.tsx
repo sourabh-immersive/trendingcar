@@ -29,7 +29,7 @@ interface AllCategoryProps {
   numberOfPosts: number;
   totalPage: number;
   parentPage?: string;
-  categorySlug: string;
+  categorySlug?: string;
 }
 
 const ArchivePosts: React.FC<AllCategoryProps> = ({

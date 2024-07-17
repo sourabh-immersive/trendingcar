@@ -15,6 +15,7 @@ interface Post {
   featured_image_url?: string;
   author_nicename?: string;
   date?: string;
+  primary_cat_slug: string;
 }
 
 interface PostbyCategoryProps {
@@ -65,7 +66,7 @@ const PostsListClient: React.FC<PostbyCategoryProps> = ({
       <h4 className="">{title}</h4>
       <div className="latest-posts">
         {posts.map((post, index) => (
-          <Link href={`/blogs/${post.slug}`} key={index}>
+          <Link href={`${category}/${post.primary_cat_slug}/${post.slug}`} key={index}>
             <div
               data-index={index}
               className="d-flex align-items-center bordered mb-3"

@@ -28,6 +28,13 @@ export default function CategoryLayout({
                 category="car-news-india"
               />
               <LongAd />
+              <PostsList
+                  title="Most Viewed"
+                  linkText="View All"
+                  link="/car-expert-reviews/"
+                  numberOfPosts={5}
+                  category="car-expert-reviews"
+                />
             </section>
           </div>
         </div>
