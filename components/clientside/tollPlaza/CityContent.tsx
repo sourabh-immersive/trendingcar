@@ -179,14 +179,14 @@ const CityContent = ({tolldata}:Props) => {
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td><a href="#" className="text-theme text-decoration-none">Car/Jeep/Van</a></td>
+                                            <td><a href="#" className="text-decoration-none">Car/Jeep/Van</a></td>
                                             <td>{carObject.car_single}</td>
                                             <td>{carObject.car_multi}</td>  
                                             <td>{carObject.car_monthly}</td>
                                             <td>{carObject.car_commercial}</td> 
                                         </tr>
                                         <tr>
-                                            <td><a href="#" className="text-theme text-decoration-none">LCV</a></td>
+                                            <td><a href="#" className="text-decoration-none">LCV</a></td>
                                             
                                             <td>{lcvObject.lcv_single}</td>
                                             <td>{lcvObject.lcv_multi}</td>  
@@ -194,7 +194,7 @@ const CityContent = ({tolldata}:Props) => {
                                             <td>{lcvObject.lcv_commercial}</td>  
                                         </tr>
                                         <tr>
-                                            <td><a href="#" className="text-theme text-decoration-none">Bus/Truck</a></td>
+                                            <td><a href="#" className="text-decoration-none">Bus/Truck</a></td>
                                             <td>{bustruckObject.bus_truck_single}</td>
                                             <td>{bustruckObject.bus_truck_multi}</td>  
                                             <td>{bustruckObject.bus_truck_monthly}</td>
@@ -202,14 +202,14 @@ const CityContent = ({tolldata}:Props) => {
                                         </tr>
                                         <tr>
                                         
-                                            <td><a href="#" className="text-theme text-decoration-none">Upto 3 Axle Vehicle</a></td>
+                                            <td><a href="#" className="text-decoration-none">Upto 3 Axle Vehicle</a></td>
                                             <td>{axlevehi3Object.axle_vehi3_single}</td>
                                             <td>{axlevehi3Object.axle_vehi3_multi}</td>  
                                             <td>{axlevehi3Object.axle_vehi3_monthly}</td>
                                             <td>{axlevehi3Object.axle_vehi3_commercial}</td>
                                         </tr>
                                         <tr>
-                                            <td><a href="#" className="text-theme text-decoration-none">4 to 6 Axie</a></td>
+                                            <td><a href="#" className="text-decoration-none">4 to 6 Axie</a></td>
                                             <td>{Axlevehi4to6Object.axle_vehi4to6_single}</td>
                                             <td>{Axlevehi4to6Object.axle_vehi4to6_multi}</td>  
                                             <td>{Axlevehi4to6Object.axle_vehi4to6_monthly}</td>
@@ -217,14 +217,14 @@ const CityContent = ({tolldata}:Props) => {
                                             
                                         </tr>
                                         <tr>
-                                            <td><a href="#" className="text-theme text-decoration-none">HCM/EME</a></td>
+                                            <td><a href="#" className="text-decoration-none">HCM/EME</a></td>
                                             <td>{hcmEmeObject.hcm_eme_single}</td>
                                             <td>{hcmEmeObject.hcm_eme_multi}</td>  
                                             <td>{hcmEmeObject.hcm_eme_monthly}</td>
                                             <td>{hcmEmeObject.hcm_eme_commercial}</td>
                                         </tr>
                                         <tr>
-                                            <td><a href="#" className="text-theme text-decoration-none">7 or more Axie</a></td>
+                                            <td><a href="#" className="text-decoration-none">7 or more Axie</a></td>
                                             <td>{Axlevehi7tomoreObject.axle_vehi7_to_more_single}</td>
                                             <td>{Axlevehi7tomoreObject.axle_vehi7_to_more_multi}</td>  
                                             <td>{Axlevehi7tomoreObject.axle_vehi7_to_more_monthly}</td>

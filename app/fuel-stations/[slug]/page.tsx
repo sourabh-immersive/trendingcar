@@ -6,6 +6,7 @@ import PetrolPump from "@/components/fuelstations/petrolpumpcity";
 import ChangecityModal from '@/components/modal/ChangecityModal';  
 import Autocomplete from '@/components/autocomplete/autocomplete';
 const API_BASE_URL = `${process.env.NEXT_PUBLIC_API_LARAVEL_BASE_URL}/fuelStationCities`;
+import { FaPencil } from "react-icons/fa6";
  
 
 interface PetrolPumpData {
@@ -78,10 +79,10 @@ export default function Page({ params }: { params: { slug: string } }) {
                 <h5 className="page-title me-2">{pageTitle}</h5>
                 <a 
                   href="#" 
-                  className="text-decoration-none text-primary fz-14" 
+                  className="text-decoration-none fz-14" 
                   onClick={() => setModalOpen(true)}
                 >
-                  <i className="fa fa-pencil"></i> Change City
+                  <FaPencil /> Change City
                 </a>
                 <ChangecityModal show={modalOpen} handleClose={handleModalClose} onSearch={function (city: string): void {
                   throw new Error('Function not implemented.');
@@ -107,7 +108,7 @@ export default function Page({ params }: { params: { slug: string } }) {
               ))}
             </div>
             <div className="col-md-12 col-sm-12 col-lg-12 col-xl-12 col-xxl-12 text-center">
-              <button type="button" className="btn btn-outline-primary mt-4 mb-4" onClick={handleLoadMore}>
+              <button type="button" className="btn btn-theme text-white mt-4 mb-4" onClick={handleLoadMore}>
                 Load More....
               </button>
             </div>

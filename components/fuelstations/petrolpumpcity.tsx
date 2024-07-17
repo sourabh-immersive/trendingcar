@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
   
 interface PetrolPumpData {
   id: string;
@@ -22,6 +22,16 @@ const capitalizeFirstLetter = (str: string) => {
 };
 
 const PetrolPump: React.FC<PetrolPumpData> = ({ image, title, address, openTime, closeTime, contact, services, location_lat , location_lng}) => {
+  const [isImageLoaded, setIsImageLoaded] = useState(true);
+
+  const handleError = () => {
+    setIsImageLoaded(false);
+  };
+  const getInitials = (name: string) => {
+    const nameParts = name.split(' ');
+    const initials = nameParts.map(part => part[0].toUpperCase()).join('');
+    return initials;
+  };
   const handleGetDirections = () => {
     const lat = encodeURIComponent(location_lat);
     const lng = encodeURIComponent(location_lng);
@@ -34,11 +44,20 @@ const PetrolPump: React.FC<PetrolPumpData> = ({ image, title, address, openTime,
     <div className="col-md-4 col-sm-12 col-lg-4 col-xl-4 col-xxl-4">
       <div className="petrol-pump-wrapper mb-4">
         <div className="d-flex align-items-center">
-          <img src={`/${image}.png`} className="img-fluid me-2"  alt={`${title} logo`} />
-          <h5 className="mb-0 fz-16 text-primary">{capitalizeFirstLetter(title)}</h5>
+          {isImageLoaded ? (
+            <img
+              src={`/${image}.png`}
+              className="img-fluid me-2"
+              alt={`${title} logo`}
+              onError={handleError}
+            />
+          ) : (
+            <span className="initials-wrap me-2">{getInitials(image)}</span>
+          )}
+          <h5 className="mb-0 fz-16 text-theme">{capitalizeFirstLetter(title)}</h5>
         </div>
         <p className="mb-0 fz-14 mb-2">{capitalizeFirstLetter(address)}</p>
-        <ul className="list-style-none pb-2">
+        <ul className="list-style-none pb-0 mb-0">
           <li className="fz-14">
             <img src="/time.png" className="img-fluid me-2" alt="Time icon" /> <b>Open now:</b> {`${openTime} - ${closeTime}`}
           </li>
@@ -47,14 +66,14 @@ const PetrolPump: React.FC<PetrolPumpData> = ({ image, title, address, openTime,
           </li>
         </ul>
         <hr />
-        <ul className="list-style-none pt-2 d-flex align-items-center">
+        <ul className="list-style-none pt-2 d-flex align-items-center mb-0">
           {services.map((service, index) => (
-            <li className="fz-14 me-4" key={index}>
-              <img src={`/fuel-type1/${service}.png`} className="img-fluid me-1" alt={`${service} icon`} /> {service}
+            <li className="fz-14 me-4 text-center" key={index}>
+              <img src={`/fuel-type1/${service}.png`} className="img-fluid me-0" alt={`${service} icon`} /><br/> {service}
             </li>
           ))}
         </ul>
-        <button type="button" className="btn btn-primary mt-2" onClick={handleGetDirections}>
+        <button type="button" className="btn btn-theme mt-2 text-white" onClick={handleGetDirections}>
           Get Direction
         </button>
       </div>

@@ -17,8 +17,8 @@ const ChangeStateModal: React.FC<ChangeStateModalProps> = ({ show, handleClose, 
                     <div className="modal-content">
                         <div className="modal-header bg-theme d-block">
                             <div className="d-flex align-items-center">
-                                <h5 className="modal-title text-white fz-18" id="changecityModalLabel">
-                                    We need your city to customize your <br /> experience
+                                <h5 className="modal-title text-white fz-16" id="changecityModalLabel">
+                                    We need your city to customize your experience
                                 </h5>
                                 <div className="ms-auto">
                                     <button type="button" className="close" aria-label="Close" onClick={handleClose}>
