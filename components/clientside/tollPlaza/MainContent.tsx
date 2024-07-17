@@ -9,6 +9,7 @@ interface State {
     name: string;
     imageUrl: string;
     slug: string;
+    image:string;
 }
 
 interface Props {
@@ -20,6 +21,7 @@ type States = {
     name: string;
     imageUrl: string;
     slug: string;
+    image:string;
 }    
 export default function MainContent(states:Props) {
     const [statesData, setStatesData] = useState<States[]>(states.states);
@@ -74,10 +76,10 @@ export default function MainContent(states:Props) {
                                     </div>
                                     <div className="row">
                                         {filteredStates.slice(0, visibleStates).map((state, index) => (
-                                            <TollplazaList key={index} stateName={state.name} slug={state.slug} imageUrl='state.png' />
+                                            <TollplazaList key={index} stateName={state.name} slug={state.slug} imageUrl={state.image} />
                                         ))}
                                     </div>
-                                    {filteredStates.length > 6 && (
+                                    {filteredStates.length > 12 && (
                                         <div className="row mt-4">
                                             <div className="col-12 text-center">
                                                 <button className="btn btn-theme text-decoration-none ml-2 text-white" onClick={toggleStates}>
