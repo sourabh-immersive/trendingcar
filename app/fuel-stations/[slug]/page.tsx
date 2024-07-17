@@ -45,8 +45,8 @@ export default function Page({ params }: { params: { slug: string } }) {
     try {
       const res = await fetch(`${API_BASE_URL}?slug=${params.slug}&page=${page}&pageSize=${pageSize}`, {
         method: 'GET',
-        cache: 'no-store',
-      });
+        next: { revalidate: 3600 }});
+      
       const data = await res.json();
       const newPetrolPumpsData = data?.data?.[0]?.fuel_station;
       const newNearByFuelStation = data?.data?.[0]?.nearByFuelStation?.items; 

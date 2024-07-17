@@ -10,7 +10,10 @@ interface Post {
 }
 
 const fetchallWebstories = async (): Promise<Post[]> => {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_CUSTOM_URL}/webstories`, { next: { revalidate: 3600 } });
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_BASE_CUSTOM_URL}/webstories`,
+    // { next: { revalidate: 3600 } }
+  );
   console.log(response);
   if (!response.ok) {
     throw new Error("Failed to fetch posts");
@@ -26,4 +29,4 @@ export default async function Page() {
       <AllWebstoriesClient initialPosts={initialPosts} numberOfPosts={18} />
     </>
   );
-};
+}

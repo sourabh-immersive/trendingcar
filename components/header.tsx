@@ -1,13 +1,9 @@
 'use client';
 import Link from "next/link";
-import React from "react";
+import React from "react"; 
+import Autocomplete from '@/components/autocomplete/autocomplete';
+import { FaFacebook,FaInstagram,FaPinterest,FaLinkedinIn,FaYoutube,FaHouse} from "react-icons/fa6"; 
 import { NavLink } from 'react-router-dom';
-import Autocomplete from '@/components/autocomplete/autocomplete'; 
-import { BsHouseDoor } from "react-icons/bs";
-import { FaFacebook } from "react-icons/fa6";
-import { FaInstagram } from "react-icons/fa6";
-import { FaXTwitter } from "react-icons/fa6";
-import { FaLinkedinIn } from "react-icons/fa6";
 
 export default function Header() {
   return (
@@ -38,16 +34,20 @@ export default function Header() {
                   className="wishlogo"
                 />
               </a>
-              <Link href="#" target="_blank" className="text-black header-sociocon me-2 fz-22">
+              <Link href="https://www.facebook.com/TrendingCar" target="_blank" className="text-black header-sociocon me-2 fz-22">
                 <FaFacebook />
               </Link>
-              <Link href="#" target="_blank" className="text-black header-sociocon me-2 fz-22">
+              <Link href="https://www.instagram.com/" target="_blank" className="text-black header-sociocon me-2 fz-22">
                 <FaInstagram />
               </Link>
-              <Link href="#" target="_blank" className="text-black header-sociocon me-2 fz-22">
-                <FaXTwitter />
+              <Link href="https://in.pinterest.com/#search" target="_blank" className="text-black header-sociocon me-2 fz-22">
+                <FaPinterest />
               </Link>
-              <Link href="#" target="_blank" className="text-black header-sociocon fz-22">
+              <Link href="https://www.youtube.com/@trendingcar3924" target="_blank" className="text-black header-sociocon me-2 fz-22">
+                <FaYoutube />
+              </Link>
+              
+              <Link href="https://www.linkedin.com/company/trending-car" target="_blank" className="text-black header-sociocon fz-22">
                 <FaLinkedinIn />
               </Link>
               {/*<a href="#" className="login text-black text-decorat">
@@ -83,7 +83,7 @@ export default function Header() {
                   className="nav-link"
                   href="/home"
                 >
-                  <BsHouseDoor />
+                  <FaHouse />
                 </Link>
               </li>
               <li className="nav-item me-4">
