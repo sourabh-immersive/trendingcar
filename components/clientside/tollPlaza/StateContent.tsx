@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from 'react'
-import WideAd from '@/components/advertisements/widead'
 import ChangeStateModal from '@/components/modal/ChangeStateModal'; 
 import Link from "next/link";
 import { FaPencil } from "react-icons/fa6";
@@ -72,12 +71,7 @@ const StateContent = (tolls:Props) => {
                 </div>
             </div>
 
-            <div className="row">
-                <div className="col-md-12 col-sm-12 col-lg-12 col-xl-12 col-xxl-12">
-                    <WideAd img_url="/ads2.png" />
-                </div>
-            </div>
-
+             
             <div className="row mt-4">
                 <div className="col-md-12 col-sm-12 col-lg-12 col-xl-12 col-xxl-12">
                     <div className="container">

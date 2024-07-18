@@ -8,7 +8,6 @@ import Image from 'next/image';
 export default function Header() {
   return (
     <div className="main-header fixed-top w-100">
-      <link rel="icon" href="/favicon/apple-touch-icon.png" sizes="any" />
       <header className="bg-white py-2 shadow-sm">
         <div className="container">
           <div className="row align-items-center">
