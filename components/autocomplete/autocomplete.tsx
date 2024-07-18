@@ -2,6 +2,7 @@
 
 import { ChangeEvent, useState, useRef, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 
 interface CatProps {
   api?: string;
@@ -103,8 +104,13 @@ const Autocomplete: React.FC<CatProps> = ({ api, type, redirect }) => {
               onChange={handleSearchChange}
               onClick={handleInputClick}
             />
-            <button className="btn btn-theme position-absolute r-0 t-0" type="button">
-              <img src={`/fuel-type1/${type ? type.replace(/\s+/g, '') : ''}.png`} className="img-fluid" />
+            <button className="btn btn-theme position-absolute r-0 t-0 btlr-0 bblr-0" type="button">
+              <Image
+                src="/search-icon.png"
+                className="img-fluid"
+                width={20} // Provide appropriate width
+                height={20} // Provide appropriate height
+              />
             </button>
             {isDropdownOpen && (
               <div className="dropdown-menu show w-100 Autocomplete">

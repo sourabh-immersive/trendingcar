@@ -5,6 +5,7 @@ import WideAd from '@/components/advertisements/widead'
 import ChangeStateModal from '@/components/modal/ChangeStateModal'; 
 import Link from "next/link";
 import { FaPencil } from "react-icons/fa6";
+import Image from 'next/image';
 
 interface Props {
     tolls:[{
@@ -98,8 +99,13 @@ const StateContent = (tolls:Props) => {
                                                     value={searchTerm}
                                                     onChange={e => setSearchTerm(e.target.value)}
                                                     />
-                                                <img src="/search-black.png" className="img-fluid position-absolute r-3 t-10" alt="search icon" />
-                                                
+                                                <Image
+                                                    src="/search-black.png"
+                                                    className="img-fluid position-absolute r-3 t-10"
+                                                    alt="search icon"
+                                                    width={19} // Adjust width as needed
+                                                    height={19} // Adjust height as needed
+                                                />
                                             </div>
                                         </div>
                                     </div>

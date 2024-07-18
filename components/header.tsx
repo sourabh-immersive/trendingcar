@@ -80,7 +80,7 @@ export default function Header() {
               <li className="nav-item me-4">
                 <Link
                   className="nav-link"
-                  href="/home"
+                  href="/"
                 >
                   <FaHouse />
                 </Link>
@@ -120,13 +120,10 @@ export default function Header() {
                   TIPS & ADVICE
                 </Link>
               </li>
-              <li className="nav-item dropdown">
-                <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Gallery
-                </a>
-                <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li><a className="dropdown-item" href="#">Images</a></li>
-                </ul>
+              <li className="nav-item me-4">
+                <Link className="nav-link" href="/auto-images">
+                  GALLERY
+                </Link>
               </li>
             </ul>
           </div>

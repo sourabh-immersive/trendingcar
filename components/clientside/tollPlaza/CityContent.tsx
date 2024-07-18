@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react'
 import WideAd from '@/components/advertisements/widead'  
+import Image from 'next/image';
 
 interface Props {
     tolldata:Toll;
@@ -121,7 +122,13 @@ const CityContent = ({tolldata}:Props) => {
                                         <ul className="list-unstyled bordered">
                                             <li className="d-flex justify-content-between align-items-center">
                                                 <span className="left-part d-flex align-items-center">
-                                                    <img src="/location.png" className="img-fluid me-1" /> Location
+                                                <Image
+                                                    src="/location.png"
+                                                    className="img-fluid me-1"
+                                                    alt="Location icon"
+                                                    width={23} // Provide appropriate width
+                                                    height={23} // Provide appropriate height
+                                                /> Location
                                                 </span>
                                                 <span className="right-part">NH-{tollDetail.nhNo}</span>
                                             </li>
@@ -131,7 +138,13 @@ const CityContent = ({tolldata}:Props) => {
                                         <ul className="list-unstyled bordered">
                                             <li className="d-flex justify-content-between align-items-center">
                                                 <span className="left-part d-flex align-items-center">
-                                                    <img src="/stretch.png" className="img-fluid me-1" /> Stretch
+                                                <Image
+                                                    src="/stretch.png"
+                                                    className="img-fluid me-1"
+                                                    alt="Stretch icon"
+                                                    width={23} // Provide appropriate width
+                                                    height={23} // Provide appropriate height
+                                                /> Stretch
                                                 </span>
                                                 <span className="right-part">{tollDetail.sectiosStretch}</span>
                                             </li>
@@ -141,7 +154,13 @@ const CityContent = ({tolldata}:Props) => {
                                         <ul className="list-unstyled bordered">
                                             <li className="d-flex justify-content-between align-items-center">
                                                 <span className="left-part d-flex align-items-center">
-                                                    <img src="/toll-distance.png" className="img-fluid me-1" /> Tollable Distance
+                                                <Image
+                                                    src="/toll-distance.png"
+                                                    className="img-fluid me-1"
+                                                    alt="Toll Distance icon"
+                                                    width={23} // Provide appropriate width
+                                                    height={23} // Provide appropriate height
+                                                /> Tollable Distance
                                                 </span>
                                                 <span className="right-part">{tollDetail.tollable_length}</span>
                                             </li>
@@ -248,7 +267,13 @@ const CityContent = ({tolldata}:Props) => {
                                 <div className="col-md-4">
                                     <div className="d-flex align-items-center">
                                         <div className="img-container me-2 px-4 py-4">
-                                            <img src="/rest-areas.png" className="img-fluid w-100 h-100" />  
+                                            <Image
+                                                src="/rest-areas.png"
+                                                className="img-fluid w-100 h-100"
+                                                alt="Rest Areas Image"
+                                                width={66} // Adjust width as needed
+                                                height={50} // Adjust height as needed
+                                            />
                                         </div>
                                         <div>
                                             <h5 className="mb-0 title">Rest Areas</h5>
@@ -259,7 +284,13 @@ const CityContent = ({tolldata}:Props) => {
                                 <div className="col-md-4">
                                     <div className="d-flex align-items-center">
                                         <div className="img-container me-2 px-3 py-4">
-                                            <img src="/lay-byes.png" className="img-fluid w-100 h-100" />     
+                                        <Image
+                                            src="/lay-byes.png"
+                                            className="img-fluid w-100 h-100"
+                                            alt="Lay-byes Image"
+                                            width={66} // Adjust width as needed
+                                            height={50} // Adjust height as needed
+                                        />     
                                         </div>
                                         <div>
                                             <h5 className="mb-0 title">Truck Lay Byes</h5>
@@ -270,7 +301,13 @@ const CityContent = ({tolldata}:Props) => {
                                 <div className="col-md-4">
                                     <div className="d-flex align-items-center">
                                         <div className="img-container me-2 px-3 py-4">
-                                            <img src="/weigh-bridge.png" className="img-fluid w-100 h-100" />     
+                                            <Image
+                                                src="/weigh-bridge.png"
+                                                className="img-fluid w-100 h-100"
+                                                alt="Weigh-bridge Image"
+                                                width={66} // Adjust width as needed
+                                                height={50} // Adjust height as needed
+                                            />
                                         </div>
                                         <div>
                                             <h5 className="mb-0 title">Weigh Bridge</h5>
