@@ -9,13 +9,12 @@ export default function Header() {
         <div className="container-fluid">
           <div className="row align-items-center">
             <div className="col-md-4 d-flex align-items-center">
-              <Link
-              href="/">
-              <img
-                src="/logo.png"
-                alt="Logo"
-                className="img-fluid logo me-4 cursor-pointer"
-              />
+              <Link href="/">
+                <img
+                  src="/logo.png"
+                  alt="Logo"
+                  className="img-fluid logo me-4 cursor-pointer"
+                />
               </Link>
               <span className="site-text fw-bold">#chuno apni best car</span>
             </div>
@@ -84,6 +83,25 @@ export default function Header() {
                 <Link className="nav-link" href="/tips-and-advice">
                   Tips & Advice
                 </Link>
+              </li>
+              <li className="nav-item dropdown">
+                <Link
+                  className="nav-link dropdown-toggle"
+                  href="#"
+                  id="navbarDropdown"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Gallery
+                </Link>
+                <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li>
+                    <Link className="dropdown-item" href="/auto-images">
+                      Auto Images
+                    </Link>
+                  </li>
+                </ul>
               </li>
             </ul>
           </div>
