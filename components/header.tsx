@@ -22,10 +22,10 @@ export default function Header() {
               </Link>
               <span className="site-text">#chuno apni best car</span>
             </div>
-            <div className="col-md-6 my-2 my-md-0 searchbar">
+            <div className="col-md-5 my-2 my-md-0 searchbar">
               <Autocomplete  api={'fuelStationCities'} type={''} redirect={'car-brands'}/>
             </div>
-            <div className="col-md-2 d-flex justify-content-end align-items-center">
+            <div className="col-md-3 d-flex justify-content-end align-items-center">
               <a href="#" className="wishlist text-primary me-2 fz-22">
                 <img
                   src="/wishlist.png"
@@ -95,7 +95,6 @@ export default function Header() {
                   CAR COLLECTION
                 </Link>
               </li>
-                
               <li className="nav-item me-4">
                 <Link className="nav-link" href="/car-expert-reviews">
                   CAR EXPERT REVIEWS
@@ -116,11 +115,18 @@ export default function Header() {
                   TOLL PLAZA
                 </Link>
               </li>
-              
               <li className="nav-item me-4">
                 <Link className="nav-link" href="/tips-and-advice">
                   TIPS & ADVICE
                 </Link>
+              </li>
+              <li className="nav-item dropdown">
+                <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Gallery
+                </a>
+                <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a className="dropdown-item" href="#">Images</a></li>
+                </ul>
               </li>
             </ul>
           </div>

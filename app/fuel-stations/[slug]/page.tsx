@@ -70,7 +70,7 @@ export default function Page({ params }: { params: { slug: string } }) {
   const handleModalClose = () => setModalOpen(false);
   return (
     <div>
-      <div className="row mt-4">
+      <div className="row">
         <div className="col-md-12 col-sm-12 col-lg-12 col-xl-12 col-xxl-12">
           <section>
             <div className="container">
@@ -86,6 +86,9 @@ export default function Page({ params }: { params: { slug: string } }) {
                 <ChangecityModal show={modalOpen} handleClose={handleModalClose} onSearch={function (city: string): void {
                   throw new Error('Function not implemented.');
                 } } />
+                <div className="ms-auto">
+
+                </div>
               </div>
               <p className="page-content">
                 {pageDescription}
