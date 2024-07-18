@@ -1,10 +1,7 @@
 "use client";
 
 import React, { useState ,useEffect } from 'react'
-import WideAd from '@/components/advertisements/widead'
 import TollplazaList from '@/components/tollplaza/TollplazaList';
-import Link from "next/link";
-
 interface State {
     name: string;
     imageUrl: string;
@@ -105,35 +102,8 @@ export default function MainContent(states:Props) {
                         </section>
                     </div>
                 </div>
-            </div>
-
-            <WideAd img_url="/ads2.png" />  
-
-            {/* <div className="row mt-4">
-                <div className="col-md-12 col-sm-12 col-lg-12 col-xl-12 col-xxl-12">
-                    <div className="container">
-                        <section className="list-by-cities-section mt-4">
-                            <h5 className="section-title text-white">Toll Plaza List by Major Cities</h5>
-                            <small className="text-white">Top cities in India</small><br />
-                            <div className="row">
-                                <div className="col-md-12 col-sm-12 col-lg-12 col-xl-12 col-xxl-12">
-                                    <div className="container">
-                                        <ul className="inline-block mt-2 cities-loader-container">
-                                            
-                                                <li   className="inline-block mb-2"> 
-                                                    <Link href={`/Madhya-pradesh/indore`}> Indore </Link>
-                                                </li>
-                                            
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                             
-                        </section>
-                    </div>
-                </div>
-            </div> */}
-
+            </div> 
+ 
             <div className="row mt-4">
                 <div className="col-md-12 col-sm-12 col-lg-12 col-xl-12 col-xxl-12">
                     <div className="container">
@@ -172,8 +142,7 @@ export default function MainContent(states:Props) {
                 </div>
             </div> 
 
-            <WideAd img_url="/ads2.png" />  
-
+ 
             <div className="row mt-4">
                 <div className="col-md-12 col-sm-12 col-lg-12 col-xl-12 col-xxl-12">
                     <div className="container">
@@ -210,8 +179,7 @@ export default function MainContent(states:Props) {
                 </div>
             </div>
 
-             
-            <WideAd img_url="/ads2.png" /> 
+              
 
             <div className="row mt-4">
                 <div className="col-md-12 col-sm-12 col-lg-12 col-xl-12 col-xxl-12">
@@ -237,12 +205,7 @@ export default function MainContent(states:Props) {
                     </div>
                 </div>
             </div>
-
-            <div className="row mt-4">
-                <div className="col-md-12 col-sm-12 col-lg-12 col-xl-12 col-xxl-12">
-                    <WideAd img_url="/ads2.png" />  
-                </div>
-            </div>
+ 
         </div>
     )
 }

@@ -4,7 +4,7 @@ import Image from "next/image";
 const SquareAd = async () => {
 
   const res = await fetch(
-    `https://trendingcar.com/admin/api/advertise`,
+    `${process.env.NEXT_PUBLIC_API_LARAVEL_BASE_URL}/advertise`,
     // { next: { revalidate: 3600 } }
   );
 
