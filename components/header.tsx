@@ -3,6 +3,7 @@ import Link from "next/link";
 import React from "react"; 
 import Autocomplete from '@/components/autocomplete/autocomplete';
 import { FaFacebook,FaInstagram,FaPinterest,FaLinkedinIn,FaYoutube,FaHouse} from "react-icons/fa6"; 
+import Image from 'next/image';
 
 export default function Header() {
   return (
@@ -14,10 +15,12 @@ export default function Header() {
             <div className="col-md-4 d-flex align-items-center">
               <Link
               href="/">
-              <img
+              <Image
                 src="/logo3.jpg"
-                alt="Logo"
                 className="img-fluid logo me-4 cursor-pointer"
+                alt="Logo"
+                width={187} // Provide appropriate width
+                height={43} // Provide appropriate height
               />
               </Link>
               <span className="site-text">#chuno apni best car</span>
@@ -27,10 +30,12 @@ export default function Header() {
             </div>
             <div className="col-md-3 d-flex justify-content-end align-items-center">
               <a href="#" className="wishlist text-primary me-2 fz-22">
-                <img
+                <Image
                   src="/wishlist.png"
-                  alt="Wishlist"
                   className="wishlogo"
+                  alt="Wishlist"
+                  width={24} // Provide appropriate width
+                  height={24} // Provide appropriate height
                 />
               </a>
               <Link href="https://www.facebook.com/TrendingCar" target="_blank" className="text-black header-sociocon me-2 fz-22">

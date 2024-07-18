@@ -4,6 +4,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { Autoplay, Navigation, Pagination } from 'swiper/modules';
+import Image from 'next/image';
 
 const carBoxes = [
   {
@@ -62,7 +63,13 @@ const ExploreBrands = () => {
                   <SwiperSlide key={index}>
                   <div className="car-box border p-4 text-left">
                       <div className="image-container">
-                      <img src={car.image} alt="featured" className="img-fluid" />
+                        <Image
+                          src={car.image}
+                          className="img-fluid"
+                          alt="featured"
+                          width={244} // Provide appropriate width
+                          height={158} // Provide appropriate height
+                        />
                       </div>
                       <div className="specifications">
                       <p>{car.name}</p>
