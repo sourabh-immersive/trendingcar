@@ -78,7 +78,7 @@ const PetrolPump: React.FC<PetrolPumpData> = ({ image, title, address, openTime,
                 alt={`${service} icon`}
                 width={30} // Provide appropriate width
                 height={30} // Provide appropriate height
-              />
+              /><br/> {service}
             </li>
           ))}
         </ul>

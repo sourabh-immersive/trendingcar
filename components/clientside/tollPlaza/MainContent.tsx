@@ -2,6 +2,7 @@
 
 import React, { useState ,useEffect } from 'react'
 import TollplazaList from '@/components/tollplaza/TollplazaList';
+import Image from 'next/image';
 interface State {
     name: string;
     imageUrl: string;
@@ -67,7 +68,13 @@ export default function MainContent(states:Props) {
                                                 value={searchTerm}
                                                 onChange={e => setSearchTerm(e.target.value)}
                                                 />
-                                                <img src="/search-black.png" className="img-fluid position-absolute r-3 t-10" alt="search icon" />
+                                                <Image
+                                                    src="/search-black.png"
+                                                    className="img-fluid position-absolute r-3 t-10"
+                                                    alt="search icon"
+                                                    width={19} // Provide appropriate width
+                                                    height={19} // Provide appropriate height
+                                                />
                                             </div>
                                         </div>
                                     </div>

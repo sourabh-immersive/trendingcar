@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 
 
 const carData = [
@@ -31,7 +32,13 @@ const PopularBrands = () => {
                     <div key={car.id} className="col-md-2 col-lg-2 col-xl-2 col-sm-12">
                         <div className="car-box shadow p-4 text-left bg-white mb-2">
                             <div className="image-container">
-                                <img src={car.imgSrc} alt={car.alt} className="img-fluid" />
+                                <Image
+                                    src={car.imgSrc}
+                                    className="img-fluid"
+                                    alt={car.alt}
+                                    width={141} // Provide appropriate width
+                                    height={79} // Provide appropriate height
+                                />
                             </div>
                         </div>
                     </div>
