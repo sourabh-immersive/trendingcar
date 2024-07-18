@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Image from 'next/image';
   
 interface PetrolPumpData {
   id: string;
@@ -45,12 +46,14 @@ const PetrolPump: React.FC<PetrolPumpData> = ({ image, title, address, openTime,
       <div className="petrol-pump-wrapper mb-4">
         <div className="d-flex align-items-center">
           {isImageLoaded ? (
-            <img
-              src={`/${image}.png`}
-              className="img-fluid me-2"
-              alt={`${title} logo`}
-              onError={handleError}
-            />
+            <Image
+            src={`/${image}.png`}
+            className="img-fluid me-2"
+            alt={`${title} logo`}
+            onError={handleError}
+            width={70} // Provide appropriate width
+            height={70} // Provide appropriate height
+          />
           ) : (
             <span className="initials-wrap me-2">{getInitials(image)}</span>
           )}
@@ -59,17 +62,23 @@ const PetrolPump: React.FC<PetrolPumpData> = ({ image, title, address, openTime,
         <p className="mb-0 fz-14 mb-2">{capitalizeFirstLetter(address)}</p>
         <ul className="list-style-none pb-0 mb-0">
           <li className="fz-14">
-            <img src="/time.png" className="img-fluid me-2" alt="Time icon" /> <b>Open now:</b> {`${openTime} - ${closeTime}`}
+            <Image src="/time.png" className="img-fluid me-2" alt="Time icon" width={20} height={20} /> <b>Open now:</b> {`${openTime} - ${closeTime}`}
           </li>
           <li className="fz-14">
-            <img src="/call.png" className="img-fluid me-2" alt="Call icon" /> {contact}
+            <Image src="/call.png" className="img-fluid me-2 ms-1" alt="Call icon" width={15} height={15} /> {contact}
           </li>
         </ul>
         <hr />
         <ul className="list-style-none pt-2 d-flex align-items-center mb-0">
           {services.map((service, index) => (
             <li className="fz-14 me-4 text-center" key={index}>
-              <img src={`/fuel-type1/${service.replace(/\s+/g, '')}.png`} className="img-fluid me-1" alt={`${service} icon`} /><br/> {service}
+              <Image
+                src={`/fuel-type1/${service.replace(/\s+/g, '')}.png`}
+                className="img-fluid me-1"
+                alt={`${service} icon`}
+                width={30} // Provide appropriate width
+                height={30} // Provide appropriate height
+              />
             </li>
           ))}
         </ul>
