@@ -54,14 +54,7 @@ export default function Header() {
               <Link href="https://www.linkedin.com/company/trending-car" target="_blank" className="text-black header-sociocon fz-22">
                 <FaLinkedinIn />
               </Link>
-              {/*<a href="#" className="login text-black text-decorat">
-                <img
-                  src="/user.png"
-                  alt="User"
-                  className="logo me-1"
-                />
-                Login / Register
-              </a>*/}  
+               
             </div>
           </div>
         </div>

@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 
 interface SearchSectionProps {
   title: string;
@@ -30,11 +31,13 @@ const SearchSection: React.FC<SearchSectionProps> = ({ title, placeholder, searc
             value={searchText}
             onChange={handleInputChange}
             />
-            <img
-            src={searchIconSrc}
-            className="img-fluid pos-abs search-img cursor-pointer"
-            alt="Search"
-            onClick={handleSearch}
+            <Image
+              src={searchIconSrc}
+              className="img-fluid pos-abs search-img cursor-pointer"
+              alt="Search"
+              width={20} // Provide appropriate width
+              height={20} // Provide appropriate height
+              onClick={handleSearch}
             />
         </div>
     </div>

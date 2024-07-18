@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { MdOutlineArrowRightAlt } from "react-icons/md";
+import Image from 'next/image';
 
 const CarTypes = ({ cars = [] }) => {
   const [activeTab, setActiveTab] = useState('Budget');
@@ -9,7 +10,13 @@ const CarTypes = ({ cars = [] }) => {
         <div className="car-box border p-3 text-center br-0 cursor-pointer bg-hover-grey">
             {activeTab !== 'Budget' && (
                 <div className="image-container">
-                    <img src={car.image} alt={car.name} className="img-fluid" />
+                    <Image
+                        src={car.image}
+                        className="img-fluid"
+                        alt={car.name}
+                        width={0} // Provide appropriate width
+                        height={0} // Provide appropriate height
+                    />
                 </div>
             )}
             <div className="specifications d-flex align-items-center justify-content-center">
