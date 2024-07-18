@@ -107,6 +107,7 @@ const Autocomplete: React.FC<CatProps> = ({ api, type, redirect }) => {
             <button className="btn btn-theme position-absolute r-0 t-0 btlr-0 bblr-0" type="button">
               <Image
                 src="/search-icon.png"
+                alt="Search Icon"
                 className="img-fluid"
                 width={20} // Provide appropriate width
                 height={20} // Provide appropriate height

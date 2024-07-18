@@ -78,10 +78,10 @@ export default function Footer() {
                     <h6>Overview</h6>
                     <ul className="list-unstyled">
                       <li>
-                        <Link href="#">About Trending Cars</Link>
+                        <Link href="/about-trending-car">About Trending Cars</Link>
                       </li>
                       <li>
-                        <Link href="#">Team</Link>
+                        <Link href="/team">Team</Link>
                       </li>
                       <li>
                         <Link href="/terms-and-conditions">Terms & Conditions</Link>
@@ -90,10 +90,10 @@ export default function Footer() {
                         <Link href="/privacy-policy">Privacy Policy</Link>
                       </li>
                       <li>
-                        <Link href="#">Corporate Policies</Link>
+                        <Link href="/corporate-policies">Corporate Policies</Link>
                       </li>
                       <li>
-                        <Link href="#">FAQs</Link>
+                        <Link href="/faq">FAQs</Link>
                       </li>
                       <li>
                         <Link href="#">Sitemap</Link>
