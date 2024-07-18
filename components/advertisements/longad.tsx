@@ -1,8 +1,14 @@
 import React from "react";
 import Image from "next/image";
 
-export default function LongAd() {
-  return (
+const LongAd = async () => {
+
+  const res = await fetch(
+    `https://trendingcar.com/admin/api/advertise`,
+    // { next: { revalidate: 3600 } }
+  );
+
+  return ( !res.status &&
     <div className="ads_wrapper mb-4">
       <section className="auto-ad-container text-center">
         <Image
@@ -17,3 +23,5 @@ export default function LongAd() {
     </div>
   );
 }
+
+export default LongAd;

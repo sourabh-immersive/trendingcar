@@ -32,12 +32,12 @@ function formatString(str: string): string {
 const StateContent = (tolls:Props) => {
     const [modalOpen, setModalOpen] = useState<boolean>(false);
     const [cities, setCities] = useState<City[]>(tolls.tolls);
-    const [visibleCities, setVisibleCities] = useState<number>(5);
+    const [visibleCities, setVisibleCities] = useState<number>(cities.length);
     const [showMore, setShowMore] = useState<boolean>(false); 
     const [searchTerm, setSearchTerm] = useState<string>('');
 
     const toggleCities = () => {
-        setVisibleCities(showMore ? 5 :cities.length);
+        setVisibleCities(showMore ? cities.length :cities.length);
         setShowMore(!showMore);
     };
     const handleModalClose = () => setModalOpen(false);
@@ -135,13 +135,13 @@ const StateContent = (tolls:Props) => {
                                             </tbody>
                                         </table>
                                     </div>
-                                    {filteredCities.length > 4 && (
+                                    {/* {filteredCities.length > 4 && (
                                         <div className="text-center">
                                             <button className="btn btn-outline-theme p-2" onClick={toggleCities}>
                                                 {showMore ? 'Show Less Cities' : 'Load More Cities'}
                                             </button>
                                         </div>
-                                    )}
+                                    )} */}
                                 </section>
                             </div>
                         </div>
