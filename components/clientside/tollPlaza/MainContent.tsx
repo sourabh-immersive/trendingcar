@@ -3,6 +3,7 @@
 import React, { useState ,useEffect } from 'react'
 import TollplazaList from '@/components/tollplaza/TollplazaList';
 import Image from 'next/image';
+import Link from 'next/link';
 interface State {
     name: string;
     imageUrl: string;
@@ -80,7 +81,23 @@ export default function MainContent(states:Props) {
                                     </div>
                                     <div className="row">
                                         {filteredStates.slice(0, visibleStates).map((state, index) => (
-                                            <TollplazaList key={index} stateName={state.name} slug={state.slug} imageUrl={state.image} />
+                                            
+                                            <div className="col-md-2" style={{ cursor: 'pointer' }}>
+      <Link href={`/toll-plaza/${state.slug}`}>
+      <div className="state-box-wrapper">
+        <Image
+          src={state.image ? state.image : 'state.png'}
+          alt={state.name} 
+          width={'94'}
+          height={'94'}
+          className={"img-fluid"}
+        />
+        <h5 className="state-name mb-0">
+          <span>{state.name.toUpperCase()}</span>
+        </h5>
+      </div>
+      </Link>
+    </div>
                                         ))}
                                     </div>
                                     {filteredStates.length > 12 && (

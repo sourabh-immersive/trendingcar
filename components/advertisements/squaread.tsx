@@ -3,12 +3,12 @@ import Image from "next/image";
 
 const SquareAd = async () => {
 
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_LARAVEL_BASE_URL}/advertise`,
-    // { next: { revalidate: 3600 } }
-  );
+  // const res = await fetch(
+  //   `${process.env.NEXT_PUBLIC_API_LARAVEL_BASE_URL}/advertise`,
+  //   // { next: { revalidate: 3600 } }
+  // );
 
-  return ( !res.status &&
+  return ( false &&
     <div className="ads_wrapper mb-4">
       <section className="auto-ad-container text-center">
         <Image
