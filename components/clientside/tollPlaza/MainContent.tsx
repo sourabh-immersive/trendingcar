@@ -82,22 +82,22 @@ export default function MainContent(states:Props) {
                                     <div className="row">
                                         {filteredStates.slice(0, visibleStates).map((state, index) => (
                                             
-                                            <div className="col-md-2" style={{ cursor: 'pointer' }}>
-      <Link href={`/toll-plaza/${state.slug}`}>
-      <div className="state-box-wrapper">
-        <Image
-          src={state.image ? state.image : 'state.png'}
-          alt={state.name} 
-          width={'94'}
-          height={'94'}
-          className={"img-fluid"}
-        />
-        <h5 className="state-name mb-0">
-          <span>{state.name.toUpperCase()}</span>
-        </h5>
-      </div>
-      </Link>
-    </div>
+                                            <div className="col-md-2" style={{ cursor: 'pointer' }}  key={index}>
+                                            <Link href={`/toll-plaza/${state.slug}`}>
+                                            <div className="state-box-wrapper" >
+                                                <Image
+                                                src={state.image ? state.image : 'state.png'}
+                                                alt={state.name} 
+                                                width={'94'}
+                                                height={'94'}
+                                                className={"img-fluid"}
+                                                />
+                                                <h5 className="state-name mb-0">
+                                                <span>{state.name.toUpperCase()}</span>
+                                                </h5>
+                                            </div>
+                                            </Link>
+                                            </div>
                                         ))}
                                     </div>
                                     {filteredStates.length > 12 && (

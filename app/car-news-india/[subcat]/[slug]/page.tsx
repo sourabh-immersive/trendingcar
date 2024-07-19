@@ -5,6 +5,7 @@ import Content from "@/components/skeletons/content";
 import formatDate from "@/utils/formatDate";
 import PostShare from "@/components/PostShare";
 import RelatedPostsC from "@/components/clientside/RelatedPosts";
+import type { Route } from 'next'
 
 type Props = {
   params: { slug: string };

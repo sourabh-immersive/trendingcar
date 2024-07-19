@@ -11,7 +11,8 @@ export default async function TollPlazaState( { params }: Props) {
         },
         body: JSON.stringify({
             city_slug: params.city
-        })
+        }),
+        next: { revalidate: 3600 }
       });
     if (!response.ok) {
         throw new Error('Network response was not ok');

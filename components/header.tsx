@@ -1,32 +1,30 @@
-'use client';
 import Link from "next/link";
-import React from "react"; 
-import Autocomplete from '@/components/autocomplete/autocomplete';
+import React from "react";
+import FilterableSelect from "./FilterableSelect";
 import { FaFacebook,FaInstagram,FaPinterest,FaLinkedinIn,FaYoutube,FaHouse} from "react-icons/fa6"; 
+import { NavMenu } from "./NavMenu";
 import Image from 'next/image';
 
+
 export default function Header() {
+
   return (
-    <div className="main-header fixed-top w-100">
-      <link rel="icon" href="/favicon/apple-touch-icon.png" sizes="any" />
+    <div className="main-header mb-4">
       <header className="bg-white py-2 shadow-sm">
         <div className="container">
           <div className="row align-items-center">
             <div className="col-md-4 d-flex align-items-center">
-              <Link
-              href="/">
-              <Image
-                src="/logo3.jpg"
-                className="img-fluid logo me-4 cursor-pointer"
-                alt="Logo"
-                width={187} // Provide appropriate width
-                height={43} // Provide appropriate height
-              />
+              <Link href="/">
+                <img
+                  src="/logo.png"
+                  alt="Logo"
+                  className="img-fluid logo me-4 cursor-pointer"
+                />
               </Link>
-              <span className="site-text">#chuno apni best car</span>
+              <span className="site-text fw-bold">#chuno apni best car</span>
             </div>
-            <div className="col-md-5 my-2 my-md-0 searchbar">
-              <Autocomplete  api={'fuelStationCities'} type={''} redirect={'car-brands'}/>
+            <div className="col-md-4 my-2 my-md-0 searchbar">
+              <FilterableSelect postsData={true} />
             </div>
             <div className="col-md-3 d-flex justify-content-end align-items-center">
               <a href="#" className="wishlist text-primary me-2 fz-22">
@@ -60,73 +58,7 @@ export default function Header() {
         </div>
       </header>
 
-      <nav className="navbar navbar-expand-md navbar-light bg-white border-top border-bottom">
-        <div className="container">
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarMenu"
-            aria-controls="navbarMenu"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          <div className="collapse navbar-collapse" id="navbarMenu">
-            <ul className="navbar-nav me-auto">
-              <li className="nav-item me-4">
-                <Link
-                  className="nav-link"
-                  href="/"
-                >
-                  <FaHouse />
-                </Link>
-              </li>
-              <li className="nav-item me-4">
-                <Link className="nav-link" href="/car-news-india">
-                  CAR NEWS
-                </Link>
-              </li>
-              <li className="nav-item me-4">
-                <Link className="nav-link" href="/car-collection">
-                  CAR COLLECTION
-                </Link>
-              </li>
-              <li className="nav-item me-4">
-                <Link className="nav-link" href="/car-expert-reviews">
-                  CAR EXPERT REVIEWS
-                </Link>
-              </li>
-              <li className="nav-item me-4">
-                <Link className="nav-link" href="/rto">
-                  RTO{"'"}s
-                </Link>
-              </li>
-              <li className="nav-item me-4">
-                <Link className="nav-link" href="/fuel-stations">
-                  FUEL STATIONS
-                </Link>
-              </li>
-              <li className="nav-item me-4">
-                <Link className="nav-link" href="/toll-plaza">
-                  TOLL PLAZA
-                </Link>
-              </li>
-              <li className="nav-item me-4">
-                <Link className="nav-link" href="/tips-and-advice">
-                  TIPS & ADVICE
-                </Link>
-              </li>
-              <li className="nav-item me-4">
-                <Link className="nav-link" href="/auto-images">
-                  GALLERY
-                </Link>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
+      <NavMenu />
     </div>
   );
 }
