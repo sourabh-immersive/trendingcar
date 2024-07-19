@@ -59,6 +59,10 @@ a {
   color: $primary-color;
 }
 
+a.nav-link.active {
+  color: blue !important;
+}
+
 ul.myList {
   border: 1px solid #cdcdcd;
   padding-left: 0;
@@ -69,7 +73,9 @@ ul.myList {
     border-bottom: 1px solid #cdcdcd;
   }
 }
-
+p.card-textt-custom p {
+  margin-bottom: 0;
+}
 .shadow24 {
   background: #fff;
   border: 1px solid rgba(36, 39, 44, 0.1);

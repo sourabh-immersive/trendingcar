@@ -1,6 +1,7 @@
 import React, { Suspense } from "react";
 import ArchivePosts from "@/components/clientside/ArchivePosts";
 import FilterableSelect from "@/components/FilterableSelect";
+import ArchivePosts2 from "@/components/clientside/ArchivePosts2";
 
 export default async function Tips() {
   const category = { id: 88, name: "Car Expert Reviews", slug: "car-expert-reviews" };
@@ -20,8 +21,7 @@ export default async function Tips() {
     <main>
       <section className="left-container">
         <h1>Car Expert Reviews - all latest tips, information and car reviews India</h1>
-        <FilterableSelect catId={category.id} />
-        <ArchivePosts
+        <ArchivePosts2
           initialPosts={initialPosts}
           numberOfPosts={9}
           totalPage={totalPages}

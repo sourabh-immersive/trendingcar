@@ -1,8 +1,12 @@
 import Link from "next/link";
 import React from "react";
 import FilterableSelect from "./FilterableSelect";
+import type { Route } from 'next'
+import { NavMenu } from "./NavMenu";
+
 
 export default function Header() {
+
   return (
     <div className="main-header mb-4">
       <header className="bg-white py-2 shadow-sm">
@@ -38,75 +42,7 @@ export default function Header() {
         </div>
       </header>
 
-      <nav className="navbar navbar-expand-md navbar-light bg-white border-top border-bottom">
-        <div className="container-fluid">
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarMenu"
-            aria-controls="navbarMenu"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          <div className="collapse navbar-collapse" id="navbarMenu">
-            <ul className="navbar-nav me-auto">
-              <li className="nav-item me-4">
-                <Link className="nav-link" href="/car-news-india">
-                  Car News
-                </Link>
-              </li>
-              <li className="nav-item me-4">
-                <Link className="nav-link" href="/car-collection">
-                  Car Collection
-                </Link>
-              </li>
-              <li className="nav-item me-4">
-                <Link className="nav-link" href="/car-expert-reviews">
-                  Car Expert Reviews
-                </Link>
-              </li>
-              <li className="nav-item me-4">
-                <Link className="nav-link" href="/rto">
-                  RTO{"'"}s
-                </Link>
-              </li>
-
-              <li className="nav-item me-4">
-                <Link className="nav-link" href="/toll-plaza">
-                  Toll Plaza
-                </Link>
-              </li>
-              <li className="nav-item me-4">
-                <Link className="nav-link" href="/tips-and-advice">
-                  Tips & Advice
-                </Link>
-              </li>
-              <li className="nav-item dropdown">
-                <Link
-                  className="nav-link dropdown-toggle"
-                  href="#"
-                  id="navbarDropdown"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  Gallery
-                </Link>
-                <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li>
-                    <Link className="dropdown-item" href="/auto-images">
-                      Auto Images
-                    </Link>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
+      <NavMenu />
     </div>
   );
 }

@@ -1,8 +1,55 @@
+import type { Metadata, ResolvingMetadata } from 'next';
 import React, { Suspense } from "react";
 import ArchivePosts from "@/components/clientside/ArchivePosts";
 import FilterableSelect from "@/components/FilterableSelect";
+import fetchYoastSEOData from '@/services/fetchYoastSEOData';
 
-export default async function Tips() {
+type Props = {
+  params: { id: string }
+  searchParams: { [key: string]: string | string[] | undefined }
+}
+
+export async function generateMetadata(
+  { params, searchParams }: Props,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  // const { id } = params;
+  const id = 'car-news-india';
+  const postType = 'categories';
+  const apiPath = 'wp'; // it should be 'wp' or 'custom'
+  const yoastData = await fetchYoastSEOData(id, postType, apiPath);
+
+  const previousImages = (await parent).openGraph?.images || [];
+  // console.log(yoastData);
+  return {
+    title: yoastData.title,
+    description: yoastData.description,
+    keywords: yoastData.keywords,
+    openGraph: {
+      type: 'article',
+      locale: 'en_US',
+      title: yoastData.title,
+      description: yoastData.description,
+      url: yoastData.url,
+      siteName: yoastData.site_name,
+      publishedTime: yoastData.published_time,
+      modifiedTime: yoastData.modified_time,
+      images: [
+        {
+          url: yoastData.image,
+          width: yoastData.image_width,
+          height: yoastData.image_height,
+          type: yoastData.image_type,
+        },
+        ...previousImages,
+      ],
+    },
+    authors: yoastData.author,
+  };
+}
+
+
+export default async function CarNewsIndia() {
   const category = { id: 1, name: "Car News", slug: "car-news-india" };
 
   const res = await fetch(
