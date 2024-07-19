@@ -74,7 +74,7 @@ a {
   text-decoration: none;
   color: $primary-color;
 }
-
+ 
 .fz-14{
   font-size:14px!important;
 }
@@ -103,6 +103,9 @@ a {
 .maxw-50{
   max-width:50%!important;
 }
+a.nav-link.active {
+  color: blue !important;
+}
 
 ul.myList {
   border: 1px solid #cdcdcd;
@@ -113,7 +116,7 @@ ul.myList {
     padding: 10px 20px;
     border-bottom: 1px solid #cdcdcd;
   }
-}
+} 
 
 .btlr-0{
   border-top-left-radius: 0px;
@@ -153,7 +156,10 @@ ul.myList {
   border: 1px solid #343958;
   color: #ffffff!important;
 }
-
+ 
+p.card-textt-custom p {
+  margin-bottom: 0;
+} 
 .shadow24 {
   background: #fff;
   border: 1px solid rgba(36, 39, 44, 0.1);
