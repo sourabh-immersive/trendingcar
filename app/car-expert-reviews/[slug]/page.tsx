@@ -1,72 +1,53 @@
 import { Metadata, ResolvingMetadata } from "next";
-import { fetchPostBySlug } from "@/services/wordpress";
 import Image from "next/image";
 import Content from "@/components/skeletons/content";
 import formatDate from "@/utils/formatDate";
 import PostShare from "@/components/PostShare";
 import RelatedPostsC from "@/components/clientside/RelatedPosts";
+import fetchYoastSEOData from "@/services/fetchYoastSEOData";
 
 type Props = {
-  params: { slug: string };
-  searchParams: { [key: string]: string | string[] | undefined };
-};
+  params: { slug: string }
+  searchParams: { [key: string]: string | string[] | undefined }
+}
 
 export async function generateMetadata(
   { params, searchParams }: Props,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  const slug = params.slug;
-  const blog = await fetchPostBySlug(slug);
+  const { slug } = params;
 
-  // Base URL for your site (use environment variable or hardcode)
-  const baseUrl =
-    process.env.NEXT_PUBLIC_BASE_URL ||
-    "https://wp.trendingcar.com/wp-json/wp/v2";
+  // const slug = 'car-collection';
+  const postType = 'posts';
+  const apiPath = 'wp'; // it should be 'wp' or 'custom'
 
-  if (!blog || !blog.yoast_head_json) {
-    return {
-      title: "Trending Car Blog Post",
-    };
-  }
-
-  const yoast = blog.yoast_head_json;
+  const yoastData = await fetchYoastSEOData(slug, postType, apiPath);
   const previousImages = (await parent).openGraph?.images || [];
-  const ogImage = yoast.og_image?.[0]?.url || "/some-specific-page-image.jpg";
-
+  
   return {
-    metadataBase: new URL(baseUrl),
-    title: yoast.title,
-    description: yoast.description,
-    robots: {
-      index: yoast.robots.index === "index",
-      follow: yoast.robots.follow === "follow",
-      "max-snippet": yoast.robots["max-snippet"],
-      "max-image-preview": yoast.robots["max-image-preview"],
-      "max-video-preview": yoast.robots["max-video-preview"],
-    },
+    title: yoastData.title,
+    description: yoastData.description,
+    keywords: yoastData.keywords,
     openGraph: {
-      locale: yoast.og_locale,
-      type: yoast.og_type,
-      title: yoast.og_title,
-      description: yoast.og_description,
-      url: yoast.og_url,
-      siteName: yoast.og_site_name,
+      type: 'article',
+      locale: 'en_US',
+      title: yoastData.title,
+      description: yoastData.description,
+      // url: yoastData.url,
+      siteName: yoastData.site_name,
+      publishedTime: yoastData.published_time,
+      modifiedTime: yoastData.modified_time,
       images: [
         {
-          url: ogImage,
-          width: yoast.og_image?.[0]?.width,
-          height: yoast.og_image?.[0]?.height,
-          type: yoast.og_image?.[0]?.type,
+          url: yoastData.image,
+          width: yoastData.image_width,
+          height: yoastData.image_height,
+          type: yoastData.image_type,
         },
         ...previousImages,
       ],
     },
-    twitter: {
-      card: yoast.twitter_card,
-      title: yoast.og_title,
-      description: yoast.og_description,
-      images: ogImage,
-    },
+    authors: yoastData.author,
   };
 }
 
