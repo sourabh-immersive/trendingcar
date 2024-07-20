@@ -73,9 +73,11 @@ ul.myList {
     border-bottom: 1px solid #cdcdcd;
   }
 }
+
 p.card-textt-custom p {
   margin-bottom: 0;
 }
+
 .shadow24 {
   background: #fff;
   border: 1px solid rgba(36, 39, 44, 0.1);
@@ -987,11 +989,72 @@ div#filterableSelect {
   }
 }
 
+.shareWrap {
+  display: flex;
+  flex-direction: column;
+
+  button {
+    margin: 10px 0;
+  }
+}
+
 // MEdia Query
+
+@media (max-width: 767px) {
+  table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  th, td {
+    white-space: nowrap; /* Prevent line breaks in table cells */
+  }
+
+  /* Customize scrollbar for table */
+  table::-webkit-scrollbar {
+    height: 8px; /* Set the height of the horizontal scrollbar */
+  }
+
+  table::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Background color of the scrollbar track */
+  }
+
+  table::-webkit-scrollbar-thumb {
+    background: #888; /* Color of the scrollbar thumb */
+    border-radius: 4px; /* Rounded corners for the scrollbar thumb */
+  }
+
+  table::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Color of the scrollbar thumb when hovered */
+  }
+}
 
 @media only screen and (max-width: 767px) {
   .archive__posts .card-custom {
     flex-direction: column;
+  }
+  .gallery-Cotentwrap .gallery_card img {
+    border-radius: 17px;
+    margin-bottom: 15px;
+    height: auto !important;
+}
+  .share-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #dedede;
+    padding-top: 15px;
+    margin-top: 15px;
+
+    .shareWrap {
+      display: flex;
+      flex-direction: row;
+
+      button {
+        margin: 0 10px;
+      }
+    }
   }
 
   .archive__posts .card-custom img {
@@ -1079,6 +1142,7 @@ div#filterableSelect {
 
   .gallery_card {
     margin-bottom: 30px;
+
     img {
       border-radius: 17px;
       margin-bottom: 15px;
@@ -1086,6 +1150,6 @@ div#filterableSelect {
 
     h5.card-title-custom {
       font-size: 18px;
-  }
+    }
   }
 }

@@ -72,12 +72,12 @@ export default async function Page({ params }: { params: { slug: string } }) {
     <>
       <div className="single-content-area shadow24">
         <div className="row">
-          <div className="col-md-1">
+          <div className="col-md-1 order-last order-md-first">
             <div className="socialShareDiv text-center">
               <PostShare title={data.title?.rendered} shareUrl={data.link} />
             </div>
           </div>
-          <div className="col-md-11">
+          <div className="col-md-11 order-first order-md-last">
             {data ? (
               <div>
                 <h1>{data.title?.rendered}</h1>
