@@ -152,7 +152,7 @@ const ArchivePosts: React.FC<AllCategoryProps> = ({
       )}
 
       {loading && <p className="loadingText">Loading...</p>}
-      {!loading && hasMore && posts.length !== 0 && (
+      {!loading && hasMore && posts.length !== 0 && totalPage > 1 && (
         <div className="row" style={{ display: "block" }}>
           <button onClick={loadMore} className="btn btn-primary load_more_btn">
             Load More
