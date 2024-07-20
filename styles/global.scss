@@ -1,4 +1,4 @@
-$primary-color: #022aaf;
+$primary-color: #343958;
 
 @import "./variables";
 @import "./mixins";
@@ -13,6 +13,11 @@ $primary-color: #3498db;
   .container {
     max-width: 1280px;
   }
+}
+
+button.btn.btn-primary {
+  background: $primary-color;
+  border-color: $primary-color;
 }
 
 body {
@@ -105,7 +110,7 @@ a {
 }
 
 a.nav-link.active {
-  color: blue !important;
+  color: #343958 !important;
 }
 
 ul.myList {
@@ -309,8 +314,8 @@ button.btn.btn-primary.load_more_btn {
 }
 
 button.btn.btn-primary.load_more_btn:hover {
-  color: #0d6efd;
-  border-color: #0d6efd;
+  color: $primary-color;
+  border-color: $primary-color;
 }
 
 .loadingText {
@@ -1868,7 +1873,7 @@ div#filterableSelect {
 // Top Cars
 
 .top-cars {
-  background-color: #0056D2;
+  background-color: $primary-color;
 }
 
 // Compare Cars
