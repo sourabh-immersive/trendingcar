@@ -56,7 +56,7 @@ export default async function CarNewsIndia() {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_API_BASE_URL}/posts?category_slug=${
       category.slug
-    }&page=${1}&per_page=${9}`,
+    }&page=${1}&per_page=${21}`,
     // { next: { revalidate: 3600 } }
   );
   const initialPosts = await res.json();
@@ -71,7 +71,7 @@ export default async function CarNewsIndia() {
         <FilterableSelect catId={category.id} />
         <ArchivePosts
           initialPosts={initialPosts}
-          numberOfPosts={9}
+          numberOfPosts={21}
           totalPage={totalPages}
           parentPage={category.slug}
           categorySlug={category.slug}
