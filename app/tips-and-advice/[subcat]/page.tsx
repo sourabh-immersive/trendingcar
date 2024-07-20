@@ -5,7 +5,7 @@ import fetchYoastSEOData from "@/services/fetchYoastSEOData";
 import { Metadata, ResolvingMetadata } from "next";
 
 type Props = {
-  params: { slug: string }
+  params: { subcat: string }
   searchParams: { [key: string]: string | string[] | undefined }
 }
 
@@ -13,9 +13,9 @@ export async function generateMetadata(
   { params, searchParams }: Props,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  const { slug } = params;
+  const { subcat } = params;
 
-  // const slug = 'car-expert-reviews';
+  const slug = subcat;
   const postType = 'categories';
   const apiPath = 'wp'; // it should be 'wp' or 'custom'
 
@@ -49,7 +49,7 @@ export async function generateMetadata(
   };
 }
 
-export default async function Page({ params }: { params: { subcat: string } }) {
+export default async function Page({ params }:Props) {
   const category = { id: 91, name: "Tips & Advice", slug: "tips-and-advice" };
   // console.log(params);
 const { subcat } = params;

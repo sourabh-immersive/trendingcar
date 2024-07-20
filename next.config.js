@@ -15,20 +15,19 @@ module.exports = {
       unoptimized: true,
       formats: ['image/webp'],
     },
+    
     async redirects() {
       return [
         {
           source: '/car-brands',
           destination: '/',
           permanent: true,
+        },
+        {
+            source: '/fuel-stations',
+            destination: '/fuel-stations/new-delhi',
+            permanent: true,
         }
       ]
     },
-    // images: {
-    //   domains: ['wp.trendingcar.com'],
-    // },
-    // images: { 
-    //   unoptimized: true,
-    //   formats: ['image/webp'],
-    // }
   };

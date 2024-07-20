@@ -15,11 +15,11 @@ export async function generateMetadata(
 ): Promise<Metadata> {
   const { subcat } = params;
 
-  // const slug = 'car-expert-reviews';
+  const slug = subcat;
   const postType = 'categories';
   const apiPath = 'wp'; // it should be 'wp' or 'custom'
 
-  const yoastData = await fetchYoastSEOData(subcat, postType, apiPath);
+  const yoastData = await fetchYoastSEOData(slug, postType, apiPath);
   const previousImages = (await parent).openGraph?.images || [];
   
   return {
@@ -49,7 +49,7 @@ export async function generateMetadata(
   };
 }
 
-export default async function Page({ params }: { params: { subcat: string } }) {
+export default async function Page({ params }: Props) {
   const category = { id: 1, name: "Car News", slug: "car-news-india" };
   // console.log(params);
 const { subcat } = params;

@@ -79,7 +79,7 @@ const FilterableSelect: React.FC<CatProps> = ({ catId, postsData }) => {
       (category) => category.name.toLowerCase() === searchTerm.toLowerCase()
     );
     if (selectedCategory) {
-      router.push(`/car-brands/${selectedCategory.slug}`);
+      router.push(`/car-news-india/${selectedCategory.slug}`);
     } else {
       // Optionally, you can handle the case where no matching category is found.
       console.error("No matching data found");

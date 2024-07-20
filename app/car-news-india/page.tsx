@@ -67,7 +67,7 @@ export default async function CarNewsIndia() {
   return (
     <main>
       <section className="left-container">
-      <h1>Car news India - all latest car information and auto news India</h1>
+      <h1>Stay Updated with the Latest Car News and Auto Trends in India!</h1>
         <FilterableSelect catId={category.id} />
         <ArchivePosts
           initialPosts={initialPosts}
