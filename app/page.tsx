@@ -53,9 +53,9 @@ export default async function Page() {
                 <PostsList
                   title="Most Viewed"
                   linkText="View All"
-                  link="/car-expert-reviews/"
+                  link="/tips-and-advice/"
                   numberOfPosts={5}
-                  category="car-expert-reviews"
+                  category="tips-and-advice"
                 />
               </section>
             </div>
