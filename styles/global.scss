@@ -3,9 +3,8 @@ $primary-color: #343958;
 @import "./variables";
 @import "./mixins";
 @import "~bootstrap/scss/bootstrap";
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-$primary-color: #3498db;
+$primary-color: #343958;
 @import "./header";
 
 /* Override Bootstrap container width */
@@ -22,9 +21,9 @@ button.btn.btn-primary {
 
 body {
   /*font-family: Lato, sans-serif;*/
-  font-family: "Poppins", sans-serif !important;
+  // font-family: "Poppins", sans-serif !important;
   background-color: #ffffff;
-  color: #000000;
+  color: #333333;
   overflow-x: hidden;
 }
 
@@ -58,7 +57,10 @@ ol.breadcrumb li.breadcrumb-item.active.text-primary a {
   color: #343958 !important;
 }
 
-
+p {
+  color: #333333;
+  font-size: 16px;
+}
 
 h1,
 h2,
@@ -67,12 +69,19 @@ h4,
 h5,
 h6 {
   color: #24272c;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 h1,
 .h1 {
   font-size: 28px;
+}
+
+.row.single-content-area {
+  background: #fff;
+  border: 1px solid rgba(36, 39, 44, 0.1);
+  border-radius: 16px;
+  padding: 17px 15px;
 }
 
 a {
@@ -121,9 +130,18 @@ ul.myList {
   li {
     padding: 10px 20px;
     border-bottom: 1px solid #cdcdcd;
-  }
-}
 
+    a:hover {
+      color: blue;
+      text-decoration: underline;
+    }
+  }
+
+}
+td a:hover {
+  color: blue;
+  text-decoration: underline;
+}
 .btlr-0 {
   border-top-left-radius: 0px;
   border-bottom-left-radius: 0px;
@@ -183,8 +201,8 @@ p.card-textt-custom p {
   border-top-right-radius: 30px;
 
   .list-unstyled a {
-    color: #000000;
-    font-size: 14px;
+    color: #333333;
+    font-size: 16px;
   }
 
   .list-unstyled a:hover {
@@ -251,7 +269,7 @@ ol.breadcrumb {
   }
 
   li.breadcrumb-item a {
-    color: #000000;
+    color: #333333;
   }
 
   li.breadcrumb-item.active.text-primary a {
@@ -304,7 +322,7 @@ img.iconInLink {
 
 button.btn.btn-primary.load_more_btn {
   background: transparent;
-  color: #000000;
+  color: #333333;
   border: 1px solid #dedede;
   display: inline-block;
   width: fit-content;
@@ -372,7 +390,7 @@ button.btn.btn-primary.load_more_btn:hover {
 
   .card-title-custom {
     font-size: 1.25rem;
-    font-weight: bold;
+    font-weight: 500;
   }
 
   .card-text-custom {
@@ -511,7 +529,7 @@ button.btn.btn-primary.load_more_btn:hover {
 
       h5.card-title {
         font-size: 18px;
-        font-weight: 600;
+        font-weight: 500;
         color: #000000;
       }
     }
@@ -1094,21 +1112,21 @@ $background-size: 906px 100px;
   font-size: 1.75rem;
   font-weight: 400;
   color: #44475b;
-  font-family: "Poppins", sans-serif;
+  // font-family: "Poppins", sans-serif;
 }
 
 .page-content {
   font-size: 15px;
-  font-weight: 300 !important;
+  font-weight: 400 !important;
   color: #44475b;
-  font-family: "Poppins", sans-serif;
+  // font-family: "Poppins", sans-serif;
   line-height: 28px;
 }
 
 .section-title {
   font-size: 24px;
   color: #44475b;
-  font-family: "Poppins", sans-serif;
+  // font-family: "Poppins", sans-serif;
   font-weight: 500 !important;
   line-height: 35px;
 }
@@ -1268,9 +1286,9 @@ $background-size: 906px 100px;
 
 .page-content {
   font-size: 15px;
-  font-weight: 300 !important;
+  font-weight: 400 !important;
   color: #44475b;
-  font-family: "Poppins", sans-serif;
+  // font-family: "Poppins", sans-serif;
   line-height: 28px;
 }
 
@@ -1279,23 +1297,23 @@ $background-size: 906px 100px;
     font-size: 24px;
     font-weight: bold;
     color: #484848;
-    font-family: "Poppins", sans-serif;
+    // font-family: "Poppins", sans-serif;
     line-height: 20px;
   }
 
   small {
     font-size: 14px;
-    font-weight: 300;
+    font-weight: 400;
     color: #777777;
-    font-family: "Poppins", sans-serif;
+    // font-family: "Poppins", sans-serif;
     line-height: 20px;
   }
 }
 
 ul li {
   font-size: 16px;
-  font-weight: 300 !important;
-  font-family: "Poppins", sans-serif;
+  font-weight: 400 !important;
+  // font-family: "Poppins", sans-serif;
   line-height: 30px;
   color: #44475b;
 }
@@ -1330,7 +1348,7 @@ ul li {
       padding: 5px;
       font-size: 14px;
       color: #fff;
-      font-weight: 300;
+      font-weight: 400;
       border: 1px solid #343a57;
       line-height: 20px;
 
@@ -1988,10 +2006,10 @@ div#filterableSelect {
 /* custom css */
 
 .single-content-area p span {
-  font-size: 15px;
-  font-weight: 300 !important;
+  font-size: 16px;
+  font-weight: 400 !important;
   color: #44475b;
-  font-family: "Poppins", sans-serif;
+  // font-family: "Poppins", sans-serif;
   line-height: 28px;
 }
 
@@ -2002,7 +2020,7 @@ div#filterableSelect {
 .single-content-area h2 strong {
   font-size: 24px;
   color: #44475b;
-  font-family: "Poppins", sans-serif;
+  // font-family: "Poppins", sans-serif;
   margin-bottom: 15px !important;
   font-weight: 500 !important;
   line-height: 35px;
@@ -2013,7 +2031,7 @@ div#filterableSelect {
   font-size: 24px;
   font-weight: 500 !important;
   color: #44475b;
-  font-family: "Poppins", sans-serif;
+  // font-family: "Poppins", sans-serif;
   line-height: 20px;
   margin-bottom: 15px !important;
 }
@@ -2021,7 +2039,7 @@ div#filterableSelect {
 .single-content-area h2 b {
   font-size: 24px;
   color: #44475b;
-  font-family: "Poppins", sans-serif;
+  // font-family: "Poppins", sans-serif;
   margin-bottom: 15px !important;
   font-weight: 500 !important;
   line-height: 35px;
@@ -2031,7 +2049,7 @@ div#filterableSelect {
 .single-content-area h3 b {
   font-size: 24px;
   color: #44475b;
-  font-family: "Poppins", sans-serif;
+  // font-family: "Poppins", sans-serif;
   margin-bottom: 15px !important;
   font-weight: 500 !important;
   line-height: 35px;
@@ -2041,7 +2059,7 @@ div#filterableSelect {
 .single-content-area h3 strong {
   font-size: 20px;
   font-weight: 500;
-  font-family: "Poppins", sans-serif;
+  // font-family: "Poppins", sans-serif;
   line-height: 28px;
   color: #44475b;
 }
@@ -2050,7 +2068,7 @@ div#filterableSelect {
 .single-content-area h4 b {
   font-size: 18px;
   font-weight: 500;
-  font-family: "Poppins", sans-serif;
+  // font-family: "Poppins", sans-serif;
   line-height: 28px;
   color: #44475b;
 }
@@ -2061,9 +2079,9 @@ div#filterableSelect {
 }
 
 .single-content-area ul li span {
-  font-size: 14px;
-  font-weight: 300 !important;
-  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  font-weight: 400 !important;
+  // font-family: "Poppins", sans-serif;
   line-height: 30px;
   color: #44475b;
 }
@@ -2077,25 +2095,25 @@ div#filterableSelect {
 }
 
 .single-content-area ul li {
-  font-size: 14px;
-  font-weight: 300 !important;
-  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  font-weight: 400 !important;
+  // font-family: "Poppins", sans-serif;
   line-height: 30px;
   color: #44475b;
 }
 
 .single-content-area ul li a span {
   font-size: 14px;
-  font-weight: 600 !important;
-  font-family: "Poppins", sans-serif;
+  font-weight: 500 !important;
+  // font-family: "Poppins", sans-serif;
   line-height: 30px;
   color: #44475b;
 }
 
 .single-content-area ul li h3 {
   font-size: 16px;
-  font-weight: 600 !important;
-  font-family: "Poppins", sans-serif;
+  font-weight: 500 !important;
+  // font-family: "Poppins", sans-serif;
   line-height: 30px;
   color: #44475b;
 }
@@ -2108,15 +2126,15 @@ div#filterableSelect {
 .single-content-area ol li h3 span {
   font-size: 20px;
   font-weight: 500;
-  font-family: "Poppins", sans-serif;
+  // font-family: "Poppins", sans-serif;
   line-height: 28px;
-  color: #44475b;
+  color: #333333;
 }
 
 .main-footer .list-unstyled a {
-  color: #747474;
-  font-size: 14px;
-  font-weight: 200;
+  color: #333333;
+  font-size: 16px;
+  font-weight: 400;
 }
 
 .r-0 {
@@ -2206,7 +2224,8 @@ div#filterableSelect {
 
 // Footer Css //
 .main-footer .list-unstyled a:hover {
-  color: #13122a !important;
+  color: blue !important;
+  text-decoration: underline;
 }
 
 .footer-top {
