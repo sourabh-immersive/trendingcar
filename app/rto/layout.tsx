@@ -17,7 +17,7 @@ export default function RTOLayout({
           <div className="col-md-9 col-sm-12 col-lg-9 col-xl-9 col-xxl-9">
             {children}
           </div>
-          <div className="col-md-3 col-sm-12 col-lg-3 col-xl-3 col-xxl-3">
+          <div className="col-md-3 col-sm-12 col-lg-3 col-xl-3 col-xxl-3 pt-sm-4">
             <section className="right-container">
               <SquareAd />
               <div className="row mt-4">
@@ -31,11 +31,6 @@ export default function RTOLayout({
                 </div>
               </div>
               <LongAd />
-              <div className="row mt-4">
-                <div className="col-md-12 col-sm-12 col-lg-12 col-xl-12 col-xxl-12">
-                  CommercialVehicles...
-                </div>
-              </div>
             </section>
           </div>
         </div>

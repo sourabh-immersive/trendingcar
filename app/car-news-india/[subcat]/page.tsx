@@ -1,18 +1,60 @@
 import React, { Suspense } from "react";
 import ArchivePosts from "@/components/clientside/ArchivePosts";
 import FilterableSelect from "@/components/FilterableSelect";
+import fetchYoastSEOData from "@/services/fetchYoastSEOData";
+import { Metadata, ResolvingMetadata } from "next";
 
 type Props = {
-  params: { subcat: string };
-  searchParams: { [key: string]: string | string[] | undefined };
-};
+  params: { subcat: string }
+  searchParams: { [key: string]: string | string[] | undefined }
+}
+
+export async function generateMetadata(
+  { params, searchParams }: Props,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const { subcat } = params;
+
+  const slug = subcat;
+  const postType = 'categories';
+  const apiPath = 'wp'; // it should be 'wp' or 'custom'
+
+  const yoastData = await fetchYoastSEOData(slug, postType, apiPath);
+  const previousImages = (await parent).openGraph?.images || [];
+  
+  return {
+    title: yoastData.title,
+    description: yoastData.description,
+    keywords: yoastData.keywords,
+    openGraph: {
+      type: 'article',
+      locale: 'en_US',
+      title: yoastData.title,
+      description: yoastData.description,
+      // url: yoastData.url,
+      siteName: yoastData.site_name,
+      publishedTime: yoastData.published_time,
+      modifiedTime: yoastData.modified_time,
+      images: [
+        {
+          url: yoastData.image,
+          width: yoastData.image_width,
+          height: yoastData.image_height,
+          type: yoastData.image_type,
+        },
+        ...previousImages,
+      ],
+    },
+    authors: yoastData.author,
+  };
+}
 
 export default async function Page({ params }: Props) {
   const category = { id: 1, name: "Car News", slug: "car-news-india" };
   // console.log(params);
 const { subcat } = params;
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_BASE_URL}/posts?category_slug=${subcat}&page=${1}&per_page=${9}`,
+    `${process.env.NEXT_PUBLIC_API_BASE_URL}/posts?category_slug=${subcat}&page=${1}&per_page=${21}`,
     // { next: { revalidate: 3600 } }
   );
   const initialPosts = await res.json();
@@ -27,7 +69,7 @@ const { subcat } = params;
       <FilterableSelect catId={category.id} />
         <ArchivePosts
           initialPosts={initialPosts}
-          numberOfPosts={9}
+          numberOfPosts={21}
           totalPage={totalPages}
           parentPage={category.slug}
           categorySlug={subcat}

@@ -66,12 +66,6 @@ const FilterableSelect: React.FC<CatProps> = ({ catId, postsData }) => {
     if(catId == 1) {
       router.push(`/car-news-india/${category.slug}`);
     }
-    if(catId == 144) {
-      router.push(`/car-collection/${category.slug}`);
-    }
-    if(catId == 88) {
-      router.push(`/car-expert-reviews/${category.slug}`);
-    }
     
     setIsDropdownOpen(false);
   };

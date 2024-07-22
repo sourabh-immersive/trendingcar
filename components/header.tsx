@@ -9,16 +9,19 @@ import Image from 'next/image';
 export default function Header() {
 
   return (
-    <div className="main-header mb-4">
-      <header className="bg-white py-2 shadow-sm">
+    <>
+      <div className="main-header mb-4">
+      <header className="bg-white pt-2 shadow-sm">
         <div className="container">
-          <div className="row align-items-center">
+          <div className="row align-items-center" style={{justifyContent: 'space-between'}}>
             <div className="col-md-4 d-flex align-items-center">
               <Link href="/">
-                <img
+                <Image
                   src="/logo.png"
-                  alt="Logo"
+                  alt="Trending Car Logo"
                   className="img-fluid logo me-4 cursor-pointer"
+                  width={190}
+                  height={45}
                 />
               </Link>
               <span className="site-text fw-bold">#chuno apni best car</span>
@@ -26,7 +29,7 @@ export default function Header() {
             <div className="col-md-4 my-2 my-md-0 searchbar">
               <FilterableSelect postsData={true} />
             </div>
-            <div className="col-md-3 d-flex justify-content-end align-items-center">
+            <div className="col-md-3 d-flex justify-content-end align-items-center social-iconss">
               <a href="#" className="wishlist text-primary me-2 fz-22">
                 <Image
                   src="/wishlist.png"
@@ -55,10 +58,10 @@ export default function Header() {
                
             </div>
           </div>
+          <NavMenu />
         </div>
       </header>
-
-      <NavMenu />
     </div>
+    </>
   );
 }

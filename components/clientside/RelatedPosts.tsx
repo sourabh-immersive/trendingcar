@@ -27,7 +27,7 @@ interface Post {
 interface AllCategoryProps {
     initialPosts: Post[];
     numberOfPosts: number;
-    totalPage: number;
+    totalPage: number;  
     parentPage?: string;
     categorySlug?: string;
 }
@@ -116,7 +116,7 @@ const RelatedPosts: React.FC<AllCategoryProps> = ({
             <hr />
             <div className="row gallery_card" >
                 {posts.map((post, index) => (
-                    <div className="card-custom2 col-md-4" data-index={index} key={post.id}>
+                    <div className="card-custom2 col-md-4 pb-sm-4" data-index={index} key={post.id}>
                         <Link href={`/${parentPage}/${post.primary_cat_slug}/${post.slug}`}>
                             <Image
                                 src={

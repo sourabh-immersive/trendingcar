@@ -1,6 +1,53 @@
 import RowCards from '@/components/clientside/RowCards';
 import Slider from '@/components/slider';
 import React from 'react'
+import type { Metadata, ResolvingMetadata } from 'next';
+import fetchYoastSEOData from '@/services/fetchYoastSEOData';
+
+type Props = {
+  params: { slug: string }
+  searchParams: { [key: string]: string | string[] | undefined }
+}
+
+export async function generateMetadata(
+  { params, searchParams }: Props,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const { slug } = params;
+  // console.log(params)
+  // const id = 'car-news-india';
+  const postType = 'images';
+  const apiPath = 'wp'; // it should be 'wp' or 'custom'
+  const yoastData = await fetchYoastSEOData(slug, postType, apiPath);
+
+  const previousImages = (await parent).openGraph?.images || [];
+  // console.log(yoastData);
+  return {
+    title: yoastData.title,
+    description: yoastData.description,
+    keywords: yoastData.keywords,
+    openGraph: {
+      type: 'article',
+      locale: 'en_US',
+      title: yoastData.title,
+      description: yoastData.description,
+      // url: yoastData.url,
+      siteName: yoastData.site_name,
+      publishedTime: yoastData.published_time,
+      modifiedTime: yoastData.modified_time,
+      images: [
+        {
+          url: yoastData.image,
+          width: yoastData.image_width,
+          height: yoastData.image_height,
+          type: yoastData.image_type,
+        },
+        ...previousImages,
+      ],
+    },
+    authors: yoastData.author,
+  };
+}
 
 const GalleryPage = async ({ params }: { params: { slug: string } }) => {
   const { slug } = params;

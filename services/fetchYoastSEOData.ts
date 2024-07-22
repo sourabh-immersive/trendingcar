@@ -1,21 +1,28 @@
-const fetchYoastSEOData = async (id: string, postType: string, apiPath: string) => {
-    const response = await fetch(`https://wp.trendingcar.com/wp-json/${apiPath}/v2/${postType}?slug=${id}`);
-    const posts = await response.json();
+const fetchYoastSEOData = async (slug: any, postType: string, apiPath: string) => {
 
-    if (!posts.length) {
-      throw new Error('No posts found');
+    const response = await fetch(`https://wp.trendingcar.com/wp-json/${apiPath}/v2/${postType === 'pages' ? `pages/${slug}` : `${postType}?slug=${slug}`}`);
+
+    let posts = await response.json();
+    let yoastMeta = [];
+    let postData = [];
+
+    if ( postType === 'pages' ) {
+      yoastMeta = posts.yoast_head_json || {};
+      postData = posts;
+    } else {
+      yoastMeta = posts[0].yoast_head_json || {};
+      postData = posts[0];
     }
-  
-    const yoastMeta = posts[0].yoast_head_json || {};
+
     return {
       title: yoastMeta.title,
       description: yoastMeta['og:description'] || yoastMeta.description,
-      keywords: ['abc', 'abc1', 'abc2'],
+      keywords: ( postData.focus_keywords ) ? postData.focus_keywords : 'Trending Car',
       url: yoastMeta['og:url'] || yoastMeta.og_url,
       site_name: yoastMeta['og:site_name'],
       published_time: yoastMeta['article:published_time'],
       modified_time: yoastMeta['article:modified_time'],
-      image: yoastMeta['og:image'] || posts[0].featured_img,
+      image: yoastMeta['og:image'] || postData.featured_img || postData.featured_image_url,
       image_width: yoastMeta['og:image:width'],
       image_height: yoastMeta['og:image:height'],
       image_type: yoastMeta['og:image:type'],
@@ -27,6 +34,6 @@ const fetchYoastSEOData = async (id: string, postType: string, apiPath: string) 
       twitter_data2: yoastMeta['twitter:data2'],
     };
   };
-  
+
   export default fetchYoastSEOData;
   

@@ -17,7 +17,7 @@ export default function CategoryLayout({
           <div className="col-md-9 col-sm-12 col-lg-9 col-xl-9 col-xxl-9">
             {children}
           </div>
-          <div className="col-md-3 col-sm-12 col-lg-3 col-xl-3 col-xxl-3">
+          <div className="col-md-3 col-sm-12 col-lg-3 col-xl-3 col-xxl-3 pt-sm-4">
             <section className="right-container">
               <SquareAd />
               <PostsList
@@ -31,9 +31,9 @@ export default function CategoryLayout({
               <PostsList
                   title="Most Viewed"
                   linkText="View All"
-                  link="/car-expert-reviews/"
+                  link="/tips-and-advice/"
                   numberOfPosts={5}
-                  category="car-expert-reviews"
+                  category="tips-and-advice"
                 />
             </section>
           </div>

@@ -109,7 +109,7 @@ const ArchivePosts: React.FC<AllCategoryProps> = ({
   // if (loading && initialLoad) return <LoadingSkeleton />;
   if (error) return <p>Error: {error}</p>;
   
-  // console.log(posts);
+  // console.log(totalPage);
   return (
     <div className="PostbyCategory-section archive__posts">
       {posts.map((post, index) => (
@@ -156,7 +156,7 @@ const ArchivePosts: React.FC<AllCategoryProps> = ({
       )}
 
       {loading && <p className="loadingText">Loading...</p>}
-      {!loading && hasMore && posts.length !== 0 && (
+      {!loading && hasMore && posts.length !== 0 && totalPage > 1 && (
         <div className="row" style={{ display: "block" }}>
           <button onClick={loadMore} className="btn btn-primary load_more_btn">
             Load More
