@@ -114,7 +114,7 @@ const GalleryPosts: React.FC<AllCategoryProps> = ({
         <div className="PostbyCategory-section archive__posts">
             <div className="row gallery_card" >
                 {posts.map((post, index) => (
-                    <div className="card-custom2 col-md-4" data-index={index} key={post.id}>
+                    <div className="card-custom2 col-md-4 mb-4" data-index={index} key={post.id}>
                         <Link href={`/auto-images/${post.slug}`}>
                             <Image
                                 src={

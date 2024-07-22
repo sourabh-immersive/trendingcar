@@ -24,7 +24,7 @@ export default function Header() {
                   height={45}
                 />
               </Link>
-              <span className="site-text fw-bold">#chuno apni best car</span>
+              <span className="site-text fw-bold">#ChunoApniBestCar</span>
             </div>
             <div className="col-md-4 my-2 my-md-0 searchbar">
               <FilterableSelect postsData={true} />

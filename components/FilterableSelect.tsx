@@ -64,7 +64,7 @@ const FilterableSelect: React.FC<CatProps> = ({ catId, postsData }) => {
       router.push(`/tips-and-advice/${category.slug}`);
     } 
     if(catId == 1) {
-      router.push(`/car-news-india/${category.slug}`);
+      router.push(`/car-brands/${category.slug}`);
     }
     
     setIsDropdownOpen(false);
