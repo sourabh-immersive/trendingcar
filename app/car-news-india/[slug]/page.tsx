@@ -5,13 +5,13 @@ import Content from "@/components/skeletons/content";
 import formatDate from "@/utils/formatDate";
 import PostShare from "@/components/PostShare";
 import RelatedPostsC from "@/components/clientside/RelatedPosts";
-import type { Route } from 'next'
+import type { Route } from "next";
 import fetchYoastSEOData from "@/services/fetchYoastSEOData";
 
 type Props = {
-  params: { slug: string }
-  searchParams: { [key: string]: string | string[] | undefined }
-}
+  params: { slug: string };
+  searchParams: { [key: string]: string | string[] | undefined };
+};
 
 export async function generateMetadata(
   { params, searchParams }: Props,
@@ -20,19 +20,19 @@ export async function generateMetadata(
   const { slug } = params;
 
   // const slug = 'car-expert-reviews';
-  const postType = 'posts';
-  const apiPath = 'wp'; // it should be 'wp' or 'custom'
+  const postType = "posts";
+  const apiPath = "wp"; // it should be 'wp' or 'custom'
 
   const yoastData = await fetchYoastSEOData(slug, postType, apiPath);
   const previousImages = (await parent).openGraph?.images || [];
-  
+
   return {
     title: yoastData.title,
     description: yoastData.description,
     keywords: yoastData.keywords,
     openGraph: {
-      type: 'article',
-      locale: 'en_US',
+      type: "article",
+      locale: "en_US",
       title: yoastData.title,
       description: yoastData.description,
       // url: yoastData.url,
@@ -55,7 +55,7 @@ export async function generateMetadata(
 
 export default async function Page({ params }: { params: { slug: string } }) {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_BASE_URL}/posts?slug=${params.slug}`
+    `${process.env.NEXT_PUBLIC_API_BASE_URL}/posts?slug=${params.slug}`, { next: { revalidate: 3600 } }
   );
   let data = await res.json();
   data = data[0];
@@ -65,7 +65,10 @@ export default async function Page({ params }: { params: { slug: string } }) {
   }
 
   const res1 = await fetch(
-    `${process.env.NEXT_PUBLIC_API_BASE_URL}/posts?category_slug=car-news-india&exclude=${data.id}&per_page=${3}`
+    `${
+      process.env.NEXT_PUBLIC_API_BASE_URL
+    }/posts?category_slug=car-news-india&exclude=${data.id}&per_page=${3}`,
+    { next: { revalidate: 3600 } }
   );
   const RelatedPosts = await res1.json();
 
@@ -85,8 +88,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
               <div>
                 <h1>{data.title?.rendered}</h1>
                 <p className="publishText">
-                  Published On {formatDate(data.date)} By{" "}
-                  {data.author_nicename}
+                  Published On {formatDate(data.date)} By {data.author_nicename}
                 </p>
                 {data.featured_image_url && (
                   <Image
@@ -123,7 +125,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
         initialPosts={RelatedPosts}
         numberOfPosts={3}
         totalPage={1}
-        parentPage={'car-news-india'}
+        parentPage={"car-news-india"}
       />
     </>
   );

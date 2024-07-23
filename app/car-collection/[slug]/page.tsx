@@ -55,13 +55,14 @@ export async function generateMetadata(
 export default async function Page({ params }: { params: { slug: string } }) {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_API_BASE_URL}/posts?slug=${params.slug}`,
-    // { next: { revalidate: 3600 } }
+    { next: { revalidate: 3600 } }
   );
   let data = await res.json();
   data = data[0];
 
   const res1 = await fetch(
-    `${process.env.NEXT_PUBLIC_API_BASE_URL}/posts?category_slug=car-collection&exclude=${data.id}&per_page=${3}`
+    `${process.env.NEXT_PUBLIC_API_BASE_URL}/posts?category_slug=car-collection&exclude=${data.id}&per_page=${3}`,
+    { next: { revalidate: 3600 } }
   );
   const RelatedPosts = await res1.json();
 
