@@ -111,7 +111,7 @@ const HomePosts: React.FC<AllCategoryProps> = ({
     <div className="PostbyCategory-section archive__posts">
       {posts.map((post, index) => (
         <div className="card-custom" data-index={index} key={post.id}>
-          <Link href={`${categorySlug}/${post.primary_cat_slug}/${post.slug}`}>
+          <Link href={`/car-news-india/${post.slug}`}>
             <Image
               src={
                 post.featured_image_url || "https://via.placeholder.com/315x210"
@@ -122,13 +122,17 @@ const HomePosts: React.FC<AllCategoryProps> = ({
             />
           </Link>
           <div className="card-body-custom">
-            <Link href={`${categorySlug}/${post.primary_cat_slug}/${post.slug}`}>
+            <Link href={`/car-news-india/${post.slug}`}>
               <h5
                 className="card-title-custom"
                 dangerouslySetInnerHTML={{ __html: post.title.rendered }}
               />
             </Link>
-            <p>{limitWords( post.excerpt.rendered, 30 ).replace(/<[^>]*>?/gm, '').replace('&#8217;', "'")}{"..."}</p>
+            <div
+                className="card-textt-custom"
+                dangerouslySetInnerHTML={{ __html: limitWords( post.excerpt.rendered, 30 ) }}
+                style={{marginBottom: '0'}}
+              />
             <div className="card-author">
               <div className="author-image">
                 {"TC"}

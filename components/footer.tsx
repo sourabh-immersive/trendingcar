@@ -26,9 +26,9 @@ export default function Footer() {
                     <li>
                       <Link href="/about-trending-car">About Trending Cars</Link>
                     </li>
-                    <li>
+                    {/* <li>
                       <Link href="/team">Team</Link>
-                    </li>
+                    </li> */}
                     <li>
                       <Link href="/terms-and-conditions">Terms & Conditions</Link>
                     </li>

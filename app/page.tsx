@@ -4,6 +4,53 @@ import SquareAd from "@/components/advertisements/squaread";
 import PostsList from "@/components/bloghome/postslist";
 import LongAd from "@/components/advertisements/longad";
 import HomePosts from "@/components/clientside/HomePosts";
+import { Metadata, ResolvingMetadata } from "next";
+import fetchYoastSEOData from "@/services/fetchYoastSEOData";
+
+type Props = {
+  params: { id: string };
+  searchParams: { [key: string]: string | string[] | undefined };
+};
+
+export async function generateMetadata(
+  { params, searchParams }: Props,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  // const { subcat } = params;
+
+  const slug = 10118;
+  const postType = "pages";
+  const apiPath = "wp"; // it should be 'wp' or 'custom'
+
+  const yoastData = await fetchYoastSEOData(slug, postType, apiPath);
+  const previousImages = (await parent).openGraph?.images || [];
+
+  return {
+    title: yoastData.title,
+    description: yoastData.description,
+    keywords: yoastData.keywords,
+    openGraph: {
+      type: "article",
+      locale: "en_US",
+      title: yoastData.title,
+      description: yoastData.description,
+      // url: yoastData.url,
+      siteName: yoastData.site_name,
+      publishedTime: yoastData.published_time,
+      modifiedTime: yoastData.modified_time,
+      images: [
+        {
+          url: yoastData.image,
+          width: yoastData.image_width,
+          height: yoastData.image_height,
+          type: yoastData.image_type,
+        },
+        ...previousImages,
+      ],
+    },
+    authors: yoastData.author,
+  };
+}
 
 export default async function Page() {
   const category = { id: 1, name: "Car News", slug: "car-news-india" };

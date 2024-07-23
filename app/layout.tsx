@@ -1,5 +1,5 @@
 import type { Metadata } from "next"
-import { Lato } from "next/font/google"
+import { Lato, Roboto } from "next/font/google"
 import "../styles/global.scss"
 import Header from "../components/header"
 import Footer from "../components/footer"
@@ -16,9 +16,16 @@ const lato = Lato({
   display: 'swap',
 })
 
+const roboto = Roboto({
+  weight: ['100', '300', '400', '500', '700'],
+  style: ['normal', 'italic'],
+  subsets: ['latin'],
+  display: 'swap',
+})
+
 export const metadata: Metadata = {
-  title: "Trending Car",
-  description: "Treding Car",
+  title: "Trending Car: New Cars, Buy & Sell Cars in India, Car Prices",
+  description: "Discover automotive trends with Trending Car. Buy & sell cars in India, find new cars, best prices, expert reviews, and industry news. Stay updated!",
 };
 
 export default function RootLayout({
@@ -26,10 +33,19 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const GTM_ID = 'G-3BPTSPS0CY';
   return (
     <html lang="en">
-      <body className={lato.className}>
+      <body className={roboto.className}>
         <Header />
+        <noscript>
+            <iframe
+              src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
+              height="0"
+              width="0"
+              style={{ display: 'none', visibility: 'hidden' }}
+            ></iframe>
+          </noscript>
         <NextBreadcrumb
           homeElement={'Home'}
           separator={<span> / </span>}
