@@ -33,10 +33,19 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const GTM_ID = 'G-3BPTSPS0CY';
   return (
     <html lang="en">
       <body className={roboto.className}>
         <Header />
+        <noscript>
+            <iframe
+              src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
+              height="0"
+              width="0"
+              style={{ display: 'none', visibility: 'hidden' }}
+            ></iframe>
+          </noscript>
         <NextBreadcrumb
           homeElement={'Home'}
           separator={<span> / </span>}

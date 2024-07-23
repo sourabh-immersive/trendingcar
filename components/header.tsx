@@ -7,11 +7,27 @@ import Image from 'next/image';
 
 
 export default function Header() {
+  const GTM_ID = 'G-3BPTSPS0CY'; // Replace with your GTM container ID
 
   return (
     <>
       <div className="main-header mb-4">
       <header className="bg-white pt-2 shadow-sm">
+           {/* Google Tag Manager */}
+          <script
+            async
+            src={`https://www.googletagmanager.com/gtag/js?id=${GTM_ID}`}
+          ></script>
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${GTM_ID}');
+              `,
+            }}
+          ></script>
         <div className="container">
           <div className="row align-items-center" style={{justifyContent: 'space-between'}}>
             <div className="col-md-4 d-flex align-items-center">
