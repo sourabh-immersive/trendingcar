@@ -13,7 +13,14 @@ export default function Header() {
     <>
       <div className="main-header mb-4">
       <header className="bg-white pt-2 shadow-sm">
+        
+      <link rel="icon" href="/favicon.ico" /> 
+      <link rel="icon" href="/favicon.png" />
+
+      <link rel="icon" href="/favicon/favicon.ico" /> 
+      <link rel="icon" href="/favicon/favicon.png" />
            {/* Google Tag Manager */}
+           
           <script
             async
             src={`https://www.googletagmanager.com/gtag/js?id=${GTM_ID}`}
@@ -61,7 +68,7 @@ export default function Header() {
               <Link href="https://www.instagram.com/" target="_blank" className="text-black header-sociocon me-2 fz-22">
                 <FaInstagram />
               </Link>
-              <Link href="https://in.pinterest.com/#search" target="_blank" className="text-black header-sociocon me-2 fz-22">
+              <Link href="https://in.pinterest.com/trendingcarz/" target="_blank" className="text-black header-sociocon me-2 fz-22">
                 <FaPinterest />
               </Link>
               <Link href="https://www.youtube.com/@trendingcar3924" target="_blank" className="text-black header-sociocon me-2 fz-22">
@@ -76,6 +83,7 @@ export default function Header() {
           </div>
           <NavMenu />
         </div>
+        <meta name="google-site-verification" content="nslDjoMXANGePJeDpvDOkZXoYO9ezvtQZdrVGBKjmFo" />
       </header>
     </div>
     </>

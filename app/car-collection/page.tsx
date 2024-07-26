@@ -65,7 +65,7 @@ export default async function Tips() {
   return (
     <main>
       <section className="left-container">
-        <h1>Car Collection - all latest car collections in India</h1>
+        <h1>Car Collection - All Latest Car Collections in India</h1>
         <ArchivePosts2
           initialPosts={initialPosts}
           numberOfPosts={21}

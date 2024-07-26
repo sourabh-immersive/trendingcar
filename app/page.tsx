@@ -74,8 +74,7 @@ export default async function Page() {
             <div className="col-md-9 col-sm-12 col-lg-9 col-xl-9 col-xxl-9">
               <div className="left-container">
                 <h1>
-                  Car news India - all latest car information and auto news
-                  India
+                  Car News India - All Latest Car Information And Auto News India
                 </h1>
                 <FilterableSelect catId={category.id} />
                 <HomePosts

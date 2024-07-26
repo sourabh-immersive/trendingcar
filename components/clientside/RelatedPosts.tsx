@@ -117,7 +117,7 @@ const RelatedPosts: React.FC<AllCategoryProps> = ({
             <div className="row gallery_card" >
                 {posts.map((post, index) => (
                     <div className="card-custom2 col-md-4 pb-sm-4" data-index={index} key={post.id}>
-                        <Link href={`/${parentPage}/${post.primary_cat_slug}/${post.slug}`}>
+                        <Link href={`/car-news-india/${post.slug}`}>
                             <Image
                                 src={
                                     post.featured_image_url || "https://via.placeholder.com/315x210"
@@ -126,6 +126,8 @@ const RelatedPosts: React.FC<AllCategoryProps> = ({
                                 width={0}
                                 height={0}
                                 style={{ width: '100%', height: '180px' }}
+                                placeholder="blur"
+                                blurDataURL="/placeholder-image.webp"
                             />
 
                             <div className="card-body-custom2">

@@ -122,6 +122,8 @@ const ArchivePosts: React.FC<AllCategoryProps> = ({
               alt="Comparison Image"
               width={315}
               height={210}
+              placeholder="blur"
+              blurDataURL="/placeholder-image.webp"
             />
           </Link>
           <div className="card-body-custom">

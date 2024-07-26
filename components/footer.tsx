@@ -95,7 +95,7 @@ export default function Footer() {
                     <Link href="https://www.instagram.com/" target="_blank" className="text-black header-sociocon me-2 fz-22">
                       <FaInstagram />
                     </Link>
-                    <Link href="https://in.pinterest.com/#search" target="_blank" className="text-black header-sociocon me-2 fz-22">
+                    <Link href="https://in.pinterest.com/trendingcarz/" target="_blank" className="text-black header-sociocon me-2 fz-22">
                       <FaPinterest />
                     </Link>
                     <Link href="https://www.youtube.com/@trendingcar3924" target="_blank" className="text-black header-sociocon me-2 fz-22">
