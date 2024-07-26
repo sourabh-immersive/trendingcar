@@ -54,7 +54,7 @@ const HomePosts: React.FC<AllCategoryProps> = ({
     page: number
   ): Promise<Post[]> => {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_BASE_URL}/posts?category_slug=${categorySlug}&page=${page}&per_page=${numberOfPosts}`,
+      `${process.env.NEXT_PUBLIC_API_BASE_URL}/posts?page=${page}&per_page=${numberOfPosts}`,
       { next: { revalidate: 3600 } }
     );
     if (!response.ok) {
