@@ -56,9 +56,7 @@ export default async function Page() {
   const category = { id: 1, name: "Car News", slug: "car-news-india" };
 
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_BASE_URL}/posts?category_slug=${
-      category.slug
-    }&page=${1}&per_page=${20}`,
+    `${process.env.NEXT_PUBLIC_API_BASE_URL}/posts?page=${1}&per_page=${20}`,
     // { next: { revalidate: 600 } }
   );
   const initialPosts = await res.json();
@@ -79,7 +77,7 @@ export default async function Page() {
                 <FilterableSelect catId={category.id} />
                 <HomePosts
                   initialPosts={initialPosts}
-                  numberOfPosts={9}
+                  numberOfPosts={12}
                   totalPage={totalPages}
                   categorySlug={category.slug}
                 />
