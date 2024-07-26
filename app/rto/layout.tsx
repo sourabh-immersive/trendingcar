@@ -6,10 +6,11 @@ import ListStates from "@/components/AllStatesList"
 // export const revalidate = 3600 // revalidate at most every hour
 
 export default function RTOLayout({
-    children, // will be a page or nested layout
+    children,
   }: {
     children: React.ReactNode
   }) {
+
     return (
       <section className="rto-layout">
         <div className="container">
@@ -27,7 +28,7 @@ export default function RTOLayout({
               </div>
               <div className="row mt-4">
                 <div className="col-md-12 col-sm-12 col-lg-12 col-xl-12 col-xxl-12">
-                  <ListCities slug="madhya-pradesh" />
+                  <ListCities />
                 </div>
               </div>
               <LongAd />

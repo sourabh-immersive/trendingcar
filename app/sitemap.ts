@@ -10,7 +10,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   let totalPages = 1;
 
   while (page <= totalPages) {
-    const response = await fetch(`${baseUrl}?per_page=${perPage}&page=${page}`);
+    const response = await fetch(`${baseUrl}?per_page=${perPage}&page=${page}`);    
     const posts = await response.json();
 
     // Check if we have posts, and if so, add them to the allPosts array

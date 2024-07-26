@@ -1,74 +1,57 @@
-import { Metadata, ResolvingMetadata } from 'next';
-import { fetchStatePostBySlug } from "@/services/wordpress";
-import ListCities from './clientside/rto/ListCities';
+'use client'
 
-type Props = {
-  params: { state: string }
-  searchParams: { [key: string]: string | string[] | undefined }
+import Link from 'next/link';
+import { useParams } from 'next/navigation';
+import { useEffect, useState } from 'react';
+
+interface CityProps {
+  slug: string;
+  title: string;
 }
 
-export async function generateMetadata(
-  { params, searchParams }: Props,
-  parent: ResolvingMetadata
-): Promise<Metadata> {
-  // const slug = params.slug;
-  const { state } = params;
-  // console.log('stateparams', state);
-  const blog = await fetchStatePostBySlug(state);
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://trendingcar.com';
+export default function AllCitiesList() {
+  const { state } = useParams<{ state: string; city: string }>();
+  const [data, setData] = useState<CityProps[] | null>(null);
+  const [loading, setLoading] = useState(true);
 
-  if (!blog || !blog.yoast_head_json) {
-    return {
-      title: 'Blog Post',
-    };
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_CUSTOM_URL}/list-cities?state=${state}`);
+        const data = await res.json();
+        setData(data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      } finally {
+        setLoading(false);
+      }
+    }
+    if (state) {
+      fetchData();
+    }
+  }, [state]);
+
+  function convertSlugToHeading(slug: string): string {
+    return slug
+      .split("-")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ");
   }
 
-  const yoast = blog.yoast_head_json;
-  const previousImages = (await parent).openGraph?.images || [];
-  const ogImage = yoast.og_image?.[0]?.url || '/some-specific-page-image.jpg';
-
-  return {
-    metadataBase: new URL(baseUrl),
-    title: yoast.title,
-    robots: {
-      index: yoast.robots.index === 'index',
-      follow: yoast.robots.follow === 'follow',
-      'max-snippet': yoast.robots['max-snippet'],
-      'max-image-preview': yoast.robots['max-image-preview'],
-      'max-video-preview': yoast.robots['max-video-preview'],
-    },
-    openGraph: {
-      locale: yoast.og_locale,
-      type: yoast.og_type,
-      title: yoast.og_title,
-      description: yoast.og_description,
-      url: yoast.og_url,
-      siteName: yoast.og_site_name,
-      images: [
-        {
-          url: ogImage,
-          width: yoast.og_image?.[0]?.width,
-          height: yoast.og_image?.[0]?.height,
-          type: yoast.og_image?.[0]?.type,
-        },
-        ...previousImages,
-      ],
-    },
-    twitter: {
-      card: yoast.twitter_card,
-      title: yoast.og_title,
-      description: yoast.og_description,
-      images: ogImage,
-    },
-  };
-}
-
-export default async function AllCitiesList({ slug }: { slug: string }) {
-  // console.log('params', params);
-  // const { state } = params;
-
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_CUSTOM_URL}/list-cities?states=${slug}`, { next: { revalidate: 3600 } });
-  const data = await res.json();
-
-  return <ListCities initialData={ data } slug={slug} />;
+  return (
+    <div className="statesList">
+      <h5>RTO in City</h5>
+      <ul className="myList" data-state={state}>
+        {loading ? (
+          <div>Loading...</div>
+        ) : (
+          data?.sort((a, b) => (a.slug > b.slug ? 1 : -1)).map((city, index) => (
+            <li key={index}>
+              <Link href={`/rto/${state}/${city.slug}`}>RTO {convertSlugToHeading(city.slug)}</Link>
+            </li>
+          ))
+        )}
+      </ul>
+    </div>
+  );
 }
