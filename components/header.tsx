@@ -13,7 +13,14 @@ export default function Header() {
     <>
       <div className="main-header mb-4">
       <header className="bg-white pt-2 shadow-sm">
+        
+      <link rel="icon" href="/favicon.ico" /> 
+      <link rel="icon" href="/favicon.png" />
+
+      <link rel="icon" href="/favicon/favicon.ico" /> 
+      <link rel="icon" href="/favicon/favicon.png" />
            {/* Google Tag Manager */}
+           
           <script
             async
             src={`https://www.googletagmanager.com/gtag/js?id=${GTM_ID}`}
@@ -76,6 +83,7 @@ export default function Header() {
           </div>
           <NavMenu />
         </div>
+        <meta name="google-site-verification" content="nslDjoMXANGePJeDpvDOkZXoYO9ezvtQZdrVGBKjmFo" />
       </header>
     </div>
     </>
