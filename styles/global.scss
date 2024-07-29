@@ -94,6 +94,10 @@ a {
   color: $primary-color;
 }
 
+.fz-12{
+  font-size: 12px !important;
+}
+
 .fz-14 {
   font-size: 14px !important;
 }
@@ -110,6 +114,18 @@ a {
   font-size: 22px;
 }
 
+.fz-35 {
+  font-size: 35px;
+}
+
+.br-12{
+  border-radius: 12px;
+}
+
+.fw-400{
+  font-weight:400;
+}
+
 .pos-rel {
   position: relative;
 }
@@ -117,6 +133,10 @@ a {
 .bg-grey {
   background-color: #eee !important;
   color: #000 !important;
+}
+
+.text-right{
+  text-align:right;
 }
 
 .maxw-50 {
@@ -2394,5 +2414,105 @@ div#filterableSelect {
     font-weight: 500;
     border-bottom: 1px solid #dedede;
     padding: 6px 0px;
+  }
+}
+
+/* Toll Calculator Css */
+
+.journey-details {
+  padding: 100px 20px 20px 20px;
+}
+.journey-details .tourmaster-form-field {
+  background-color: #fff;
+  border-radius: 12px;
+}
+.journey-details .tourmaster-form-field .col-md-3{
+  border-right:1px solid #ccc;
+  padding: 15px 30px;
+}
+.journey-details .tourmaster-form-field .col-md-3:last-child{
+  border-right:0px;
+}
+.journey-details .tourmaster-form-field .title{
+  font-size:12px;
+  font-weight: 300;
+}
+.journey-details .tourmaster-form-field .form-control{
+  border: 0px;
+  padding-left: 0px;
+  padding-right: 0px;
+  font-size: 22px;
+  color: #000;
+  font-weight: 500;
+}
+.journey-details .tourmaster-form-field .form-control:focus{
+  box-shadow:none;
+}
+.tabs-wrapper{
+  background-color: #fff;
+  width: 80%;
+  margin: 0 auto;
+  padding: 8px 15px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -50px;
+  border: 1px solid #eee;
+  border-radius: 12px;
+}
+.tabs-wrapper .nav-pills .nav-link.active, .tabs-wrapper .nav-pills .show > .nav-link{
+  color:#0d6efd!important;
+  background-color: #fff!important;
+  img{
+    filter: invert(35%) sepia(91%) saturate(4131%) hue-rotate(211deg) brightness(103%) contrast(106%);
+    width: 40px;
+    height: 40px;
+    object-fit: scale-down;
+  }
+}
+.tabs-wrapper .nav-link{
+  color:#333333!important;
+  background-color: #fff!important;
+  img{
+    filter:grayscale(1);
+    width: 40px;
+    height: 40px;
+    object-fit: scale-down;
+  }
+}
+
+.map-wrapper{
+  max-width:100%;overflow:hidden;color:red;width:100%;height:500px;
+  #embed-ded-map-canvas{
+    height:100%; width:100%;max-width:100%;
+    iframe{
+      height:100%;width:100%;border:0;
+    }
+  }
+}
+.min-h-287{
+  min-height: 287px;
+}
+.ml--14{
+  margin-left:-14px;
+}
+
+/* Toll Calculator Css */
+
+.toll-calculator{
+  list-style: none;
+  margin-left: -32px;
+  li {
+    padding: 5px 15px !important;
+    border-radius: 6px;
+    margin-right: 10px !important;
+    /*height: 44px;
+    width: 121px;*/
+    text-align: center;
+    background-color: #fff;
+
+    a {
+      color: #000;
+    }
   }
 }
