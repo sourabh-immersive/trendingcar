@@ -65,7 +65,7 @@ export default async function CarExpert() {
   return (
     <main>
       <section className="left-container">
-        <h1>Car Expert Reviews - all latest tips, information and car reviews India</h1>
+        <h1>Car Expert Reviews - All Latest Tips, Information and Car Reviews India</h1>
         <ArchivePosts2
           initialPosts={initialPosts}
           numberOfPosts={21}

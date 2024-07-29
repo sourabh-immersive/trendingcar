@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import React, { useEffect, useRef, useState } from "react";
 import { fetchPostsByCategory } from "@/services/wordpress";
@@ -17,7 +17,7 @@ interface Post {
   };
   excerpt: {
     rendered: string;
-  }
+  };
   featured_image_url?: string;
   author_nicename?: string;
   primary_cat_slug?: string;
@@ -47,7 +47,7 @@ const ArchivePosts: React.FC<AllCategoryProps> = ({
   const [initialLoad, setInitialLoad] = useState<boolean>(true);
   const initialRender = useRef(true);
 
-  const parentPathSlug = parentPage ? `/${parentPage}` : '';
+  const parentPathSlug = parentPage ? `/${parentPage}` : "";
 
   const getListCategories = async (
     numberOfPosts: number,
@@ -108,21 +108,24 @@ const ArchivePosts: React.FC<AllCategoryProps> = ({
   //   console.log('initial page', page);
   // if (loading && initialLoad) return <LoadingSkeleton />;
   if (error) return <p>Error: {error}</p>;
-  
+
   // console.log(posts);
   return (
     <div className="PostbyCategory-section archive__posts">
       {posts.map((post, index) => (
         <div className="card-custom" data-index={index} key={post.id}>
           <Link href={`/car-news-india/${post.slug}`}>
-            <Image
-              src={
-                post.featured_image_url || "https://via.placeholder.com/315x210"
-              }
-              alt="Comparison Image"
-              width={315}
-              height={210}
-            />
+              <Image
+                src={
+                  post.featured_image_url ||
+                  "/placeholder-image.webp"
+                }
+                alt="Comparison Image"
+                width={315}
+                height={210}
+                placeholder="blur"
+                blurDataURL="/placeholder-image.webp"
+              />
           </Link>
           <div className="card-body-custom">
             <Link href={`/car-news-india/${post.slug}`}>
@@ -132,14 +135,14 @@ const ArchivePosts: React.FC<AllCategoryProps> = ({
               />
             </Link>
             <div
-                className="card-textt-custom"
-                dangerouslySetInnerHTML={{ __html: limitWords( post.excerpt.rendered, 30 ) }}
-                style={{marginBottom: '0'}}
-              />
+              className="card-textt-custom"
+              dangerouslySetInnerHTML={{
+                __html: limitWords(post.excerpt.rendered, 30),
+              }}
+              style={{ marginBottom: "0" }}
+            />
             <div className="card-author">
-              <div className="author-image">
-                {"TC"}
-              </div>
+              <div className="author-image">{"TC"}</div>
               <div className="author-details">
                 <div>{post.author_nicename}</div>
                 <div>{formatDate(post.date ? post.date : "")}</div>

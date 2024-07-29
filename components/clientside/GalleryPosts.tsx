@@ -118,12 +118,14 @@ const GalleryPosts: React.FC<AllCategoryProps> = ({
                         <Link href={`/auto-images/${post.slug}`}>
                             <Image
                                 src={
-                                    post.featured_image_url || "https://via.placeholder.com/315x210"
+                                    post.featured_image_url || "/placeholder-image.webp"
                                 }
                                 alt="Comparison Image"
                                 width={0}
                                 height={0}
                                 style={{width: '100%', height: '180px'}}
+                                placeholder="blur"
+                                blurDataURL="/placeholder-image.webp"
                             />
                         </Link>
                         <div className="card-body-custom2">
@@ -153,7 +155,7 @@ const GalleryPosts: React.FC<AllCategoryProps> = ({
             )}
 
             {loading && <p className="loadingText">Loading...</p>}
-            {!loading && hasMore && posts.length !== 0 && (
+            {!loading && hasMore && posts.length !== 0 && totalPage > 1 && (
                 <div className="row" style={{ display: "block" }}>
                     <div className="col-md-12">
                     <button onClick={loadMore} className="btn btn-primary load_more_btn">

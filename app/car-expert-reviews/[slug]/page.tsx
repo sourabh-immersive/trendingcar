@@ -55,7 +55,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
   
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_API_BASE_URL}/posts?slug=${params.slug}`,
-    // { next: { revalidate: 3600 } }
+    { next: { revalidate: 3600 } }
   );
   let data = await res.json();
   data = data[0];

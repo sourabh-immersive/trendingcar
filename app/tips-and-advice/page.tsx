@@ -19,7 +19,7 @@ export default async function Tips() {
   return (
     <main>
       <section className="left-container">
-        <h1>Tips & Advice - all latest tips, information and car advice India</h1>
+        <h1>Tips & Advice - All Latest Tips, Information And Car Advice India</h1>
         <FilterableSelect catId={category.id} />
         <ArchivePosts
           initialPosts={initialPosts}
