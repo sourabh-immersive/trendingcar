@@ -31,6 +31,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     url: `${siteUrl}/rto/sitemap.xml`,
     lastModified: new Date().toISOString(),
   };
+  const innerSitemapFuelEntry = {
+    url: `${siteUrl}/fuel-stations/sitemap.xml`,
+    lastModified: new Date().toISOString(),
+  };
 
-  return [...postSitemapEntries, innerSitemapEntry];
+  return [...postSitemapEntries, innerSitemapFuelEntry];
 }
