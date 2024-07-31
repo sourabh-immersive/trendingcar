@@ -18,13 +18,6 @@ const ListCities: React.FC<ClientComponentProps> = ({ initialData, slug }) => {
 //   console.log(cityList);
   //   const { title, slug } = stateList;
 
-  function convertSlugToHeading(slug: string): string {
-    return slug
-      .split("-")
-      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-      .join(" ");
-  }
-
   return (
     <div className="statesList">
       <h5>RTO in City</h5>
