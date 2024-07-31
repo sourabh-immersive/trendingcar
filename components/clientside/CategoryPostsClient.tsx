@@ -119,6 +119,8 @@ const CategoryPostsClient: React.FC<AllCategoryProps> = ({
                   alt="Card image cap"
                   width="600"
                   height="400"
+                  placeholder="blur"
+                  blurDataURL="/placeholder-image.webp"
                 />
                 <div className="card-body">
                   <h5

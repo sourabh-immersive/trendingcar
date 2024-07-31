@@ -132,6 +132,8 @@ const AllWebstoriesClient: React.FC<AllWebstoriesProps> = ({
                   alt={post.title}
                   width={225}
                   height={300}
+                  placeholder="blur"
+                  blurDataURL="/placeholder-image.webp"
                 />
                 <div className="card-body">
                   <h5 className="card-title">{post.title}</h5>

@@ -55,7 +55,7 @@ const HomePosts: React.FC<AllCategoryProps> = ({
   ): Promise<Post[]> => {
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_API_BASE_URL}/posts?page=${page}&per_page=${numberOfPosts}`,
-      { next: { revalidate: 3600 } }
+      { next: { revalidate: 10 } }
     );
     if (!response.ok) {
       throw new Error("Failed to fetch posts");
@@ -119,6 +119,8 @@ const HomePosts: React.FC<AllCategoryProps> = ({
               alt="Comparison Image"
               width={315}
               height={210}
+              placeholder="blur"
+              blurDataURL="/placeholder-image.webp"
             />
           </Link>
           <div className="card-body-custom">

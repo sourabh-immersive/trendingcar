@@ -98,7 +98,6 @@ export default function Footer() {
                     <Link href="https://www.youtube.com/@trendingcar3924" target="_blank" className="text-black header-sociocon me-2 fz-22">
                       <FaYoutube />
                     </Link>
-
                     <Link href="https://www.linkedin.com/company/trending-car" target="_blank" className="text-black header-sociocon fz-22">
                       <FaLinkedinIn />
                     </Link>
@@ -109,8 +108,6 @@ export default function Footer() {
                     <button type="button" className="btn news-letter-2 btn-theme text-white" ><BsFillSendFill /></button>
                   </div>
                 </div>
-
-
               </div>
             </div>
           </div>
