@@ -24,13 +24,42 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const postSitemapEntries = allPosts.map((post: any) => ({
     url: `${siteUrl}/car-news-india/${post.slug}`,
-    lastModified: post.date,
+    lastModified: new Date().toISOString(),
   }));
 
-  const innerSitemapEntry = {
+  const mainPages = [{
+    url: `${siteUrl}`,
+    lastModified: new Date().toISOString(),
+  },
+  {
+    url: `${siteUrl}/car-news-india`,
+    lastModified: new Date().toISOString(),
+  },
+  {
+    url: `${siteUrl}/car-collection`,
+    lastModified: new Date().toISOString(),
+  },
+  {
+    url: `${siteUrl}/car-expert-reviews`,
+    lastModified: new Date().toISOString(),
+  },
+  {
+    url: `${siteUrl}/tips-and-advice`,
+    lastModified: new Date().toISOString(),
+  },
+  {
+    url: `${siteUrl}/auto-images`,
+    lastModified: new Date().toISOString(),
+  },
+  {
     url: `${siteUrl}/rto/sitemap.xml`,
     lastModified: new Date().toISOString(),
-  };
+  },
+  {
+    url: `${siteUrl}/auto-images/sitemap.xml`,
+    lastModified: new Date().toISOString(),
+  }
+];
 
-  return [...postSitemapEntries, innerSitemapEntry];
+  return [...mainPages, ...postSitemapEntries];
 }
