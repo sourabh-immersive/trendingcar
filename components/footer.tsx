@@ -42,7 +42,7 @@ export default function Footer() {
                       <Link href="/faq">FAQs</Link>
                     </li>
                     <li>
-                      <Link href="#">Sitemap</Link>
+                      <Link href="/sitemap.xml">Sitemap</Link>
                     </li>
                   </ul>
                 </div>
@@ -60,9 +60,6 @@ export default function Footer() {
                     </li>
                     <li>
                       <Link href="/tips-and-advice">Tips & Advice</Link>
-                    </li>
-                    <li>
-                      <Link href="#">Upcoming Cars</Link>
                     </li>
                   </ul>
                 </div>
