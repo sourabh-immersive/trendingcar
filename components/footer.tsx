@@ -67,19 +67,16 @@ export default function Footer() {
                   <h6>Connect With Us</h6>
                   <ul className="list-unstyled">
                     <li>
-                      <Link href="#">Contact Us</Link>
+                      <Link href="/contact-us">Contact Us</Link>
                     </li>
                     <li>
-                      <Link href="#">Advertise With Us</Link>
+                      <Link href="/advertise-with-us">Advertise With Us</Link>
                     </li>
                     <li>
                       <Link href="/car-news-india">Latest News</Link>
                     </li>
                     <li>
-                      <Link href="#">Ask Anything</Link>
-                    </li>
-                    <li>
-                      <Link href="#">Coming new ...</Link>
+                      <Link href="/html-sitemap">HTML Sitemap</Link>
                     </li>
                   </ul>
                 </div>

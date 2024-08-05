@@ -19,7 +19,7 @@ export async function generateMetadata(
   // const { subcat } = params;
 
   const slug = 10118;
-  const postType = "pages";
+  const postType = "pages"; 
   const apiPath = "wp"; // it should be 'wp' or 'custom'
 
   const yoastData = await fetchYoastSEOData(slug, postType, apiPath);
