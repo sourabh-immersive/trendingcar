@@ -9,8 +9,8 @@ interface FormData {
     mobile: string;
     city: string;
     feedback: string;
-    file: File | null;
     terms: boolean;
+    form_type: string;
 }
 
 interface FormErrors {
@@ -20,6 +20,7 @@ interface FormErrors {
     city?: string;
     feedback?: string;
     terms?: string;
+    form_type?: string;
 }
 
 export default function Page() {
@@ -29,9 +30,10 @@ export default function Page() {
         mobile: '',
         city: '',
         feedback: '',
-        file: null,
         terms: false,
+        form_type: 'advertise_form'
     });
+    const [status, setStatus] = useState('');
 
     //   const [errors, setErrors] = useState<FormErrors>({});
 
@@ -50,8 +52,6 @@ export default function Page() {
 
     type Touched = Partial<Record<keyof FormData, boolean>>
     const [touched, setTouched] = useState<Touched>({})
-
-
 
     const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value, type, checked, files } = e.target as HTMLInputElement;
@@ -72,9 +72,39 @@ export default function Page() {
     //     return newErrors;
     //   };
 
-    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         console.log(formData);
+
+        setStatus('Submitting...');
+
+        try {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/contact_form`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData),
+            });
+
+            if (response.ok) {
+                setStatus('Message sent successfully!');
+                setFormData({
+                    name: '',
+                    email: '',
+                    mobile: '',
+                    city: '',
+                    feedback: '',
+                    terms: false,
+                    form_type: 'contact_form'
+                });
+            } else {
+                const error = await response.json();
+                setStatus(`Error: ${error.message}`);
+            }
+        } catch (error) {
+            setStatus('An unexpected error occurred');
+        }
 
         // const validationErrors = validate();
         // if (Object.keys(validationErrors).length > 0) {
@@ -93,7 +123,7 @@ export default function Page() {
                         <h1 style={{ textAlign: 'center' }}>Advertise With Us</h1>
                         <hr />
                         <form onSubmit={handleSubmit} className="p-4 border rounded">
-                            <h4>Let Us Contact You</h4>
+                            <h4>Contact us for advertisement</h4>
                             <div className="row mb-3">
                                 <div className="col">
                                     <input
@@ -169,7 +199,7 @@ export default function Page() {
                             <div className="mb-3">
                                 <textarea
                                     className={`form-control`}
-                                    placeholder="Please share your feedback, what can we improve?"
+                                    placeholder="Please write about your product, what can we advertise?"
                                     name="feedback"
                                     value={formData.feedback}
                                     onChange={event => {
@@ -206,6 +236,7 @@ export default function Page() {
                                 </label>
                             </div>
                             <button type="submit" className="btn btn-primary">Submit</button>
+                            {status && <p>{status}</p>}
                         </form>
                     </div>
                 </div>
